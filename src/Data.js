@@ -1,6 +1,9 @@
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
+        //oddities
+        oddities: new Decimal(0),
+        oddityGain: new Decimal(0),
         //misc
         currentTab: 1,
         updateIDs: [0, 0, 0],
