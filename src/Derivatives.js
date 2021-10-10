@@ -33,7 +33,7 @@ function buyDeriv(x){
 }
 function produceDerivs(){
     for(let i=0; i<data.derivs.length - 1; i++){
-        data.derivs[i].amt = data.derivs[i].amt.plus(data.derivs[i+1].amt)
+        data.derivs[i].amt = data.derivs[i].amt.plus(data.derivs[i+1].amt.div(100))
     }
 }
 function buyMaxDeriv(){
