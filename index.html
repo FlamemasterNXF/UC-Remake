@@ -6,6 +6,7 @@
     <script src="src/Internal/Formatting.js"></script>
     <script src="src/Internal/BreakEternity.js"></script>
     <script src="src/Data.js"></script>
+    <script src="src/Derivatives.js"></script>
     <script src="src/Update.js"></script>
     <script src="src/Main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/miscStyles.css" />
@@ -15,6 +16,13 @@
     <title>UC-Remake</title>
 </head>
 <body>
+<button onclick="fullReset()">temporary full reset button</button>
 <div class="flexBox generalTexts" id="oddityDisplay">There are 0 Oddities</div>
+<div class="flexBox" id="derivativeContainer">
+    <button class="flexBox derivative" id="derivI" onclick="buyDeriv(1)">Derivative I: [Increase]<br>Cost: 2 Oddities<br>Creates 1 Oddity every second</button>
+    <button class="flexBox derivative" id="derivII">Derivative II: [Growth]<br>Cost: n Oddities<br>Creates 1 D.I every second</button>
+    <button class="flexBox derivative" id="derivIII">Derivative III: [Expansion]<br>Cost: n Oddities<br>Creates 1 D.II every second</button>
+    <button class="flexBox derivative" id="derivIV">Derivative IV: [Peak]<br>Cost: n Oddities<br>Creates 1 D.III every second</button>
+</div>
 </body>
 </html>

@@ -7,3 +7,11 @@
     color: white;
     font-family: DosisLight;
 }
+.derivative{
+    background-color: darkgoldenrod;
+    border: 3px solid gray;
+    margin-top: 10px;
+    min-height: 75px;
+    min-width: 200px;
+    font-family: DosisSemiBold;
+}

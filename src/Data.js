@@ -2,8 +2,10 @@
 function getDefaultObject() {
     return {
         //oddities
-        oddities: new Decimal(0),
+        oddities: new Decimal(2),
         oddityGain: new Decimal(0),
+        //derivatives
+        derivs: [{b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2)}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2)}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2)}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2)}],
         //misc
         currentTab: 1,
         updateIDs: [0, 0, 0],
