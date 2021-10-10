@@ -4,6 +4,7 @@ function increaseOddities(i){
 function mainLoop(){
     data.oddityGain = data.derivs[0].amt
     increaseOddities(data.oddityGain.div(100))
+    produceDerivs()
     calculateCosts()
     updateHTML()
 }
