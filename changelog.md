@@ -9,3 +9,4 @@
 **v0.0.3** Added some simple UI and added the functionality for Derivative I. <br>
 **v0.0.4** Functionality for all Derivs, Derivative II can be unlocked, the unlock system, and the Deriv production system. <br>
 **v0.0.5** Buymax for all Derivs, and a hotkey system. <br>
+**v0.0.6** You can now unlock all Derivs. <br>
