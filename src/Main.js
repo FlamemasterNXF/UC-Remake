@@ -8,6 +8,10 @@ function mainLoop(){
     calculateCosts()
     updateHTML()
 }
+document.addEventListener('keydown', (event) => {
+    let key = event.key;
+    if (key === "m") buyMaxDeriv()
+}, false);
 window.setInterval(function(){
     mainLoop()
 }, 10);

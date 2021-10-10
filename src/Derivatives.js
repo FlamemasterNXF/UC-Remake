@@ -36,3 +36,35 @@ function produceDerivs(){
         data.derivs[i].amt = data.derivs[i].amt.plus(data.derivs[i+1].amt)
     }
 }
+function buyMaxDeriv(){
+    //credit to gaps
+    let derivCostBase = [new Decimal(2),new Decimal(20),new Decimal(5),new Decimal(4)]
+    for(let x=0;x<data.derivs.length;x++){
+        let use = (x==0?data.oddities:data.derivs[x-1].b)
+        let max = use.div(derivCostBase[x]).log(1.3).minus(data.derivs[x].b).floor().max(0).plus(data.oddities.gte(data.derivs[x].c)?1:0)
+        if(isNaN(max)||max.eq(0))continue;
+        let safe = max.minus(30).max(0)
+        let o = max
+        max = new Decimal(0)
+        let ocost = new Decimal(1.3).pow(data.derivs[x].b.add(o)).times(derivCostBase[x])
+        let cost = new Decimal(0)
+        for(let x=30-o.min(30).toNumber();x<30;x++){
+            max=max.add(1)
+            cost=cost.add(ocost.div(1.3**(30-x)))
+            if(cost.gte(use)){
+                max=max.minus(1)
+                cost=cost.minus(ocost.div(1.3**(30-x)))
+                break;
+            }
+        }
+        cost=cost.floor()
+        max=max.add(safe)
+        if(x==0)data.oddities=data.oddities.minus(cost)
+        else{
+            data.derivs[x-1].b = data.derivs[x-1].b.minus(cost)
+            data.derivs[x-1].amt = data.derivs[x-1].amt.minus(cost)
+        }
+        data.derivs[x].b = data.derivs[x].b.plus(max)
+        data.derivs[x].amt = data.derivs[x].amt.plus(max)
+    }
+}

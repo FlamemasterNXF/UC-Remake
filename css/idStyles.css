@@ -2,3 +2,10 @@
     margin-top: 20px;
     flex-direction: column;
 }
+#buymax{
+    background-color: darkgoldenrod;
+    border: 3px solid gray;
+    min-height: 20px;
+    min-width: 100px;
+    font-family: DosisBold;
+}
