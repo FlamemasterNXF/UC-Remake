@@ -15,3 +15,9 @@
     min-width: 200px;
     font-family: DosisSemiBold;
 }
+.navButton{
+    margin-left: 5px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+}

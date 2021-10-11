@@ -2,10 +2,19 @@
     margin-top: 20px;
     flex-direction: column;
 }
+#navBar{
+    display: flex;
+    margin-top: 15px;
+}
 #buymax{
     background-color: darkgoldenrod;
     border: 3px solid gray;
     min-height: 20px;
     min-width: 100px;
+    font-family: DosisBold;
+}
+#exponentNav{
+    background-color: purple;
+    border: 3px solid #2b2b2b;
     font-family: DosisBold;
 }
