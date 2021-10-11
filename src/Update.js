@@ -1,4 +1,5 @@
 function updateHTML(){
+    //derivs
     document.getElementById("oddityDisplay").innerHTML = `There are ${format(data.oddities)} Oddities [${format(data.oddityGain)}/s]`
     let derivNames = ['I','II','III','IV']
     let derivTitles = ['Increase','Growth','Expansion','Peak']
@@ -8,4 +9,20 @@ function updateHTML(){
             `Derivative ${derivNames[i]}: [${derivTitles[i]}]<br>Cost: ${format(data.derivs[i].c)} Purchased D.${derivNames[i-1]}<br>Creates 100 D.${derivNames[i-1]}s every second.<br>You've purchased ${format(data.derivs[i].b)}<br>You have ${format(data.derivs[i].amt)}`
             : `Derivative ${derivNames[i]}: [${derivTitles[i]}]<br> Unlock for ${format(derivUnlockCost[i-1])} Oddities`
     }
+    //exponents
+    document.getElementById("exponentsDisplay").innerHTML = `You have created ${format(data.exponents)} Exponents and ${format(data.highExponents)} High Exponents`
+    document.getElementById("exponentReset").innerHTML =
+        `Reset your Derivatives.<br>You'll gain ${format(highExponentGain)} Exponents and ${format(highExponentGain)} High Exponents<br>Requires at least one D.IV`
+    showAndHideStuff()
+}
+function showAndHideStuff(){
+    //derivs
+    let derivStuff = document.getElementById("derivativeContainer")
+    derivStuff.style.display = data.currentTab===1 ? 'flex' : 'none'
+    //exponents
+    let exponentStuff = document.getElementById("exponentDerivContainer")
+    exponentStuff.style.display = data.currentTab===2 ? 'flex':'none'
+    //settings
+    let settingsStuff = document.getElementById("settingsContainer")
+    settingsStuff.style.display = data.currentTab===0 ? 'flex':'none'
 }

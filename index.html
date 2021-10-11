@@ -6,6 +6,7 @@
     <script src="src/Internal/Formatting.js"></script>
     <script src="src/Internal/BreakEternity.js"></script>
     <script src="src/Data.js"></script>
+    <script src="src/Exponents.js"></script>
     <script src="src/Derivatives.js"></script>
     <script src="src/Update.js"></script>
     <script src="src/Main.js"></script>
@@ -16,10 +17,12 @@
     <title>UC-Remake</title>
 </head>
 <body>
-<button onclick="fullReset()">temporary full reset button</button>
 <div class="flexBox generalTexts" id="oddityDisplay">There are 0 Oddities</div>
+<div class="flexBox generalTexts" id="exponentsDisplay">You have created 0 Exponents and 0 High Exponents</div>
 <div class="flexBox" id="navBar">
-    <button class="navButton" id="exponentNav">Exponential</button>
+    <button class="navButton" id="derivNav" onclick="switchTab(1)">Derivatives</button>
+    <button class="navButton" id="exponentNav" onclick="switchTab(2)">Exponential</button>
+    <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
 </div>
 <div class="flexBox" id="derivativeContainer">
     <button class="flexBox" id="buymax" onclick="buyMaxDeriv()">Buy the max possible of all Derivatives [M]</button>
@@ -27,6 +30,14 @@
     <button class="flexBox derivative" id="derivII" onclick="buyDeriv(2)">Derivative II: [Growth]<br>Cost: n Oddities<br>Creates 1 D.I every second</button>
     <button class="flexBox derivative" id="derivIII" onclick="buyDeriv(3)">Derivative III: [Expansion]<br>Cost: n Oddities<br>Creates 1 D.II every second</button>
     <button class="flexBox derivative" id="derivIV" onclick="buyDeriv(4)">Derivative IV: [Peak]<br>Cost: n Oddities<br>Creates 1 D.III every second</button>
+</div>
+<div class="flexBox" id="exponentDerivContainer">
+    <button class="flexBox" id="exponentReset" onclick="exponentReset()">Reset your Derivatives.<br>You'll gain 0 Exponents and 0 High Exponents</button>
+</div>
+<div class="flexBox" id="settingsContainer">
+    <button onclick="fullReset()">Delete your Savefile</button>
+    <button onclick="exportSave()">Export your Savefile to the clipboard</button>
+    <button onclick="importSave()">Import your Savefile</button>
 </div>
 </body>
 </html>

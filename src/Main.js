@@ -6,6 +6,11 @@ function mainLoop(){
     increaseOddities(data.oddityGain.div(100))
     produceDerivs()
     calculateCosts()
+    calculateResetGain()
+    updateHTML()
+}
+function switchTab(i){
+    data.currentTab = i
     updateHTML()
 }
 document.addEventListener('keydown', (event) => {

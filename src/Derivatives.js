@@ -4,7 +4,7 @@ function calculateCosts(){
         data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(new Decimal(1.3).pow(data.derivs[i].b)).floor() : data.derivs[i].c = derivCostBase[i]
     }
 }
-const derivUnlockCost = [100, 2e6, 1e10]
+const derivUnlockCost = [100, 2e6, 3e9]
 function buyDeriv(x){
     let i=x-1
        if (!data.derivs[i].u){
