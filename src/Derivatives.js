@@ -40,13 +40,14 @@ function buyMaxDeriv(){
     //credit to gaps
     let derivCostBase = [new Decimal(2),new Decimal(20),new Decimal(4),new Decimal(2)]
     for(let x=0;x<data.derivs.length;x++){
+        if(!data.derivs[x].u)continue;
         let use = (x==0?data.oddities:data.derivs[x-1].b)
-        let max = use.div(derivCostBase[x]).log(1.3).minus(data.derivs[x].b).floor().max(0).plus(data.oddities.gte(data.derivs[x].c)?1:0)
+        let max = use.div(derivCostBase[x]).log(1.3).minus(data.derivs[x].b).floor().add(data.oddities.gte(data.derivs[x].c)?1:0).max(0)
         if(isNaN(max)||max.eq(0))continue;
         let safe = max.minus(30).max(0)
         let o = max
         max = new Decimal(0)
-        let ocost = new Decimal(1.3).pow(data.derivs[x].b.add(o)).times(derivCostBase[x])
+        let ocost = new Decimal(1.3).pow(data.derivs[x].b.add(o).minus(1)).times(derivCostBase[x])
         let cost = new Decimal(0)
         for(let x=30-o.min(30).toNumber();x<30;x++){
             max=max.add(1)
