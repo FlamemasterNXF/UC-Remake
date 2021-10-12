@@ -21,6 +21,14 @@
     min-width: 100px;
     font-family: DosisBold;
 }
+#buymaxE{
+    margin-top: 5px;
+    background-color: #8c0e8c;
+    border: 3px solid #4b2351;
+    min-height: 20px;
+    min-width: 100px;
+    font-family: DosisBold;
+}
 #exponentNav{
     background-color: purple;
     border: 3px solid #2b2b2b;

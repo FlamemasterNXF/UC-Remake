@@ -15,6 +15,14 @@
     min-width: 200px;
     font-family: DosisSemiBold;
 }
+.eDeriv{
+    background-color: #8c0e8c;
+    border: 3px solid #4b2351;
+    margin-top: 10px;
+    min-height: 75px;
+    min-width: 200px;
+    font-family: DosisSemiBold;
+}
 .navButton{
     margin-left: 5px;
     width: 100px;

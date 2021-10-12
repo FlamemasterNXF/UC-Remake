@@ -6,6 +6,7 @@ function getDefaultObject() {
         oddityGain: new Decimal(0),
         //derivatives
         derivs: [{b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:true}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:false}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:false}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:false}],
+        exponentsDeriv: [{b:new Decimal(0),amt:new Decimal(0),c:new Decimal(1e4),u:true}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:false}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:false}],
         //exponents
         exponents: new Decimal(0),
         highExponents: new Decimal(0),

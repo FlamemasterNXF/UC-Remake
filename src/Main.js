@@ -3,9 +3,11 @@ function increaseOddities(i){
 }
 function mainLoop(){
     data.oddityGain = data.derivs[0].amt.times(exponentMultiplier)
+    data.exponents = data.exponents.plus(data.exponentsDeriv[0].amt.div(1000))
     increaseOddities(data.oddityGain.div(100))
     produceDerivs()
     calculateCosts()
+    produceEDerivs()
     calculateExponentStuff()
     updateHTML()
 }
@@ -13,9 +15,15 @@ function switchTab(i){
     data.currentTab = i
     updateHTML()
 }
+function test(){
+    let use = (data.derivs[3].b.plus(1))
+    let max = use.div(5).log(1.1).minus(data.exponentsDeriv[0].b).floor().add(data.derivs[3].b.gte(data.exponentsDeriv[0].c)?1:0).max(0)
+    console.log(max.mantissa)
+}
 document.addEventListener('keydown', (event) => {
     let key = event.key;
     if (key === "m") buyMaxDeriv()
+    if (key === "e") buyMaxEDeriv()
 }, false);
 window.setInterval(function(){
     mainLoop()

@@ -12,3 +12,4 @@
 **v0.0.6** You can now unlock all Derivs. <br>
 **v0.0.7** Tab System, Exponents Tab, Settings Tab with an Import/Export System, Exponent and High Exponent display, and you can Exponent Reset. <br>
 **v0.0.8** Exponent and High Exponent effects. <br>
+**v0.0.9** Exponential Derivative I and Exponential Derivative systems (unlock, purchasing, production). <br>
