@@ -7,9 +7,9 @@ function mainLoop(){
     data.oddityGain = data.derivs[0].amt.times(exponentMultiplier)
     data.exponents = data.exponents.plus(data.exponentsDeriv[0].amt.div(1000))
     increaseOddities(data.oddityGain.div(100))
-    produceDerivs()
+    produceDerivs(diff)
     calculateCosts()
-    produceEDerivs()
+    produceEDerivs(diff)
     calculateExponentStuff()
     updateHTML()
 }
