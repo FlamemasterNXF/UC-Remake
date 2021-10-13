@@ -6,7 +6,7 @@ function mainLoop(){
     data.time = Date.now()
     data.oddityGain = data.derivs[0].amt.times(exponentMultiplier)
     data.exponents = data.exponents.plus(data.exponentsDeriv[0].amt.div(1000))
-    increaseOddities(data.oddityGain.div(100))
+    increaseOddities(data.oddityGain.times(diff))
     produceDerivs(diff)
     calculateCosts()
     produceEDerivs(diff)

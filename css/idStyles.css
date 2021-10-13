@@ -10,6 +10,9 @@
     margin-top: 20px;
     flex-direction: column;
 }
+#shopContainer{
+    flex-direction: column;
+}
 #navBar{
     display: flex;
     margin-top: 15px;
@@ -60,4 +63,11 @@
 #exponentEffectDisplay{
     color: purple;
     font-family: DosisRegular;
+}
+#shopTopText{
+    margin-top: 5px;
+    color: red;
+}
+#shopRow1Text{
+    margin-top: 20px;
 }

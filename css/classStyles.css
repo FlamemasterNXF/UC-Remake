@@ -7,6 +7,13 @@
     color: white;
     font-family: DosisLight;
 }
+.shopRow{
+    margin-top: 10px;
+    flex-direction: row;
+}
+.shopUpgrade{
+    margin-left: 5px;
+}
 .derivative{
     background-color: darkgoldenrod;
     border: 3px solid gray;
