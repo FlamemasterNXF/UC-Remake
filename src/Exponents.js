@@ -52,7 +52,7 @@ function buyExponentDeriv(x){
 }
 function buyMaxEDeriv(){
     //credit to gaps
-    let eDerivCostBase = [new Decimal(5),new Decimal(1e96),new Decimal(1e96)]
+    let eDerivCostBase = [new Decimal(4),new Decimal(1e96),new Decimal(1e96)]
     for(let x=0;x<data.exponentsDeriv.length;x++){
         if(!data.exponentsDeriv[x].u)continue;
         let use = (x===0?data.derivs[3].b:data.exponentsDeriv[x-1].b)
@@ -86,7 +86,7 @@ function buyMaxEDeriv(){
 }
 function calculateEDerivCosts(){
     for (let i=0; i<3; i++){
-        let eDerivCostBase = [new Decimal(5),new Decimal(1e96),new Decimal(4),new Decimal(1e96)]
+        let eDerivCostBase = [new Decimal(4),new Decimal(1e96),new Decimal(4),new Decimal(1e96)]
         data.exponentsDeriv[i].amt.gte(1) ? data.exponentsDeriv[i].c = eDerivCostBase[i].times(new Decimal(1.1).pow(data.exponentsDeriv[i].b)).floor() : data.exponentsDeriv[i].c = eDerivCostBase[i]
     }
 }

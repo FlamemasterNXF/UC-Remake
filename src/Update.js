@@ -10,7 +10,7 @@ function updateHTML(){
             : `Derivative ${derivNames[i]}: [${derivTitles[i]}]<br> Unlock for ${format(derivUnlockCost[i-1])} Oddities`
     }
     //exponents
-    document.getElementById("exponentsDisplay").innerHTML = `You have created ${format(data.exponents)} Exponents and ${format(data.highExponents)} High Exponents [+${data.exponentsDeriv[0].amt.div(10)} Exponents/s]`
+    document.getElementById("exponentsDisplay").innerHTML = `You have created ${format(data.exponents)} Exponents and ${format(data.highExponents)} High Exponents [+${format(data.exponentsDeriv[0].amt.div(10))} Exponents/s]`
     document.getElementById("exponentEffectDisplay").innerHTML = `Your Exponents and High Exponents multiply the production of your D.Is by ${format(exponentMultiplier)}x`
     document.getElementById("exponentReset").innerHTML =
         `Reset your Derivatives.<br>You'll gain ${format(highExponentGain)} Exponents and ${format(highExponentGain)} High Exponents<br>Requires at least one D.IV`
