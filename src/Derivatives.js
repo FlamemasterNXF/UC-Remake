@@ -31,9 +31,9 @@ function buyDeriv(x){
         }
     }
 }
-function produceDerivs(){
+function produceDerivs(diff){
     for(let i=0; i<data.derivs.length - 1; i++){
-        data.derivs[i].amt = data.derivs[i].amt.plus(data.derivs[i+1].amt)
+        data.derivs[i].amt = data.derivs[i].amt.plus(data.derivs[i+1].amt.times(diff).times(100))
     }
 }
 function buyMaxDeriv(){

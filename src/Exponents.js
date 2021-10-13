@@ -90,8 +90,8 @@ function calculateEDerivCosts(){
         data.exponentsDeriv[i].amt.gte(1) ? data.exponentsDeriv[i].c = eDerivCostBase[i].times(new Decimal(1.1).pow(data.exponentsDeriv[i].b)).floor() : data.exponentsDeriv[i].c = eDerivCostBase[i]
     }
 }
-function produceEDerivs(){
+function produceEDerivs(diff){
     for(let i=0; i<data.exponentsDeriv.length - 1; i++){
-        data.exponentsDeriv[i].amt = data.exponentsDeriv[i].amt.plus(data.exponentsDeriv[i+1].amt.div(1000))
+        data.exponentsDeriv[i].amt = data.exponentsDeriv[i].amt.plus(data.exponentsDeriv[i+1].amt.times(diff).div(10))
     }
 }

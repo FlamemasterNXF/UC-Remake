@@ -11,6 +11,7 @@ function getDefaultObject() {
         exponents: new Decimal(0),
         highExponents: new Decimal(0),
         //misc
+        time: Date.now(),
         currentTab: 1,
         updateIDs: [0, 0, 0],
     }
