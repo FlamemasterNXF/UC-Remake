@@ -32,6 +32,9 @@ function showAndHideStuff(){
     //exponents
     let exponentStuff = document.getElementById("exponentDerivContainer")
     exponentStuff.style.display = data.currentTab===2 ? 'flex':'none'
+    //shop
+    let shopStuff = document.getElementById("shopContainer")
+    shopStuff.style.display = data.currentTab===3 ? 'flex':'none'
     //settings
     let settingsStuff = document.getElementById("settingsContainer")
     settingsStuff.style.display = data.currentTab===0 ? 'flex':'none'

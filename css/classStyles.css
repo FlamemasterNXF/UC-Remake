@@ -13,6 +13,11 @@
 }
 .shopUpgrade{
     margin-left: 5px;
+    background-color: #297003;
+    border: 3px #262512 solid;
+    font-family: DosisSemiBold;
+    min-height: 80px;
+    min-width: 360px;
 }
 .derivative{
     background-color: darkgoldenrod;
