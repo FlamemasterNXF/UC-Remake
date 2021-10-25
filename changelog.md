@@ -1,5 +1,6 @@
 # Changelog
-(because I love changelogs)
+(because I love changelogs) <br>
+Only notable changes are recorded here, no bugfixes or small changes.
 
 ### Pre-Alpha
 ***
