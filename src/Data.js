@@ -70,6 +70,7 @@ window.onload = function (){
 }
 //full reset
 function fullReset(){
+    exportSave()
     window.localStorage.removeItem('ucRemakeSave')
     location.reload()
 }

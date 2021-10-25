@@ -15,3 +15,4 @@
 **v0.0.9** Exponential Derivative I and Exponential Derivative systems (unlock, purchasing, production). <br>
 **v0.0.10** Offline Progress. <br>
 **v0.0.11** Major UI Update. <br>
+**v0.0.11b** Improved Full Reset. <br>
