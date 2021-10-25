@@ -22,26 +22,47 @@
 <div class="flexBox" id="navBar">
     <button class="navButton" id="derivNav" onclick="switchTab(1)">Derivatives</button>
     <button class="navButton" id="exponentNav" onclick="switchTab(2)">Exponential</button>
-    <button class="navButton" id="newShopNav" onclick="switchTab(3)">New Shop</button>
+    <button class="navButton" id="newShopNav" onclick="switchTab(3)">[WIP]</button>
     <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
 </div>
 <div class="flexBox" id="derivativeContainer">
     <button class="flexBox" id="buymax" onclick="buyMaxDeriv()">Buy the max possible of all Derivatives [M]</button>
-    <button class="flexBox derivative" id="derivI" onclick="buyDeriv(1)">Derivative I: [Increase]<br>Cost: 2 Oddities<br>Creates 1 Oddity every second</button>
-    <button class="flexBox derivative" id="derivII" onclick="buyDeriv(2)">Derivative II: [Growth]<br>Cost: n Oddities<br>Creates 1 D.I every second</button>
-    <button class="flexBox derivative" id="derivIII" onclick="buyDeriv(3)">Derivative III: [Expansion]<br>Cost: n Oddities<br>Creates 1 D.II every second</button>
-    <button class="flexBox derivative" id="derivIV" onclick="buyDeriv(4)">Derivative IV: [Peak]<br>Cost: n Oddities<br>Creates 1 D.III every second</button>
+    <button class="flexBox derivative" id="derivIButton" onclick="buyDeriv(1)">
+        <b style="font-size:20px;height:65px;margin:0px">Derivative I: [Increase]</b>
+        <div style="height:62px;text-align:right" id="derivI">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+    </button>
+    <button class="flexBox derivative" id="derivIIButton" onclick="buyDeriv(2)">
+        <b style="font-size:20px;height:62px;margin:0px">Derivative II: [Growth]</b>
+        <div style="height:60px;width:250px;text-align:right;" id="derivII">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+    </button>
+    <button class="flexBox derivative" id="derivIIIButton" onclick="buyDeriv(1)">
+        <b style="font-size:20px;height:62px;margin:0px">Derivative III: [Expansion]</b>
+        <div style="height:60px;width:250px;text-align:right;" id="derivIII">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+    </button>
+    <button class="flexBox derivative" id="derivIVButton" onclick="buyDeriv(1)">
+        <b style="font-size:20px;height:62px;margin:0px">Derivative IV: [Peak]</b>
+        <div style="height:60px;width:250px;text-align:right;" id="derivIV">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+    </button>
 </div>
 <div class="flexBox" id="exponentDerivContainer">
     <t id="exponentEffectDisplay">Your Exponents and High Exponents multiply the production of your D.Is by 1.00x</t>
     <button class="flexBox" id="exponentReset" onclick="exponentReset()">Reset your Derivatives.<br>You'll gain 0 Exponents and 0 High Exponents</button>
-    <button class="flexBox" id="buymaxE" onclick="buyMaxEDeriv()">why the fuck are buymaxes so annoying to make haha this game is in pre-alpha so i can put stuff like this in game I HATE BUYMAXES AAAAAAAAAAAAA derpsmith</button>
-    <button class="flexBox eDeriv" id="ederivI" onclick="buyExponentDeriv(1)">Derivative I: [Increase]<br>Cost: 2 Oddities<br>Creates 1 Oddity every second</button>
-    <button class="flexBox eDeriv" id="ederivII" onclick="buyExponentDeriv(2)">Derivative II: [Growth]<br>Cost: n Oddities<br>Creates 1 D.I every second</button>
-    <button class="flexBox eDeriv" id="ederivIII" onclick="buyExponentDeriv(3)">Derivative III: [Expansion]<br>Cost: n Oddities<br>Creates 1 D.II every second</button>
+    <button class="flexBox" id="buymaxE" onclick="buyMaxEDeriv()">[WIP]</button>
+    <button class="flexBox eDeriv" id="ederivIButton" onclick="buyDeriv(1)">
+        <b style="font-size:18px;height:65px;margin:0px">Exponential Derivative X: [Exponentiation]</b>
+        <div style="height:62px;text-align:right" id="ederivI">Cost: 4 D.IV<br>[1.00] 1.00 (+0.00/sec)<br>+0.10 Exponents [+0.10/sec]</div>
+    </button>
+    <button class="flexBox eDeriv" id="ederivIIButton" onclick="buyDeriv(1)">
+        <b style="font-size:18px;height:65px;margin:0px">Exponential Derivative XI: [Tetration]</b>
+        <div style="height:62px;text-align:right" id="ederivII">Cost: 4 D.IV<br>[1.00] 1.00 (+0.00/sec)<br>+0.10 Exponents [+0.10/sec]</div>
+    </button>
+    <button class="flexBox eDeriv" id="ederivIIIButton" onclick="buyDeriv(1)">
+        <b style="font-size:18px;height:65px;margin:0px">Exponential Derivative XII: [Pentation]</b>
+        <div style="height:62px;text-align:right" id="ederivIII">Cost: 4 D.IV<br>[1.00] 1.00 (+0.00/sec)<br>+0.10 Exponents [+0.10/sec]</div>
+    </button>
 </div>
 <div class="flexBox" id="shopContainer">
-    <t class="generalTexts" id="shopTopText">Welcome to the New Shop! We have some very powerful things in stock.</t>
+    <t class="generalTexts" id="shopTopText">Welcome to the New Shop! We're currently under construction, but you can still browse our preview inventory!</t>
     <t class="generalTexts" id="shopRow1Text">There are a few good things here... but this is only Row One.</t>
     <div class="flexBox shopRow" id="shopRow1">
         <button class="flexBox shopUpgrade" id="shopUpgrade1">Unlock [Upgrade 1]:<br>Gain a multiplier to D.I production based on your [Upgrade 1] amount<br>Cost: 1 Exponential D.X</button>
