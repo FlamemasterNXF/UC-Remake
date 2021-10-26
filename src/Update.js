@@ -50,10 +50,11 @@ function showAndHideStuff(){
     derivStuff.style.display = data.currentTab===1 ? 'flex' : 'none'
     buyMax.style.display = data.currentTab===1 ? 'flex' : 'none'
     //upgrades
-    let upgrades = [document.getElementById("upgrade1"),document.getElementById("upgrade2"),document.getElementById("upgrade3"),document.getElementById("upgrade4")]
+    let upgrades = [document.getElementById("upgrade1"),document.getElementById("upgrade2"),document.getElementById("upgrade3"),document.getElementById("upgrade4"),document.getElementById("upgrade5")]
     for (let i=0; i<4; i++){
         upgrades[i].style.display = data.hasShopUpgrade[i] ? 'flex' : 'none'
     }
+    upgrades[4].style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
     //exponents
     let exponentStuff = document.getElementById("exponentDerivContainer")
     exponentStuff.style.display = data.currentTab===2 ? 'flex':'none'
