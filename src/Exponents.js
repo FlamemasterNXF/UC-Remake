@@ -32,7 +32,7 @@ function buyExponentDeriv(x){
         }
     }
     else{
-        if (i>= 1) {
+        if (i>0) {
             if (data.exponentsDeriv[i-1].b.gte(data.exponentsDeriv[i].c)){
                 data.exponentsDeriv[i-1].amt = data.exponentsDeriv[i-1].amt.sub(data.exponentsDeriv[i].c)
                 data.exponentsDeriv[i-1].b = data.exponentsDeriv[i-1].b.sub(data.exponentsDeriv[i].c)

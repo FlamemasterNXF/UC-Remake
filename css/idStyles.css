@@ -25,6 +25,15 @@
     display: flex;
     margin-top: 15px;
 }
+#upgrade5{
+    background-color: #b8730b;
+    border: 3px solid gray;
+    margin-top: 10px;
+    min-height: 25px;
+    width: 200px;
+    font-family: DosisSemiBold;
+    height: 100px;
+}
 #buymax{
     margin-top: 10px;
     background-color: darkgoldenrod;

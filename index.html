@@ -6,6 +6,8 @@
     <script src="src/Internal/Formatting.js"></script>
     <script src="src/Internal/BreakEternity.js"></script>
     <script src="src/Data.js"></script>
+    <script src="src/Shop.js"></script>
+    <script src="src/Upgrades.js"></script>
     <script src="src/Exponents.js"></script>
     <script src="src/Derivatives.js"></script>
     <script src="src/Update.js"></script>
@@ -22,7 +24,7 @@
 <div class="flexBox" id="navBar">
     <button class="navButton" id="derivNav" onclick="switchTab(1)">Derivatives</button>
     <button class="navButton" id="exponentNav" onclick="switchTab(2)">Exponential</button>
-    <button class="navButton" id="newShopNav" onclick="switchTab(3)">[WIP]</button>
+    <button class="navButton" id="newShopNav" onclick="switchTab(3)">New Shop</button>
     <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
 </div>
 <div class="flexBox" id="buymaxContainer">
@@ -48,10 +50,11 @@
         </button>
     </div>
     <div class="flexBox" id="upgradeContainer">
-        <button class="flexBox upgrade" id="upgrade1" onclick="buyDeriv(1)">Upgrade 1<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
-        <button class="flexBox upgrade" id="upgrade2" onclick="buyDeriv(1)">Upgrade 2<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
-        <button class="flexBox upgrade" id="upgrade3" onclick="buyDeriv(1)">Upgrade 3<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
-        <button class="flexBox upgrade" id="upgrade4" onclick="buyDeriv(1)">Upgrade 4<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+        <button class="flexBox upgrade" id="upgrade1" onclick="buyUpgrade(1)">Upgrade 1<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+        <button class="flexBox upgrade" id="upgrade2" onclick="buyUpgrade(2)">Upgrade 2<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+        <button class="flexBox upgrade" id="upgrade3" onclick="buyUpgrade(3)">Upgrade 3<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+        <button class="flexBox upgrade" id="upgrade4" onclick="buyUpgrade(4)">Upgrade 4<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+        <button class="flexBox upgrade" id="upgrade5" onclick="buyUpgrade5()">Upgrade ⬥<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
     </div>
 </div>
 <div class="flexBox" id="exponentDerivContainer">
@@ -63,27 +66,26 @@
         <div style="height:62px;text-align:right" id="ederivI">Cost: 4 D.IV<br>[1.00] 1.00 (+0.00/sec)<br>+0.10 Exponents [+0.10/sec]</div>
     </button>
     <button class="flexBox eDeriv" id="ederivIIButton" onclick="buyExponentDeriv(2)">
-        <b style="font-size:18px;height:65px;margin:0px">Exponential Derivative XI: [Tetration]</b>
-        <div style="height:62px;text-align:right" id="ederivII">Cost: 4 D.IV<br>[1.00] 1.00 (+0.00/sec)<br>+0.10 Exponents [+0.10/sec]</div>
+        <b style="font-size:18px;height:65px;margin:0px">[???]</b>
+        <div style="height:62px;text-align:right" id="ederivII"></div>
     </button>
     <button class="flexBox eDeriv" id="ederivIIIButton" onclick="buyExponentDeriv(3)">
-        <b style="font-size:18px;height:65px;margin:0px">Exponential Derivative XII: [Pentation]</b>
-        <div style="height:62px;text-align:right" id="ederivIII">Cost: 4 D.IV<br>[1.00] 1.00 (+0.00/sec)<br>+0.10 Exponents [+0.10/sec]</div>
+        <b style="font-size:18px;height:65px;margin:0px">[???]</b>
+        <div style="height:62px;text-align:right" id="ederivIII"></div>
     </button>
 </div>
 <div class="flexBox" id="shopContainer">
     <t class="generalTexts" id="shopTopText">Welcome to the New Shop! We're currently under construction, but you can still browse our preview inventory!</t>
     <t class="generalTexts" id="shopRow1Text">There are a few good things here... but this is only Row One.</t>
     <div class="flexBox shopRow" id="shopRow1">
-        <button class="flexBox shopUpgrade" id="shopUpgrade1">Unlock [Upgrade 1]:<br>Gain a multiplier to D.I production based on your [Upgrade 1] amount<br>Cost: 1 Purchased E.D.X</button>
-        <button class="flexBox shopUpgrade" id="shopUpgrade2">Unlock [Upgrade 2]:<br>Gain a multiplier to D.II production based on your [Upgrade 2] amount<br>Cost: ???</button>
-        <button class="flexBox shopUpgrade" id="shopUpgrade3">Unlock [Upgrade 3]:<br>Gain a multiplier to D.III production based on your [Upgrade 3] amount<br>Cost: ???</button>
+        <button class="flexBox shopUpgrade" id="shopUpgrade1" onclick="buyShopUpgrade(1)">Unlock [Upgrade 1]:<br>Gain a multiplier to D.I production based on your [Upgrade 1] amount<br>Cost: 1 Purchased E.D.X</button>
+        <button class="flexBox shopUpgrade" id="shopUpgrade2" onclick="buyShopUpgrade(2)">Unlock [Upgrade 2]:<br>Gain a multiplier to D.II production based on your [Upgrade 2] amount<br>Cost: ???</button>
+        <button class="flexBox shopUpgrade" id="shopUpgrade3" onclick="buyShopUpgrade(3)">Unlock [Upgrade 3]:<br>Gain a multiplier to D.III production based on your [Upgrade 3] amount<br>Cost: ???</button>
     </div>
     <t class="generalTexts" id="shopRow1Text">Now this is powerful.</t>
     <div class="flexBox shopRow" id="shopRow2">
-        <button class="flexBox shopUpgrade" id="shopUpgrade4">Unlock [Upgrade 4]:<br>Gain a multiplier to D.IV production based on your [Upgrade 4] amount<br>Cost: ???</button>
-        <button class="flexBox shopUpgrade" id="shopUpgrade5">Unlock [D.V]<br>Cost: ???</button>
-        <button class="flexBox shopUpgrade" id="shopUpgrade6">Unlock [Multiplier Derivative I]:<br>Creates 0.01 [Upgrade 1]s every second<br>Cost: ???</button>
+        <button class="flexBox shopUpgrade" id="shopUpgrade4" onclick="buyShopUpgrade(4)">Unlock [Upgrade 4]:<br>Gain a multiplier to D.IV production based on your [Upgrade 4] amount<br>Cost: ???</button>
+        <button class="flexBox shopUpgrade" id="shopUpgrade5">Unlock [???]<br>Cost: ???</button>
     </div>D
 </div>
 <div class="flexBox" id="settingsContainer">
@@ -95,7 +97,7 @@
         <p>(because I love changelogs) <br>
             Only changes I consider notable are recorded here, no bugfixes or small changes.</p>
         <h3 id="most-recent">Most Recent</h3>
-        <p><strong>v0.0.11c</strong> In-game Changelog Integration. <br></p>
+        <p><strong>v0.0.12</strong> Shop unlock systems, Upgrades 1-4, and Upgrade ⬥ <br></p>
         <h3 id="pre-alpha">Pre-Alpha</h3>
         <hr>
         <p><strong>v0.0.1</strong> Created this repo, created the base files, added Saving, Loading, Import, and Export systems, and added a favicon. <br>
@@ -111,7 +113,8 @@
             <strong>v0.0.10</strong> Offline Progress. <br>
             <strong>v0.0.11</strong> Major UI Update. <br>
             <strong>v0.0.11b</strong> Improved Full Reset. <br>
-            <strong>v0.0.11c</strong> In-game Changelog Integration. <br></p>
+            <strong>v0.0.11c</strong> In-game Changelog Integration. <br>
+            <strong>v0.0.12</strong> Shop unlock systems, Upgrades 1-4, and Upgrade ⬥ <br></p>
     </div>
 </div>
 </body>

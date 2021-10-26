@@ -12,6 +12,8 @@ function getDefaultObject() {
         highExponents: new Decimal(0),
         //shop
         hasShopUpgrade: [false, false, false, false],
+        //upgrades
+        upgrades: [{amt:new Decimal(0),c:new Decimal(2e18)},{amt:new Decimal(0),c:new Decimal(5e19)},{amt:new Decimal(0),c:new Decimal(5e20)},{amt:new Decimal(0),c:new Decimal(6e21)},{amt:new Decimal(0),c:new Decimal(22)}],
         //misc
         time: Date.now(),
         currentTab: 1,
