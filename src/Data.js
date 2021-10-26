@@ -10,6 +10,8 @@ function getDefaultObject() {
         //exponents
         exponents: new Decimal(0),
         highExponents: new Decimal(0),
+        //shop
+        hasShopUpgrade: [false, false, false, false],
         //misc
         time: Date.now(),
         currentTab: 1,
@@ -63,7 +65,7 @@ function importSave(){
 }
 window.setInterval(function(){
     save()
-}, 1000);
+}, 10000);
 window.onload = function (){
     load()
     fixOldSaves()

@@ -29,11 +29,20 @@
     height: 90px;
     text-align: left;
 }
+.upgrade{
+    background-color: #b8730b;
+    border: 3px solid gray;
+    margin-top: 10px;
+    min-height: 25px;
+    width: 200px;
+    font-family: DosisSemiBold;
+    height: 60px;
+}
 .eDeriv{
     background-color: #8c0e8c;
     border: 3px solid #4b2351;
     margin-top: 10px;
-    min-height: 25px;
+    height: 90px;
     width: 350px;
     font-family: DosisSemiBold;
     text-align: left;

@@ -1,7 +1,8 @@
 # Changelog
 (because I love changelogs) <br>
-Only notable changes are recorded here, no bugfixes or small changes.
-
+Only changes I consider notable are recorded here, no bugfixes or small changes.
+### Most Recent
+**v0.0.11c** In-game Changelog Integration. <br>
 ### Pre-Alpha
 ***
 **v0.0.1** Created this repo, created the base files, added Saving, Loading, Import, and Export systems, and added a favicon. <br>
@@ -17,3 +18,4 @@ Only notable changes are recorded here, no bugfixes or small changes.
 **v0.0.10** Offline Progress. <br>
 **v0.0.11** Major UI Update. <br>
 **v0.0.11b** Improved Full Reset. <br>
+**v0.0.11c** In-game Changelog Integration. <br>

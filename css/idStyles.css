@@ -1,5 +1,13 @@
+#bigDerivativeContainer{
+    flex-direction: row;
+    gap: 10px;
+}
 #derivativeContainer{
-    margin-top: 20px;
+    margin-top: 5px;
+    flex-direction: column;
+}
+#upgradeContainer{
+    margin-top: 5px;
     flex-direction: column;
 }
 #exponentDerivContainer{
@@ -18,6 +26,7 @@
     margin-top: 15px;
 }
 #buymax{
+    margin-top: 10px;
     background-color: darkgoldenrod;
     border: 3px solid gray;
     min-height: 20px;

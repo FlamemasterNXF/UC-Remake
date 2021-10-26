@@ -25,24 +25,34 @@
     <button class="navButton" id="newShopNav" onclick="switchTab(3)">[WIP]</button>
     <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
 </div>
-<div class="flexBox" id="derivativeContainer">
+<div class="flexBox" id="buymaxContainer">
     <button class="flexBox" id="buymax" onclick="buyMaxDeriv()">Buy the max possible of all Derivatives [M]</button>
-    <button class="flexBox derivative" id="derivIButton" onclick="buyDeriv(1)">
-        <b style="font-size:20px;height:65px;margin:0px">Derivative I: [Increase]</b>
-        <div style="height:62px;text-align:right" id="derivI">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
-    </button>
-    <button class="flexBox derivative" id="derivIIButton" onclick="buyDeriv(2)">
-        <b style="font-size:20px;height:62px;margin:0px">Derivative II: [Growth]</b>
-        <div style="height:60px;width:250px;text-align:right;" id="derivII">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
-    </button>
-    <button class="flexBox derivative" id="derivIIIButton" onclick="buyDeriv(3)">
-        <b style="font-size:20px;height:62px;margin:0px">Derivative III: [Expansion]</b>
-        <div style="height:60px;width:250px;text-align:right;" id="derivIII">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
-    </button>
-    <button class="flexBox derivative" id="derivIVButton" onclick="buyDeriv(4)">
-        <b style="font-size:20px;height:62px;margin:0px">Derivative IV: [Peak]</b>
-        <div style="height:60px;width:250px;text-align:right;" id="derivIV">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
-    </button>
+</div>
+<div class="flexBox" id="bigDerivativeContainer">
+    <div class="flexBox" id="derivativeContainer">
+        <button class="flexBox derivative" id="derivIButton" onclick="buyDeriv(1)">
+            <b style="font-size:20px;height:65px;margin:0px">Derivative I: [Increase]</b>
+            <div style="height:62px;text-align:right" id="derivI">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+        </button>
+        <button class="flexBox derivative" id="derivIIButton" onclick="buyDeriv(2)">
+            <b style="font-size:20px;height:62px;margin:0px">Derivative II: [Growth]</b>
+            <div style="height:60px;width:250px;text-align:right;" id="derivII">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+        </button>
+        <button class="flexBox derivative" id="derivIIIButton" onclick="buyDeriv(3)">
+            <b style="font-size:20px;height:62px;margin:0px">Derivative III: [Expansion]</b>
+            <div style="height:60px;width:250px;text-align:right;" id="derivIII">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+        </button>
+        <button class="flexBox derivative" id="derivIVButton" onclick="buyDeriv(4)">
+            <b style="font-size:20px;height:62px;margin:0px">Derivative IV: [Peak]</b>
+            <div style="height:60px;width:250px;text-align:right;" id="derivIV">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+        </button>
+    </div>
+    <div class="flexBox" id="upgradeContainer">
+        <button class="flexBox upgrade" id="upgrade1" onclick="buyDeriv(1)">Upgrade 1<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+        <button class="flexBox upgrade" id="upgrade2" onclick="buyDeriv(1)">Upgrade 2<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+        <button class="flexBox upgrade" id="upgrade3" onclick="buyDeriv(1)">Upgrade 3<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+        <button class="flexBox upgrade" id="upgrade4" onclick="buyDeriv(1)">Upgrade 4<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+    </div>
 </div>
 <div class="flexBox" id="exponentDerivContainer">
     <t id="exponentEffectDisplay">Your Exponents and High Exponents multiply the production of your D.Is by 1.00x</t>
@@ -65,7 +75,7 @@
     <t class="generalTexts" id="shopTopText">Welcome to the New Shop! We're currently under construction, but you can still browse our preview inventory!</t>
     <t class="generalTexts" id="shopRow1Text">There are a few good things here... but this is only Row One.</t>
     <div class="flexBox shopRow" id="shopRow1">
-        <button class="flexBox shopUpgrade" id="shopUpgrade1">Unlock [Upgrade 1]:<br>Gain a multiplier to D.I production based on your [Upgrade 1] amount<br>Cost: 1 Exponential D.X</button>
+        <button class="flexBox shopUpgrade" id="shopUpgrade1">Unlock [Upgrade 1]:<br>Gain a multiplier to D.I production based on your [Upgrade 1] amount<br>Cost: 1 Purchased E.D.X</button>
         <button class="flexBox shopUpgrade" id="shopUpgrade2">Unlock [Upgrade 2]:<br>Gain a multiplier to D.II production based on your [Upgrade 2] amount<br>Cost: ???</button>
         <button class="flexBox shopUpgrade" id="shopUpgrade3">Unlock [Upgrade 3]:<br>Gain a multiplier to D.III production based on your [Upgrade 3] amount<br>Cost: ???</button>
     </div>
@@ -80,6 +90,29 @@
     <button onclick="fullReset()">Export and Delete your Savefile</button>
     <button onclick="exportSave()">Export your Savefile to the clipboard</button>
     <button onclick="importSave()">Import your Savefile</button>
+    <div class="generalTexts" id="changelog">
+        <h1 id="changelogHeader">Changelog</h1>
+        <p>(because I love changelogs) <br>
+            Only changes I consider notable are recorded here, no bugfixes or small changes.</p>
+        <h3 id="most-recent">Most Recent</h3>
+        <p><strong>v0.0.11c</strong> In-game Changelog Integration. <br></p>
+        <h3 id="pre-alpha">Pre-Alpha</h3>
+        <hr>
+        <p><strong>v0.0.1</strong> Created this repo, created the base files, added Saving, Loading, Import, and Export systems, and added a favicon. <br>
+            <strong>v0.0.1b</strong> Created this Changelog. <br>
+            <strong>v0.0.2</strong> Added the Dosis Font family, and the CSS code required to use the fonts within it on texts. <br>
+            <strong>v0.0.3</strong> Added some simple UI and added the functionality for Derivative I. <br>
+            <strong>v0.0.4</strong> Functionality for all Derivs, Derivative II can be unlocked, the unlock system, and the Deriv production system. <br>
+            <strong>v0.0.5</strong> Buymax for all Derivs, and a hotkey system. <br>
+            <strong>v0.0.6</strong> You can now unlock all Derivs. <br>
+            <strong>v0.0.7</strong> Tab System, Exponents Tab, Settings Tab with an Import/Export System, Exponent and High Exponent display, and you can Exponent Reset. <br>
+            <strong>v0.0.8</strong> Exponent and High Exponent effects. <br>
+            <strong>v0.0.9</strong> Exponential Derivative I and Exponential Derivative systems (unlock, purchasing, production). <br>
+            <strong>v0.0.10</strong> Offline Progress. <br>
+            <strong>v0.0.11</strong> Major UI Update. <br>
+            <strong>v0.0.11b</strong> Improved Full Reset. <br>
+            <strong>v0.0.11c</strong> In-game Changelog Integration. <br></p>
+    </div>
 </div>
 </body>
 </html>
