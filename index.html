@@ -6,7 +6,6 @@
     <script src="src/Internal/Formatting.js"></script>
     <script src="src/Internal/BreakEternity.js"></script>
     <script src="src/Data.js"></script>
-    <script src="src/Shop.js"></script>
     <script src="src/Upgrades.js"></script>
     <script src="src/Exponents.js"></script>
     <script src="src/Derivatives.js"></script>
@@ -24,7 +23,6 @@
 <div class="flexBox" id="navBar">
     <button class="navButton" id="derivNav" onclick="switchTab(1)">Derivatives</button>
     <button class="navButton" id="exponentNav" onclick="switchTab(2)">Exponential</button>
-    <button class="navButton" id="newShopNav" onclick="switchTab(3)">New Shop</button>
     <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
 </div>
 <div class="flexBox" id="buymaxContainer">
@@ -74,20 +72,6 @@
         <div style="height:62px;text-align:right" id="ederivIII"></div>
     </button>
 </div>
-<div class="flexBox" id="shopContainer">
-    <t class="generalTexts" id="shopTopText">Welcome to the New Shop! We're currently under construction, but you can still browse our preview inventory!</t>
-    <t class="generalTexts" id="shopRow1Text">There are a few good things here... but this is only Row One.</t>
-    <div class="flexBox shopRow" id="shopRow1">
-        <button class="flexBox shopUpgrade" id="shopUpgrade1" onclick="buyShopUpgrade(1)">Unlock [Upgrade 1]:<br>Gain a multiplier to D.I production based on your [Upgrade 1] amount<br>Cost: 1 Purchased E.D.X</button>
-        <button class="flexBox shopUpgrade" id="shopUpgrade2" onclick="buyShopUpgrade(2)">Unlock [Upgrade 2]:<br>Gain a multiplier to D.II production based on your [Upgrade 2] amount<br>Cost: ???</button>
-        <button class="flexBox shopUpgrade" id="shopUpgrade3" onclick="buyShopUpgrade(3)">Unlock [Upgrade 3]:<br>Gain a multiplier to D.III production based on your [Upgrade 3] amount<br>Cost: ???</button>
-    </div>
-    <t class="generalTexts" id="shopRow1Text">Now this is powerful.</t>
-    <div class="flexBox shopRow" id="shopRow2">
-        <button class="flexBox shopUpgrade" id="shopUpgrade4" onclick="buyShopUpgrade(4)">Unlock [Upgrade 4]:<br>Gain a multiplier to D.IV production based on your [Upgrade 4] amount<br>Cost: ???</button>
-        <button class="flexBox shopUpgrade" id="shopUpgrade5">Unlock [???]<br>Cost: ???</button>
-    </div>D
-</div>
 <div class="flexBox" id="settingsContainer">
     <button onclick="fullReset()">Export and Delete your Savefile</button>
     <button onclick="exportSave()">Export your Savefile to the clipboard</button>
@@ -114,7 +98,8 @@
             <strong>v0.0.11</strong> Major UI Update. <br>
             <strong>v0.0.11b</strong> Improved Full Reset. <br>
             <strong>v0.0.11c</strong> In-game Changelog Integration. <br>
-            <strong>v0.0.12</strong> Shop unlock systems, Upgrades 1-4, and Upgrade ⬥ <br></p>
+            <strong>v0.0.12</strong> Shop unlock systems, Upgrades 1-4, and Upgrade ⬥ <br>
+            <strong>v0.0.13</strong> [The Great Rollback]: Removed the Shop. Code Optimizations. <br></p>
     </div>
 </div>
 </body>
