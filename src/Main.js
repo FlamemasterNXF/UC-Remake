@@ -4,13 +4,11 @@ function increaseOddities(i){
 function mainLoop(){
     let diff = (Date.now()-data.time)/1000
     data.time = Date.now()
-    data.oddityGain = data.derivs[0].amt.times(upgradeEffects[0]).times(exponentMultiplier)
+    data.oddityGain = data.derivs[0].amt.times(upgradeEffects[0])
     data.exponents = data.exponents.plus(data.exponentsDeriv[0].amt.div(1000))
     increaseOddities(data.oddityGain.times(diff))
     produceDerivs(diff)
     calculateCosts()
-    produceEDerivs(diff)
-    calculateExponentStuff()
     updateHTML()
 }
 function switchTab(i){
