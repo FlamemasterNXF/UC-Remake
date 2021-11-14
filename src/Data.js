@@ -15,6 +15,7 @@ function getDefaultObject() {
         //misc
         autoToggled: false,
         hasLegend: [false],
+        hasTab: [false, false],
         time: Date.now(),
         currentTab: 1,
         currentUpdate: 'getReset',
@@ -47,10 +48,6 @@ function fixSave(main=getDefaultObject(), data) {
 }
 function fixOldSaves(){
     //fix important things from old versions
-    if (data.currentUpdate !== 'getReset'){
-        deleteSave()
-        data.currentUpdate = 'getReset'
-    }
 }
 function exportSave(){
     save()

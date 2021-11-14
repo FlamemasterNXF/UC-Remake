@@ -15,6 +15,9 @@ function updateHTML(){
         document.getElementById(`upgrade${upgradeNames[i]}`).innerHTML =
             `Upgrade ${upgradeNames[i]}<br>Cost: ${format(data.upgrades[i].c)} Oddities<br>Current effect: ${formatWhole(upgradeEffects[i])}x (You have ${formatWhole(data.upgrades[i].amt)})`
     }
+    //hiding tabs
+    document.getElementById("mysteriesNav").innerHTML = data.hasTab[0]?'Theories':'???'
+    document.getElementById("milestoneNav").innerHTML = data.hasTab[1]?'Legends':'???'
     //misc
     document.getElementById("autoBuymax").innerHTML = data.autoToggled?'Auto Buymax: ON':'Auto Buymax: OFF'
     showAndHideStuff()

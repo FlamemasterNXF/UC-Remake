@@ -18,16 +18,18 @@ function mainLoop(){
     calculateUpgradeEffects()
     automate()
     unlockLegends()
+    unlockTab()
     updateHTML()
 }
 function switchTab(i){
     data.currentTab = i
+    let x=i-2
+    if (x >= 0) data.hasTab[x] ? data.currentTab=i:data.currentTab=1
     updateHTML()
 }
-function test(){
-    let use = (data.derivs[3].b.plus(1))
-    let max = use.div(5).log(1.1).minus(data.exponentsDeriv[0].b).floor().add(data.derivs[3].b.gte(data.exponentsDeriv[0].c)?1:0).max(0)
-    console.log(max.mantissa)
+function unlockTab(){
+    data.hasTab[0] = data.derivs[3].amt.gte(1)
+    data.hasTab[1] = data.upgrades[2].amt.gte(1)
 }
 document.addEventListener('keydown', (event) => {
     let key = event.key;
