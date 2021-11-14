@@ -17,7 +17,7 @@ function getDefaultObject() {
         hasLegend: [false],
         time: Date.now(),
         currentTab: 1,
-        currentUpdate: '0.0.14',
+        currentUpdate: 'getReset',
     }
 }
 let data = getDefaultObject()
@@ -47,9 +47,9 @@ function fixSave(main=getDefaultObject(), data) {
 }
 function fixOldSaves(){
     //fix important things from old versions
-    if (data.currentUpdate !== '0.0.14'){
+    if (data.currentUpdate !== 'getReset'){
         deleteSave()
-        data.currentUpdate = '0.0.14'
+        data.currentUpdate = 'getReset'
     }
 }
 function exportSave(){
