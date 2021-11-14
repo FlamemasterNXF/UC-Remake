@@ -1,14 +1,23 @@
 function increaseOddities(i){
     data.oddities = data.oddities.plus(i)
 }
+function calculateOddityGain(){
+    data.oddityGain =
+        data.derivs[0].amt.times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7])
+}
 function mainLoop(){
     let diff = (Date.now()-data.time)/1000
     data.time = Date.now()
-    data.oddityGain = data.derivs[0].amt.times(upgradeEffects[0])
-    data.exponents = data.exponents.plus(data.exponentsDeriv[0].amt.div(1000))
-    increaseOddities(data.oddityGain.times(diff))
+    calculateTheoryEffects()
     produceDerivs(diff)
+    calculateOddityGain()
+    increaseOddities(data.oddityGain.times(diff))
     calculateCosts()
+    calculateDerivProductions()
+    calculateUpgradeCosts()
+    calculateUpgradeEffects()
+    automate()
+    unlockLegends()
     updateHTML()
 }
 function switchTab(i){
@@ -23,7 +32,6 @@ function test(){
 document.addEventListener('keydown', (event) => {
     let key = event.key;
     if (key === "m") buyMaxDeriv()
-    if (key === "e") buyMaxEDeriv()
 }, false);
 window.setInterval(function(){
     mainLoop()

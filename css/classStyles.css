@@ -7,17 +7,17 @@
     color: white;
     font-family: DosisLight;
 }
-.shopRow{
-    margin-top: 10px;
+.theoryRow{
     flex-direction: row;
+    margin-top: 5px;
 }
-.shopUpgrade{
+.theory{
     margin-left: 5px;
-    background-color: #297003;
-    border: 3px #262512 solid;
+    background-color: #0a629d;
+    border: 3px #261812 solid;
     font-family: DosisSemiBold;
-    min-height: 80px;
-    min-width: 360px;
+    min-height: 60px;
+    min-width: 80px;
 }
 .derivative{
     background-color: darkgoldenrod;
@@ -33,23 +33,26 @@
     background-color: #b8730b;
     border: 3px solid gray;
     margin-top: 10px;
-    min-height: 25px;
+    min-height: 10px;
     width: 200px;
     font-family: DosisSemiBold;
     height: 60px;
 }
-.eDeriv{
-    background-color: #8c0e8c;
-    border: 3px solid #4b2351;
+.legend{
+    background-color: #542780;
+    border: 3px solid #2b2b2b;
     margin-top: 10px;
-    height: 90px;
-    width: 350px;
+    height: 60px;
+    width: 500px;
     font-family: DosisSemiBold;
-    text-align: left;
 }
 .navButton{
     margin-left: 5px;
     width: 100px;
     height: 30px;
     text-align: center;
+}
+.settingsButtons{
+    border: 2px solid #545454;
+    background-color: #868686;
 }

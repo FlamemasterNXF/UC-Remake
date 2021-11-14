@@ -1,7 +1,7 @@
 function calculateCosts(){
     for (let i=0; i<4; i++){
-        let derivCostBase = [new Decimal(2),new Decimal(20),new Decimal(4),new Decimal(2)]
-        data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(new Decimal(1.3).pow(data.derivs[i].b)).floor() : data.derivs[i].c = derivCostBase[i]
+        let derivCostBase = [D(2),D(20),D(4),D(2)]
+        data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(D(1.3).pow(data.derivs[i].b)).floor() : data.derivs[i].c = derivCostBase[i]
     }
 }
 const derivUnlockCost = [100, 2e6, 3e9]
@@ -24,21 +24,33 @@ function buyDeriv(x){
         }
         else{
             if (data.oddities.gte(data.derivs[i].c)){
-                data.oddities = data.oddities.sub(data.derivs[i].c)
+                if (!data.hasLegend[0]) data.oddities = data.oddities.sub(data.derivs[i].c)
                 data.derivs[i].b = data.derivs[i].b.plus(1)
                 data.derivs[i].amt = data.derivs[i].amt.plus(1)
             }
         }
     }
 }
+let derivProductions = [D(100),D(100),D(100),]
+function calculateDerivProductions(){
+    derivProductions[0] = D(100).times(upgradeEffects[1])
+    derivProductions[1] = D(100).times(upgradeEffects[2])
+    derivProductions[2] = D(100).times(theoryEffects[1]).times(theoryEffects[8]).times(upgradeEffects[3])
+}
 function produceDerivs(diff){
-    for(let i=0; i<data.derivs.length - 1; i++){
+    /*for(let i=0; i<data.derivs.length-1; i++){
         data.derivs[i].amt = data.derivs[i].amt.plus(data.derivs[i+1].amt.times(diff).times(100).times(upgradeEffects[i+1]))
     }
+     */
+    data.derivs[0].amt = data.derivs[0].amt.plus(data.derivs[1].amt.times(diff).times(100).times(upgradeEffects[1]))
+    data.derivs[1].amt = data.derivs[1].amt.plus(data.derivs[2].amt.times(diff).times(100).times(upgradeEffects[2]))
+    data.derivs[2].amt = data.hasTheory[1] ?
+        data.derivs[2].amt.plus(data.derivs[3].amt.times(diff).times(100).times(theoryEffects[1]).times(upgradeEffects[3])):
+        data.derivs[2].amt.plus(data.derivs[3].amt.times(diff).times(100).times(upgradeEffects[3]))
 }
 function buyMaxDeriv(){
     //credit to gaps
-    let derivCostBase = [new Decimal(2),new Decimal(20),new Decimal(4),new Decimal(2)]
+    let derivCostBase = [D(2),D(20),D(4),D(2)]
     for(let x=0;x<data.derivs.length;x++){
         if(!data.derivs[x].u)continue;
         let use = (x==0?data.oddities:data.derivs[x-1].b)
@@ -47,9 +59,9 @@ function buyMaxDeriv(){
         if(isNaN(max)||max.eq(0))continue;
         let safe = max.minus(30).max(0)
         let o = max
-        max = new Decimal(0)
-        let ocost = new Decimal(1.3).pow(data.derivs[x].b.add(o).minus(1)).times(derivCostBase[x])
-        let cost = new Decimal(0)
+        max = D(0)
+        let ocost = D(1.3).pow(data.derivs[x].b.add(o).minus(1)).times(derivCostBase[x])
+        let cost = D(0)
         for(let i=30-o.min(30).toNumber();i<30;i++){
             max=max.add(1)
             cost=cost.add(ocost.div(1.3**(29-i)).floor())
@@ -62,7 +74,7 @@ function buyMaxDeriv(){
         cost=cost.floor()
         max=max.add(safe)
         if(max.lte(0))continue;
-        if(x==0)data.oddities=data.oddities.minus(cost)
+        if(x==0){if (!data.hasLegend[0]) data.oddities=data.oddities.minus(cost)}
         else{
             data.derivs[x-1].b = data.derivs[x-1].b.minus(cost)
             data.derivs[x-1].amt = data.derivs[x-1].amt.minus(cost)

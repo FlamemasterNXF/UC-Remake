@@ -1,21 +1,23 @@
+const D = x => new Decimal(x)
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
         //oddities
-        oddities: new Decimal(2),
-        oddityGain: new Decimal(0),
+        oddities: D(2),
+        oddityGain: D(0),
         //derivatives
-        derivs: [{b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:true}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:false}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:false}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:false}],
-        exponentsDeriv: [{b:new Decimal(0),amt:new Decimal(0),c:new Decimal(1e4),u:true}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:false}, {b:new Decimal(0),amt:new Decimal(0),c:new Decimal(2),u:false}],
-        //exponents
-        exponents: new Decimal(0),
-        highExponents: new Decimal(0),
+        derivs: [{b:D(0),amt:D(0),c:D(2),u:true}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}],
+        exponentsDeriv: [{b:D(0),amt:D(0),c:D(1e4),u:true}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}],
         //upgrades
-        upgrades: [{amt:new Decimal(0),c:new Decimal(2e18)},{amt:new Decimal(0),c:new Decimal(5e19)},{amt:new Decimal(0),c:new Decimal(5e20)},{amt:new Decimal(0),c:new Decimal(6e21)},{amt:new Decimal(0),c:new Decimal(22)}],
+        upgrades: [{amt:D(0),c:D(2e18)},{amt:D(0),c:D(5e19)},{amt:D(0),c:D(5e20)},{amt:D(0),c:D(6e21)},{amt:D(0),c:D(22)}],
+        //theories
+        hasTheory: [false, false, false, false, false, false, false, false],
         //misc
+        autoToggled: false,
+        hasLegend: [false],
         time: Date.now(),
         currentTab: 1,
-        updateIDs: [0, 0, 0],
+        currentUpdate: '0.0.14',
     }
 }
 let data = getDefaultObject()
@@ -32,7 +34,7 @@ function fixSave(main=getDefaultObject(), data) {
     if (typeof data === "object") {
         Object.keys(data).forEach(i => {
             if (main[i] instanceof Decimal) {
-                main[i] = new Decimal(data[i]!==null?data[i]:main[i])
+                main[i] = D(data[i]!==null?data[i]:main[i])
             } else if (typeof main[i]  == "object") {
                 fixSave(main[i], data[i])
             } else {
@@ -45,6 +47,10 @@ function fixSave(main=getDefaultObject(), data) {
 }
 function fixOldSaves(){
     //fix important things from old versions
+    if (data.currentUpdate !== '0.0.14'){
+        deleteSave()
+        data.currentUpdate = '0.0.14'
+    }
 }
 function exportSave(){
     save()
@@ -73,6 +79,10 @@ window.onload = function (){
 //full reset
 function fullReset(){
     exportSave()
+    window.localStorage.removeItem('ucRemakeSave')
+    location.reload()
+}
+function deleteSave(){
     window.localStorage.removeItem('ucRemakeSave')
     location.reload()
 }

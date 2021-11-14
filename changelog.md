@@ -20,4 +20,5 @@ Only changes I consider notable are recorded here, no bugfixes or small changes.
 **v0.0.11b** Improved Full Reset. <br>
 **v0.0.11c** In-game Changelog Integration. <br>
 **v0.0.12** Shop unlock systems, Upgrades 1-4, and Upgrade ⬥ <br>
-**v0.0.13** [The Great Rollback]: Removed the Shop. Code Optimizations.<br>
+**v0.0.13** [The Great Rollback]: Removed the Shop and Exponents. Code Optimizations.<br>
+**v0.0.14** [Theoretical Update]: Theories 1-9, Legends system, Legend One, AutoBuymax, and a lot of code optimizations! <br>
