@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <script src="src/Internal/Formatting.js"></script>
     <script src="src/Internal/BreakEternity.js"></script>
+    <script src="src/Small%20Scripts/ourgwa.js"></script>
     <script src="src/Data.js"></script>
+    <script src="src/LostDerivatives.js"></script>
     <script src="src/Theories.js"></script>
     <script src="src/Upgrades.js"></script>
     <script src="src/Derivatives.js"></script>
@@ -20,11 +22,15 @@
     <title>UC-Remake</title>
 </head>
 <body>
+<div>
+    <img src="images/communism.png" id="ourgwa">
+</div>
 <div class="flexBox generalTexts" id="oddityDisplay">There are 0 Oddities</div>
 <div class="flexBox" id="navBar">
     <button class="navButton" id="derivNav" onclick="switchTab(1)">Derivatives</button>
     <button class="navButton" id="mysteriesNav" onclick="switchTab(2)">Theories</button>
     <button class="navButton" id="milestoneNav" onclick="switchTab(3)">Legends</button>
+    <button class="navButton" id="lostNav" onclick="">Lost Derivatives</button>
     <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
 </div>
 <div class="flexBox" id="buymaxContainer">
@@ -73,11 +79,48 @@
     <div class="flexBox theoryRow" id="theoryRow3">
         <button class="theory" id="theory8" onmouseover="theoryTextUpdate(8)" onclick="buyTheory(8)">Theory VIII</button>
         <button class="theory" id="theory9" onmouseover="theoryTextUpdate(9)" onclick="buyTheory(9)">Theory IX</button>
+        <button class="theory" id="theory10" onmouseover="theoryTextUpdate(10)" onclick="buyTheory(10)">Theory X</button>
     </div>
     <div class="generalTexts" id="theoriesText">Hover over a Theory to learn its effect!</div>
 </div>
 <div class="flexBox" id="legendsContainer">
 <button class="legend" id="legend1">Legend One<br>Discovered by purchasing a Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
+</div>
+<div class="flexBox" id="bigLostContainer">
+    <t class="generalTexts" id="lostTopText">BEWARE: Activating ANY Lost Derivative resets all Upgrades and Derivatives!!</t>
+    <div id="lostContainer">
+        <button class="lostDeriv" id="lost1" onmouseover="lostTextUpdate(1)">
+            <t id="lost1Title">Tester</t>
+            <t class="lostEffectText"id="lost1Effect">effect</t>
+            <t class="lostGoalText"id="lost1Goal">goal</t>
+            <t class="lostRewardText"id="lost1Reward"></t>
+        </button>
+        <button class="lostDeriv" id="lost2" onmouseover="lostTextUpdate(2)">
+            <t id="lost2Title">Tester</t>
+            <t class="lostEffectText"id="lost2Effect">effect</t>
+            <t class="lostGoalText"id="lost2Goal">goal</t>
+            <t class="lostRewardText"id="lost2Reward"></t>
+        </button>
+        <button class="lostDeriv" id="lost3" onmouseover="lostTextUpdate(3)">
+            <t id="lost3Title">Tester</t>
+            <t class="lostEffectText"id="lost3Effect">effect</t>
+            <t class="lostGoalText"id="lost3Goal">goal</t>
+            <t class="lostRewardText"id="lost3Reward"></t>
+        </button>
+        <button class="lostDeriv" id="lost4" onmouseover="lostTextUpdate(4)">
+            <t id="lost4Title">Tester</t>
+            <t class="lostEffectText"id="lost4Effect">effect</t>
+            <t class="lostGoalText"id="lost4Goal">goal</t>
+            <t class="lostRewardText"id="lost4Reward"></t>
+        </button>
+        <button class="lostDeriv" id="lost5" onmouseover="lostTextUpdate(5)">
+            <t id="lost5Title">Tester</t>
+            <t class="lostEffectText"id="lost5Effect">effect</t>
+            <t class="lostGoalText"id="lost5Goal">goal</t>
+            <t class="lostRewardText"id="lost5Reward"></t>
+        </button>
+    </div>
+    <t class="generalTexts" id="lostText">Hover over a Lost Derivative for extra information!</t>
 </div>
 <div class="flexBox" id="settingsContainer">
     <button class="settingsButtons" onclick="fullReset()">Export and Delete your Savefile</button>
@@ -88,7 +131,7 @@
         <p>(because I love changelogs) <br>
             Only changes I consider notable are recorded here, no bugfixes or small changes.</p>
         <h3 id="most-recent">Most Recent</h3>
-        <p><strong>v0.0.14b</strong> Future tabs now display '???' and can't be accessed until a certain point. <br></p>
+        <p><strong>v0.0.14c</strong> Added Import Code 'ourgwa'. <br></p>
         <h3 id="pre-alpha">Pre-Alpha</h3>
         <hr>
         <p><strong>v0.0.1</strong> Created this repo, created the base files, added Saving, Loading, Import, and Export systems, and added a favicon. <br>
@@ -108,7 +151,8 @@
             <strong>v0.0.12</strong> Shop unlock systems, Upgrades 1-4, and Upgrade ⬥ <br>
             <strong>v0.0.13</strong> [The Great Rollback]: Removed the Shop and Exponents. Code Optimizations. <br>
             <strong>v0.0.14</strong> [Theoretical Update]: Theories 1-9, Legends system, Legend One, AutoBuymax, and a lot of code optimizations! <br>
-            <strong>v0.0.14b</strong> Future tabs now display '???' and can't be accessed until a certain point. <br></p>
+            <strong>v0.0.14b</strong> Future tabs now display '???' and can't be accessed until a certain point. <br>
+            <strong>v0.0.14c</strong>  Added Import Code 'ourgwa'.  <br></p>
     </div>
 </div>
 </body>

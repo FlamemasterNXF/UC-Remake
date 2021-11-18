@@ -1,5 +1,5 @@
-let theoryCosts =  [D(1.25e14), D(2e15), D(1e17), D(1e21), D(2e23), D(1e27), D(1e29), D(1e30), D(1e32)]
-let theoryEffects = [D(1), D(1), D(1), D(1), D(1), D(1), D(1), D(1), D(1), D(1)]
+let theoryCosts =  [D(1.25e14), D(2e15), D(1e17), D(1e21), D(2e23), D(1e27), D(1e29), D(1e30), D(1e32), D(1e36)]
+let theoryEffects = [D(1), D(1), D(1), D(1), D(1), D(1), D(1), D(1), D(1), D(1), D(1)]
 function calculateTheoryEffects(){
     theoryEffects[0] = data.hasTheory[0] ? data.derivs[3].b.gte(1) ? D(data.derivs[3].b.plus(1)) : D(1) : D(1)
     theoryEffects[1] = data.hasTheory[1] ? data.derivs[0].b.gte(1) ? D(data.derivs[0].b.div(2).plus(1)) : D(1) : D(1)
@@ -11,6 +11,7 @@ function calculateTheoryEffects(){
     theoryEffects[7] = data.hasTheory[7] ? data.derivs[0].b.gte(1) ? D(data.derivs[0].b.sqrt().plus(1)) : D(1) : D(1)
     theoryEffects[8] = data.hasTheory[8] ? data.derivs[3].b.gte(1) && data.upgrades[4].amt.gte(1)
         ? D(data.upgrades[4].amt).plus(data.derivs[3].b) : D(1) : D(1)
+    theoryEffects[9] = data.hasTheory[9] ? data.oddities.gte(10) ? D(data.oddities.log2().plus(1)) : D(1) : D(1)
 }
 function buyTheory(x){
     let i=x-1

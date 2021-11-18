@@ -1,4 +1,4 @@
-function calculateCosts(){
+function calculateDerivCosts(){
     for (let i=0; i<4; i++){
         let derivCostBase = [D(2),D(20),D(4),D(2)]
         data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(D(1.3).pow(data.derivs[i].b)).floor() : data.derivs[i].c = derivCostBase[i]

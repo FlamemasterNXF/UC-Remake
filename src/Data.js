@@ -11,11 +11,13 @@ function getDefaultObject() {
         //upgrades
         upgrades: [{amt:D(0),c:D(2e18)},{amt:D(0),c:D(5e19)},{amt:D(0),c:D(5e20)},{amt:D(0),c:D(6e21)},{amt:D(0),c:D(22)}],
         //theories
-        hasTheory: [false, false, false, false, false, false, false, false],
+        hasTheory: [false, false, false, false, false, false, false, false, false, false],
+        //lost derivs
+        lostCompletions: [D(0),D(0),D(0),D(0),D(0),],
         //misc
         autoToggled: false,
         hasLegend: [false],
-        hasTab: [false, false],
+        hasTab: [false, false, false],
         time: Date.now(),
         currentTab: 1,
         currentUpdate: 'getReset',
@@ -29,6 +31,7 @@ function save(){
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem('ucRemakeSave'))
     if (savedata !== undefined) fixSave(data, savedata)
+    startGameLoop()
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {
@@ -62,6 +65,7 @@ function exportSave(){
 }
 function importSave(){
     let importedData = prompt("Paste your save data here!")
+    if (importedData==="ourgwa") ourgwatrigger()
     data = Object.assign(getDefaultObject(), JSON.parse(atob(importedData)))
     save()
     location.reload()
