@@ -102,6 +102,7 @@
 }
 #lostText{
     margin-top: 20px;
+    text-align: center;
 }
 #lostTopText{
     color: #d25b00;
@@ -112,4 +113,7 @@
     opacity: 20%;
     position: absolute;
     pointer-events: none;
+}
+#lostInDisplay{
+    color: red;
 }

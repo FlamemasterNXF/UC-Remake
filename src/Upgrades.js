@@ -1,3 +1,4 @@
+let upgradeNames = ["1", "2", "3", "4"]
 function buyUpgrade(x){
     let i = x-1
     if (data.oddities.gte(data.upgrades[i].c)){

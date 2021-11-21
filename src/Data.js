@@ -14,13 +14,15 @@ function getDefaultObject() {
         hasTheory: [false, false, false, false, false, false, false, false, false, false],
         //lost derivs
         lostCompletions: [D(0),D(0),D(0),D(0),D(0),],
+        inLost: [false, false, false, false, false],
+        inAnyLost: false,
         //misc
         autoToggled: false,
-        hasLegend: [false],
+        hasLegend: [false, false],
         hasTab: [false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentUpdate: 'getReset',
+        currentUpdate: 'v0.0.15',
     }
 }
 let data = getDefaultObject()
@@ -31,7 +33,6 @@ function save(){
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem('ucRemakeSave'))
     if (savedata !== undefined) fixSave(data, savedata)
-    startGameLoop()
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {

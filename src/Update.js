@@ -1,40 +1,93 @@
+// region element declarations
+const oddityDisplay = document.getElementById("oddityDisplay")
+const derivI = document.getElementById("derivI")
+const derivDisplays = [];
+for (let i=1; i<data.derivs.length; i++){
+    derivDisplays[i] = document.getElementById(`deriv${derivNames[i]}`)
+}
+const upgrade5 = document.getElementById("upgrade5")
+const upgradeDisplays = [];
+for (let i=0; i<4; i++){
+    upgradeDisplays[i] = document.getElementById(`upgrade${upgradeNames[i]}`)
+}
+const lostTitlesDisplays = []
+const lostEffectsDisplays = []
+const lostGoalsDisplays = []
+const lostRewardsDisplays = []
+for (let i=0;i<lostNumbers.length;i++){
+    lostTitlesDisplays[i] = document.getElementById(`lost${lostNumbers[i]}Title`)
+    lostEffectsDisplays[i] = document.getElementById(`lost${lostNumbers[i]}Effect`)
+    lostGoalsDisplays[i] = document.getElementById(`lost${lostNumbers[i]}Goal`)
+    lostRewardsDisplays[i] = document.getElementById(`lost${lostNumbers[i]}Reward`)
+}
+const mysteriesNav = document.getElementById("mysteriesNav")
+const milestoneNav = document.getElementById("milestoneNav")
+const lostNav = document.getElementById("lostNav")
+const autoBuymax = document.getElementById("autoBuymax")
+const legend2 = document.getElementById('legend2')
+const upgrades = [document.getElementById("upgrade1"),document.getElementById("upgrade2"),document.getElementById("upgrade3"),document.getElementById("upgrade4"),document.getElementById("upgrade5")]
+const theoryDisplays = []
+for (let i=0; i<data.hasTheory.length; i++){
+    theoryDisplays[i] = document.getElementById(`theory${theoryNumbers[i]}`)
+}
+const legendsDispays = []
+for (let i=0; i<data.hasLegend.length; i++){
+    legendsDispays[i] = document.getElementById(`legend${legendsNumbers[i]}`)
+}
+const lostInDisplay = document.getElementById("lostInDisplay")
+const ourgwa = document.getElementById("ourgwa")
+// endregion
 function updateHTML(){
+    //constant
+    oddityDisplay.innerText = `There are ${format(data.oddities)} Oddities [${format(data.oddityGain)}/s]`
+    mysteriesNav.innerText = data.hasTab[0]?'Theories':'???'
+    milestoneNav.innerText = data.hasTab[1]?'Legends':'???'
+    lostNav.innerText = data.hasTab[2]?'Lost Derivatives':'???'
+    lostInDisplay.style.display = data.inAnyLost?'flex':'none'
+    ourgwa.style.display = ourgwatriggered ? 'flex':'none'
     //derivs
-    document.getElementById("oddityDisplay").innerHTML = `There are ${format(data.oddities)} Oddities [${format(data.oddityGain)}/s]`
-    let derivNames = ['I','II','III','IV']
-    document.getElementById("derivI").innerHTML = `Cost: ${format(data.derivs[0].c)} Oddities<br>[${format(data.derivs[0].b)}] ${format(data.derivs[0].amt)}<br>Produces ${format(data.oddityGain.div(data.derivs[0].amt.plus(1)))} Oddities [${format(data.oddityGain)}/s]`
-    for (let i=1; i<data.derivs.length; i++){
-         document.getElementById(`deriv${derivNames[i]}`).innerHTML = data.derivs[i].u ?
-            `Cost: ${format(data.derivs[i].c)} Purchased D.${derivNames[i-1]}<br>[${format(data.derivs[i].b)}] ${format(data.derivs[i].amt)}<br>Produces ${format(derivProductions[i-1])} D.${derivNames[i-1]} [${format(data.derivs[i].amt.times(derivProductions[i-1]))}/s]`
-            : `Unlock for ${format(derivUnlockCost[i-1])} Oddities`
+    if (data.currentTab === 1){
+        derivI.innerHTML = `Cost: ${format(data.derivs[0].c)} Oddities<br>[${format(data.derivs[0].b)}] ${format(data.derivs[0].amt)}<br>Produces ${format(data.oddityGain.div(data.derivs[0].amt.plus(1)))} Oddities [${format(data.oddityGain)}/s]`
+        for (let i=1; i<data.derivs.length; i++){
+            derivDisplays[i].innerHTML = data.derivs[i].u ?
+                `Cost: ${format(data.derivs[i].c)} Purchased D.${derivNames[i-1]}<br>[${format(data.derivs[i].b)}] ${format(data.derivs[i].amt)}<br>Produces ${format(derivProductions[i-1])} D.${derivNames[i-1]} [${format(data.derivs[i].amt.times(derivProductions[i-1]))}/s]`
+                : `Unlock for ${format(derivUnlockCost[i-1])} Oddities`
+        }
+        //upgrades
+        upgrade5.innerHTML = `Upgrade ⬥<br>Requires: ${format(data.upgrades[4].c)} Total Upgrade levels (you have ${formatWhole(data.upgrades[0].amt.plus(data.upgrades[1].amt).plus(data.upgrades[2].amt).plus(data.upgrades[3].amt))})<br>Multiplies all upgrade effects by ${formatWhole(upgradeEffects[4])}x`
+        for (let i=0;i<4;i++){
+            upgradeDisplays[i].innerHTML =
+                `Upgrade ${upgradeNames[i]}<br>Cost: ${format(data.upgrades[i].c)} Oddities<br>Current effect: ${formatWhole(upgradeEffects[i])}x (You have ${formatWhole(data.upgrades[i].amt)})`
+        }
+        autoBuymax.innerHTML = data.autoToggled?'Auto Buymax: ON':'Auto Buymax: OFF'
+        autoBuymax.style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
+        upgrades[4].style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
     }
-    //upgrades
-    document.getElementById("upgrade5").innerHTML = `Upgrade ⬥<br>Requires: ${format(data.upgrades[4].c)} Total Upgrade levels (you have ${formatWhole(data.upgrades[0].amt.plus(data.upgrades[1].amt).plus(data.upgrades[2].amt).plus(data.upgrades[3].amt))})<br>Multiplies all upgrade effects by ${formatWhole(upgradeEffects[4])}x`
-    let upgradeNames = ["1", "2", "3", "4"]
-    for (let i=0;i<4;i++){
-        document.getElementById(`upgrade${upgradeNames[i]}`).innerHTML =
-            `Upgrade ${upgradeNames[i]}<br>Cost: ${format(data.upgrades[i].c)} Oddities<br>Current effect: ${formatWhole(upgradeEffects[i])}x (You have ${formatWhole(data.upgrades[i].amt)})`
+    //theories
+    if (data.currentTab === 2){
+        for (let i=0;i<data.hasTheory.length;i++){
+            theoryDisplays[i].style.backgroundColor = data.hasTheory[i] ? '#9d670a' : '#0a629d'
+        }
     }
     //lost
-    let lostNumbers = ['1','2','3','4','5']
-    let lostNames = ['Multiplication','Division','Unknown','Ancient','Broken']
-    let lostEffects = ['Multiplies the cost scaling of Derivatives','Divides the production of all Derivatives','You only have Derivative 1','Divides Oddity gain based on how many Oddities you have','Upgrades have no effect']
-    let lostRewards = ['Reward: Boost both Theories of multiplication<br>Final Completion Reward: Divide all Upgrade costs based on your total Lost Derivative Completions','Reward: Boost both Theories of Division<br>Final Completion Reward: Multiply all Theory effects based on your total Lost Derivative Completions','1st Time Reward: Unlock D5<br>Reward (completions 2+): Unlock new Theories','Reward: Timespeed is boosted<br>Final Completion award: Timespeed is multiplied by the amount of hours you play*2','1st Time Reward: Unlock The Theory of Upgrade Derivatives III<br>Reward (completions 2+): Boost both Upgrade Derivative Theories']
-    for (let i=0;i<lostNumbers.length;i++){
-        document.getElementById(`lost${lostNumbers[i]}Title`).innerHTML = `${lostNames[i]} Derivative`
-        document.getElementById(`lost${lostNumbers[i]}Effect`).innerHTML = `<br>${lostEffects[i]}`
-        document.getElementById(`lost${lostNumbers[i]}Goal`).innerHTML = `<br>Goal: ${lostGoals[i]} Oddities`
-        document.getElementById(`lost${lostNumbers[i]}Reward`).innerHTML = `<br>${lostRewards[i]}`
+    if (data.currentTab === 4){
+        for (let i=0;i<lostNumbers.length;i++){
+            lostTitlesDisplays[i].innerHTML = `${lostNames[i]} Derivative`
+            lostEffectsDisplays[i].innerHTML = `<br>${lostEffectsTexts[i]}`
+            lostGoalsDisplays[i].innerHTML = `<br>Goal: ${format(lostGoals[i])} Oddities`
+            lostRewardsDisplays[i].innerHTML = `<br>${lostRewardsTexts[i]}`
+        }
     }
-    //hiding tabs
-    document.getElementById("mysteriesNav").innerHTML = data.hasTab[0]?'Theories':'???'
-    document.getElementById("milestoneNav").innerHTML = data.hasTab[1]?'Legends':'???'
-    document.getElementById("lostNav").innerHTML = data.hasTab[2]?'next updoot:tm:':'???'
     //misc
-    document.getElementById("autoBuymax").innerHTML = data.autoToggled?'Auto Buymax: ON':'Auto Buymax: OFF'
+    if (data.currentTab === 3){
+        for (let i=0;i<legendsNumbers.length;i++){
+            legendsDispays[i].style.backgroundColor = data.hasLegend[i] ? '#967109' : '#542780'
+        }
+        legend2.innerHTML = `Legend Two<br>Discovered by completing the Division Derivative once<br>Total Lost completions multiply Oddity gain [Currently: ${format(legendEffects[0])}x]<br>SPECIAL: This Legend's effect is raised to the power of Lost Completions when any Lost Derivative is active!`
+    }
     unlockLegends()
     unlockTabs()
-    showAndHideStuff()
+    tabChangeHTML()
 }
 let theoryDescriptions = [
     ()=>`The Theory of Reversal<br>Bought D4s multiply D1 production<br>Currently: ${format(theoryEffects[0])}x<br>Unlock Cost: ${format(theoryCosts[0])} Oddities`,
@@ -53,53 +106,37 @@ function theoryTextUpdate(x){
     document.getElementById("theoriesText").innerHTML = `${theoryDescriptions[i]()}<br>Effects are only shown once you've unlocked the Theory!`
 }
 let lostDescriptions = [
-    ()=>`Exact multiplier: ${format(lostEffects[0])}`,
-    ()=>`Exact divisor: ${format(lostEffects[1])}`,
+    ()=>`Current Reward: ${format(lostRewards[0])}x<br>Multiplier Formula: 2*(completions+1)<br>Current Multiplier: ${format(lostEffects[0])}x<br>Remember that this is a multiplier to the cost SCALING, not the cost!`,
+    ()=>`Current Reward: ${format(lostRewards[1])}x<br>Divisor Formula: 20*(completions+1)<br>Current Divisor: /${format(lostEffects[1])}`,
     ()=>`oba3`,
     ()=>`ob4`,
-    ()=>`o5`,
 ]
 function lostTextUpdate(x){
     let i = x-1
-    document.getElementById("lostText").innerHTML=`${lostDescriptions[i]()}<br>You've reached the goal ${formatWhole(data.lostCompletions[i])}/${formatWhole(lostCompletionCaps[i])} Times`
+    document.getElementById("lostText").innerHTML=`You've Completed this Lost Derivative ${formatWhole(data.lostCompletions[i])}/${formatWhole(lostCompletionCaps[i])} times<br>${lostDescriptions[i]()}`
 }
 function unlockTabs(){
-    data.hasTab[0] = data.derivs[3].amt.gte(1)
-    data.hasTab[1] = data.upgrades[2].amt.gte(1)
-    data.hasTab[2] = data.hasTheory[9]
+    data.hasTab[0] = data.derivs[3].amt.gte(1) || data.hasTab[0]
+    data.hasTab[1] = data.upgrades[2].amt.gte(1) || data.hasTab[1]
+    data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
 }
-function showAndHideStuff(){
+let derivStuff = document.getElementById("bigDerivativeContainer")
+let buyMax = document.getElementById("buymaxContainer")
+let theoryStuff = document.getElementById("theoriesContainer")
+let legendsStuff = document.getElementById("legendsContainer")
+let lostStuff = document.getElementById("bigLostContainer")
+let settingsStuff = document.getElementById("settingsContainer")
+function tabChangeHTML(){
     //derivs
-    let derivStuff = document.getElementById("bigDerivativeContainer")
-    let buyMax = document.getElementById("buymaxContainer")
-    let autoBuymax = document.getElementById("autoBuymax")
     derivStuff.style.display = data.currentTab===1 ? 'flex' : 'none'
     buyMax.style.display = data.currentTab===1 ? 'flex' : 'none'
-    autoBuymax.style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
     //upgrades
-    let upgrades = [document.getElementById("upgrade1"),document.getElementById("upgrade2"),document.getElementById("upgrade3"),document.getElementById("upgrade4"),document.getElementById("upgrade5")]
-    upgrades[4].style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
     //theories
-    let theoryStuff = document.getElementById("theoriesContainer")
     theoryStuff.style.display = data.currentTab===2?'flex':'none'
-    let theoryNumbers = ['1','2','3','4','5','6','7','8','9','10']
-    for (let i=0;i<data.hasTheory.length;i++){
-        document.getElementById(`theory${theoryNumbers[i]}`).style.backgroundColor = data.hasTheory[i] ? '#9d670a' : '#0a629d'
-    }
     //legends
-    let legendsNumbers = ['1']
-    let legendsStuff = document.getElementById("legendsContainer")
     legendsStuff.style.display = data.currentTab===3?'flex':'none'
-    for (let i=0;i<legendsNumbers.length;i++){
-        document.getElementById(`legend${legendsNumbers[i]}`).style.backgroundColor = data.hasLegend[i] ? '#967109' : '#542780'
-    }
     //lost
-    let lostStuff = document.getElementById("bigLostContainer")
     lostStuff.style.display = data.currentTab===4?'flex':'none'
     //settings
-    let settingsStuff = document.getElementById("settingsContainer")
     settingsStuff.style.display = data.currentTab===0 ? 'flex':'none'
-    //misc
-    let ourgwa = document.getElementById("ourgwa")
-    ourgwa.style.display = ourgwatriggered ? 'flex':'none'
 }

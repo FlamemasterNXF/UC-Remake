@@ -1,7 +1,12 @@
+let derivNumbers = [D(1),D(2),D(3),D(4)]
+let derivNames = ['I','II','III','IV']
 function calculateDerivCosts(){
     for (let i=0; i<4; i++){
         let derivCostBase = [D(2),D(20),D(4),D(2)]
+        if (!data.inLost[0])
         data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(D(1.3).pow(data.derivs[i].b)).floor() : data.derivs[i].c = derivCostBase[i]
+        else
+            data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(D(D(1.3).times(lostEffects[0])).pow(data.derivs[i].b)).floor() : data.derivs[i].c = derivCostBase[i]
     }
 }
 const derivUnlockCost = [100, 2e6, 3e9]
@@ -53,21 +58,22 @@ function buyMaxDeriv(){
     let derivCostBase = [D(2),D(20),D(4),D(2)]
     for(let x=0;x<data.derivs.length;x++){
         if(!data.derivs[x].u)continue;
+        let scaling = data.inLost[0] ? D(1.3).times(lostEffects[0]) : D(1.3)
         let use = (x==0?data.oddities:data.derivs[x-1].b)
         let add = data.oddities.gte(data.derivs[x].c)?1:0
-        let max = use.div(derivCostBase[x]).log(1.3).minus(data.derivs[x].b).floor().add(add).max(0)
+        let max = use.div(derivCostBase[x]).log(scaling).minus(data.derivs[x].b).floor().add(add).max(0)
         if(isNaN(max)||max.eq(0))continue;
         let safe = max.minus(30).max(0)
         let o = max
         max = D(0)
-        let ocost = D(1.3).pow(data.derivs[x].b.add(o).minus(1)).times(derivCostBase[x])
+        let ocost = D(scaling).pow(data.derivs[x].b.add(o).minus(1)).times(derivCostBase[x])
         let cost = D(0)
         for(let i=30-o.min(30).toNumber();i<30;i++){
             max=max.add(1)
-            cost=cost.add(ocost.div(1.3**(29-i)).floor())
+            cost=cost.add(ocost.div(scaling**(29-i)).floor())
             if(cost.gt(use)){
                 max=max.minus(1)
-                cost=cost.minus(ocost.div(1.3**(29-i)))
+                cost=cost.minus(ocost.div(scaling**(29-i)))
                 break;
             }
         }
