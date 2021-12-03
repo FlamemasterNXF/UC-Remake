@@ -13,16 +13,15 @@ function getDefaultObject() {
         //theories
         hasTheory: [false, false, false, false, false, false, false, false, false, false],
         //lost derivs
-        lostCompletions: [D(0),D(0),D(0),D(0),D(0),],
-        inLost: [false, false, false, false, false],
-        inAnyLost: false,
+        inLost: false,
+        particles: [D(0), D(0), D(0)], //Ancient, Derivative, Dream
         //misc
         autoToggled: false,
         hasLegend: [false, false],
         hasTab: [false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentUpdate: 'v0.0.15',
+        currentUpdate: 'v0.0.15 NEW',
     }
 }
 let data = getDefaultObject()
@@ -33,6 +32,7 @@ function save(){
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem('ucRemakeSave'))
     if (savedata !== undefined) fixSave(data, savedata)
+    fixOldSaves()
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {
@@ -52,6 +52,10 @@ function fixSave(main=getDefaultObject(), data) {
 }
 function fixOldSaves(){
     //fix important things from old versions
+    if (data.currentUpdate==='v0.0.14') data.currentUpdate='v0.0.15'
+    if (data.currentUpdate==='v0.0.15'){
+        //deleteSave()
+    }
 }
 function exportSave(){
     save()
@@ -76,7 +80,6 @@ window.setInterval(function(){
 }, 10000);
 window.onload = function (){
     load()
-    fixOldSaves()
 }
 //full reset
 function fullReset(){

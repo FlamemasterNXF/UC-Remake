@@ -10,16 +10,6 @@ const upgradeDisplays = [];
 for (let i=0; i<4; i++){
     upgradeDisplays[i] = document.getElementById(`upgrade${upgradeNames[i]}`)
 }
-const lostTitlesDisplays = []
-const lostEffectsDisplays = []
-const lostGoalsDisplays = []
-const lostRewardsDisplays = []
-for (let i=0;i<lostNumbers.length;i++){
-    lostTitlesDisplays[i] = document.getElementById(`lost${lostNumbers[i]}Title`)
-    lostEffectsDisplays[i] = document.getElementById(`lost${lostNumbers[i]}Effect`)
-    lostGoalsDisplays[i] = document.getElementById(`lost${lostNumbers[i]}Goal`)
-    lostRewardsDisplays[i] = document.getElementById(`lost${lostNumbers[i]}Reward`)
-}
 const mysteriesNav = document.getElementById("mysteriesNav")
 const milestoneNav = document.getElementById("milestoneNav")
 const lostNav = document.getElementById("lostNav")
@@ -43,7 +33,7 @@ function updateHTML(){
     mysteriesNav.innerText = data.hasTab[0]?'Theories':'???'
     milestoneNav.innerText = data.hasTab[1]?'Legends':'???'
     lostNav.innerText = data.hasTab[2]?'Lost Derivatives':'???'
-    lostInDisplay.style.display = data.inAnyLost?'flex':'none'
+    lostInDisplay.style.display = data.inLost?'flex':'none'
     ourgwa.style.display = ourgwatriggered ? 'flex':'none'
     //derivs
     if (data.currentTab === 1){
@@ -70,20 +60,12 @@ function updateHTML(){
         }
     }
     //lost
-    if (data.currentTab === 4){
-        for (let i=0;i<lostNumbers.length;i++){
-            lostTitlesDisplays[i].innerHTML = `${lostNames[i]} Derivative`
-            lostEffectsDisplays[i].innerHTML = `<br>${lostEffectsTexts[i]}`
-            lostGoalsDisplays[i].innerHTML = `<br>Goal: ${format(lostGoals[i])} Oddities`
-            lostRewardsDisplays[i].innerHTML = `<br>${lostRewardsTexts[i]}`
-        }
-    }
+
     //misc
     if (data.currentTab === 3){
         for (let i=0;i<legendsNumbers.length;i++){
             legendsDispays[i].style.backgroundColor = data.hasLegend[i] ? '#967109' : '#542780'
         }
-        legend2.innerHTML = `Legend Two<br>Discovered by completing the Division Derivative once<br>Total Lost completions multiply Oddity gain [Currently: ${format(legendEffects[0])}x]<br>SPECIAL: This Legend's effect is raised to the power of Lost Completions when any Lost Derivative is active!`
     }
     unlockLegends()
     unlockTabs()
@@ -104,16 +86,6 @@ let theoryDescriptions = [
 function theoryTextUpdate(x){
     let i = x-1
     document.getElementById("theoriesText").innerHTML = `${theoryDescriptions[i]()}<br>Effects are only shown once you've unlocked the Theory!`
-}
-let lostDescriptions = [
-    ()=>`Current Reward: ${format(lostRewards[0])}x<br>Multiplier Formula: 2*(completions+1)<br>Current Multiplier: ${format(lostEffects[0])}x<br>Remember that this is a multiplier to the cost SCALING, not the cost!`,
-    ()=>`Current Reward: ${format(lostRewards[1])}x<br>Divisor Formula: 20*(completions+1)<br>Current Divisor: /${format(lostEffects[1])}`,
-    ()=>`oba3`,
-    ()=>`ob4`,
-]
-function lostTextUpdate(x){
-    let i = x-1
-    document.getElementById("lostText").innerHTML=`You've Completed this Lost Derivative ${formatWhole(data.lostCompletions[i])}/${formatWhole(lostCompletionCaps[i])} times<br>${lostDescriptions[i]()}`
 }
 function unlockTabs(){
     data.hasTab[0] = data.derivs[3].amt.gte(1) || data.hasTab[0]

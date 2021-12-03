@@ -86,34 +86,15 @@
 </div>
 <div class="flexBox" id="legendsContainer">
 <button class="legend" id="legend1">Legend One<br>Discovered by purchasing a Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
-<button class="legend" id="legend2">Legend Two<br>Discovered by completing the Division Derivative once<br>Total Lost completions multiply Oddity gain</button>
 </div>
 <div class="flexBox" id="bigLostContainer">
     <t class="generalTexts" id="lostTopText">BEWARE: Activating ANY Lost Derivative resets all Upgrades and Derivatives!!</t>
     <div class="flexBox" id="lostContainer">
-        <button class="lostDeriv" id="lost1" onmouseover="lostTextUpdate(1)" onclick="enterLost(1)">
-            <t id="lost1Title">Tester</t>
-            <t class="lostEffectText"id="lost1Effect">effect</t>
-            <t class="lostGoalText"id="lost1Goal">goal</t>
-            <t class="lostRewardText"id="lost1Reward"></t>
-        </button>
-        <button class="lostDeriv" id="lost2" onmouseover="lostTextUpdate(2)"onclick="enterLost(2)">
-            <t id="lost2Title">Tester</t>
-            <t class="lostEffectText"id="lost2Effect">effect</t>
-            <t class="lostGoalText"id="lost2Goal">goal</t>
-            <t class="lostRewardText"id="lost2Reward"></t>
-        </button>
-        <button class="lostDeriv" id="lost3" onmouseover="lostTextUpdate(3)"onclick="enterLost(3)">
-            <t id="lost3Title">Tester</t>
-            <t class="lostEffectText"id="lost3Effect">effect</t>
-            <t class="lostGoalText"id="lost3Goal">goal</t>
-            <t class="lostRewardText"id="lost3Reward"></t>
-        </button>
-        <button class="lostDeriv" id="lost4" onmouseover="lostTextUpdate(4)"onclick="enterLost(4)">
-            <t id="lost4Title">Tester</t>
-            <t class="lostEffectText"id="lost4Effect">effect</t>
-            <t class="lostGoalText"id="lost4Goal">goal</t>
-            <t class="lostRewardText"id="lost4Reward"></t>
+        <button class="flexBox" id="lostDeriv" onclick="enterLost()">
+            <t id="lostTitle">Tester</t>
+            <t class=""id="lostEffect">effect</t>
+            <t class=""id="lostGoal">goal</t>
+            <t class=""id="lostReward"></t>
         </button>
     </div>
     <t class="generalTexts" id="lostText">Hover over a Lost Derivative for extra information!</t>

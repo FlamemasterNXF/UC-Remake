@@ -2,8 +2,7 @@ function increaseOddities(i){
     data.oddities = data.oddities.plus(i)
 }
 function calculateOddityGain(){
-    data.oddityGain = data.inLost[1]?
-        data.derivs[0].amt.times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7]).times(theoryEffects[9]).times(legendEffects[0]).div(lostEffects[1]):
+    data.oddityGain =
         data.derivs[0].amt.times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7]).times(theoryEffects[9]).times(legendEffects[0])
 }
 function mainLoop(){
@@ -13,7 +12,6 @@ function mainLoop(){
     produceDerivs(diff)
     increaseOddities(data.oddityGain.times(diff))
     automate()
-    completeLost()
     updateHTML()
 }
 function calculationsLoop(){
@@ -24,7 +22,6 @@ function calculationsLoop(){
     calculateUpgradeCosts()
     calculateUpgradeEffects()
     calculateLostStuf()
-    calculateLegendEffects()
 }
 function switchTab(i){
     data.currentTab = i
@@ -36,4 +33,6 @@ document.addEventListener('keydown', (event) => {
     let key = event.key;
     if (key === "m") buyMaxDeriv()
 }, false);
-window.setInterval( () => mainLoop())
+window.setInterval(function(){
+    mainLoop()
+}, 10);

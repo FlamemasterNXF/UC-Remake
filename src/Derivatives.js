@@ -3,10 +3,7 @@ let derivNames = ['I','II','III','IV']
 function calculateDerivCosts(){
     for (let i=0; i<4; i++){
         let derivCostBase = [D(2),D(20),D(4),D(2)]
-        if (!data.inLost[0])
         data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(D(1.3).pow(data.derivs[i].b)).floor() : data.derivs[i].c = derivCostBase[i]
-        else
-            data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(D(D(1.3).times(lostEffects[0])).pow(data.derivs[i].b)).floor() : data.derivs[i].c = derivCostBase[i]
     }
 }
 const derivUnlockCost = [100, 2e6, 3e9]
@@ -58,7 +55,7 @@ function buyMaxDeriv(){
     let derivCostBase = [D(2),D(20),D(4),D(2)]
     for(let x=0;x<data.derivs.length;x++){
         if(!data.derivs[x].u)continue;
-        let scaling = data.inLost[0] ? D(1.3).times(lostEffects[0]) : D(1.3)
+        let scaling = D(1.3)
         let use = (x==0?data.oddities:data.derivs[x-1].b)
         let add = data.oddities.gte(data.derivs[x].c)?1:0
         let max = use.div(derivCostBase[x]).log(scaling).minus(data.derivs[x].b).floor().add(add).max(0)
