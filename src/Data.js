@@ -15,6 +15,7 @@ function getDefaultObject() {
         //lost derivs
         inLost: false,
         particles: [D(0), D(0), D(0)], //Ancient, Derivative, Dream
+        highestOdditiesInLost: D(0),
         //misc
         autoToggled: false,
         hasLegend: [false, false],

@@ -1,10 +1,12 @@
 let derivativeParticleEffect = D(1)
 let dreamParticleEffects = [D(1),D(1),D(1)]
 let particleGains = [D(0), D(0)]
+let ancientParticleGain = D(0)
 function calculateLostStuf(){
 
 }
 function lostControl(){
+    if (data.inLost) data.highestOdditiesInLost = data.oddities
     lostReset()
     data.inLost = !data.inLost
 }

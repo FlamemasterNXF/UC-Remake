@@ -2,7 +2,6 @@ html{
     background-color: black;
 }
 body{
-    overflow: hidden;
 }
 @font-face {
     font-family: 'DosisBold';
