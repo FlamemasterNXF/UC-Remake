@@ -1,14 +1,12 @@
+let derivativeParticleEffect = D(1)
+let dreamParticleEffects = [D(1),D(1),D(1)]
+let particleGains = [D(0), D(0)]
 function calculateLostStuf(){
 
 }
-function enterLost(){
+function lostControl(){
     lostReset()
-    data.inLost = true
-    //lostInDisplay.innerHTML = `${lostNames[i]} Derivative Active!`
-}
-function exitLost(){
-    lostReset()
-    data.inLost = false
+    data.inLost = !data.inLost
 }
 function lostReset(){
     data.autoToggled = false

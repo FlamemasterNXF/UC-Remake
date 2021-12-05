@@ -14,7 +14,6 @@ const mysteriesNav = document.getElementById("mysteriesNav")
 const milestoneNav = document.getElementById("milestoneNav")
 const lostNav = document.getElementById("lostNav")
 const autoBuymax = document.getElementById("autoBuymax")
-const legend2 = document.getElementById('legend2')
 const upgrades = [document.getElementById("upgrade1"),document.getElementById("upgrade2"),document.getElementById("upgrade3"),document.getElementById("upgrade4"),document.getElementById("upgrade5")]
 const theoryDisplays = []
 for (let i=0; i<data.hasTheory.length; i++){
@@ -24,17 +23,21 @@ const legendsDispays = []
 for (let i=0; i<data.hasLegend.length; i++){
     legendsDispays[i] = document.getElementById(`legend${legendsNumbers[i]}`)
 }
+const lostTexts = [document.getElementById('lostEffect'),document.getElementById('lostInfo')]
+const lostTopText = document.getElementById('lostTopText')
+const particleEffectsTexts = [document.getElementById('derivativeParticleEffect'), document.getElementById("dreamParticleEffect")]
 const lostInDisplay = document.getElementById("lostInDisplay")
 const ourgwa = document.getElementById("ourgwa")
 // endregion
 function updateHTML(){
-    //constant
+    // region constant
     oddityDisplay.innerText = `There are ${format(data.oddities)} Oddities [${format(data.oddityGain)}/s]`
     mysteriesNav.innerText = data.hasTab[0]?'Theories':'???'
     milestoneNav.innerText = data.hasTab[1]?'Legends':'???'
     lostNav.innerText = data.hasTab[2]?'Lost Derivatives':'???'
     lostInDisplay.style.display = data.inLost?'flex':'none'
     ourgwa.style.display = ourgwatriggered ? 'flex':'none'
+    //endregion
     //derivs
     if (data.currentTab === 1){
         derivI.innerHTML = `Cost: ${format(data.derivs[0].c)} Oddities<br>[${format(data.derivs[0].b)}] ${format(data.derivs[0].amt)}<br>Produces ${format(data.oddityGain.div(data.derivs[0].amt.plus(1)))} Oddities [${format(data.oddityGain)}/s]`
@@ -60,7 +63,13 @@ function updateHTML(){
         }
     }
     //lost
-
+    if (data.currentTab === 4){
+        lostTopText.innerText=`Ancient Particles: ${format(data.particles[0])} // Derivative Particles: ${format(data.particles[1])} [${format(particleGains[0])}/s] // Dream Particles: ${format(data.particles[2])} [${format(particleGains[1])}/s]`
+        lostTexts[0].innerHTML=`<br>Activating The Lost Derivative will reset everything before Theories<br>While the Lost Derivative is active only D1 can be purchased, but you will gain Ancient Particles based on how many Oddities you gain!<br>`
+        lostTexts[1].innerText=`Activate The Lost Derivative to gain more Ancient Particles`
+        particleEffectsTexts[0].innerHTML=`Current Derivative Particle effects:<br>Dream Particle gain multiplier [${format(derivativeParticleEffect)}x]`
+        particleEffectsTexts[1].innerHTML=`Current Dream Particle effects:<br>Oddity gain multiplier [${format(dreamParticleEffects[0])}x]<br>D1 Cost divisor [/${format(dreamParticleEffects[1])}]<br>Upgrade Requirement divisor [/${format(dreamParticleEffects[2])}]`
+    }
     //misc
     if (data.currentTab === 3){
         for (let i=0;i<legendsNumbers.length;i++){
@@ -92,12 +101,13 @@ function unlockTabs(){
     data.hasTab[1] = data.upgrades[2].amt.gte(1) || data.hasTab[1]
     data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
 }
-let derivStuff = document.getElementById("bigDerivativeContainer")
-let buyMax = document.getElementById("buymaxContainer")
-let theoryStuff = document.getElementById("theoriesContainer")
-let legendsStuff = document.getElementById("legendsContainer")
-let lostStuff = document.getElementById("bigLostContainer")
-let settingsStuff = document.getElementById("settingsContainer")
+const derivStuff = document.getElementById("bigDerivativeContainer")
+const buyMax = document.getElementById("buymaxContainer")
+const theoryStuff = document.getElementById("theoriesContainer")
+const legendsStuff = document.getElementById("legendsContainer")
+const lostStuff = document.getElementById("bigLostContainer")
+const lostCanvas = document.getElementById("lostCanvas")
+const settingsStuff = document.getElementById("settingsContainer")
 function tabChangeHTML(){
     //derivs
     derivStuff.style.display = data.currentTab===1 ? 'flex' : 'none'
@@ -109,6 +119,7 @@ function tabChangeHTML(){
     legendsStuff.style.display = data.currentTab===3?'flex':'none'
     //lost
     lostStuff.style.display = data.currentTab===4?'flex':'none'
+    lostCanvas.style.display = data.currentTab===4?'flex':'none'
     //settings
     settingsStuff.style.display = data.currentTab===0 ? 'flex':'none'
 }

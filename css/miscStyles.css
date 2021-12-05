@@ -1,6 +1,9 @@
 html{
     background-color: black;
 }
+body{
+    overflow: hidden;
+}
 @font-face {
     font-family: 'DosisBold';
     src: url(Dosis/static/Dosis-Bold.ttf);

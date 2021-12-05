@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
+    <script defer src="src/Small%20Scripts/Animations.js"></script>
     <script defer src="src/Internal/Formatting.js"></script>
     <script defer src="src/Internal/BreakEternity.js"></script>
     <script defer src="src/Small%20Scripts/ourgwa.js"></script>
@@ -25,113 +26,117 @@
 <div>
     <img src="images/communism.png" id="ourgwa">
 </div>
-<div class="flexBox generalTexts" id="oddityDisplay">There are 0 Oddities</div>
-<div class="flexBox generalTexts" id="lostInDisplay">Lost Derivative Active!</div>
-<div class="flexBox" id="navBar">
-    <button class="navButton" id="derivNav" onclick="switchTab(1)">Derivatives</button>
-    <button class="navButton" id="mysteriesNav" onclick="switchTab(2)">Theories</button>
-    <button class="navButton" id="milestoneNav" onclick="switchTab(3)">Legends</button>
-    <button class="navButton" id="lostNav" onclick="switchTab(4)">Lost Derivatives</button>
-    <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
-</div>
-<div class="flexBox" id="buymaxContainer">
-    <button class="flexBox" id="buymax" onclick="buyMaxDeriv()">Buy the max possible of all Derivatives [M]</button>
-    <button class="flexBox" id="autoBuymax" onclick="autoToggle()">Auto Buymax: OFF</button>
-</div>
-<div class="flexBox" id="bigDerivativeContainer">
-    <div class="flexBox" id="derivativeContainer">
-        <button class="flexBox derivative" id="derivIButton" onclick="buyDeriv(1)">
-            <b style="font-size:20px;height:65px;margin:0px">Derivative I: [Increase]</b>
-            <div style="height:62px;text-align:right" id="derivI">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
-        </button>
-        <button class="flexBox derivative" id="derivIIButton" onclick="buyDeriv(2)">
-            <b style="font-size:20px;height:62px;margin:0px">Derivative II: [Growth]</b>
-            <div style="height:60px;width:250px;text-align:right;" id="derivII">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
-        </button>
-        <button class="flexBox derivative" id="derivIIIButton" onclick="buyDeriv(3)">
-            <b style="font-size:20px;height:62px;margin:0px">Derivative III: [Expansion]</b>
-            <div style="height:60px;width:250px;text-align:right;" id="derivIII">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
-        </button>
-        <button class="flexBox derivative" id="derivIVButton" onclick="buyDeriv(4)">
-            <b style="font-size:20px;height:62px;margin:0px">Derivative IV: [Peak]</b>
-            <div style="height:60px;width:250px;text-align:right;" id="derivIV">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
-        </button>
+<div class="layer" id="topLayer">
+    <div class="flexBox generalTexts" id="oddityDisplay">There are 0 Oddities</div>
+    <div class="flexBox generalTexts" id="lostInDisplay">Lost Derivative Active!</div>
+    <div class="flexBox" id="navBar">
+        <button class="navButton" id="derivNav" onclick="switchTab(1)">Derivatives</button>
+        <button class="navButton" id="mysteriesNav" onclick="switchTab(2)">Theories</button>
+        <button class="navButton" id="milestoneNav" onclick="switchTab(3)">Legends</button>
+        <button class="navButton" id="lostNav" onclick="switchTab(4)">Lost Derivatives</button>
+        <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
     </div>
-    <div class="flexBox" id="upgradeContainer">
-        <button class="flexBox upgrade" id="upgrade1" onclick="buyUpgrade(1)">Upgrade 1<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
-        <button class="flexBox upgrade" id="upgrade2" onclick="buyUpgrade(2)">Upgrade 2<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
-        <button class="flexBox upgrade" id="upgrade3" onclick="buyUpgrade(3)">Upgrade 3<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
-        <button class="flexBox upgrade" id="upgrade4" onclick="buyUpgrade(4)">Upgrade 4<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
-        <button class="flexBox upgrade" id="upgrade5" onclick="buyUpgrade5()">Upgrade ⬥<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+    <div class="flexBox" id="buymaxContainer">
+        <button class="flexBox" id="buymax" onclick="buyMaxDeriv()">Buy the max possible of all Derivatives [M]</button>
+        <button class="flexBox" id="autoBuymax" onclick="autoToggle()">Auto Buymax: OFF</button>
+    </div>
+    <div class="flexBox" id="bigDerivativeContainer">
+        <div class="flexBox" id="derivativeContainer">
+            <button class="flexBox derivative" id="derivIButton" onclick="buyDeriv(1)">
+                <b style="font-size:20px;height:65px;margin:0px">Derivative I: [Increase]</b>
+                <div style="height:62px;text-align:right" id="derivI">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+            </button>
+            <button class="flexBox derivative" id="derivIIButton" onclick="buyDeriv(2)">
+                <b style="font-size:20px;height:62px;margin:0px">Derivative II: [Growth]</b>
+                <div style="height:60px;width:250px;text-align:right;" id="derivII">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+            </button>
+            <button class="flexBox derivative" id="derivIIIButton" onclick="buyDeriv(3)">
+                <b style="font-size:20px;height:62px;margin:0px">Derivative III: [Expansion]</b>
+                <div style="height:60px;width:250px;text-align:right;" id="derivIII">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+            </button>
+            <button class="flexBox derivative" id="derivIVButton" onclick="buyDeriv(4)">
+                <b style="font-size:20px;height:62px;margin:0px">Derivative IV: [Peak]</b>
+                <div style="height:60px;width:250px;text-align:right;" id="derivIV">Cost: 2.00 Oddities<br>[1.00] 1.00 (+0.00/sec)<br>+1.00 Oddity [+1.00/sec]</div>
+            </button>
+        </div>
+        <div class="flexBox" id="upgradeContainer">
+            <button class="flexBox upgrade" id="upgrade1" onclick="buyUpgrade(1)">Upgrade 1<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+            <button class="flexBox upgrade" id="upgrade2" onclick="buyUpgrade(2)">Upgrade 2<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+            <button class="flexBox upgrade" id="upgrade3" onclick="buyUpgrade(3)">Upgrade 3<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+            <button class="flexBox upgrade" id="upgrade4" onclick="buyUpgrade(4)">Upgrade 4<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+            <button class="flexBox upgrade" id="upgrade5" onclick="buyUpgrade5()">Upgrade ⬥<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+        </div>
+    </div>
+    <div class="flexBox" id="theoriesContainer">
+        <div class="flexBox theoryRow" id="theoryRow1">
+            <button class="theory" id="theory1" onmouseover="theoryTextUpdate(1)" onclick="buyTheory(1)">Theory I</button>
+            <button class="theory" id="theory2" onmouseover="theoryTextUpdate(2)" onclick="buyTheory(2)">Theory II</button>
+            <button class="theory" id="theory3" onmouseover="theoryTextUpdate(3)" onclick="buyTheory(3)">Theory III</button>
+        </div>
+        <div class="flexBox theoryRow" id="theoryRow2">
+            <button class="theory" id="theory4" onmouseover="theoryTextUpdate(4)" onclick="buyTheory(4)">Theory IV</button>
+            <button class="theory" id="theory5" onmouseover="theoryTextUpdate(5)" onclick="buyTheory(5)">Theory V</button>
+            <button class="theory" id="theory6" onmouseover="theoryTextUpdate(6)" onclick="buyTheory(6)">Theory VI</button>
+            <button class="theory" id="theory7" onmouseover="theoryTextUpdate(7)" onclick="buyTheory(7)">Theory VII</button>
+        </div>
+        <div class="flexBox theoryRow" id="theoryRow3">
+            <button class="theory" id="theory8" onmouseover="theoryTextUpdate(8)" onclick="buyTheory(8)">Theory VIII</button>
+            <button class="theory" id="theory9" onmouseover="theoryTextUpdate(9)" onclick="buyTheory(9)">Theory IX</button>
+            <button class="theory" id="theory10" onmouseover="theoryTextUpdate(10)" onclick="buyTheory(10)">Theory X</button>
+        </div>
+        <div class="generalTexts" id="theoriesText">Hover over a Theory to learn its effect!</div>
+    </div>
+    <div class="flexBox" id="legendsContainer">
+        <button class="legend" id="legend1">Legend One<br>Discovered by purchasing a Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
+    </div>
+    <div class="flexBox" id="bigLostContainer">
+        <t class="generalTexts" id="lostTopText">hi</t>
+        <div class="flexBox" id="lostContainer">
+            <button class="" id="lostDeriv" onclick="">
+                <div id="lostTitle">The Lost Derivative</div>
+                <div class=""id="lostEffect">effect</div>
+                <div class=""id="lostInfo">info</div>
+            </button>
+            <button class="" id="particleEffectsBox">
+                <div id="derivativeParticleEffect">Current Ancient Particle effects:</div>
+                <div id="dreamParticleEffect">Current Dream Particle effects:</div>
+            </button>
+        </div>
+    </div>
+    <div class="flexBox" id="settingsContainer">
+        <button class="settingsButtons" onclick="fullReset()">Export and Delete your Savefile</button>
+        <button class="settingsButtons" onclick="exportSave()">Export your Savefile to the clipboard</button>
+        <button class="settingsButtons" onclick="importSave()">Import your Savefile</button>
+        <div class="generalTexts" id="changelog">
+            <h1 id="changelogHeader">Changelog</h1>
+            <p>(because I love changelogs) <br>
+                Only changes I consider notable are recorded here, no bugfixes or small changes.</p>
+            <h3 id="most-recent">Most Recent</h3>
+            <p><strong>v0.0.14c</strong> Added Import Code 'ourgwa'. <br></p>
+            <h3 id="pre-alpha">Pre-Alpha</h3>
+            <hr>
+            <p><strong>v0.0.1</strong> Created this repo, created the base files, added Saving, Loading, Import, and Export systems, and added a favicon. <br>
+                <strong>v0.0.1b</strong> Created this Changelog. <br>
+                <strong>v0.0.2</strong> Added the Dosis Font family, and the CSS code required to use the fonts within it on texts. <br>
+                <strong>v0.0.3</strong> Added some simple UI and added the functionality for Derivative I. <br>
+                <strong>v0.0.4</strong> Functionality for all Derivs, Derivative II can be unlocked, the unlock system, and the Deriv production system. <br>
+                <strong>v0.0.5</strong> Buymax for all Derivs, and a hotkey system. <br>
+                <strong>v0.0.6</strong> You can now unlock all Derivs. <br>
+                <strong>v0.0.7</strong> Tab System, Exponents Tab, Settings Tab with an Import/Export System, Exponent and High Exponent display, and you can Exponent Reset. <br>
+                <strong>v0.0.8</strong> Exponent and High Exponent effects. <br>
+                <strong>v0.0.9</strong> Exponential Derivative I and Exponential Derivative systems (unlock, purchasing, production). <br>
+                <strong>v0.0.10</strong> Offline Progress. <br>
+                <strong>v0.0.11</strong> Major UI Update. <br>
+                <strong>v0.0.11b</strong> Improved Full Reset. <br>
+                <strong>v0.0.11c</strong> In-game Changelog Integration. <br>
+                <strong>v0.0.12</strong> Shop unlock systems, Upgrades 1-4, and Upgrade ⬥ <br>
+                <strong>v0.0.13</strong> [The Great Rollback]: Removed the Shop and Exponents. Code Optimizations. <br>
+                <strong>v0.0.14</strong> [Theoretical Update]: Theories 1-9, Legends system, Legend One, AutoBuymax, and a lot of code optimizations! <br>
+                <strong>v0.0.14b</strong> Future tabs now display '???' and can't be accessed until a certain point. <br>
+                <strong>v0.0.14c</strong>  Added Import Code 'ourgwa'.  <br></p>
+        </div>
     </div>
 </div>
-<div class="flexBox" id="theoriesContainer">
-    <div class="flexBox theoryRow" id="theoryRow1">
-        <button class="theory" id="theory1" onmouseover="theoryTextUpdate(1)" onclick="buyTheory(1)">Theory I</button>
-        <button class="theory" id="theory2" onmouseover="theoryTextUpdate(2)" onclick="buyTheory(2)">Theory II</button>
-        <button class="theory" id="theory3" onmouseover="theoryTextUpdate(3)" onclick="buyTheory(3)">Theory III</button>
-    </div>
-    <div class="flexBox theoryRow" id="theoryRow2">
-        <button class="theory" id="theory4" onmouseover="theoryTextUpdate(4)" onclick="buyTheory(4)">Theory IV</button>
-        <button class="theory" id="theory5" onmouseover="theoryTextUpdate(5)" onclick="buyTheory(5)">Theory V</button>
-        <button class="theory" id="theory6" onmouseover="theoryTextUpdate(6)" onclick="buyTheory(6)">Theory VI</button>
-        <button class="theory" id="theory7" onmouseover="theoryTextUpdate(7)" onclick="buyTheory(7)">Theory VII</button>
-    </div>
-    <div class="flexBox theoryRow" id="theoryRow3">
-        <button class="theory" id="theory8" onmouseover="theoryTextUpdate(8)" onclick="buyTheory(8)">Theory VIII</button>
-        <button class="theory" id="theory9" onmouseover="theoryTextUpdate(9)" onclick="buyTheory(9)">Theory IX</button>
-        <button class="theory" id="theory10" onmouseover="theoryTextUpdate(10)" onclick="buyTheory(10)">Theory X</button>
-    </div>
-    <div class="generalTexts" id="theoriesText">Hover over a Theory to learn its effect!</div>
-</div>
-<div class="flexBox" id="legendsContainer">
-<button class="legend" id="legend1">Legend One<br>Discovered by purchasing a Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
-</div>
-<div class="flexBox" id="bigLostContainer">
-    <t class="generalTexts" id="lostTopText">BEWARE: Activating ANY Lost Derivative resets all Upgrades and Derivatives!!</t>
-    <div class="flexBox" id="lostContainer">
-        <button class="flexBox" id="lostDeriv" onclick="enterLost()">
-            <t id="lostTitle">Tester</t>
-            <t class=""id="lostEffect">effect</t>
-            <t class=""id="lostGoal">goal</t>
-            <t class=""id="lostReward"></t>
-        </button>
-    </div>
-    <t class="generalTexts" id="lostText">Hover over a Lost Derivative for extra information!</t>
-    <button class="flexBox" id="exitLost" onclick="exitLost()">Temp Leave Lost.Deriv button</button>
-</div>
-<div class="flexBox" id="settingsContainer">
-    <button class="settingsButtons" onclick="fullReset()">Export and Delete your Savefile</button>
-    <button class="settingsButtons" onclick="exportSave()">Export your Savefile to the clipboard</button>
-    <button class="settingsButtons" onclick="importSave()">Import your Savefile</button>
-    <div class="generalTexts" id="changelog">
-        <h1 id="changelogHeader">Changelog</h1>
-        <p>(because I love changelogs) <br>
-            Only changes I consider notable are recorded here, no bugfixes or small changes.</p>
-        <h3 id="most-recent">Most Recent</h3>
-        <p><strong>v0.0.14c</strong> Added Import Code 'ourgwa'. <br></p>
-        <h3 id="pre-alpha">Pre-Alpha</h3>
-        <hr>
-        <p><strong>v0.0.1</strong> Created this repo, created the base files, added Saving, Loading, Import, and Export systems, and added a favicon. <br>
-            <strong>v0.0.1b</strong> Created this Changelog. <br>
-            <strong>v0.0.2</strong> Added the Dosis Font family, and the CSS code required to use the fonts within it on texts. <br>
-            <strong>v0.0.3</strong> Added some simple UI and added the functionality for Derivative I. <br>
-            <strong>v0.0.4</strong> Functionality for all Derivs, Derivative II can be unlocked, the unlock system, and the Deriv production system. <br>
-            <strong>v0.0.5</strong> Buymax for all Derivs, and a hotkey system. <br>
-            <strong>v0.0.6</strong> You can now unlock all Derivs. <br>
-            <strong>v0.0.7</strong> Tab System, Exponents Tab, Settings Tab with an Import/Export System, Exponent and High Exponent display, and you can Exponent Reset. <br>
-            <strong>v0.0.8</strong> Exponent and High Exponent effects. <br>
-            <strong>v0.0.9</strong> Exponential Derivative I and Exponential Derivative systems (unlock, purchasing, production). <br>
-            <strong>v0.0.10</strong> Offline Progress. <br>
-            <strong>v0.0.11</strong> Major UI Update. <br>
-            <strong>v0.0.11b</strong> Improved Full Reset. <br>
-            <strong>v0.0.11c</strong> In-game Changelog Integration. <br>
-            <strong>v0.0.12</strong> Shop unlock systems, Upgrades 1-4, and Upgrade ⬥ <br>
-            <strong>v0.0.13</strong> [The Great Rollback]: Removed the Shop and Exponents. Code Optimizations. <br>
-            <strong>v0.0.14</strong> [Theoretical Update]: Theories 1-9, Legends system, Legend One, AutoBuymax, and a lot of code optimizations! <br>
-            <strong>v0.0.14b</strong> Future tabs now display '???' and can't be accessed until a certain point. <br>
-            <strong>v0.0.14c</strong>  Added Import Code 'ourgwa'.  <br></p>
-    </div>
-</div>
+<canvas class="layer" id="lostCanvas"></canvas>
 </body>
 </html>
