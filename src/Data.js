@@ -6,16 +6,17 @@ function getDefaultObject() {
         oddities: D(2),
         oddityGain: D(0),
         //derivatives
-        derivs: [{b:D(0),amt:D(0),c:D(2),u:true}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}],
-        exponentsDeriv: [{b:D(0),amt:D(0),c:D(1e4),u:true}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}],
+        derivs: [{b:D(0),amt:D(0),c:D(2),u:true}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:true}],
         //upgrades
         upgrades: [{amt:D(0),c:D(2e18)},{amt:D(0),c:D(5e19)},{amt:D(0),c:D(5e20)},{amt:D(0),c:D(6e21)},{amt:D(0),c:D(22)}],
         //theories
-        hasTheory: [false, false, false, false, false, false, false, false, false, false],
+        hasTheory: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
         //lost derivs
         inLost: false,
         particles: [D(0), D(0), D(0)], //Ancient, Derivative, Dream
-        highestOdditiesInLost: D(0),
+        highestOdditiesInLost: D(2),
+        hasLostTheory: [false,false,false,false],
+        lostCycleLevels: [D(0), D(0)],
         //misc
         autoToggled: false,
         hasLegend: [false, false],
