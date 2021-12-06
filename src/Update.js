@@ -118,13 +118,14 @@ function theoryTextUpdate(x){
 }
 function unlockTabs(){
     data.hasTab[0] = data.derivs[3].amt.gte(1) || data.hasTab[0]
-    data.hasTab[1] = data.upgrades[2].amt.gte(1) || data.hasTab[1]
+    data.hasTab[1] = data.upgrades[3].amt.gte(1) || data.hasTab[1]
     data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
 }
 const derivStuff = document.getElementById("bigDerivativeContainer")
 const buyMax = document.getElementById("buymaxContainer")
 const upgradesBuymax = document.getElementById("upgradeBuymax")
 const deriv5 = document.getElementById("derivVButton")
+const upgradesStuff = document.getElementById("upgradeContainer")
 const theoryStuff = document.getElementById("theoriesContainer")
 const theoryRow4 = document.getElementById("theoryRow4")
 const legendsStuff = document.getElementById("legendsContainer")
@@ -137,6 +138,7 @@ function tabChangeHTML(){
     buyMax.style.display = data.currentTab===1 ? 'flex' : 'none'
     upgradesBuymax.style.display = data.hasLegend[1]?'flex':'none'
     deriv5.style.display = data.hasLostTheory[3]?'flex':'none'
+    upgradesStuff.style.display = data.oddities.gte(1e17) || data.upgrades[0].amt.gte(1)?'flex':'none'
     //upgrades
     //theories
     theoryStuff.style.display = data.currentTab===2?'flex':'none'
@@ -148,4 +150,7 @@ function tabChangeHTML(){
     lostCanvas.style.display = data.currentTab===4?'flex':'none'
     //settings
     settingsStuff.style.display = data.currentTab===0 ? 'flex':'none'
+    //nav
+    milestoneNav.style.display = data.hasTab[0] || data.hasTab[1]?'inline':'none'
+    lostNav.style.display = data.hasLegend[0] || data.hasTab[2]?'inline':'none'
 }

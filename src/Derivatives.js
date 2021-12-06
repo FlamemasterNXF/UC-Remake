@@ -2,7 +2,7 @@ let derivNames = ['I','II','III','IV','V']
 function calculateDerivCosts(){
     for (let i=0; i<data.derivs.length; i++){
         let derivCostBase = [D(2),D(20),D(4),D(2),D(2)]
-        if (i===0)data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(D(1.3).pow(data.derivs[i].b)).floor().div(dreamParticleEffects[1]) : data.derivs[i].c = derivCostBase[i]
+        if (i===0)data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(D(1.3).pow(data.derivs[i].b)).div(dreamParticleEffects[1]).floor() : data.derivs[i].c = derivCostBase[i]
         if (i>=1)data.derivs[i].amt.gte(1) ? data.derivs[i].c = derivCostBase[i].times(D(1.3).pow(data.derivs[i].b)).floor() : data.derivs[i].c = derivCostBase[i]
     }
 }
