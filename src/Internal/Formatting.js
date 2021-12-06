@@ -42,29 +42,26 @@ function sumValues(x) {
 
 function format(decimal, precision = 2) {
     decimal = new Decimal(decimal)
-    if (decimal.sign < 0) return "-" + format(decimal.neg(), precision)
-    if (decimal.mag === Number.POSITIVE_INFINITY) return "Infinity"
-    if (decimal.gte("eeee1000")) {
-        let slog = decimal.slog()
-        if (slog.gte(1e6)) return "F" + format(slog.floor())
-        else return Decimal.pow(10, slog.sub(slog.floor())).toStringWithDecimalPlaces(3) + "F" + commaFormat(slog.floor(), 0)
-    }
-    else if (decimal.gte("1e1000000")) return exponentialFormat(decimal, 0, false)
-    else if (decimal.gte("1e10000")) return exponentialFormat(decimal, 0)
-    else if (decimal.gte(1e6)) return exponentialFormat(decimal, precision)
-    else if (decimal.gte(1e3)) return commaFormat(decimal, 0)
-    else if (decimal.gte(0.0001)) return regularFormat(decimal, precision)
-    else if (decimal.eq(0)) return (0).toFixed(precision)
+        if (decimal.sign < 0) return "-" + format(decimal.neg(), precision)
+        if (decimal.mag === Number.POSITIVE_INFINITY) return "Infinity"
+        if (decimal.gte("eeee1000")) {
+            let slog = decimal.slog()
+            if (slog.gte(1e6)) return "F" + format(slog.floor())
+            else return Decimal.pow(10, slog.sub(slog.floor())).toStringWithDecimalPlaces(3) + "F" + commaFormat(slog.floor(), 0)
+        } else if (decimal.gte("1e1000000")) return exponentialFormat(decimal, 0, false)
+        else if (decimal.gte("1e10000")) return exponentialFormat(decimal, 0)
+        else if (decimal.gte(1e6)) return exponentialFormat(decimal, precision)
+        else if (decimal.gte(1e3)) return commaFormat(decimal, 0)
+        else if (decimal.gte(0.0001)) return regularFormat(decimal, precision)
+        else if (decimal.eq(0)) return (0).toFixed(precision)
 
-    decimal = invertOOM(decimal)
-    let val = ""
-    if (decimal.lt("1e1000")){
-        val = exponentialFormat(decimal, precision)
-        return val.replace(/([^(?:e|F)]*)$/, '-$1')
-    }
-    else
-        return format(decimal, precision) + "⁻¹"
-
+        decimal = invertOOM(decimal)
+        let val = ""
+        if (decimal.lt("1e1000")) {
+            val = exponentialFormat(decimal, precision)
+            return val.replace(/([^(?:e|F)]*)$/, '-$1')
+        } else
+            return format(decimal, precision) + "⁻¹"
 }
 
 function formatWhole(decimal) {

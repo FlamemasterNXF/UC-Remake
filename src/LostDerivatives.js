@@ -11,8 +11,8 @@ let lostCycleEffects = [D(1), D(1)]
 let lostCycleNumbers = ['1', '2']
 let lostCycleEffectTexts = [`Ancient Particles multiply D1 production`, `Ancient Particles multiply Derivative Particle gain`]
 function calculateLostStuff(){
-    data.inLost?data.oddities.gte(data.highestOdditiesInLost)?
-        ancientParticleGain = data.oddities.sqrt().div(2).div(data.particles[0].log10().plus(1)):ancientParticleGain=D(0):ancientParticleGain=D(0)
+    data.inLost?data.oddities.gt(data.highestOdditiesInLost)?
+        ancientParticleGain = data.oddities.sqrt().div(2).div(data.particles[0].plus(1).log10()).plus(1):D(0):D(0)
     particleGains[0] = data.particles[0].gte(1)?data.particles[0].sqrt().sqrt().times(lostCycleEffects[1]):D(0)
     particleGains[1] = data.particles[0].gte(1)?data.particles[0].sqrt().times(derivativeParticleEffect):D(0)
     derivativeParticleEffect = data.particles[1].gte(1)?data.particles[1].sqrt().plus(1):D(1)
@@ -49,6 +49,7 @@ function buyLostCycle(x){
     }
 }
 function lostControl(){
+    if (!data.particles[0].gte(1)) data.particles[0] = D(1)
     if (data.inLost) {
         data.highestOdditiesInLost = data.oddities
         data.particles[0] = data.particles[0].plus(ancientParticleGain)
