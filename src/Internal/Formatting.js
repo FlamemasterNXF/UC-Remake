@@ -42,6 +42,7 @@ function sumValues(x) {
 
 function format(decimal, precision = 2) {
     decimal = new Decimal(decimal)
+        if (isNaN(decimal)) return  '[ERROR]: NaN'
         if (decimal.sign < 0) return "-" + format(decimal.neg(), precision)
         if (decimal.mag === Number.POSITIVE_INFINITY) return "Infinity"
         if (decimal.gte("eeee1000")) {

@@ -30,6 +30,7 @@ function calculateUpgradeEffects(){
 }
 function buyMaxUpgrades(){
     for(let i=0;i<10;i++){
+        calculateUpgradeCosts()
         buyUpgrade(1)
         buyUpgrade(2)
         buyUpgrade(3)
