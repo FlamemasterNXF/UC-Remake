@@ -6,7 +6,7 @@ function getDefaultObject() {
         oddities: D(2),
         oddityGain: D(0),
         //derivatives
-        derivs: [{b:D(0),amt:D(0),c:D(2),u:true}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:true}],
+        derivs: [{b:D(0),amt:D(0),c:D(2),u:true}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}],
         //upgrades
         upgrades: [{amt:D(0),c:D(2e18)},{amt:D(0),c:D(5e19)},{amt:D(0),c:D(5e20)},{amt:D(0),c:D(6e21)},{amt:D(0),c:D(22)}],
         //theories
@@ -20,7 +20,7 @@ function getDefaultObject() {
         //misc
         autoToggled: false,
         hasLegend: [false, false],
-        hasTab: [false, false, false],
+        hasTab: [false, false, false, false],
         time: Date.now(),
         currentTab: 1,
         currentUpdate: 'v0.0.15 NEW',

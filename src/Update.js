@@ -13,6 +13,7 @@ for (let i=0; i<4; i++){
 const mysteriesNav = document.getElementById("mysteriesNav")
 const milestoneNav = document.getElementById("milestoneNav")
 const lostNav = document.getElementById("lostNav")
+const stairsNav = document.getElementById("stairNav")
 const autoBuymax = document.getElementById("autoBuymax")
 const upgrades = [document.getElementById("upgrade1"),document.getElementById("upgrade2"),document.getElementById("upgrade3"),document.getElementById("upgrade4"),document.getElementById("upgrade5")]
 const theoryDisplays = []
@@ -43,6 +44,7 @@ function updateHTML(){
     mysteriesNav.innerText = data.hasTab[0]?'Theories':'???'
     milestoneNav.innerText = data.hasTab[1]?'Legends':'???'
     lostNav.innerText = data.hasTab[2]?'Lost Derivatives':'???'
+    stairsNav.innerText = data.hasTab[3]?'The Stairway':'???'
     lostInDisplay.style.display = data.inLost?'flex':'none'
     ourgwa.style.display = ourgwatriggered ? 'flex':'none'
     //endregion
@@ -120,6 +122,7 @@ function unlockTabs(){
     data.hasTab[0] = data.derivs[3].amt.gte(1) || data.hasTab[0]
     data.hasTab[1] = data.upgrades[3].amt.gte(1) || data.hasTab[1]
     data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
+    data.hasTab[3] = data.derivs[4].amt.gte(1) || data.hasTab[3]
 }
 const derivStuff = document.getElementById("bigDerivativeContainer")
 const buyMax = document.getElementById("buymaxContainer")
@@ -130,7 +133,7 @@ const theoryStuff = document.getElementById("theoriesContainer")
 const theoryRow4 = document.getElementById("theoryRow4")
 const legendsStuff = document.getElementById("legendsContainer")
 const lostStuff = document.getElementById("bigLostContainer")
-const lostCanvas = document.getElementById("lostCanvas")
+const lostCanvas = document.getElementById("animationCanvas")
 const settingsStuff = document.getElementById("settingsContainer")
 function tabChangeHTML(){
     //derivs
@@ -153,4 +156,5 @@ function tabChangeHTML(){
     //nav
     milestoneNav.style.display = data.hasTab[0] || data.hasTab[1]?'inline':'none'
     lostNav.style.display = data.hasLegend[0] || data.hasTab[2]?'inline':'none'
+    stairsNav.style.display = 'none'
 }

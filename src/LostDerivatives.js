@@ -35,6 +35,7 @@ function buyLostTheory(x){
     if (x===4 && data.particles[0].gte(lostTheoryCosts[3])){
         data.particles[0] = data.particles[0].sub(lostTheoryCosts[3])
         data.hasLostTheory[3] = true
+        data.derivs[4].u = true
     }
     if (x!==4&&data.particles[1].gte(lostTheoryCosts[i])&&!data.hasLostTheory[i]){
         data.particles[1] = data.particles[1].sub(lostTheoryCosts[i])

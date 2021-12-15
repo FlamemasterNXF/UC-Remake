@@ -1,9 +1,8 @@
-const can = document.getElementById("lostCanvas");
+const can = document.getElementById("animationCanvas");
 const ctx = can.getContext("2d");
 
 let mouseX = 0;
 let mouseY = 0;
-let mode = 2;
 let modeHelp = 0;
 
 
@@ -70,8 +69,8 @@ function animationsLoop() {
     if (xAxis !== canX || yAxis !== canY) {
         reloadWindow();
     }
-    if (mode === 2) {
-        modeHelp = 2;
+    if (data.currentTab === 4) {
+        modeHelp = 4;
         timer += 1/250;
         ctx.globalAlpha = 1;
         ctx.fillStyle = 'black';
@@ -83,6 +82,26 @@ function animationsLoop() {
             let j = 300 - i;
             if (i % 10 === 0) {
                 ctx.fillStyle = rgbToHex(30,150,0);
+            }
+            else {
+                ctx.fillStyle = rgbToHex(30, 20, 0);
+            }
+            drawArc(Math.sin(timer/50*i)*i,Math.cos(timer/50*i)*j,2);
+        }
+    }
+    if (data.currentTab === 5) {
+        modeHelp = 5;
+        timer += 1/250;
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = 'black';
+        drawRect(0-canX*4,0-canY*4,canX*4,canY*4);
+
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = 'gray';
+        for (let i = 1; i < 601; i += 1) {
+            let j = 300 - i;
+            if (i % 10 === 0) {
+                ctx.fillStyle = rgbToHex(69,69,69);
             }
             else {
                 ctx.fillStyle = rgbToHex(30, 20, 0);
