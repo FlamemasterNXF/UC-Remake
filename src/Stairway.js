@@ -7,13 +7,13 @@ const secretDescriptions = [`Multiplies Oddity gain`,`Adds to the Step Boost`,`A
 function calculateStairStuff(){
     stairDebuffs[0] = D(1).sub(data.currentStair.div(10))
     stairEffect = data.stairsComplete.plus(1).plus(data.stairsComplete.plus(1).div(10).plus(1)).plus(secretEffects[1]).plus(lostCycleEffects[2])
-    secretEnergyGain[0] = data.stairsComplete.plus(1).sub(data.stairSecretEnergy[0].sqrt().div(100))
-    secretEnergyGain[1] = data.stairsComplete.plus(1).div(100).sub(data.stairSecretEnergy[1].sqrt().div(1000))
-    secretEnergyGain[2] = data.stairsComplete.plus(1).div(10).sub(data.stairSecretEnergy[2].sqrt().div(100))
-    secretEnergyGain[3] = data.stairsComplete.plus(2).log10().sub(data.stairSecretEnergy[3].sqrt().div(100))
-    secretEnergyGain[4] = data.stairsComplete.plus(1).div(2).sub(data.stairSecretEnergy[4].sqrt().div(100))
-    secretEnergyGain[5] = data.stairsComplete.plus(2).log(2).div(10).sub(data.stairSecretEnergy[5].sqrt().div(100))
-    secretEnergyGain[6] = data.stairsComplete.plus(2).log(10).div(10).sub(data.stairSecretEnergy[6].log10().div(100))
+    secretEnergyGain[0] = data.stairsComplete.plus(1).sub(data.stairSecretEnergy[0].sqrt().div(100)).max(0)
+    secretEnergyGain[1] = data.stairsComplete.plus(1).div(100).sub(data.stairSecretEnergy[1].sqrt().div(1000)).max(0)
+    secretEnergyGain[2] = data.stairsComplete.plus(1).div(10).sub(data.stairSecretEnergy[2].sqrt().div(100)).max(0)
+    secretEnergyGain[3] = data.stairsComplete.plus(2).log10().sub(data.stairSecretEnergy[3].sqrt().div(100)).max(0)
+    secretEnergyGain[4] = data.stairsComplete.plus(1).div(2).sub(data.stairSecretEnergy[4].sqrt().div(100)).max(0)
+    secretEnergyGain[5] = data.stairsComplete.plus(2).log(2).div(10).sub(data.stairSecretEnergy[5].sqrt().div(100)).max(0)
+    secretEnergyGain[6] = data.stairsComplete.plus(2).log(10).div(10).sub(data.stairSecretEnergy[6].log10().div(100)).max(0)
     secretEnergyGain[7] = D(0)
     if (data.stairsComplete.gte(0)) {
         for (let i = 0; i < data.stairSecretEnergy.length; i++) {
