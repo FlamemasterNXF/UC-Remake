@@ -34,9 +34,20 @@ const lostCycleDisplays = []
 for (let i=0;i<lostCycleNumbers.length;i++){
     lostCycleDisplays[i] = document.getElementById(`lostCycle${lostCycleNumbers[i]}`)
 }
+const lostAutoBuymax = document.getElementById("lostAutoBuymax")
 const particleEffectsTexts = [document.getElementById('derivativeParticleEffect'), document.getElementById("dreamParticleEffect")]
 const lostInDisplay = document.getElementById("lostInDisplay")
+const stairPopup = document.getElementById("stairPopup")
+const stairTopText = document.getElementById("stairwayTopText")
+const stairTopText2 = document.getElementById("stairwayTopText2")
+const stairSecretDisplays = []
+for (let i=0;i<data.stairSecretEnergy.length;i++){
+    stairSecretDisplays[i] = document.getElementById(`secret${secretNumbers[i]}`)
+}
 const ourgwa = document.getElementById("ourgwa")
+const settingsToggle1 = document.getElementById("settingsToggle1")
+const settingsToggle2 = document.getElementById("settingsToggle2")
+const changelog = document.getElementById("changelog")
 // endregion
 function updateHTML(){
     // region constant
@@ -50,10 +61,10 @@ function updateHTML(){
     //endregion
     //derivs
     if (data.currentTab === 1){
-        derivI.innerHTML = `Cost: ${format(data.derivs[0].c)} Oddities<br>[${format(data.derivs[0].b)}] ${format(data.derivs[0].amt)}<br>Produces ${format(data.oddityGain.div(data.derivs[0].amt.plus(1)))} Oddities [${format(data.oddityGain)}/s]`
+        derivI.innerHTML = `Cost: ${format(data.derivs[0].c)} Oddities<br>[${format(data.derivs[0].b)}] ${format(data.derivs[0].amt)}<br>Produces Oddities [${format(data.oddityGain)}/s]`
         for (let i=1; i<data.derivs.length; i++){
             derivDisplays[i].innerHTML = data.derivs[i].u ?
-                `Cost: ${format(data.derivs[i].c)} Purchased D.${derivNames[i-1]}<br>[${format(data.derivs[i].b)}] ${format(data.derivs[i].amt)}<br>Produces ${format(derivProductions[i-1])} D.${derivNames[i-1]} [${format(data.derivs[i].amt.times(derivProductions[i-1]))}/s]`
+                `Cost: ${format(data.derivs[i].c)} Purchased D.${derivNames[i-1]}<br>[${format(data.derivs[i].b)}] ${format(data.derivs[i].amt)}<br>Produces D.${derivNames[i-1]} [${format(data.derivs[i].amt.times(derivProductions[i-1]))}/s]`
                 : `Unlock for ${format(derivUnlockCost[i-1])} Oddities`
         }
         //upgrades
@@ -62,13 +73,13 @@ function updateHTML(){
             upgradeDisplays[i].innerHTML =
                 `Upgrade ${upgradeNames[i]}<br>Cost: ${format(data.upgrades[i].c)} Oddities<br>Current effect: ${formatWhole(upgradeEffects[i])}x (You have ${formatWhole(data.upgrades[i].amt)})`
         }
-        autoBuymax.innerHTML = data.autoToggled?'Auto Buymax: ON':'Auto Buymax: OFF'
+        autoBuymax.innerHTML = data.autoToggled[0]?'Auto Buymax: ON':'Auto Buymax: OFF'
         autoBuymax.style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
         upgrades[4].style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
     }
     //theories
     if (data.currentTab === 2){
-        for (let i=0;i<data.hasTheory.length;i++){
+        for (let i=0;i<theoryDisplays.length;i++){
             theoryDisplays[i].style.backgroundColor = data.hasTheory[i] ? '#9d670a' : '#0a629d'
         }
     }
@@ -83,15 +94,36 @@ function updateHTML(){
         lostTheoryDisplays[1].innerHTML= data.hasLostTheory[1]?`This Theory was Remembered`:`Lost Theory of Dreams II <br>Dream Particles divide the cost of Upgrades 1-4<br>Unlock Cost: ${format(lostTheoryCosts[1])} Derivative Particles`
         lostTheoryDisplays[2].innerHTML= data.hasLostTheory[2]?`This Theory was Remembered<br>Total Lost Cycle levels multiply Oddity gain<br>Currently: ${format(lostTheory3Effect)}x`:`Lost Theory of Cycles <br>Total Lost Cycle levels multiply Oddity gain<br>Unlock Cost: ${format(lostTheoryCosts[2])} Derivative Particles<br>Currently: ${format(lostTheory3Effect)}x`
         lostTheoryDisplays[3].innerHTML= data.hasLostTheory[3]?`Check the Derivatives Tab`:`ǝ̴̨̨̦̙͍̆̀̃͐̊̽̈̔̈̋̿͒͝ͅʌ̶̡̤̕͝͠ᴉ̷̮̬̥̳̎̔̓̽̄Ⅎ̴͓̫̖̻̗̤̟̣̿͋̔̅̊͂̓̑̎͌͋͒͘͝ʌ̶̗͚͚̬̊̀̾̏́̇͋̂̍̋̽͝ᴉ̷̧̯̺̞͍̳̼̤͔̠͑̓̑̈́͂͝ɹ̶̡̮͔̗͙̰̗̘͍̘͓̩̾͘ǝ̸̛̹̙̖̈́͋͋̕p̷̯̳͔͉̗̱̒̀ʞ̴͓̝̹͈̩̮̈́͛͜͜ɔ̴̡̨̨͍̭͎̽̑̎̾̄̔̌͋͂͘͜͝͝ỡ̶̢̲͍͙̮͒̕l̷̥̠͑̏͗̉̑̌̍ũ̸̡̨̡͙͚̟̞̤̦͖̞̖͖̅̀͋͂̎̓̈̊∩̸͎̐͂̕<br><br>Unlock Cost: ${format(lostTheoryCosts[3])} Ancient Particles`
-        for (let i=0;i<data.lostCycleLevels.length;i++){
+        for (let i=0;i<data.lostCycleLevels.length-1;i++){
             lostCycleDisplays[i].innerHTML = `Lost Cycle ${lostCycleNumbers[i]}<br>${lostCycleEffectTexts[i]} [${format(lostCycleEffects[i])}x]<br>Cost: ${format(lostCycleCosts[i])} Derivative Particles<br>This Lost Cycle is currently level ${formatWhole(data.lostCycleLevels[i])}`
         }
+        lostCycleDisplays[2].innerHTML = `Lost Cycle ${lostCycleNumbers[2]}<br>${lostCycleEffectTexts[2]} [+${format(lostCycleEffects[2])}]<br>Cost: ${format(lostCycleCosts[2])} Derivative Particles<br>This Lost Cycle is currently level ${formatWhole(data.lostCycleLevels[2])}`
+        lostAutoBuymax.innerHTML = data.autoToggled[1]?'Auto Lost Cycle Buymax: ON':'Auto Lost Cycle Buymax: OFF'
+    }
+    //stairs
+    if (data.currentTab === 5){
+        stairTopText.innerHTML =
+            `You are Currently on Stair ${formatWhole(data.currentStair)} of the Infinite Stairway<br>You have completed up to Stair ${formatWhole(data.stairsComplete)}, which allows you to access up to Stair ${formatWhole(data.stairsComplete.plus(1))}<br>Changing what Stair you are on will reset everything except for Legends and Stair Secrets!`
+        stairTopText2.innerHTML =
+            `Your total Stairs completed provides you a ${format(stairEffect)}x multiplier to Oddity gain<br>Your place on the Stairway currently causes your Oddity gain to be raised to the ${format(stairDebuffs[0])}<br>You are required to have at least one Derivative 5 and to have Theory XI to complete a Stair`
+        stairSecretDisplays[0].innerHTML = `Stair Secret ${secretNumbers[0]}<br>${secretDescriptions[0]}<br>Currently: ${format(secretEffects[0])}x<br>This Secret has ${format(data.stairSecretEnergy[0])} Energy [+${format(secretEnergyGain[0])}/s]`
+        for(let i=1;i<data.stairSecretEnergy.length-2;i++){
+            stairSecretDisplays[i].innerHTML = `Stair Secret ${secretNumbers[i]}<br>${secretDescriptions[i]}<br>Currently: +${format(secretEffects[i])}<br>This Secret has ${format(data.stairSecretEnergy[i])} Energy [+${format(secretEnergyGain[i])}/s]`
+        }
+        stairSecretDisplays[6].innerHTML = `Stair Secret ${secretNumbers[6]}<br>${secretDescriptions[6]}<br>Currently: /${format(secretEffects[6])}<br>This Secret has ${format(data.stairSecretEnergy[6])} Energy [+${format(secretEnergyGain[6])}/s]`
+        stairSecretDisplays[7].innerHTML = `Stair Secret ${secretNumbers[7]}<br>${secretDescriptions[7]}<br>Currently: +${format(secretEffects[7])}<br>This Secret has ${format(data.stairSecretEnergy[7])} Energy [+${format(secretEnergyGain[7])}/s]`
+
     }
     //misc
     if (data.currentTab === 3){
         for (let i=0;i<legendsNumbers.length;i++){
             legendsDispays[i].style.backgroundColor = data.hasLegend[i] ? '#967109' : '#542780'
         }
+    }
+    if (data.currentTab ===0){
+        settingsToggle1.innerText = data.settingsToggles[1]?'Toggle Animations [ON]':'Toggle Animations [OFF]'
+        settingsToggle2.innerText = data.settingsToggles[2]?'Toggle Stair Confirmation [ON]':'Toggle Stair Confirmation [OFF]'
+        changelog.style.display = data.settingsToggles[0]?'inline':'none'
     }
     unlockLegends()
     unlockTabs()
@@ -133,7 +165,8 @@ const theoryStuff = document.getElementById("theoriesContainer")
 const theoryRow4 = document.getElementById("theoryRow4")
 const legendsStuff = document.getElementById("legendsContainer")
 const lostStuff = document.getElementById("bigLostContainer")
-const lostCanvas = document.getElementById("animationCanvas")
+const lostCycle3 = document.getElementById("lostCycle3")
+const stairwayStuff = document.getElementById("bigStairwayContainer")
 const settingsStuff = document.getElementById("settingsContainer")
 function tabChangeHTML(){
     //derivs
@@ -150,11 +183,14 @@ function tabChangeHTML(){
     legendsStuff.style.display = data.currentTab===3?'flex':'none'
     //lost
     lostStuff.style.display = data.currentTab===4?'flex':'none'
-    lostCanvas.style.display = data.currentTab===4?'flex':'none'
+    lostCycle3.style.display = data.stairsComplete.gte(0)?'inline':'none'
+    lostAutoBuymax.style.display = data.hasLegend[2]?'flex':'none'
+    //stairway
+    stairwayStuff.style.display = data.currentTab===5?'flex':'none'
     //settings
     settingsStuff.style.display = data.currentTab===0 ? 'flex':'none'
     //nav
     milestoneNav.style.display = data.hasTab[0] || data.hasTab[1]?'inline':'none'
     lostNav.style.display = data.hasLegend[0] || data.hasTab[2]?'inline':'none'
-    stairsNav.style.display = 'none'
+    stairsNav.style.display = data.hasLostTheory[1] || data.hasTab[3]?'inline':'none'
 }

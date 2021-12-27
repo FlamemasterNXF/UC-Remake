@@ -1,12 +1,5 @@
-const can = document.getElementById("animationCanvas");
-const ctx = can.getContext("2d");
-
-let mouseX = 0;
-let mouseY = 0;
-let modeHelp = 0;
-
-
-
+const animationCavnas = document.getElementById("animationCanvas");
+const ctx = animationCavnas.getContext("2d");
 function drawRect(x,y,x2,y2) {
     ctx.fillRect(x,y,x2-x,y2-y);
 }
@@ -44,17 +37,14 @@ function reloadWindow() {
     let body = doc.getElementsByTagName('body')[0];
     const xAxis = win.innerWidth || docElem.clientWidth || body.clientWidth;
     const yAxis = win.innerHeight || docElem.clientHeight || body.clientHeight;
-    can.width = xAxis;
-    can.height = yAxis;
+    animationCavnas.width = xAxis;
+    animationCavnas.height = yAxis;
     canX = xAxis;
     canY = yAxis;
     let smallSide = Math.min(xAxis,yAxis);
     ctx.translate(xAxis/2,yAxis/2);
     ctx.scale(smallSide/1250,smallSide/1250);
 }
-
-setInterval(animationsLoop,20);
-
 let timer = 0;
 
 function animationsLoop() {
@@ -70,7 +60,6 @@ function animationsLoop() {
         reloadWindow();
     }
     if (data.currentTab === 4) {
-        modeHelp = 4;
         timer += 1/250;
         ctx.globalAlpha = 1;
         ctx.fillStyle = 'black';
@@ -90,24 +79,22 @@ function animationsLoop() {
         }
     }
     if (data.currentTab === 5) {
-        modeHelp = 5;
         timer += 1/250;
-        ctx.globalAlpha = 1;
+        ctx.globalAlpha = 0.2;
         ctx.fillStyle = 'black';
         drawRect(0-canX*4,0-canY*4,canX*4,canY*4);
 
-        ctx.globalAlpha = 1;
+        ctx.globalAlpha = 0.8;
         ctx.fillStyle = 'gray';
         for (let i = 1; i < 601; i += 1) {
             let j = 300 - i;
             if (i % 10 === 0) {
-                ctx.fillStyle = rgbToHex(69,69,69);
+                ctx.fillStyle = rgbToHex(i,i*2,i*3);
             }
             else {
-                ctx.fillStyle = rgbToHex(30, 20, 0);
+                ctx.fillStyle = rgbToHex(i*6, i*5, i*4);
             }
-            drawArc(Math.sin(timer/50*i)*i,Math.cos(timer/50*i)*j,2);
-        }
+            drawArc(Math.sin(timer/20*i)*i,Math.cos(timer/10*i)*j,2)        }
     }
 
     ctx.fillStyle = "black";

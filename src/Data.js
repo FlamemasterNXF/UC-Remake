@@ -16,10 +16,15 @@ function getDefaultObject() {
         particles: [D(0), D(0), D(0)], //Ancient, Derivative, Dream
         highestOdditiesInLost: D(2),
         hasLostTheory: [false,false,false,false],
-        lostCycleLevels: [D(0), D(0)],
+        lostCycleLevels: [D(0), D(0), D(0)],
+        //stairs
+        stairsComplete: D(-1),
+        currentStair: D(0),
+        stairSecretEnergy: [D(1),D(1),D(1),D(1),D(1),D(1),D(1),D(0)],
         //misc
-        autoToggled: false,
-        hasLegend: [false, false],
+        settingsToggles: [true, true, true], //changelog, animation, stair conf
+        autoToggled: [false, false],
+        hasLegend: [false, false, false],
         hasTab: [false, false, false, false],
         time: Date.now(),
         currentTab: 1,

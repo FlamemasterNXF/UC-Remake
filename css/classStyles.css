@@ -54,6 +54,34 @@
     min-height: 100px;
     margin-right: 10px;
 }
+.stairwayNav{
+    color: #b7a15e;
+    border: 3px solid #643500;
+    background-color: rgba(0,0,0,0);
+    min-width: 200px;
+    min-height: 70px;
+    margin-right: 10px;
+}
+.secretColumn{
+    flex-direction: column;
+}
+.stairSecret{
+    margin-top: 5px;
+    color: #b7a15e;
+    border: 3px solid #643500;
+    background-color: rgba(0,0,0,0);
+    min-width: 200px;
+    min-height: 100px;
+    margin-right: 10px;
+}
+.stairSecretBlank{
+    color: rgba(0,0,0,0);
+    border: 3px solid rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    min-width: 200px;
+    min-height: 100px;
+    margin-right: 10px;
+}
 .lostButton{
     color: #6ab75e;
     background-color: rgba(5, 86, 18, 0.3);

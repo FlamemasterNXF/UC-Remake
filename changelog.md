@@ -26,3 +26,4 @@ Only changes I consider notable are recorded here, no bugfixes or small changes.
 **v0.0.14c** Added Import Code 'ourgwa'. <br>
 **v0.0.15** [Lost Update]: The Lost Derivative, 4 Lost Theories, 2 Lost Cycles, Theories 10-15, Legend 2, and Derivative V! <br>
 **v0.0.15b** More content is hidden until you get close to it. <br>
+**v0.0.16** [The Tutorial with Infinite Steps]: The Infinite Stairway, 8 Stair Secrets, Lost Cycle 3, and Legend 3! <br>

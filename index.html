@@ -3,17 +3,20 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <script defer src="src/Small%20Scripts/Animations.js"></script>
+    <script defer src="src/SmallScripts/Animations.js"></script>
     <script defer src="src/Internal/Formatting.js"></script>
     <script defer src="src/Internal/BreakEternity.js"></script>
-    <script defer src="src/Small%20Scripts/ourgwa.js"></script>
+    <script defer src="src/SmallScripts/ourgwa.js"></script>
     <script defer src="src/Data.js"></script>
+    <script defer src="src/SmallScripts/Classes.js"></script>
+    <script defer src="src/SmallScripts/Settings.js"></script>
+    <script defer src="src/Stairway.js"></script>
     <script defer src="src/LostDerivatives.js"></script>
     <script defer src="src/Theories.js"></script>
     <script defer src="src/Upgrades.js"></script>
     <script defer src="src/Derivatives.js"></script>
-    <script defer src="src/Small%20Scripts/Automation.js"></script>
-    <script defer src="src/Small%20Scripts/Legends.js"></script>
+    <script defer src="src/SmallScripts/Automation.js"></script>
+    <script defer src="src/SmallScripts/Legends.js"></script>
     <script defer src="src/Update.js"></script>
     <script defer src="src/Main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/miscStyles.css" />
@@ -29,6 +32,7 @@
 <div class="layer" id="topLayer">
     <div class="flexBox generalTexts" id="oddityDisplay">There are 0 Oddities</div>
     <div class="flexBox generalTexts" id="lostInDisplay">Lost Derivative Active!</div>
+    <div class="flexBox layer" id="stairPopup" onclick="closeStairPopup()">You've Completed Stair 0! Congratulations!</div>
     <div class="flexBox" id="navBar">
         <button class="navButton" id="derivNav" onclick="switchTab(1)">Derivatives</button>
         <button class="navButton" id="mysteriesNav" onclick="switchTab(2)">Theories</button>
@@ -39,7 +43,7 @@
     </div>
     <div class="flexBox" id="buymaxContainer">
         <button class="flexBox" id="buymax" onclick="buyMaxDeriv()">Buy the max possible of all Derivatives [M]</button>
-        <button class="flexBox" id="autoBuymax" onclick="autoToggle()">Auto Buymax: OFF</button>
+        <button class="flexBox" id="autoBuymax" onclick="autoToggle(1)">Auto Buymax: OFF</button>
         <button class="flexBox" id="upgradeBuymax" onclick="buyMaxUpgrades()">Buy the max possible of Upgrades 1-4 [U]</button>
     </div>
     <div class="flexBox" id="bigDerivativeContainer">
@@ -100,8 +104,9 @@
         <div class="generalTexts" id="theoriesText">Hover over a Theory to learn its effect!</div>
     </div>
     <div class="flexBox" id="legendsContainer">
-        <button class="legend" id="legend1">Legend One<br>Discovered by purchasing a Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
-        <button class="legend" id="legend2">Legend Two<br>Discovered by obtaining a Ancient Particle<br>Unlock a Buymax for Upgrades 1-4</button>
+        <button class="legend" id="legend1">Legend One<br>Discovered by purchasing an Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
+        <button class="legend" id="legend2">Legend Two<br>Discovered by obtaining an Ancient Particle<br>Unlock a Buymax for Upgrades 1-4</button>
+        <button class="legend" id="legend3">Legend Three<br>Discovered by completing Stair 1<br>Unlock an Automatic Buymax for Lost Cycles</button>
     </div>
     <div class="flexBox" id="bigLostContainer">
         <t class="generalTexts" id="lostTopText">hi</t>
@@ -125,18 +130,63 @@
         <div class="flexBox lostRow" id="lostRow2">
             <button class="lostUpgrade"id="lostCycle1"onclick="buyLostCycle(1)">This would be a Lost Upgrade thingie</button>
             <button class="lostUpgrade"id="lostCycle2"onclick="buyLostCycle(2)">This would be a Lost Upgrade thingie</button>
+            <button class="lostUpgrade"id="lostCycle3"onclick="buyLostCycle(3)">This would be a Lost Upgrade thingie</button>
+        </div>
+        <div class="flexBox lostRow" id="lostRow3">
+            <button id="lostAutoBuymax" onclick="autoToggle(2)">Auto Lost Cycle Buymax: OFF</button>
+        </div>
+    </div>
+    <div class="flexBox" id="bigStairwayContainer">
+        <t class="generalTexts" id="stairwayTopText">Hi</t>
+        <t class="generalTexts" id="stairwayTopText2">Hi</t>
+        <div class="flexBox" id="stairwayNavContainer">
+            <button class="stairwayNav" id="downStair" onclick="changeStair(1)">Go Down One Stair</button>
+            <button class="stairwayNav" id="upStair"onclick="changeStair(2)">Go Up One Stair</button>
+            <button class="stairwayNav" id="downFurthestStair"onclick="changeStair(3)">Go Down to your Lowest Stair</button>
+            <button class="stairwayNav" id="upHighestStair"onclick="changeStair(4)">Go Up to Stair 0</button>
+        </div>
+        <div class="flexBox" id="secretContainer">
+            <div class="flexBox secretColumn" id="secretColumn1">
+                <button class="stairSecret" id="secret1">This would be a secret</button>
+                <button class="stairSecret" id="secret5">This would be a secret</button>
+                <button class="stairSecret" id="secret7">This would be a secret</button>
+            </div>
+            <div class="flexBox secretColumn" id="secretColumn2">
+                <button class="stairSecret" id="secret2">This would be a secret</button>
+            </div>
+            <div class="secretColumn">
+                <button class="stairSecretBlank" id="blankSecret1">This would be a secret</button>
+            </div>
+            <div class="secretColumn">
+                <button class="stairSecretBlank" id="blankSecret2">This would be a secret</button>
+            </div>
+            <div class="flexBox secretColumn" id="secretColumn3">
+                <button class="stairSecret" id="secret3">This would be a secret</button>
+            </div>
+            <div class="flexBox secretColumn" id="secretColumn4">
+                <button class="stairSecret" id="secret4">This would be a secret</button>
+                <button class="stairSecret" id="secret6">This would be a secret</button>
+                <button class="stairSecret" id="secret8">This would be a secret</button>
+            </div>
         </div>
     </div>
     <div class="flexBox" id="settingsContainer">
-        <button class="settingsButtons" onclick="fullReset()">Export and Delete your Savefile</button>
-        <button class="settingsButtons" onclick="exportSave()">Export your Savefile to the clipboard</button>
-        <button class="settingsButtons" onclick="importSave()">Import your Savefile</button>
+        <div class="flexBox" id="saveControl">
+            <button class="settingsButtons" onclick="fullReset()">Export and Delete your Savefile</button>
+            <button class="settingsButtons" onclick="exportSave()">Export your Savefile to the clipboard</button>
+            <button class="settingsButtons" onclick="importSave()">Import your Savefile</button>
+        </div>
+        <div class="flexBox" id="toggles">
+            <button class="settingsButtons" id="settingsToggle1" onclick="toggleSettings(2)">Toggle Animations [ON]</button>
+            <button class="settingsButtons" id="settingsToggle2" onclick="toggleSettings(3)">Toggle Stair Confirmation [ON]</button>
+        </div>
+        <button class="settingsButtons" id="changelogToggle" onclick="toggleSettings(1)">Show/Hide the Changelog</button>
         <div class="generalTexts" id="changelog">
             <h1 id="changelogHeader">Changelog</h1>
             <p>(because I love changelogs) <br>
                 Only changes I consider notable are recorded here, no bugfixes or small changes.</p>
             <h3 id="most-recent">Most Recent</h3>
-            <p><strong>v0.0.15b</strong> More content is hidden until you get close to it. <br></p>
+            <p><strong>v0.0.16</strong> [The Tutorial with Infinite Steps]: The Infinite Stairway, 8 Stair Secrets, Lost Cycle 3, and Legend 3! <br></p>
             <h3 id="pre-alpha">Pre-Alpha</h3>
             <hr>
             <p><strong>v0.0.1</strong> Created this repo, created the base files, added Saving, Loading, Import, and Export systems, and added a favicon. <br>
@@ -159,7 +209,8 @@
                 <strong>v0.0.14b</strong> Future tabs now display '???' and can't be accessed until a certain point. <br>
                 <strong>v0.0.14c</strong> Added Import Code 'ourgwa'. <br>
                 <strong>v0.0.15</strong> [Lost Update]: The Lost Derivative, 4 Lost Theories, 2 Lost Cycles, Theories 10-15, Legend 2, and Derivative V! <br>
-                <strong>v0.0.15b</strong> More content is hidden until you get close to it. <br></p>
+                <strong>v0.0.15b</strong> More content is hidden until you get close to it. <br>
+                <strong>v0.0.16</strong> [The Tutorial with Infinite Steps]: The Infinite Stairway, 8 Stair Secrets, Lost Cycle 3, and Legend 3! <br></p>
         </div>
     </div>
 </div>
