@@ -25,7 +25,7 @@ function getDefaultObject() {
         settingsToggles: [true, true, true], //changelog, animation, stair conf
         autoToggled: [false, false],
         hasLegend: [false, false, false],
-        hasTab: [false, false, false, false],
+        hasTab: [false, false, false, false, false],
         time: Date.now(),
         currentTab: 1,
         currentUpdate: 'v0.0.15 NEW',

@@ -96,6 +96,24 @@ function animationsLoop() {
             }
             drawArc(Math.sin(timer/20*i)*i,Math.cos(timer/10*i)*j,2)        }
     }
+    if (data.currentTab === 6) {
+        timer += 1/250;
+        ctx.globalAlpha = 0.2;
+        ctx.fillStyle = 'black';
+        drawRect(0-canX*4,0-canY*4,canX*4,canY*4);
+
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = 'gray';
+        for (let i = 1; i < 601; i += 1) {
+            let j = 300 - i;
+            if (i % 10 === 0) {
+                ctx.fillStyle = rgbToHex(10,10,10);
+            }
+            else {
+                ctx.fillStyle = rgbToHex(30, 30, 30);
+            }
+            drawArc(Math.sin(timer/5*i)*i,Math.cos(timer/10*i)*j,2)        }
+    }
 
     ctx.fillStyle = "black";
     drawRect(-1,-1,1,1);

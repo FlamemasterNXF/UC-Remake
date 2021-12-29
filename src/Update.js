@@ -14,6 +14,7 @@ const mysteriesNav = document.getElementById("mysteriesNav")
 const milestoneNav = document.getElementById("milestoneNav")
 const lostNav = document.getElementById("lostNav")
 const stairsNav = document.getElementById("stairNav")
+const blackHoleNav = document.getElementById("blackHoleNav")
 const autoBuymax = document.getElementById("autoBuymax")
 const upgrades = [document.getElementById("upgrade1"),document.getElementById("upgrade2"),document.getElementById("upgrade3"),document.getElementById("upgrade4"),document.getElementById("upgrade5")]
 const theoryDisplays = []
@@ -56,6 +57,7 @@ function updateHTML(){
     milestoneNav.innerText = data.hasTab[1]?'Legends':'???'
     lostNav.innerText = data.hasTab[2]?'Lost Derivatives':'???'
     stairsNav.innerText = data.hasTab[3]?'The Stairway':'???'
+    blackHoleNav.innerText = data.hasTab[4]?'The Blackhole':'???'
     lostInDisplay.style.display = data.inLost?'flex':'none'
     ourgwa.style.display = ourgwatriggered ? 'flex':'none'
     //endregion
@@ -155,6 +157,7 @@ function unlockTabs(){
     data.hasTab[1] = data.upgrades[3].amt.gte(1) || data.hasTab[1]
     data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
     data.hasTab[3] = data.derivs[4].amt.gte(1) || data.hasTab[3]
+    data.hasTab[4] = data.stairsComplete.gte(3) || data.hasTab[4]
 }
 const derivStuff = document.getElementById("bigDerivativeContainer")
 const buyMax = document.getElementById("buymaxContainer")
@@ -193,4 +196,5 @@ function tabChangeHTML(){
     milestoneNav.style.display = data.hasTab[0] || data.hasTab[1]?'inline':'none'
     lostNav.style.display = data.hasLegend[0] || data.hasTab[2]?'inline':'none'
     stairsNav.style.display = data.hasLostTheory[1] || data.hasTab[3]?'inline':'none'
+    blackHoleNav.style.display = data.stairsComplete.gte(0) || data.hasTab[4]?'inline':'none'
 }
