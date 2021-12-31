@@ -113,6 +113,7 @@ function updateHTML(){
             stairSecretDisplays[i].innerHTML = `Stair Secret ${secretNumbers[i]}<br>${secretDescriptions[i]}<br>Currently: +${format(secretEffects[i])}<br>This Secret has ${format(data.stairSecretEnergy[i])} Energy [+${format(secretEnergyGain[i])}/s]`
         }
         stairSecretDisplays[6].innerHTML = `Stair Secret ${secretNumbers[6]}<br>${secretDescriptions[6]}<br>Currently: /${format(secretEffects[6])}<br>This Secret has ${format(data.stairSecretEnergy[6])} Energy [+${format(secretEnergyGain[6])}/s]`
+        secretDescriptions[7] = data.stairsComplete.gte(4)?`Produces Matter`:`Produces ???`
         stairSecretDisplays[7].innerHTML = `Stair Secret ${secretNumbers[7]}<br>${secretDescriptions[7]}<br>Currently: +${format(secretEffects[7])}<br>This Secret has ${format(data.stairSecretEnergy[7])} Energy [+${format(secretEnergyGain[7])}/s]`
 
     }
@@ -157,7 +158,7 @@ function unlockTabs(){
     data.hasTab[1] = data.upgrades[3].amt.gte(1) || data.hasTab[1]
     data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
     data.hasTab[3] = data.derivs[4].amt.gte(1) || data.hasTab[3]
-    data.hasTab[4] = data.stairsComplete.gte(3) || data.hasTab[4]
+    data.hasTab[4] = data.stairsComplete.gte(4) || data.hasTab[4]
 }
 const derivStuff = document.getElementById("bigDerivativeContainer")
 const buyMax = document.getElementById("buymaxContainer")
