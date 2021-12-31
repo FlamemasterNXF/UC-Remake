@@ -22,7 +22,7 @@ function getDefaultObject() {
         currentStair: D(0),
         stairSecretEnergy: [D(1),D(1),D(1),D(1),D(1),D(1),D(1),D(0)],
         //misc
-        settingsToggles: [true, true, true], //changelog, animation, stair conf
+        settingsToggles: [true, true, true, true], //changelog, animation, stair conf, offline time
         autoToggled: [false, false],
         hasLegend: [false, false, false],
         hasTab: [false, false, false, false, false],

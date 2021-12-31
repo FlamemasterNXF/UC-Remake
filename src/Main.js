@@ -1,3 +1,6 @@
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min) ) + min;
+}
 function increaseOddities(i){
     data.oddities = data.oddities.plus(i)
 }
@@ -7,8 +10,9 @@ function calculateOddityGain(){
             .times(dreamParticleEffects[0]).times(theoryEffects[10]).times(dreamParticleEffects[2]).times(theoryEffects[15]).times(secretEffects[0])
             .pow(stairDebuffs[0]).times(stairEffect)
 }
+let diff
 function mainLoop(){
-    let diff = (Date.now()-data.time)/1000
+    diff = data.settingsToggles[3]?(Date.now()-data.time)/1000:getRandom(0.048, 0.053)
     data.time = Date.now()
     calculationsLoop()
     gainParticles(diff)

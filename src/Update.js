@@ -48,6 +48,7 @@ for (let i=0;i<data.stairSecretEnergy.length;i++){
 const ourgwa = document.getElementById("ourgwa")
 const settingsToggle1 = document.getElementById("settingsToggle1")
 const settingsToggle2 = document.getElementById("settingsToggle2")
+const settingsToggle3 = document.getElementById("settingsToggle3")
 const changelog = document.getElementById("changelog")
 // endregion
 function updateHTML(){
@@ -126,6 +127,7 @@ function updateHTML(){
     if (data.currentTab ===0){
         settingsToggle1.innerText = data.settingsToggles[1]?'Toggle Animations [ON]':'Toggle Animations [OFF]'
         settingsToggle2.innerText = data.settingsToggles[2]?'Toggle Stair Confirmation [ON]':'Toggle Stair Confirmation [OFF]'
+        settingsToggle3.innerText = data.settingsToggles[3]?'Toggle Offline Progress [ON]':'Toggle Offline Progress [OFF]'
         changelog.style.display = data.settingsToggles[0]?'inline':'none'
     }
     unlockLegends()
