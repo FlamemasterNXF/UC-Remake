@@ -21,6 +21,12 @@ function calculateStairStuff(){
         }
         secretEffects[6] = data.stairSecretEnergy[6].div(10).plus(1)
     }
+    secretMinimum()
+}
+function secretMinimum(){
+    for (let i=0;i<data.stairSecretEnergy.length;i++){
+        secretEnergyGain[i] = minimum(secretEnergyGain[i], D(0))
+    }
 }
 function increaseSecretEnergy(diff){
     for (let i=0;i<data.stairSecretEnergy.length;i++){

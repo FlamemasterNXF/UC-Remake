@@ -1,6 +1,3 @@
-function getRandom(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min;
-}
 function increaseOddities(i){
     data.oddities = data.oddities.plus(i)
 }
