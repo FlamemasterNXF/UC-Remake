@@ -131,7 +131,7 @@ function updateHTML(){
         singText.innerHTML = `You have ${formatWhole(data.singularities)} Singularities [${formatWhole(data.totalSingularities)} Total]<br>The Blackhole will collapse into a Singularity at ${format(singGoal)} Matter`
         for(let i=0;i<data.ringularityInvested.length;i++){
             data.ringularityInvested[i]?
-                ringDisplays[i].innerHTML = `Ringularity ${ringularityNames[i]}<br>${ringularityDescs[i]}<br>This Ringularity is currently activated`:ringDisplays[i].innerHTML = `Ringularity ${ringularityNames[i]}<br>${ringularityDescs[i]}<br>This Ringularity is currently deactivated`
+                ringDisplays[i].innerHTML = `Ringularity ${ringularityNames[i]}<br>${ringularityDescs[i]}<br>Currently: ${ringSymbols[i]}${format(ringEffects[i])}`:ringDisplays[i].innerHTML = `Ringularity ${ringularityNames[i]}<br>${ringularityDescs[i]}<br>This Ringularity is currently deactivated`
         }
     }
     //misc
