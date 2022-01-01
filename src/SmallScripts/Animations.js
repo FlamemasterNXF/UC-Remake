@@ -92,7 +92,7 @@ function animationsLoop() {
                 ctx.fillStyle = rgbToHex(i,i*2,i*3);
             }
             else {
-                ctx.fillStyle = rgbToHex(i*6, i*5, i*4);
+                ctx.fillStyle = rgbToHex(i*5, i*4, i*3);
             }
             drawArc(Math.sin(timer/20*i)*i,Math.cos(timer/10*i)*j,2)        }
     }
