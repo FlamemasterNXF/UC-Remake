@@ -6,6 +6,12 @@ let ringEffects = [D(1), D(0), D(1), D(1), D(0), D(0)]
 function calculateSingStuff(){
     singGoal = D(10).times(D(10).pow(data.totalSingularities))
     singCollapse()
+    ringEffects[0] = data.ringularityInvested[0]?secretEffects[6].times(2):D(1)
+    ringEffects[1] = data.ringularityInvested[1]?secretEffects[5].sqrt():D(0)
+    ringEffects[2] = data.ringularityInvested[2]?secretEffects[0].log2():D(1)
+    ringEffects[3] = data.ringularityInvested[3]?secretEffects[2].log2():D(1)
+    ringEffects[4] = data.ringularityInvested[4]?secretEffects[3].div(20):D(0)
+    ringEffects[5] = data.ringularityInvested[5]?secretEffects[1].log10():D(0)
 }
 function ringInvest(x){
     let i=x-1
