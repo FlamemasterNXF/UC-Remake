@@ -5,6 +5,13 @@ function calculateSingStuff(){
     singGoal = D(10).times(D(10).pow(data.totalSingularities))
     singCollapse()
 }
+function ringInvest(x){
+    let i=x-1
+    if (data.singularities.gte(1)){
+        data.singularities = data.singularities.sub(1)
+        data.ringularityInvested[i] = true
+    }
+}
 function gainMatter(diff){
     data.matter = data.matter.plus(secretEffects[7].times(diff))
 }
