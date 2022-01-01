@@ -48,6 +48,10 @@ for (let i=0;i<data.stairSecretEnergy.length;i++){
 const singPopup = document.getElementById("singPopup")
 const matterText = document.getElementById("matterDisplay")
 const singText = document.getElementById("singularityDisplay")
+const ringDisplays = []
+for (let i=0;i<6;i++){
+    ringDisplays[i] = document.getElementById(`ring${i}`)
+}
 const ourgwa = document.getElementById("ourgwa")
 const settingsToggle1 = document.getElementById("settingsToggle1")
 const settingsToggle2 = document.getElementById("settingsToggle2")
@@ -125,6 +129,10 @@ function updateHTML(){
     if (data.currentTab === 6){
         matterText.innerText = `There is ${format(data.matter)} Matter [+${format(secretEffects[7])}/s]`
         singText.innerHTML = `You have ${formatWhole(data.singularities)} Singularities [${formatWhole(data.totalSingularities)} Total]<br>The Blackhole will collapse into a Singularity at ${format(singGoal)} Matter`
+        for(let i=0;i<data.ringularityInvested.length;i++){
+            data.ringularityInvested[i]?
+                ringDisplays[i].innerHTML = `Ringularity ${ringularityNames[i]}<br>${ringularityDescs[i]}<br>This Ringularity is currently activated`:ringDisplays[i].innerHTML = `Ringularity ${ringularityNames[i]}<br>${ringularityDescs[i]}<br>This Ringularity is currently deactivated`
+        }
     }
     //misc
     if (data.currentTab === 3){

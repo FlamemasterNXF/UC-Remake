@@ -14,7 +14,7 @@ function calculateStairStuff(){
     secretEnergyGain[4] = data.stairsComplete.plus(1).div(2).sub(data.stairSecretEnergy[4].sub(1).sqrt().div(100))
     secretEnergyGain[5] = data.stairsComplete.plus(2).log(2).div(10).sub(data.stairSecretEnergy[5].sub(1).sqrt().div(100))
     secretEnergyGain[6] = data.stairSecretEnergy[6].gte(1)?data.stairsComplete.plus(2).log(10).div(10).sub(data.stairSecretEnergy[6].log10().div(100)):data.stairsComplete.plus(2).log(10).div(10)
-    secretEnergyGain[7] = data.stairsComplete.gte(4)?data.stairsComplete.sub(3).div(10).sub(data.stairSecretEnergy[7].sqrt().div(100)):D(0)
+    secretEnergyGain[7] = data.stairsComplete.gte(4)?data.stairsComplete.sub(3).div(20).sub(data.stairSecretEnergy[7].sqrt().div(100)):D(0)
     if (data.stairsComplete.gte(0)) {
         for (let i = 0; i < data.stairSecretEnergy.length; i++) {
             secretEffects[i] = data.stairSecretEnergy[i].div(10)

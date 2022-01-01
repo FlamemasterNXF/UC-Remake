@@ -87,6 +87,16 @@
     min-height: 100px;
     margin-right: 10px;
 }
+.ringularity{
+    margin-top: 5px;
+    color: #ac6cff;
+    border: 3px solid #4f0aaf;
+    background-color: rgba(0,0,0,0);
+    width: 300px;
+    height: 100px;
+    margin-left: 10px;
+    border-radius: 50px;
+}
 .popup{
     display: none;
     text-align: center;

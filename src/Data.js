@@ -25,6 +25,7 @@ function getDefaultObject() {
         matter: D(0),
         singularities: D(0),
         totalSingularities: D(0),
+        ringularityInvested: [false, false, false,false, false, false],
         //misc
         settingsToggles: [true, true, true, true], //changelog, animation, stair conf, offline time
         autoToggled: [false, false],
