@@ -10,6 +10,7 @@
     <script defer src="src/Data.js"></script>
     <script defer src="src/SmallScripts/MyMath.js"></script>
     <script defer src="src/SmallScripts/Settings.js"></script>
+    <script defer src="src/Blackhole.js"></script>
     <script defer src="src/Stairway.js"></script>
     <script defer src="src/LostDerivatives.js"></script>
     <script defer src="src/Theories.js"></script>
@@ -32,7 +33,8 @@
 <div class="layer" id="topLayer">
     <div class="flexBox generalTexts" id="oddityDisplay">There are 0 Oddities</div>
     <div class="flexBox generalTexts" id="lostInDisplay">Lost Derivative Active!</div>
-    <div class="flexBox layer" id="stairPopup" onclick="closeStairPopup()">You've Completed Stair 0! Congratulations!</div>
+    <div class="flexBox layer popup" id="stairPopup" onclick="closeStairPopup()">You've Completed Stair 0! Congratulations!</div>
+    <div class="flexBox layer popup" id="singPopup" onclick="closeBHPopup()">Your Blackhole collapsed into a Singularity!</div>
     <div class="flexBox" id="navBar">
         <button class="navButton" id="derivNav" onclick="switchTab(1)">Derivatives</button>
         <button class="navButton" id="mysteriesNav" onclick="switchTab(2)">Theories</button>
@@ -170,6 +172,11 @@
                 <button class="stairSecret" id="secret8">This would be a secret</button>
             </div>
         </div>
+    </div>
+    <div class="flexBox" id="bigBlackholeContainer" style="margin-top: 10px;flex-direction: column">
+        <div class="generalTexts" id="matterDisplay">There is 0 Matter</div>
+        <div class="centeredTexts" id="singularityDisplay" style="color: #ac6cff;margin-top: 20px">You have 0 Singularities [0 Total]<br>The Blackhole will collapse into a Singularity at 10 Matter</div>
+        <div class="centeredTexts" id="singWarning" style="color: #ff5959">Be warned that when the Blackhole collapses it will reset Secret 8 and Matter!</div>
     </div>
     <div class="flexBox" id="settingsContainer">
         <div class="flexBox" id="saveControl">

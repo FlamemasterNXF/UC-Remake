@@ -1,5 +1,5 @@
 function getRandom(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min;
+    return Math.floor(Math.random() * (max - min) ) + min
 }
 function minimum(value, min){
     if (value.lt(min)) value = D(min)

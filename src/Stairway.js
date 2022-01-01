@@ -25,7 +25,7 @@ function calculateStairStuff(){
 }
 function secretMinimum(){
     for (let i=0;i<data.stairSecretEnergy.length;i++){
-        secretEnergyGain[i] = minimum(secretEnergyGain[i], D(0.00000000001))
+        secretEnergyGain[i] = Decimal.max(secretEnergyGain[i], D(0))
     }
 }
 function increaseSecretEnergy(diff){

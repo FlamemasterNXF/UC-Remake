@@ -45,6 +45,9 @@ const stairSecretDisplays = []
 for (let i=0;i<data.stairSecretEnergy.length;i++){
     stairSecretDisplays[i] = document.getElementById(`secret${secretNumbers[i]}`)
 }
+const singPopup = document.getElementById("singPopup")
+const matterText = document.getElementById("matterDisplay")
+const singText = document.getElementById("singularityDisplay")
 const ourgwa = document.getElementById("ourgwa")
 const settingsToggle1 = document.getElementById("settingsToggle1")
 const settingsToggle2 = document.getElementById("settingsToggle2")
@@ -118,6 +121,11 @@ function updateHTML(){
         stairSecretDisplays[7].innerHTML = `Stair Secret ${secretNumbers[7]}<br>${secretDescriptions[7]}<br>Currently: +${format(secretEffects[7])}<br>This Secret has ${format(data.stairSecretEnergy[7])} Energy [+${format(secretEnergyGain[7])}/s]`
 
     }
+    //bh
+    if (data.currentTab === 6){
+        matterText.innerText = `There is ${format(data.matter)} Matter [+${format(secretEffects[7])}/s]`
+        singText.innerHTML = `You have ${formatWhole(data.singularities)} Singularities [${formatWhole(data.totalSingularities)} Total]<br>The Blackhole will collapse into a Singularity at ${format(singGoal)} Matter`
+    }
     //misc
     if (data.currentTab === 3){
         for (let i=0;i<legendsNumbers.length;i++){
@@ -173,6 +181,7 @@ const legendsStuff = document.getElementById("legendsContainer")
 const lostStuff = document.getElementById("bigLostContainer")
 const lostCycle3 = document.getElementById("lostCycle3")
 const stairwayStuff = document.getElementById("bigStairwayContainer")
+const blackholeStuff = document.getElementById("bigBlackholeContainer")
 const settingsStuff = document.getElementById("settingsContainer")
 function tabChangeHTML(){
     //derivs
@@ -193,6 +202,8 @@ function tabChangeHTML(){
     lostAutoBuymax.style.display = data.hasLegend[2]?'flex':'none'
     //stairway
     stairwayStuff.style.display = data.currentTab===5?'flex':'none'
+    //blackhole
+    blackholeStuff.style.display = data.currentTab===6?'flex':'none'
     //settings
     settingsStuff.style.display = data.currentTab===0 ? 'flex':'none'
     //nav

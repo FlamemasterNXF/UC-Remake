@@ -21,6 +21,10 @@ function getDefaultObject() {
         stairsComplete: D(-1),
         currentStair: D(0),
         stairSecretEnergy: [D(1),D(1),D(1),D(1),D(1),D(1),D(1),D(0)],
+        //blackhole
+        matter: D(0),
+        singularities: D(0),
+        totalSingularities: D(0),
         //misc
         settingsToggles: [true, true, true, true], //changelog, animation, stair conf, offline time
         autoToggled: [false, false],

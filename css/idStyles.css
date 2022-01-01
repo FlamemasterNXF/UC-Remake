@@ -111,16 +111,6 @@
     min-width: 300px;
     font-family: DosisSemiBold;
 }
-#stairPopup{
-    display: none;
-    text-align: center;
-    margin-left: 10px;
-    height: 60px;
-    width: 190px;
-    background-color: #d7c200;
-    border: 3px solid #2b2b2b;
-    font-family: DosisSemiBold;
-}
 #milestoneNav{
     background-color: #542780;
     border: 3px solid #2b2b2b;

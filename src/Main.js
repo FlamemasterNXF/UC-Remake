@@ -18,6 +18,7 @@ function mainLoop(){
     automate()
     completeStairCheck()
     increaseSecretEnergy(diff)
+    gainMatter(diff)
     updateHTML()
 }
 function calculationsLoop(){
@@ -29,6 +30,7 @@ function calculationsLoop(){
     calculateUpgradeEffects()
     calculateLostStuff()
     calculateStairStuff()
+    calculateSingStuff()
 }
 function switchTab(i){
     data.currentTab = i
