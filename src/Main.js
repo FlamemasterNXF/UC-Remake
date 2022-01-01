@@ -5,11 +5,11 @@ function calculateOddityGain(){
     data.oddityGain =
         data.derivs[0].amt.times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7]).times(theoryEffects[9])
             .times(dreamParticleEffects[0]).times(theoryEffects[10]).times(dreamParticleEffects[2]).times(theoryEffects[15]).times(secretEffects[0])
-            .pow(stairDebuffs[0]).times(stairEffect)
+            .times(theoryEffects[15]).times(theoryEffects[16]).times(singEffect).pow(stairDebuffs[0]).times(stairEffect)
 }
 let diff
 function mainLoop(){
-    diff = data.settingsToggles[3]?(Date.now()-data.time)/1000:getRandom(0.048, 0.053)
+    diff = data.settingsToggles[3]?(Date.now()-data.time)*data.devSpeed/1000:getRandom(0.048, 0.053)*data.devSpeed
     data.time = Date.now()
     calculationsLoop()
     gainParticles(diff)

@@ -56,6 +56,7 @@ const ourgwa = document.getElementById("ourgwa")
 const settingsToggle1 = document.getElementById("settingsToggle1")
 const settingsToggle2 = document.getElementById("settingsToggle2")
 const settingsToggle3 = document.getElementById("settingsToggle3")
+const settingsToggle4 = document.getElementById("settingsToggle4")
 const changelog = document.getElementById("changelog")
 // endregion
 function updateHTML(){
@@ -128,7 +129,7 @@ function updateHTML(){
     //bh
     if (data.currentTab === 6){
         matterText.innerText = `There is ${format(data.matter)} Matter [+${format(secretEffects[7])}/s]`
-        singText.innerHTML = `You have ${formatWhole(data.singularities)} Singularities [${formatWhole(data.totalSingularities)} Total]<br>The Blackhole will collapse into a Singularity at ${format(singGoal)} Matter`
+        singText.innerHTML = `You have ${formatWhole(data.singularities)} Singularities [${formatWhole(data.totalSingularities)} Total], providing a ${format(singEffect)}x multiplier to Oddity gain<br>The Blackhole will collapse into a Singularity at ${format(singGoal)} Matter`
         for(let i=0;i<data.ringularityInvested.length;i++){
             data.ringularityInvested[i]?
                 ringDisplays[i].innerHTML = `Ringularity ${ringularityNames[i]}<br>${ringularityDescs[i]}<br>Currently: ${ringSymbols[i]}${format(ringEffects[i])}`:ringDisplays[i].innerHTML = `Ringularity ${ringularityNames[i]}<br>${ringularityDescs[i]}<br>This Ringularity is currently deactivated`
@@ -144,6 +145,7 @@ function updateHTML(){
         settingsToggle1.innerText = data.settingsToggles[1]?'Toggle Animations [ON]':'Toggle Animations [OFF]'
         settingsToggle2.innerText = data.settingsToggles[2]?'Toggle Stair Confirmation [ON]':'Toggle Stair Confirmation [OFF]'
         settingsToggle3.innerText = data.settingsToggles[3]?'Toggle Offline Progress [ON]':'Toggle Offline Progress [OFF]'
+        settingsToggle4.innerText = data.settingsToggles[4]?'Toggle Respec Confirmation [ON]':'Toggle Respec Confirmation [OFF]'
         changelog.style.display = data.settingsToggles[0]?'inline':'none'
     }
     unlockLegends()
@@ -166,6 +168,8 @@ let theoryDescriptions = [
     ()=>`The Theory of Reversal II<br>Bought D5s multiply D1 production<br>Currently: ${format(theoryEffects[12])}x<br>Unlock Cost: ${format(theoryCosts[12])} Oddities`,
     ()=>`The Theory of Numbers II<br>Bought D1s multiply D5 production<br>Currently: ${format(theoryEffects[13])}x<br>Unlock Cost: ${format(theoryCosts[13])} Oddities`,
     ()=>`The Theory of Peak Synergy II<br>Bought D5s boost D4, bought D4s boost D5, Upgrade ⬥ boosts D5, AND Bought D5s boost Upgrade ⬥ again<br>Currently: ${format(theoryEffects[14])}x<br>Unlock Cost: ${format(theoryCosts[14])} Oddities`,
+    ()=>`The Theory of Odd Matter<br>Matter multiplies Oddity gain<br>Currently: ${format(theoryEffects[15])}x<br>Unlock Cost: ${format(theoryCosts[15])} Oddities`,
+    ()=>`The Theory of Odd Matter II<br>Applies the Theory of Odd Matter again<br>Currently: ${format(theoryEffects[16])}x<br>Unlock Cost: ${format(theoryCosts[16])} Oddities`,
 ]
 function theoryTextUpdate(x){
     let i = x-1
@@ -185,6 +189,7 @@ const deriv5 = document.getElementById("derivVButton")
 const upgradesStuff = document.getElementById("upgradeContainer")
 const theoryStuff = document.getElementById("theoriesContainer")
 const theoryRow4 = document.getElementById("theoryRow4")
+const theoryRow5 = document.getElementById("theoryRow5")
 const legendsStuff = document.getElementById("legendsContainer")
 const lostStuff = document.getElementById("bigLostContainer")
 const lostCycle3 = document.getElementById("lostCycle3")
@@ -202,6 +207,7 @@ function tabChangeHTML(){
     //theories
     theoryStuff.style.display = data.currentTab===2?'flex':'none'
     theoryRow4.style.display = data.hasLostTheory[3]?'flex':'none'
+    theoryRow5.style.display = data.stairsComplete.gte(4)?'flex':'none'
     //legends
     legendsStuff.style.display = data.currentTab===3?'flex':'none'
     //lost

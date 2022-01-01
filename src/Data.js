@@ -10,7 +10,7 @@ function getDefaultObject() {
         //upgrades
         upgrades: [{amt:D(0),c:D(2e18)},{amt:D(0),c:D(5e19)},{amt:D(0),c:D(5e20)},{amt:D(0),c:D(6e21)},{amt:D(0),c:D(22)}],
         //theories
-        hasTheory: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        hasTheory: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,false],
         //lost derivs
         inLost: false,
         particles: [D(0), D(0), D(0)], //Ancient, Derivative, Dream
@@ -27,13 +27,13 @@ function getDefaultObject() {
         totalSingularities: D(0),
         ringularityInvested: [false, false, false,false, false, false],
         //misc
-        settingsToggles: [true, true, true, true], //changelog, animation, stair conf, offline time
+        settingsToggles: [true, true, true, true, true], //changelog, animation, stair conf, offline time
         autoToggled: [false, false],
         hasLegend: [false, false, false],
         hasTab: [false, false, false, false, false],
         time: Date.now(),
+        devSpeed: 1,
         currentTab: 1,
-        currentUpdate: 'v0.0.15 NEW',
     }
 }
 let data = getDefaultObject()
@@ -64,10 +64,6 @@ function fixSave(main=getDefaultObject(), data) {
 }
 function fixOldSaves(){
     //fix important things from old versions
-    if (data.currentUpdate==='v0.0.14') data.currentUpdate='v0.0.15'
-    if (data.currentUpdate==='v0.0.15'){
-        //deleteSave()
-    }
 }
 function exportSave(){
     save()

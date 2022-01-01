@@ -12,7 +12,7 @@ let lostCycleNumbers = ['1', '2', '3']
 let lostCycleEffectTexts = [`Ancient Particles multiply D1 production`, `Ancient Particles multiply Derivative Particle gain`,`Ancient Particles add to the Step boost`]
 function calculateLostStuff(){
     data.inLost?data.oddities.gt(data.highestOdditiesInLost)?
-        ancientParticleGain = data.oddities.sqrt().div(2).div(data.particles[0].plus(1).log10()).plus(1):D(0):D(0)
+        ancientParticleGain = data.oddities.sqrt().div(2).div(data.particles[0].plus(1).log10()).plus(1).times(ringEffects[2]):D(0):D(0)
     particleGains[0] = data.particles[0].gte(1)?data.particles[0].sqrt().sqrt().times(lostCycleEffects[1]):D(0)
     particleGains[1] = data.particles[0].gte(1)?data.particles[0].sqrt().times(derivativeParticleEffect):D(0)
     derivativeParticleEffect = data.particles[1].gte(1)?data.particles[1].sqrt().plus(1):D(1)
