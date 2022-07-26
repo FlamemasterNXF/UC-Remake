@@ -65,8 +65,6 @@ function updateHTML(){
     mysteriesNav.innerText = data.hasTab[0]?'Theories':'???'
     milestoneNav.innerText = data.hasTab[1]?'Legends':'???'
     lostNav.innerText = data.hasTab[2]?'Lost Derivatives':'???'
-    stairsNav.innerText = data.hasTab[3]?'The Stairway':'???'
-    blackHoleNav.innerText = data.hasTab[4]?'The Blackhole':'???'
     lostInDisplay.style.display = data.inLost?'flex':'none'
     ourgwa.style.display = ourgwatriggered ? 'flex':'none'
     //endregion
@@ -111,30 +109,6 @@ function updateHTML(){
         lostCycleDisplays[2].innerHTML = `Lost Cycle ${lostCycleNumbers[2]}<br>${lostCycleEffectTexts[2]} [+${format(lostCycleEffects[2])}]<br>Cost: ${format(lostCycleCosts[2])} Derivative Particles<br>This Lost Cycle is currently level ${formatWhole(data.lostCycleLevels[2])}`
         lostAutoBuymax.innerHTML = data.autoToggled[1]?'Auto Lost Cycle Buymax: ON':'Auto Lost Cycle Buymax: OFF'
     }
-    //stairs
-    if (data.currentTab === 5){
-        stairTopText.innerHTML =
-            `You are Currently on Stair ${formatWhole(data.currentStair)} of the Infinite Stairway<br>You have completed up to Stair ${formatWhole(data.stairsComplete)}, which allows you to access up to Stair ${formatWhole(data.stairsComplete.plus(1))}<br>Changing what Stair you are on will reset everything except for Legends and Stair Secrets!`
-        stairTopText2.innerHTML =
-            `Your total Stairs completed provides you a ${format(stairEffect)}x multiplier to Oddity gain<br>Your place on the Stairway currently causes your Oddity gain to be raised to the ${format(stairDebuffs[0])}<br>You are required to have at least one Derivative 5 and to have Theory XI to complete a Stair`
-        stairSecretDisplays[0].innerHTML = `Stair Secret ${secretNumbers[0]}<br>${secretDescriptions[0]}<br>Currently: ${format(secretEffects[0])}x<br>This Secret has ${format(data.stairSecretEnergy[0])} Energy [+${format(secretEnergyGain[0])}/s]`
-        for(let i=1;i<data.stairSecretEnergy.length-2;i++){
-            stairSecretDisplays[i].innerHTML = `Stair Secret ${secretNumbers[i]}<br>${secretDescriptions[i]}<br>Currently: +${format(secretEffects[i])}<br>This Secret has ${format(data.stairSecretEnergy[i])} Energy [+${format(secretEnergyGain[i])}/s]`
-        }
-        stairSecretDisplays[6].innerHTML = `Stair Secret ${secretNumbers[6]}<br>${secretDescriptions[6]}<br>Currently: /${format(secretEffects[6])}<br>This Secret has ${format(data.stairSecretEnergy[6])} Energy [+${format(secretEnergyGain[6])}/s]`
-        secretDescriptions[7] = data.stairsComplete.gte(4)?`Produces Matter`:`Produces ???`
-        stairSecretDisplays[7].innerHTML = `Stair Secret ${secretNumbers[7]}<br>${secretDescriptions[7]}<br>Currently: +${format(secretEffects[7])}<br>This Secret has ${format(data.stairSecretEnergy[7])} Energy [+${format(secretEnergyGain[7])}/s]`
-
-    }
-    //bh
-    if (data.currentTab === 6){
-        matterText.innerText = `There is ${format(data.matter)} Matter [+${format(secretEffects[7])}/s]`
-        singText.innerHTML = `You have ${formatWhole(data.singularities)} Singularities [${formatWhole(data.totalSingularities)} Total], providing a ${format(singEffect)}x multiplier to Oddity gain<br>The Blackhole will collapse into a Singularity at ${format(singGoal)} Matter`
-        for(let i=0;i<data.ringularityInvested.length;i++){
-            data.ringularityInvested[i]?
-                ringDisplays[i].innerHTML = `Ringularity ${ringularityNames[i]}<br>${ringularityDescs[i]}<br>Currently: ${ringSymbols[i]}${format(ringEffects[i])}`:ringDisplays[i].innerHTML = `Ringularity ${ringularityNames[i]}<br>${ringularityDescs[i]}<br>This Ringularity is currently deactivated`
-        }
-    }
     //misc
     if (data.currentTab === 3){
         for (let i=0;i<legendsNumbers.length;i++){
@@ -143,9 +117,7 @@ function updateHTML(){
     }
     if (data.currentTab ===0){
         settingsToggle1.innerText = data.settingsToggles[1]?'Toggle Animations [ON]':'Toggle Animations [OFF]'
-        settingsToggle2.innerText = data.settingsToggles[2]?'Toggle Stair Confirmation [ON]':'Toggle Stair Confirmation [OFF]'
-        settingsToggle3.innerText = data.settingsToggles[3]?'Toggle Offline Progress [ON]':'Toggle Offline Progress [OFF]'
-        settingsToggle4.innerText = data.settingsToggles[4]?'Toggle Respec Confirmation [ON]':'Toggle Respec Confirmation [OFF]'
+        settingsToggle3.innerText = data.settingsToggles[2]?'Toggle Offline Progress [ON]':'Toggle Offline Progress [OFF]'
         changelog.style.display = data.settingsToggles[0]?'inline':'none'
     }
     unlockLegends()
@@ -179,8 +151,7 @@ function unlockTabs(){
     data.hasTab[0] = data.derivs[3].amt.gte(1) || data.hasTab[0]
     data.hasTab[1] = data.upgrades[3].amt.gte(1) || data.hasTab[1]
     data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
-    data.hasTab[3] = data.derivs[4].amt.gte(1) || data.hasTab[3]
-    data.hasTab[4] = data.stairsComplete.gte(4) || data.hasTab[4]
+    //.hasTab[3] = data.derivs[4].amt.gte(1) || data.hasTab[3]
 }
 const derivStuff = document.getElementById("bigDerivativeContainer")
 const buyMax = document.getElementById("buymaxContainer")
@@ -189,12 +160,8 @@ const deriv5 = document.getElementById("derivVButton")
 const upgradesStuff = document.getElementById("upgradeContainer")
 const theoryStuff = document.getElementById("theoriesContainer")
 const theoryRow4 = document.getElementById("theoryRow4")
-const theoryRow5 = document.getElementById("theoryRow5")
 const legendsStuff = document.getElementById("legendsContainer")
 const lostStuff = document.getElementById("bigLostContainer")
-const lostCycle3 = document.getElementById("lostCycle3")
-const stairwayStuff = document.getElementById("bigStairwayContainer")
-const blackholeStuff = document.getElementById("bigBlackholeContainer")
 const settingsStuff = document.getElementById("settingsContainer")
 function tabChangeHTML(){
     //derivs
@@ -202,27 +169,20 @@ function tabChangeHTML(){
     buyMax.style.display = data.currentTab===1 ? 'flex' : 'none'
     upgradesBuymax.style.display = data.hasLegend[1]?'flex':'none'
     deriv5.style.display = data.hasLostTheory[3]?'flex':'none'
-    upgradesStuff.style.display = data.oddities.gte(1e17) || data.upgrades[0].amt.gte(1)?'flex':'none'
     //upgrades
+    upgradesStuff.style.display = data.oddities.gte(1e17) || data.upgrades[0].amt.gte(1)?'flex':'none'
     //theories
     theoryStuff.style.display = data.currentTab===2?'flex':'none'
     theoryRow4.style.display = data.hasLostTheory[3]?'flex':'none'
-    theoryRow5.style.display = data.stairsComplete.gte(4)?'flex':'none'
     //legends
     legendsStuff.style.display = data.currentTab===3?'flex':'none'
     //lost
     lostStuff.style.display = data.currentTab===4?'flex':'none'
-    lostCycle3.style.display = data.stairsComplete.gte(0)?'inline':'none'
     lostAutoBuymax.style.display = data.hasLegend[2]?'flex':'none'
-    //stairway
-    stairwayStuff.style.display = data.currentTab===5?'flex':'none'
-    //blackhole
-    blackholeStuff.style.display = data.currentTab===6?'flex':'none'
     //settings
     settingsStuff.style.display = data.currentTab===0 ? 'flex':'none'
     //nav
     milestoneNav.style.display = data.hasTab[0] || data.hasTab[1]?'inline':'none'
     lostNav.style.display = data.hasLegend[0] || data.hasTab[2]?'inline':'none'
     stairsNav.style.display = data.hasLostTheory[1] || data.hasTab[3]?'inline':'none'
-    blackHoleNav.style.display = data.stairsComplete.gte(0) || data.hasTab[4]?'inline':'none'
 }

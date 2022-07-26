@@ -10,8 +10,6 @@
     <script defer src="src/Data.js"></script>
     <script defer src="src/SmallScripts/MyMath.js"></script>
     <script defer src="src/SmallScripts/Settings.js"></script>
-    <script defer src="src/Blackhole.js"></script>
-    <script defer src="src/Stairway.js"></script>
     <script defer src="src/LostDerivatives.js"></script>
     <script defer src="src/Theories.js"></script>
     <script defer src="src/Upgrades.js"></script>
@@ -104,16 +102,11 @@
             <button class="theory" id="theory14" onmouseover="theoryTextUpdate(14)" onclick="buyTheory(14)">Theory XIV</button>
             <button class="theory" id="theory15" onmouseover="theoryTextUpdate(15)" onclick="buyTheory(15)">Theory XV</button>
         </div>
-        <div class="flexBox theoryRow" id="theoryRow5">
-            <button class="theory" id="theory16" onmouseover="theoryTextUpdate(16)" onclick="buyTheory(16)">Theory XVI</button>
-            <button class="theory" id="theory17" onmouseover="theoryTextUpdate(17)" onclick="buyTheory(17)">Theory XVII</button>
-        </div>
         <div class="generalTexts" id="theoriesText">Hover over a Theory to learn its effect!</div>
     </div>
     <div class="flexBox" id="legendsContainer">
         <button class="legend" id="legend1">Legend One<br>Discovered by purchasing an Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
         <button class="legend" id="legend2">Legend Two<br>Discovered by obtaining an Ancient Particle<br>Unlock a Buymax for Upgrades 1-4</button>
-        <button class="legend" id="legend3">Legend Three<br>Discovered by completing Stair 1<br>Unlock an Automatic Buymax for Lost Cycles</button>
     </div>
     <div class="flexBox" id="bigLostContainer">
         <t class="generalTexts" id="lostTopText">hi</t>
@@ -143,54 +136,6 @@
             <button id="lostAutoBuymax" onclick="autoToggle(2)">Auto Lost Cycle Buymax: OFF</button>
         </div>
     </div>
-    <div class="flexBox" id="bigStairwayContainer">
-        <t class="generalTexts" id="stairwayTopText">Hi</t>
-        <t class="generalTexts" id="stairwayTopText2">Hi</t>
-        <div class="flexBox" id="stairwayNavContainer">
-            <button class="stairwayNav" id="downStair" onclick="changeStair(1)">Go Up One Stair</button>
-            <button class="stairwayNav" id="upStair"onclick="changeStair(2)">Go Down One Stair</button>
-            <button class="stairwayNav" id="downFurthestStair"onclick="changeStair(3)">Go Up to your Highest Stair</button>
-            <button class="stairwayNav" id="upHighestStair"onclick="changeStair(4)">Go Down to Stair 0</button>
-        </div>
-        <div class="flexBox" id="secretContainer">
-            <div class="flexBox secretColumn" id="secretColumn1">
-                <button class="stairSecret" id="secret1">This would be a secret</button>
-                <button class="stairSecret" id="secret5">This would be a secret</button>
-                <button class="stairSecret" id="secret7">This would be a secret</button>
-            </div>
-            <div class="flexBox secretColumn" id="secretColumn2">
-                <button class="stairSecret" id="secret2">This would be a secret</button>
-            </div>
-            <div class="secretColumn">
-                <button class="stairSecretBlank" id="blankSecret1">This would be a secret</button>
-            </div>
-            <div class="secretColumn">
-                <button class="stairSecretBlank" id="blankSecret2">This would be a secret</button>
-            </div>
-            <div class="flexBox secretColumn" id="secretColumn3">
-                <button class="stairSecret" id="secret3">This would be a secret</button>
-            </div>
-            <div class="flexBox secretColumn" id="secretColumn4">
-                <button class="stairSecret" id="secret4">This would be a secret</button>
-                <button class="stairSecret" id="secret6">This would be a secret</button>
-                <button class="stairSecret" id="secret8">This would be a secret</button>
-            </div>
-        </div>
-    </div>
-    <div class="flexBox" id="bigBlackholeContainer" style="margin-top: 10px;flex-direction: column">
-        <div class="generalTexts" id="matterDisplay">There is 0 Matter</div>
-        <div class="centeredTexts" id="singularityDisplay" style="color: #ac6cff;margin-top: 20px">You have 0 Singularities [0 Total]<br>The Blackhole will collapse into a Singularity at 10 Matter</div>
-        <div class="centeredTexts" id="singWarning" style="color: #ff5959">Be warned that when the Blackhole collapses it will reset Secret 8 and Matter!</div>
-        <div class="flexBox" id="ringularityContainer" style="margin-top:20px;">
-            <button class="ringularity" id="ring0" onclick="ringInvest(1)">Epic Ringularity</button>
-            <button class="ringularity" id="ring1"onclick="ringInvest(2)">Epic Ringularity</button>
-            <button class="ringularity" id="ring2"onclick="ringInvest(3)">Epic Ringularity</button>
-            <button class="ringularity" id="ring3"onclick="ringInvest(4)">Epic Ringularity</button>
-            <button class="ringularity" id="ring4"onclick="ringInvest(5)">Epic Ringularity</button>
-            <button class="ringularity" id="ring5"onclick="ringInvest(6)">Epic Ringularity</button>
-        </div>
-        <button class="ringularity" id="ringRespect" onclick="ringRespec()" style="margin-top: 10px;width: 150px;height: 50px">Respec your Singularities</button>
-    </div>
     <div class="flexBox" id="settingsContainer">
         <div class="flexBox" id="saveControl">
             <button class="settingsButtons" onclick="fullReset()">Export and Delete your Savefile</button>
@@ -199,8 +144,6 @@
         </div>
         <div class="flexBox" id="toggles">
             <button class="settingsButtons" id="settingsToggle1" onclick="toggleSettings(2)">Toggle Animations [ON]</button>
-            <button class="settingsButtons" id="settingsToggle2" onclick="toggleSettings(3)">Toggle Stair Confirmation [ON]</button>
-            <button class="settingsButtons" id="settingsToggle4" onclick="toggleSettings(5)">Toggle Respec Confirmation [ON]</button>
             <button class="settingsButtons" id="settingsToggle3" onclick="toggleSettings(4)">Toggle Offline Time [ON]</button>
         </div>
         <button class="settingsButtons" id="changelogToggle" onclick="toggleSettings(1)">Show/Hide the Changelog</button>
@@ -235,6 +178,7 @@
                 <strong>v0.0.15b</strong> More content is hidden until you get close to it. <br>
                 <strong>v0.0.16</strong> [The Tutorial with Infinite Steps]: The Infinite Stairway, 8 Stair Secrets, Lost Cycle 3, and Legend 3! <br>
                 <strong>v0.0.17</strong> [The Singular Update]: The Blackhole, Stair Secret 8, 6 Ringularities, and 2 new Theories! <br></p>
+                <strong>v0.0.18</strong> [The SECOND Rollback]: Reverted to v0.0.15b <br></p>
         </div>
     </div>
 </div>

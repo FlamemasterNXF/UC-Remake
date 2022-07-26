@@ -17,17 +17,8 @@ function getDefaultObject() {
         highestOdditiesInLost: D(2),
         hasLostTheory: [false,false,false,false],
         lostCycleLevels: [D(0), D(0), D(0)],
-        //stairs
-        stairsComplete: D(-1),
-        currentStair: D(0),
-        stairSecretEnergy: [D(1),D(1),D(1),D(1),D(1),D(1),D(1),D(0)],
-        //blackhole
-        matter: D(0),
-        singularities: D(0),
-        totalSingularities: D(0),
-        ringularityInvested: [false, false, false,false, false, false],
         //misc
-        settingsToggles: [true, true, true, true, true], //changelog, animation, stair conf, offline time
+        settingsToggles: [true, true, true,], //changelog, animation, offline time
         autoToggled: [false, false],
         hasLegend: [false, false, false],
         hasTab: [false, false, false, false, false],

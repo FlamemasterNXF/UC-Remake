@@ -4,8 +4,8 @@ function increaseOddities(i){
 function calculateOddityGain(){
     data.oddityGain =
         data.derivs[0].amt.times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7]).times(theoryEffects[9])
-            .times(dreamParticleEffects[0]).times(theoryEffects[10]).times(dreamParticleEffects[2]).times(theoryEffects[15]).times(secretEffects[0])
-            .times(theoryEffects[15]).times(theoryEffects[16]).times(singEffect).pow(stairDebuffs[0]).times(stairEffect)
+            .times(dreamParticleEffects[0]).times(theoryEffects[10]).times(dreamParticleEffects[2]).times(theoryEffects[15])
+            .times(theoryEffects[15]).times(theoryEffects[16])
 }
 let diff
 function mainLoop(){
@@ -16,9 +16,6 @@ function mainLoop(){
     produceDerivs(diff)
     increaseOddities(data.oddityGain.times(diff))
     automate()
-    completeStairCheck()
-    increaseSecretEnergy(diff)
-    gainMatter(diff)
     updateHTML()
 }
 function calculationsLoop(){
@@ -29,8 +26,6 @@ function calculationsLoop(){
     calculateUpgradeCosts()
     calculateUpgradeEffects()
     calculateLostStuff()
-    calculateStairStuff()
-    calculateSingStuff()
 }
 function switchTab(i){
     data.currentTab = i
