@@ -27,8 +27,8 @@ function updateHTML(){
     }
     //theories
     if (data.currentTab === 2){
-        for (let i=1;i<theoryDescriptions.length;i++){
-            DOM(`theory${i}`).style.backgroundColor = data.hasTheory[i-1] ? '#9d670a' : '#0a629d'
+        for (let i=0;i<theoryDescriptions.length;i++){
+            DOM(`theory${i}`).style.backgroundColor = data.hasTheory[i] ? '#9d670a' : '#0a629d'
         }
     }
     //lost

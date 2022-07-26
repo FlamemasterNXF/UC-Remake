@@ -102,32 +102,32 @@
             <button class="flexBox upgrade" id="upgrade1" onclick="buyUpgrade(2)">Upgrade 2<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
             <button class="flexBox upgrade" id="upgrade2" onclick="buyUpgrade(3)">Upgrade 3<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
             <button class="flexBox upgrade" id="upgrade3" onclick="buyUpgrade(4)">Upgrade 4<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
-            <button class="flexBox upgrade" id="upgrade4" onclick="buyUpgrade5()">Upgrade ⬥<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
+            <button class="flexBox upgrade" id="upgrade4" style='height: 100px'onclick="buyUpgrade5()">Upgrade ⬥<br>Cost: 1e96 Oddities<br>Current effect: 1x (You have 0)</button>
         </div>
     </div>
     <div class="flexBox" id="theoriesContainer">
         <div class="flexBox theoryRow" id="theoryRow1">
-            <button class="theory" id="theory1" onmouseover="theoryTextUpdate(1)" onclick="buyTheory(1)">Theory I</button>
-            <button class="theory" id="theory2" onmouseover="theoryTextUpdate(2)" onclick="buyTheory(2)">Theory II</button>
-            <button class="theory" id="theory3" onmouseover="theoryTextUpdate(3)" onclick="buyTheory(3)">Theory III</button>
+            <button class="theory" id="theory0" onmouseover="theoryTextUpdate(1)" onclick="buyTheory(1)">Theory I</button>
+            <button class="theory" id="theory1" onmouseover="theoryTextUpdate(2)" onclick="buyTheory(2)">Theory II</button>
+            <button class="theory" id="theory2" onmouseover="theoryTextUpdate(3)" onclick="buyTheory(3)">Theory III</button>
         </div>
         <div class="flexBox theoryRow" id="theoryRow2">
-            <button class="theory" id="theory4" onmouseover="theoryTextUpdate(4)" onclick="buyTheory(4)">Theory IV</button>
-            <button class="theory" id="theory5" onmouseover="theoryTextUpdate(5)" onclick="buyTheory(5)">Theory V</button>
-            <button class="theory" id="theory6" onmouseover="theoryTextUpdate(6)" onclick="buyTheory(6)">Theory VI</button>
-            <button class="theory" id="theory7" onmouseover="theoryTextUpdate(7)" onclick="buyTheory(7)">Theory VII</button>
+            <button class="theory" id="theory3" onmouseover="theoryTextUpdate(4)" onclick="buyTheory(4)">Theory IV</button>
+            <button class="theory" id="theory4" onmouseover="theoryTextUpdate(5)" onclick="buyTheory(5)">Theory V</button>
+            <button class="theory" id="theory5" onmouseover="theoryTextUpdate(6)" onclick="buyTheory(6)">Theory VI</button>
+            <button class="theory" id="theory6" onmouseover="theoryTextUpdate(7)" onclick="buyTheory(7)">Theory VII</button>
         </div>
         <div class="flexBox theoryRow" id="theoryRow3">
-            <button class="theory" id="theory8" onmouseover="theoryTextUpdate(8)" onclick="buyTheory(8)">Theory VIII</button>
-            <button class="theory" id="theory9" onmouseover="theoryTextUpdate(9)" onclick="buyTheory(9)">Theory IX</button>
-            <button class="theory" id="theory10" onmouseover="theoryTextUpdate(10)" onclick="buyTheory(10)">Theory X</button>
-            <button class="theory" id="theory11" onmouseover="theoryTextUpdate(11)" onclick="buyTheory(11)">Theory XI</button>
+            <button class="theory" id="theory7" onmouseover="theoryTextUpdate(8)" onclick="buyTheory(8)">Theory VIII</button>
+            <button class="theory" id="theory8" onmouseover="theoryTextUpdate(9)" onclick="buyTheory(9)">Theory IX</button>
+            <button class="theory" id="theory9" onmouseover="theoryTextUpdate(10)" onclick="buyTheory(10)">Theory X</button>
+            <button class="theory" id="theory10" onmouseover="theoryTextUpdate(11)" onclick="buyTheory(11)">Theory XI</button>
         </div>
         <div class="flexBox theoryRow" id="theoryRow4">
-            <button class="theory" id="theory12" onmouseover="theoryTextUpdate(12)" onclick="buyTheory(12)">Theory XII</button>
-            <button class="theory" id="theory13" onmouseover="theoryTextUpdate(13)" onclick="buyTheory(13)">Theory XII</button>
-            <button class="theory" id="theory14" onmouseover="theoryTextUpdate(14)" onclick="buyTheory(14)">Theory XIV</button>
-            <button class="theory" id="theory15" onmouseover="theoryTextUpdate(15)" onclick="buyTheory(15)">Theory XV</button>
+            <button class="theory" id="theory11" onmouseover="theoryTextUpdate(12)" onclick="buyTheory(12)">Theory XII</button>
+            <button class="theory" id="theory12" onmouseover="theoryTextUpdate(13)" onclick="buyTheory(13)">Theory XII</button>
+            <button class="theory" id="theory13" onmouseover="theoryTextUpdate(14)" onclick="buyTheory(14)">Theory XIV</button>
+            <button class="theory" id="theory14" onmouseover="theoryTextUpdate(15)" onclick="buyTheory(15)">Theory XV</button>
         </div>
         <div class="generalTexts" id="theoriesText">Hover over a Theory to learn its effect!</div>
     </div>
@@ -157,7 +157,6 @@
         <div class="flexBox lostRow" id="lostRow2">
             <button class="lostUpgrade"id="lostCycle0"onclick="buyLostCycle(1)">This would be a Lost Upgrade thingie</button>
             <button class="lostUpgrade"id="lostCycle1"onclick="buyLostCycle(2)">This would be a Lost Upgrade thingie</button>
-            <button class="lostUpgrade"id="lostCycle2"onclick="buyLostCycle(3)">This would be a Lost Upgrade thingie</button>
         </div>
         <div class="flexBox lostRow" id="lostRow3">
             <button id="lostAutoBuymax" onclick="autoToggle(2)">Auto Lost Cycle Buymax: OFF</button>

@@ -17,7 +17,7 @@ function getDefaultObject() {
         particles: [D(0), D(0), D(0)], //Ancient, Derivative, Dream
         highestOdditiesInLost: D(2),
         hasLostTheory: [false,false,false,false],
-        lostCycleLevels: [D(0), D(0), D(0)],
+        lostCycleLevels: [D(0), D(0)],
         //misc
         settingsToggles: [true, true, true,], //changelog, animation, offline time
         autoToggled: [false, false],

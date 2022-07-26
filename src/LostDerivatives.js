@@ -5,11 +5,11 @@ let ancientParticleGain = D(0)
 let lostTheoryCosts = [D(1e3), D(3e4), D(3e5), D(1e6)]
 let lostTheory3Effect = D(1)
 let lostTheoryNumbers = ['1','2','3','4']
-let lostCycleCosts = [D(1e6), D(100), D(100)]
-let lostCycleCostBase = [D(1e4), D(100), D(1e4)]
-let lostCycleEffects = [D(1), D(1), D(1)]
-let lostCycleNumbers = ['1', '2', '3']
-let lostCycleEffectTexts = [`Ancient Particles multiply D1 production`, `Ancient Particles multiply Derivative Particle gain`,`Ancient Particles add to the Step boost`]
+let lostCycleCosts = [D(1e6), D(100)]
+let lostCycleCostBase = [D(1e4), D(100)]
+let lostCycleEffects = [D(1), D(1)]
+let lostCycleNumbers = ['1', '2',]
+let lostCycleEffectTexts = [`Ancient Particles multiply D1 production`, `Ancient Particles multiply Derivative Particle gain`,]
 function calculateLostStuff(){
     data.inLost?data.oddities.gt(data.highestOdditiesInLost)?
         ancientParticleGain = data.oddities.sqrt().div(2).div(data.particles[0].plus(1).log10()).plus(1):D(0):D(0)
@@ -21,8 +21,7 @@ function calculateLostStuff(){
     dreamParticleEffects[2] = data.hasLostTheory[1]?data.particles[2].gte(1)?data.particles[2].log2():D(1):D(1)
     lostCycleEffects[0] = data.lostCycleLevels[0].gte(1)?data.particles[0].log2().times(data.lostCycleLevels[0]):D(1)
     lostCycleEffects[1] = data.lostCycleLevels[1].gte(1)?data.particles[0].log2().sqrt().sqrt().times(data.lostCycleLevels[1].times(data.particles[0].ln().sqrt())):D(1)
-    lostCycleEffects[2] = data.lostCycleLevels[2].gte(1)?data.particles[0].log10().sqrt().times(data.lostCycleLevels[2].sqrt()):D(1)
-    lostTheory3Effect = data.hasLostTheory[2]?data.lostCycleLevels[1].plus(data.lostCycleLevels[0]).plus(data.lostCycleLevels[2]).div(2):D(1)
+    lostTheory3Effect = data.hasLostTheory[2]?data.lostCycleLevels[1].plus(data.lostCycleLevels[0]).div(2):D(1)
     calculateLostCycleCosts()
 }
 function calculateLostCycleCosts(){
