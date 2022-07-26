@@ -27,6 +27,7 @@ function getDefaultObject() {
         devSpeed: 1,
         currentTab: 1,
         version: VERSION,
+        loadedCurrentVer: false
     }
 }
 let data = getDefaultObject()
@@ -56,7 +57,9 @@ function fixSave(main=getDefaultObject(), data) {
     else return getDefaultObject()
 }
 function fixOldSaves(){
-
+    if(!data.loadedCurrentVer){
+        activateModal(`Welcome Back!\nYou've loaded into UC v${VERSION}.\nEnjoy!`)
+    }
 }
 function exportSave(){
     save()
