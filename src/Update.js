@@ -16,19 +16,19 @@ function updateHTML(){
                 : `Unlock for ${format(derivUnlockCost[i-1])} Oddities`
         }
         //upgrades
-        DOM('upgrade5').innerHTML = `Upgrade ⬥<br>Requires: ${format(data.upgrades[4].c)} Total Upgrade levels (you have ${formatWhole(data.upgrades[0].amt.plus(data.upgrades[1].amt).plus(data.upgrades[2].amt).plus(data.upgrades[3].amt))})<br>Multiplies all upgrade effects by ${formatWhole(upgradeEffects[4])}x`
+        DOM('upgrade4').innerHTML = `Upgrade ⬥<br>Requires: ${format(data.upgrades[4].c)} Total Upgrade levels (you have ${formatWhole(data.upgrades[0].amt.plus(data.upgrades[1].amt).plus(data.upgrades[2].amt).plus(data.upgrades[3].amt))})<br>Multiplies all upgrade effects by ${formatWhole(upgradeEffects[4])}x`
         for (let i=1;i<4;i++){
             DOM(`upgrade${i}`).innerHTML =
                 `Upgrade ${upgradeNames[i]}<br>Cost: ${format(data.upgrades[i].c)} Oddities<br>Current effect: ${formatWhole(upgradeEffects[i])}x (You have ${formatWhole(data.upgrades[i].amt)})`
         }
         DOM('autoBuymax').innerHTML = data.autoToggled[0]?'Auto Buymax: ON':'Auto Buymax: OFF'
         DOM('autoBuymax').style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
-        DOM('upgrade5').style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
+        DOM('upgrade4').style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
     }
     //theories
     if (data.currentTab === 2){
         for (let i=1;i<theoryDescriptions.length;i++){
-            DOM(`theory${i}`).style.backgroundColor = data.hasTheory[i] ? '#9d670a' : '#0a629d'
+            DOM(`theory${i}`).style.backgroundColor = data.hasTheory[i-1] ? '#9d670a' : '#0a629d'
         }
     }
     //lost
@@ -50,7 +50,7 @@ function updateHTML(){
     }
     //misc
     if (data.currentTab === 3){
-        for (let i=1;i<legendsNumbers.length;i++){
+        for (let i=0;i<legendsNumbers.length;i++){
             DOM(`legend${i}`).style.backgroundColor = data.hasLegend[i] ? '#967109' : '#542780'
         }
     }
