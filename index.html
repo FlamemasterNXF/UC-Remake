@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="css/miscStyles.css" />
     <link rel="stylesheet" type="text/css" href="css/classStyles.css" />
     <link rel="stylesheet" type="text/css" href="css/idStyles.css" />
+    <link rel="stylesheet" type="text/css" href="css/Modal.css" />
     <link rel="icon" href="favicon.png" type="image/x-icon" sizes="16x16">
     <title>UC-Remake</title>
 </head>
@@ -30,11 +31,37 @@
 <div>
     <img src="images/communism.png" id="ourgwa">
 </div>
+<div class="layer" id="modalLayer" style="pointer-events: none">
+    <div id="promptContainer" class="flexbox modalContainer">
+        <div id="prompt">
+            <h3 id="promptTitle"></h3>
+            <input id="promptInput" type="text" placeholder="Enter text">
+            <button id="promptButton">Submit</button>
+        </div>
+    </div>
+    <div class="flexbox modalContainer" id="alertContainer">
+        <div id="alert">
+            <h3 id="alertTitle">Welcome back!</h3>
+            <p id="alertContent">New things have been added since last time</p>
+            <button id="closeAlert" onclick="closeModal(0)">Thanks!</button>
+            <br>
+        </div>
+    </div>
+    <div id="confirmContainer" class="flexbox modalContainer">
+        <div id="confirm" class="flexCol">
+            <h3 id="confirmTitle">Are you sure?</h3>
+            <p id="confirmContent" style="margin-bottom:1vh">New things have been added since last time</p>
+            <div class="flexRow">
+                <button id="noConfirm" class="lockedResearch" style="margin-right:0.5vw">No!</button>
+                <button id="yesConfirm" class="unlockedResearch" style="margin-left:0.5vw">Yes!</button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
 <div class="layer" id="topLayer">
     <div class="flexBox generalTexts" id="oddityDisplay">There are 0 Oddities</div>
     <div class="flexBox generalTexts" id="lostInDisplay">Lost Derivative Active!</div>
-    <div class="flexBox layer popup" id="stairPopup" onclick="closeStairPopup()">You've Completed Stair 0! Congratulations!</div>
-    <div class="flexBox layer popup" id="singPopup" onclick="closeBHPopup()">Your Blackhole collapsed into a Singularity!</div>
     <div class="flexBox" id="navBar">
         <button class="navButton" id="derivNav" onclick="switchTab(1)">Derivatives</button>
         <button class="navButton" id="mysteriesNav" onclick="switchTab(2)">Theories</button>
@@ -138,9 +165,9 @@
     </div>
     <div class="flexBox" id="settingsContainer">
         <div class="flexBox" id="saveControl">
-            <button class="settingsButtons" onclick="fullReset()">Export and Delete your Savefile</button>
+            <button class="settingsButtons" onclick="beginFullReset()">Export and Delete your Savefile</button>
             <button class="settingsButtons" onclick="exportSave()">Export your Savefile to the clipboard</button>
-            <button class="settingsButtons" onclick="importSave()">Import your Savefile</button>
+            <button class="settingsButtons" onclick="beginImport()">Import your Savefile</button>
         </div>
         <div class="flexBox" id="toggles">
             <button class="settingsButtons" id="settingsToggle1" onclick="toggleSettings(2)">Toggle Animations [ON]</button>

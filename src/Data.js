@@ -27,7 +27,6 @@ function getDefaultObject() {
         devSpeed: 1,
         currentTab: 1,
         version: VERSION,
-        loadedCurrentVer: false
     }
 }
 let data = getDefaultObject()
@@ -39,6 +38,7 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem('ucRemakeSave'))
     if (savedata !== undefined) fixSave(data, savedata)
     fixOldSaves()
+    createAlert('Welcome Back!', `You've loaded into UC v${VERSION}\nEnjoy!`, 'Thanks!')
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {
@@ -57,9 +57,11 @@ function fixSave(main=getDefaultObject(), data) {
     else return getDefaultObject()
 }
 function fixOldSaves(){
-    if(!data.loadedCurrentVer){
-        activateModal(`Welcome Back!\nYou've loaded into UC v${VERSION}.\nEnjoy!`)
+    if(data.version !== VERSION){
+        createAlert('Welcome Back!', `You've loaded into UC v${VERSION}\nNew things have been added since last time you played!\nEnjoy!`, 'Awesome!')
     }
+
+    data.version = VERSION
 }
 function exportSave(){
     save()
@@ -71,10 +73,19 @@ function exportSave(){
     exportedDataText.setSelectionRange(0, 99999);
     document.execCommand("copy");
     document.body.removeChild(exportedDataText);
+    createAlert('Export Successful', 'Your Data has been copied to the clipboard!', 'Thanks!')
 }
-function importSave(){
-    let importedData = prompt("Paste your save data here!")
-    if (importedData==="ourgwa") ourgwatrigger()
+function beginImport(){
+    createPrompt('Import Savedata', 0)
+}
+function importSave() {
+    let importedData = DOM('promptInput').value
+    if(importedData.length <= 0) {
+        DOM('promptContainer').style.display = 'none'
+        createAlert('Failure', 'No data found.', `Oops.`)
+        return
+    }
+    if (importedData === "ourgwa") {ourgwatrigger(); DOM('promptContainer').style.display = 'none'}
     data = Object.assign(getDefaultObject(), JSON.parse(atob(importedData)))
     save()
     location.reload()
@@ -86,10 +97,12 @@ window.onload = function (){
     load()
 }
 //full reset
+function beginFullReset(){
+    createConfirmation(0, 'Are you sure?', 'Are you absolutely sure you want to do this?\nThis will export your save (just in case) but delete your save from LocalStorage.', 'No Way!', 'Yes, I understand the consequences.')
+}
 function fullReset(){
     exportSave()
-    window.localStorage.removeItem('ucRemakeSave')
-    location.reload()
+    deleteSave()
 }
 function deleteSave(){
     window.localStorage.removeItem('ucRemakeSave')
