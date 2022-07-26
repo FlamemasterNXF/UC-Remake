@@ -4,8 +4,7 @@ function increaseOddities(i){
 function calculateOddityGain(){
     data.oddityGain =
         data.derivs[0].amt.times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7]).times(theoryEffects[9])
-            .times(dreamParticleEffects[0]).times(theoryEffects[10]).times(dreamParticleEffects[2]).times(theoryEffects[15])
-            .times(theoryEffects[15]).times(theoryEffects[16])
+            .times(dreamParticleEffects[0]).times(theoryEffects[10]).times(dreamParticleEffects[2])
 }
 let diff
 function mainLoop(){
