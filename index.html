@@ -164,9 +164,10 @@
     </div>
     <div class="flexBox" id="settingsContainer">
         <div class="flexBox" id="saveControl">
-            <button class="settingsButtons" onclick="beginFullReset()">Export and Delete your Savefile</button>
-            <button class="settingsButtons" onclick="exportSave()">Export your Savefile to the clipboard</button>
+            <button class="settingsButtons" onclick="exportSave(); createAlert('Saved', 'Game successfully saved manually!', 'Sweet.')">Save your game</button>
+            <button class="settingsButtons" onclick="exportSave()">Export your Savefile</button>
             <button class="settingsButtons" onclick="beginImport()">Import your Savefile</button>
+            <button class="settingsButtons" style="color: darkred" onclick="beginFullReset()">Export and Delete your Savefile</button>
         </div>
         <div class="flexBox" id="toggles">
             <button class="settingsButtons" id="settingsToggle1" onclick="toggleSettings(2)">Toggle Animations [ON]</button>
