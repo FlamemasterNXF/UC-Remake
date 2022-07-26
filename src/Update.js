@@ -9,8 +9,8 @@ function updateHTML(){
     //endregion
     //derivs
     if (data.currentTab === 1){
-        DOM('deriv1').innerHTML = `Cost: ${format(data.derivs[0].c)} Oddities<br>[${format(data.derivs[0].b)}] ${format(data.derivs[0].amt)}<br>Produces Oddities [${format(data.oddityGain)}/s]`
-        for (let i=2; i<data.derivs.length; i++){
+        DOM('deriv0').innerHTML = `Cost: ${format(data.derivs[0].c)} Oddities<br>[${format(data.derivs[0].b)}] ${format(data.derivs[0].amt)}<br>Produces Oddities [${format(data.oddityGain)}/s]`
+        for (let i=1; i<data.derivs.length; i++){
             DOM(`deriv${i}`).innerHTML = data.derivs[i].u ?
                 `Cost: ${format(data.derivs[i].c)} Purchased D.${derivNames[i-1]}<br>[${format(data.derivs[i].b)}] ${format(data.derivs[i].amt)}<br>Produces D.${derivNames[i-1]} [${format(data.derivs[i].amt.times(derivProductions[i-1]))}/s]`
                 : `Unlock for ${format(derivUnlockCost[i-1])} Oddities`

@@ -1,4 +1,5 @@
 const D = x => new Decimal(x)
+const VERSION = '0.0.18'
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
@@ -25,6 +26,7 @@ function getDefaultObject() {
         time: Date.now(),
         devSpeed: 1,
         currentTab: 1,
+        version: VERSION,
     }
 }
 let data = getDefaultObject()
@@ -54,7 +56,7 @@ function fixSave(main=getDefaultObject(), data) {
     else return getDefaultObject()
 }
 function fixOldSaves(){
-    //fix important things from old versions
+
 }
 function exportSave(){
     save()
