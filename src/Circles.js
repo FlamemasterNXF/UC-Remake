@@ -38,13 +38,13 @@ const CYCLES = {
     },
     2: {
         active(){ return data.inLost },
-        effect(){ if (this.active() && data.cycleLevels[1].gte(1)){ return (c().log2().sqrt()).plus((data.cycleLevels[1])).plus(data.derivs[0].b) } else { return D(1) } },
+        effect(){ if (this.active() && data.cycleLevels[1].gte(1)){ return (c().log2().sqrt()).plus((data.cycleLevels[1])).plus(data.derivs[0].b).clampMin(1) } else { return D(1) } },
         cost(){return D(5e4).times(data.cycleLevels[1].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x`},
         level: D(0)
     },
     3: {
-        effect(){ if(data.cycleLevels[2].gte(1)){ return (c().log2().sqrt()).plus(data.particles[2].sqrt().log10()).sqrt().plus((data.cycleLevels[2])) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[2].gte(1)){ return (c().log2().sqrt()).plus(data.particles[2].sqrt().log10()).sqrt().plus((data.cycleLevels[2])).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[2].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Boost: +${format(this.effect())}`},
         level: D(0)
@@ -57,34 +57,34 @@ const CYCLES = {
     },
     5: {
         nerf(){ if(data.cycleLevels[4].gte(1)){ return (data.cycleLevels[4].div(10).plus(1)).div(theoryEffects[16]) } else { return D(1) } },
-        effect(){ if(data.cycleLevels[4].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[4])).div(2).times(theoryEffects[17]).div(CYCLES[6].nerf()).div(CYCLES[1].nerf()) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[4].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[4])).div(2).times(theoryEffects[17]).div(CYCLES[6].nerf()).div(CYCLES[1].nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[4].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: /${format(CYCLES[6].nerf())}`},
         level: D(0)
     },
     6: {
         nerf(){ if(data.cycleLevels[5].gte(1)){ return (data.cycleLevels[5].div(10).plus(1)).div(theoryEffects[16]) } else { return D(1) } },
-        effect(){ if(data.cycleLevels[5].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[5])).div(2).times(theoryEffects[17]).div(CYCLES[5].nerf()).div(CYCLES[1].nerf()) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[5].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[5])).div(2).times(theoryEffects[17]).div(CYCLES[5].nerf()).div(CYCLES[1].nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[5].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: /${format(CYCLES[5].nerf())}`},
         level: D(0)
     },
     7: {
-        effect(){ if(data.cycleLevels[6].gte(1)){ return (c().log2().sqrt()).plus(data.lostCycleLevels[1].sqrt()).plus((data.cycleLevels[6])) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[6].gte(1)){ return (c().log2().sqrt()).plus(data.lostCycleLevels[1].sqrt()).plus((data.cycleLevels[6])).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[6].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x`},
         level: D(0)
     },
     8: {
         nerf(){ if(data.derivs[3].b.gte(1)){ return data.derivs[3].b } else { return D(1) } },
-        effect(){ if(data.cycleLevels[7].gte(1)){ return ((c().log2().sqrt()).plus(data.derivs[0].b)).sqrt().plus((data.cycleLevels[7])).sub(this.nerf()) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[7].gte(1)){ return ((c().log2().sqrt()).plus(data.derivs[0].b)).sqrt().plus((data.cycleLevels[7])).sub(this.nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[7].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: -${format(this.nerf())}`},
         level: D(0)
     },
     9: {
         nerf(){ if(data.derivs[1].b.gte(1)){ return data.lostCycleLevels[1] } else { return D(1) } },
-        effect(){ if(data.cycleLevels[8].gte(1)){ return ((c().log2().sqrt()).plus(data.particles[2].sqrt())).sqrt().div(10).plus((data.cycleLevels[8])).sub(this.nerf()) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[8].gte(1)){ return ((c().log2().sqrt()).plus(data.particles[2].sqrt())).sqrt().div(10).plus((data.cycleLevels[8])).sub(this.nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[8].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: -${format(this.nerf())}`},
         level: D(0)
