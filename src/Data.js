@@ -1,5 +1,5 @@
 const D = x => new Decimal(x)
-const VERSION = '0.0.18'
+const VERSION = '0.0.19'
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
@@ -11,18 +11,24 @@ function getDefaultObject() {
         //upgrades
         upgrades: [{amt:D(0),c:D(2e18)},{amt:D(0),c:D(5e19)},{amt:D(0),c:D(5e20)},{amt:D(0),c:D(6e21)},{amt:D(0),c:D(22)}],
         //theories
-        hasTheory: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,false],
+        hasTheory: Array(15).fill(false),
         //lost derivs
         inLost: false,
-        particles: [D(0), D(0), D(0)], //Ancient, Derivative, Dream
+        particles: [D(0), D(0), D(0), D(0)], //Ancient, Derivative, Dream, Best Ancient
         highestOdditiesInLost: D(2),
-        hasLostTheory: [false,false,false,false],
-        lostCycleLevels: [D(0), D(0)],
+        hasLostTheory: [false,false,false,false,false],
+        lostCycleLevels: Array(4).fill(D(0)),
+        //circles
+        circleProg: [D(1)],
+        cycleLevels: Array(9).fill(D(0)),
+        breakpointsUnlocked: Array(4).fill(false),
+        breakpointsEnabled: Array(4).fill(false),
+        hasSecret: Array(4).fill(false),
         //misc
         settingsToggles: [true, true, true,], //changelog, animation, offline time
         autoToggled: [false, false],
         hasLegend: [false, false, false],
-        hasTab: [false, false, false, false, false],
+        hasTab: [false, false, false, false],
         time: Date.now(),
         devSpeed: 1,
         currentTab: 1,
@@ -95,6 +101,8 @@ window.setInterval(function(){
 }, 10000);
 window.onload = function (){
     load()
+    if(data.hasTab[3]) setupBars(data.circleProg.length-1)
+    changeCirclesTab('cycles')
 }
 //full reset
 function beginFullReset(){

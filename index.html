@@ -3,15 +3,16 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <script defer src="src/SmallScripts/Animations.js"></script>
+    <script defer src="src/Internal/Animations.js"></script>
     <script defer src="src/Internal/Formatting.js"></script>
     <script defer src="src/Internal/BreakEternity.js"></script>
     <script defer src="src/SmallScripts/ourgwa.js"></script>
-    <script defer src="src/SmallScripts/Cache.js"></script>
-    <script defer src="src/SmallScripts/Modal.js"></script>
+    <script defer src="src/Internal/Minor.js"></script>
+    <script defer src="src/Internal/Modal.js"></script>
     <script defer src="src/Data.js"></script>
-    <script defer src="src/SmallScripts/MyMath.js"></script>
+    <script defer src="src/Internal/CircleControl.js"></script>
     <script defer src="src/SmallScripts/Settings.js"></script>
+    <script defer src="src/Circles.js"></script>
     <script defer src="src/LostDerivatives.js"></script>
     <script defer src="src/Theories.js"></script>
     <script defer src="src/Upgrades.js"></script>
@@ -67,6 +68,7 @@
         <button class="navButton" id="mysteriesNav" onclick="switchTab(2)">Theories</button>
         <button class="navButton" id="milestoneNav" onclick="switchTab(3)">Legends</button>
         <button class="navButton" id="lostNav" onclick="switchTab(4)">Lost Derivative</button>
+        <button class="navButton" id="circleNav" style="background-color: #d7c200" onclick="switchTab(5)">The Circles</button>
         <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
     </div>
     <div class="flexBox" id="buymaxContainer">
@@ -107,27 +109,34 @@
     </div>
     <div class="flexBox" id="theoriesContainer">
         <div class="flexBox theoryRow" id="theoryRow1">
-            <button class="theory" id="theory0" onmouseover="theoryTextUpdate(1)" onclick="buyTheory(1)">Theory I</button>
-            <button class="theory" id="theory1" onmouseover="theoryTextUpdate(2)" onclick="buyTheory(2)">Theory II</button>
-            <button class="theory" id="theory2" onmouseover="theoryTextUpdate(3)" onclick="buyTheory(3)">Theory III</button>
+            <button class="theory" id="theory0" onmouseover="theoryTextUpdate(0)" onclick="buyTheory(0)">Theory I</button>
+            <button class="theory" id="theory1" onmouseover="theoryTextUpdate(1)" onclick="buyTheory(1)">Theory II</button>
+            <button class="theory" id="theory2" onmouseover="theoryTextUpdate(2)" onclick="buyTheory(2)">Theory III</button>
         </div>
         <div class="flexBox theoryRow" id="theoryRow2">
-            <button class="theory" id="theory3" onmouseover="theoryTextUpdate(4)" onclick="buyTheory(4)">Theory IV</button>
-            <button class="theory" id="theory4" onmouseover="theoryTextUpdate(5)" onclick="buyTheory(5)">Theory V</button>
-            <button class="theory" id="theory5" onmouseover="theoryTextUpdate(6)" onclick="buyTheory(6)">Theory VI</button>
-            <button class="theory" id="theory6" onmouseover="theoryTextUpdate(7)" onclick="buyTheory(7)">Theory VII</button>
+            <button class="theory" id="theory3" onmouseover="theoryTextUpdate(3)" onclick="buyTheory(3)">Theory IV</button>
+            <button class="theory" id="theory4" onmouseover="theoryTextUpdate(4)" onclick="buyTheory(4)">Theory V</button>
+            <button class="theory" id="theory5" onmouseover="theoryTextUpdate(5)" onclick="buyTheory(5)">Theory VI</button>
+            <button class="theory" id="theory6" onmouseover="theoryTextUpdate(6)" onclick="buyTheory(6)">Theory VII</button>
         </div>
         <div class="flexBox theoryRow" id="theoryRow3">
-            <button class="theory" id="theory7" onmouseover="theoryTextUpdate(8)" onclick="buyTheory(8)">Theory VIII</button>
-            <button class="theory" id="theory8" onmouseover="theoryTextUpdate(9)" onclick="buyTheory(9)">Theory IX</button>
-            <button class="theory" id="theory9" onmouseover="theoryTextUpdate(10)" onclick="buyTheory(10)">Theory X</button>
-            <button class="theory" id="theory10" onmouseover="theoryTextUpdate(11)" onclick="buyTheory(11)">Theory XI</button>
+            <button class="theory" id="theory7" onmouseover="theoryTextUpdate(7)" onclick="buyTheory(7)">Theory VIII</button>
+            <button class="theory" id="theory8" onmouseover="theoryTextUpdate(8)" onclick="buyTheory(8)">Theory IX</button>
+            <button class="theory" id="theory9" onmouseover="theoryTextUpdate(9)" onclick="buyTheory(9)">Theory X</button>
+            <button class="theory" id="theory10" onmouseover="theoryTextUpdate(10)" onclick="buyTheory(10)">Theory XI</button>
         </div>
         <div class="flexBox theoryRow" id="theoryRow4">
-            <button class="theory" id="theory11" onmouseover="theoryTextUpdate(12)" onclick="buyTheory(12)">Theory XII</button>
-            <button class="theory" id="theory12" onmouseover="theoryTextUpdate(13)" onclick="buyTheory(13)">Theory XII</button>
-            <button class="theory" id="theory13" onmouseover="theoryTextUpdate(14)" onclick="buyTheory(14)">Theory XIV</button>
-            <button class="theory" id="theory14" onmouseover="theoryTextUpdate(15)" onclick="buyTheory(15)">Theory XV</button>
+            <button class="theory" id="theory11" onmouseover="theoryTextUpdate(11)" onclick="buyTheory(11)">Theory XII</button>
+            <button class="theory" id="theory12" onmouseover="theoryTextUpdate(12)" onclick="buyTheory(12)">Theory XII</button>
+            <button class="theory" id="theory13" onmouseover="theoryTextUpdate(13)" onclick="buyTheory(13)">Theory XIV</button>
+            <button class="theory" id="theory14" onmouseover="theoryTextUpdate(14)" onclick="buyTheory(14)">Theory XV</button>
+        </div>
+        <div class="flexBox theoryRow" id="theoryRow5">
+            <button class="theory" id="theory15" onmouseover="theoryTextUpdate(15)" onclick="buyTheory(15)">Theory XVI</button>
+            <button class="theory" id="theory16" onmouseover="theoryTextUpdate(16)" onclick="buyTheory(16)">Theory XVII</button>
+            <button class="theory" id="theory17" onmouseover="theoryTextUpdate(17)" onclick="buyTheory(17)">Theory XVIII</button>
+            <button class="theory" id="theory18" onmouseover="theoryTextUpdate(18)" onclick="buyTheory(18)">Theory IXX</button>
+            <button class="theory" id="theory19" onmouseover="theoryTextUpdate(19)" onclick="buyTheory(19)">Theory XX</button>
         </div>
         <div class="generalTexts" id="theoriesText">Hover over a Theory to learn its effect!</div>
     </div>
@@ -136,7 +145,7 @@
         <button class="legend" id="legend1">Legend Two<br>Discovered by obtaining an Ancient Particle<br>Unlock a Buymax for Upgrades 1-4</button>
     </div>
     <div class="flexBox" id="bigLostContainer">
-        <t class="generalTexts" id="lostTopText">hi</t>
+        <p style="font-family: DosisSemiBold" class="generalTexts" id="lostTopText">hi</p>
         <div class="flexBox" id="lostContainer">
             <button class="lostButton" id="lostDeriv" onclick="lostControl()">
                 <div id="lostTitle">The Lost Derivative</div>
@@ -153,13 +162,62 @@
             <button class="lostUpgrade" id="lostTheory1"onclick="buyLostTheory(2)">This would be a Lost Upgrade thingie</button>
             <button class="lostUpgrade" id="lostTheory2"onclick="buyLostTheory(3)">This would be a Lost Upgrade thingie</button>
             <button class="lostUpgrade" id="lostTheory3"onclick="buyLostTheory(4)">This would be a Lost Upgrade thingie</button>
+            <button class="lostUpgrade" id="lostTheory4"onclick="buyLostTheory(5)">This would be a Lost Upgrade thingie</button>
         </div>
         <div class="flexBox lostRow" id="lostRow2">
             <button class="lostUpgrade"id="lostCycle0"onclick="buyLostCycle(1)">This would be a Lost Upgrade thingie</button>
             <button class="lostUpgrade"id="lostCycle1"onclick="buyLostCycle(2)">This would be a Lost Upgrade thingie</button>
+            <button class="lostUpgrade"id="lostCycle2"onclick="buyLostCycle(3)">This would be a Lost Upgrade thingie</button>
+            <button class="lostUpgrade"id="lostCycle3"onclick="buyLostCycle(4)">This would be a Lost Upgrade thingie</button>
         </div>
         <div class="flexBox lostRow" id="lostRow3">
             <button id="lostAutoBuymax" onclick="autoToggle(2)">Auto Lost Cycle Buymax: OFF</button>
+        </div>
+    </div>
+    <div class="flexBox" id="bigCirclesContainer" style="flex-direction: column">
+        <div class="flexBox" id="circleSubtabContainer" style="flex-direction: row; margin-top: 7px">
+            <button class="navButton" id="cyclesNav" style="background-color: black; color: #8c3dba" onclick="changeCirclesTab('cycles')">Cycles</button>
+            <button class="navButton" id="breakpointsNav" style="background-color: black; color: #8c3dba" onclick="changeCirclesTab('breakpoints')">Breakpoints</button>
+            <button class="navButton" id="secretsNav" style="background-color: black; color: #8c3dba" onclick="changeCirclesTab('secrets')">Secrets</button>
+        </div>
+        <div class="circleContainer" id="circleContainer">
+            <div class="circular-progress" id="bar0">
+                <div class="value-container generalTexts" style="font-family: DosisLight; font-size: 18px">0%</div>
+            </div>
+        </div>
+        <div class="flexBox" id="cyclesContainer" style="flex-direction: column">
+            <strong class="generalTexts" id="circleDerivPDisplay" style="margin-bottom: 2px; color: #6ab75e">0</strong>
+            <strong class="generalTexts" id="cycleEffectText" style="margin-bottom: 2px; color: #7e00b4">Hover over a Cycle to reveal its effect!</strong>
+            <div class="flexBox" id="cyclesRow">
+                <button class="cycle" id="cycle1" onmouseover="updateCycleText(0)" onclick="buyCycle(1)">Hello chat</button>
+                <button class="cycle" id="cycle2" onmouseover="updateCycleText(1)" onclick="buyCycle(2)">Hello chat</button>
+                <button class="cycle" id="cycle3" onmouseover="updateCycleText(2)" onclick="buyCycle(3)">Hello chat</button>
+                <button class="cycle" id="cycle4" onmouseover="updateCycleText(3)" onclick="buyCycle(4)">Hello chat</button>
+                <button class="cycle" id="cycle5" onmouseover="updateCycleText(4)" onclick="buyCycle(5)">Hello chat</button>
+            </div>
+            <div class="flexBox" id="cyclesRow2" style="margin-top: 10px">
+                <button class="cycle" id="cycle6" onmouseover="updateCycleText(5)" onclick="buyCycle(6)">Hello chat</button>
+                <button class="cycle" id="cycle7" onmouseover="updateCycleText(6)" onclick="buyCycle(7)">Hello chat</button>
+                <button class="cycle" id="cycle8" onmouseover="updateCycleText(7)" onclick="buyCycle(8)">Hello chat</button>
+                <button class="cycle" id="cycle9" onmouseover="updateCycleText(8)" onclick="buyCycle(9)">Hello chat</button>
+            </div>
+        </div>
+        <div class="flexBox" id="breakpointsContainer" style="flex-direction: column">
+            <strong class="generalTexts" id="breakpointEffectText" style="margin-bottom: 2px; color: #7e00b4">Hover over a Cycle to reveal its effect!</strong>
+            <div class="flexBox" id="breakpointRow">
+                <button class="cycle" id="breakpoint1" onmouseover="updateBreakpointText(0)" onclick="toggleBreakPoint(1)">Hello chat</button>
+                <button class="cycle" id="breakpoint2" onmouseover="updateBreakpointText(1)" onclick="toggleBreakPoint(2)">Hello chat</button>
+                <button class="cycle" id="breakpoint3" onmouseover="updateBreakpointText(2)" onclick="toggleBreakPoint(3)">Hello chat</button>
+                <button class="cycle" id="breakpoint4" onmouseover="updateBreakpointText(3)" onclick="toggleBreakPoint(4)">Hello chat</button>
+            </div>
+        </div>
+        <div class="flexBox" id="secretsContainer" style="flex-direction: column">
+            <div class="flexBox" id="secretRow" style="flex-direction: column">
+                <button class="secret" id="secret1">Hello chat</button>
+                <button class="secret" id="secret2">Hello chat</button>
+                <button class="secret" id="secret3">Hello chat</button>
+                <button class="secret" id="secret4">Hello chat</button>
+            </div>
         </div>
     </div>
     <div class="flexBox" id="settingsContainer">
@@ -179,7 +237,7 @@
             <p>(because I love changelogs) <br>
                 Only changes I consider notable are recorded here, no bugfixes or small changes.</p>
             <h3 id="most-recent">Most Recent</h3>
-            <p><strong>v0.0.17</strong> [The Singular Update]: The Blackhole, Stair Secret 8, 6 Ringularities, and 2 new Theories! <br></p>
+            <p><strong>v0.0.17</strong> [The Circular Update]: The Circles, 9 Cycles, 4 Breakpoints, 4 Secrets, 5 new Theories, 1 new Lost Theory, and 2 new Lost Cycles! <br></p>
             <h3 id="pre-alpha">Pre-Alpha</h3>
             <hr>
             <p><strong>v0.0.1</strong> Created this repo, created the base files, added Saving, Loading, Import, and Export systems, and added a favicon. <br>
@@ -204,8 +262,9 @@
                 <strong>v0.0.15</strong> [Lost Update]: The Lost Derivative, 4 Lost Theories, 2 Lost Cycles, Theories 10-15, Legend 2, and Derivative V! <br>
                 <strong>v0.0.15b</strong> More content is hidden until you get close to it. <br>
                 <strong>v0.0.16</strong> [The Tutorial with Infinite Steps]: The Infinite Stairway, 8 Stair Secrets, Lost Cycle 3, and Legend 3! <br>
-                <strong>v0.0.17</strong> [The Singular Update]: The Blackhole, Stair Secret 8, 6 Ringularities, and 2 new Theories! <br></p>
-                <strong>v0.0.18</strong> [The SECOND Rollback]: Reverted to v0.0.15b <br></p>
+                <strong>v0.0.17</strong> [The Singular Update]: The Blackhole, Stair Secret 8, 6 Ringularities, and 2 new Theories! <br>
+                <strong>v0.0.18</strong> [The SECOND Rollback]: Reverted to v0.0.15b <br>
+                <strong>v0.0.19</strong> [The Circular Update]: The Circles, 9 Cycles, 4 Breakpoints, 4 Secrets, 5 new Theories, 1 new Lost Theory, and 2 new Lost Cycles! <br> </p>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-let upgradeNames = ["1", "2", "3", "4"]
+let upgradeNames = [...Array(5).keys()].slice(1)
 function buyUpgrade(x){
     let i = x-1
     if (data.oddities.gte(data.upgrades[i].c)){
@@ -25,8 +25,8 @@ function calculateUpgradeEffects(){
     for (let i=1;i<upgradeEffects.length-1;i++){
         upgradeEffects[i] = D(data.upgrades[i].amt.plus(1)).times(upgradeEffects[4])
     }
-    upgradeEffects[0] = D(data.upgrades[0].amt.plus(1)).times(theoryEffects[3]).times(theoryEffects[4]).times(upgradeEffects[4])
-    upgradeEffects[4] = D(data.upgrades[4].amt.plus(1)).times(theoryEffects[8]).times(theoryEffects[11]).times(theoryEffects[14])
+    upgradeEffects[0] = D(data.upgrades[0].amt.plus(1)).times(theoryEffects[3]).times(theoryEffects[4]).times(upgradeEffects[4]).times(lostCycleEffects[3])
+    upgradeEffects[4] = D(data.upgrades[4].amt.plus(1)).times(theoryEffects[8]).times(theoryEffects[11]).times(theoryEffects[14]).times(derivativeParticleEffect2)
 }
 function buyMaxUpgrades(){
     for(let i=0;i<10;i++){

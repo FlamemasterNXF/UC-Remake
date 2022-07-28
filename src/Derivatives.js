@@ -33,24 +33,17 @@ function buyDeriv(x){
         }
     }
 }
-let derivProductions = [D(100),D(100),D(100),D(100)]
+let derivProductions = Array(4).fill(D(100))
 function calculateDerivProductions(){
-    derivProductions[0] = D(100).times(upgradeEffects[1])
+    derivProductions[0] = D(100).times(lostCycleEffects[0]).times(theoryEffects[12]).times(upgradeEffects[1])
     derivProductions[1] = D(100).times(upgradeEffects[2])
-    derivProductions[2] = D(100).times(theoryEffects[1]).times(theoryEffects[8]).times(upgradeEffects[3])
-    derivProductions[3] = D(100).times(theoryEffects[13])
+    derivProductions[2] = D(100).times(theoryEffects[1]).times(upgradeEffects[3]).times(theoryEffects[14]).times(CYCLES[4].effect())
+    derivProductions[3] = D(100).times(theoryEffects[13]).times(theoryEffects[14]).times(theoryEffects[18])
 }
 function produceDerivs(diff){
-    /*for(let i=0; i<data.derivs.length-1; i++){
-        data.derivs[i].amt = data.derivs[i].amt.plus(data.derivs[i+1].amt.times(diff).times(100).times(upgradeEffects[i+1]))
+    for(let i=0; i<data.derivs.length-1; i++){
+        data.derivs[i].amt = data.derivs[i].amt.plus(data.derivs[i+1].amt.times(diff).times(upgradeEffects[i]))
     }
-     */
-    data.derivs[0].amt = data.derivs[0].amt.plus(data.derivs[1].amt.times(diff).times(100).times(lostCycleEffects[0]).times(theoryEffects[12]).times(upgradeEffects[1]))
-    data.derivs[1].amt = data.derivs[1].amt.plus(data.derivs[2].amt.times(diff).times(100).times(upgradeEffects[2]))
-    data.derivs[2].amt = data.hasTheory[1] ?
-        data.derivs[2].amt.plus(data.derivs[3].amt.times(diff).times(100).times(theoryEffects[1]).times(upgradeEffects[3]).times(theoryEffects[14])):
-        data.derivs[2].amt.plus(data.derivs[3].amt.times(diff).times(100).times(upgradeEffects[3]))
-    data.derivs[3].amt = data.derivs[3].amt.plus(data.derivs[4].amt.times(diff).times(100).times(theoryEffects[13]).times(theoryEffects[14]))
 }
 function buyMaxDeriv(){
     //credit to gaps

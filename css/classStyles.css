@@ -59,44 +59,6 @@
     min-height: 100px;
     margin-right: 10px;
 }
-.stairwayNav{
-    color: #b7a15e;
-    border: 3px solid #643500;
-    background-color: rgba(0,0,0,0);
-    min-width: 200px;
-    min-height: 70px;
-    margin-right: 10px;
-}
-.secretColumn{
-    flex-direction: column;
-}
-.stairSecret{
-    margin-top: 5px;
-    color: #b7a15e;
-    border: 3px solid #643500;
-    background-color: rgba(0,0,0,0);
-    min-width: 200px;
-    min-height: 100px;
-    margin-right: 10px;
-}
-.stairSecretBlank{
-    color: rgba(0,0,0,0);
-    border: 3px solid rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0);
-    min-width: 200px;
-    min-height: 100px;
-    margin-right: 10px;
-}
-.ringularity{
-    margin-top: 5px;
-    color: #ac6cff;
-    border: 3px solid #4f0aaf;
-    background-color: rgba(0,0,0,0);
-    width: 300px;
-    height: 100px;
-    margin-left: 10px;
-    border-radius: 50px;
-}
 .popup{
     display: none;
     text-align: center;
@@ -115,6 +77,51 @@
     margin-top: 20px;
     flex-direction: row;
 }
+.cycle{
+    color: #a00280;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 3px solid #353535;
+    width: 200px;
+    height: 100px;
+    margin-left: 10px;
+}
+.secret{
+    color: #a00280;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 3px solid #353535;
+    width: 300px;
+    height: 70px;
+    margin-top: 4px;
+}
+.circleContainer {
+    height: 250px;
+    width: 400px;
+    background-color: #000000;
+    border-radius: 8px;
+    place-items: center;
+    position: relative;
+    display: grid;
+}
+.circular-progress {
+    position: relative;
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+.circular-progress:before {
+    content: "";
+    position: absolute;
+    height: 84%;
+    width: 84%;
+    background-color: #000000;
+    border-radius: 50%;
+}
+.value-container {
+    position: relative;
+    color: #7e00b4;
+}
 .layer{
     position: absolute;
 }
@@ -123,6 +130,8 @@
     width: 100px;
     height: 30px;
     text-align: center;
+    border: 3px solid #2b2b2b;
+    font-family: DosisBold;
 }
 .settingsButtons{
     border: 2px solid #545454;

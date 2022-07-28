@@ -1,27 +1,36 @@
 let derivativeParticleEffect = D(1)
-let dreamParticleEffects = [D(1),D(1),D(1)]
+let derivativeParticleEffect2 = D(1)
+let dreamParticleEffects = Array(3).fill(D(1))
 let particleGains = [D(0), D(0)]
 let ancientParticleGain = D(0)
-let lostTheoryCosts = [D(1e3), D(3e4), D(3e5), D(1e6)]
+let lostTheoryCosts = [D(1e3), D(3e4), D(3e5), D(1e5), D(1e7)]
 let lostTheory3Effect = D(1)
-let lostTheoryNumbers = ['1','2','3','4']
-let lostCycleCosts = [D(1e6), D(100)]
-let lostCycleCostBase = [D(1e4), D(100)]
-let lostCycleEffects = [D(1), D(1)]
-let lostCycleNumbers = ['1', '2',]
-let lostCycleEffectTexts = [`Ancient Particles multiply D1 production`, `Ancient Particles multiply Derivative Particle gain`,]
+let lostCycleCosts = Array(4).fill(D(1))
+let lostCycleCostBase = [D(1e4), D(100), D(1e5), D(1e5)]
+let lostCycleEffects = Array(4).fill(D(1))
+let lostCycleNumbers = [...Array(5).keys()].slice(1)
+let lostCycleEffectTexts = [
+    `Ancient Particles multiply D1 production`,
+    `Ancient Particles multiply Derivative Particle gain`,
+    `Ancient Particles multiply Circle Progress speed`,
+    `Ancient Particles multiply Upgrade 1 effect`,
+]
 function calculateLostStuff(){
-    data.inLost?data.oddities.gt(data.highestOdditiesInLost)?
-        ancientParticleGain = data.oddities.sqrt().div(2).div(data.particles[0].plus(1).log10()).plus(1):D(0):D(0)
-    particleGains[0] = data.particles[0].gte(1)?data.particles[0].sqrt().sqrt().times(lostCycleEffects[1]):D(0)
-    particleGains[1] = data.particles[0].gte(1)?data.particles[0].sqrt().times(derivativeParticleEffect):D(0)
-    derivativeParticleEffect = data.particles[1].gte(1)?data.particles[1].sqrt().plus(1):D(1)
-    dreamParticleEffects[0] = data.particles[2].gte(1)?data.particles[2].sqrt().plus(1):D(1)
-    dreamParticleEffects[1] = data.hasLostTheory[0]?data.particles[2].gte(1)?data.particles[2].log10():D(1):D(1)
-    dreamParticleEffects[2] = data.hasLostTheory[1]?data.particles[2].gte(1)?data.particles[2].log2():D(1):D(1)
-    lostCycleEffects[0] = data.lostCycleLevels[0].gte(1)?data.particles[0].log2().times(data.lostCycleLevels[0]):D(1)
+    data.inLost?
+        ancientParticleGain = (data.oddities.sqrt().div(2).div(data.particles[0].plus(1).log10()).plus(1)).sub(data.particles[3]):D(0)
+    particleGains[0] = data.particles[0].gte(1)?(data.particles[0].sqrt().sqrt().times(lostCycleEffects[1])).div(BREAKPOINTS[4].nerf()):D(0)
+    particleGains[1] = data.particles[0].gte(1)?((data.particles[0].sqrt().times(derivativeParticleEffect).times(CYCLES[8].effect())).div(BREAKPOINTS[1].nerf())).div(BREAKPOINTS[4].nerf()):D(0)
+    derivativeParticleEffect = data.particles[1].gte(1)?(data.particles[1].sqrt().plus(1)).times(CYCLES[9].effect()):D(1)
+    derivativeParticleEffect2 = theoryEffects[19]?data.particles[1].gte(1)?data.particles[1].log2().sqrt().plus(1):D(1):D(1)
+    dreamParticleEffects[0] = data.particles[2].gte(1)?(data.particles[2].sqrt().plus(1)).times(CYCLES[5].effect()):D(1)
+    dreamParticleEffects[1] = data.hasLostTheory[0]?data.particles[2].gte(1)?(data.particles[2].log10()).times(CYCLES[2].effect()):D(1):D(1)
+    dreamParticleEffects[2] = data.hasLostTheory[1]?data.particles[2].gte(1)?(data.particles[2].log2()).times(CYCLES[6].effect()):D(1):D(1)
+    lostCycleEffects[0] = data.lostCycleLevels[0].gte(1)?(data.particles[0].log2().times(data.lostCycleLevels[0])).times(CYCLES[7].effect()):D(1)
     lostCycleEffects[1] = data.lostCycleLevels[1].gte(1)?data.particles[0].log2().sqrt().sqrt().times(data.lostCycleLevels[1].times(data.particles[0].ln().sqrt())):D(1)
+    lostCycleEffects[2] = data.lostCycleLevels[2].gte(1)?data.particles[0].log2().log10().sqrt().div(3).times(data.lostCycleLevels[2]):D(1)
+    lostCycleEffects[3] = data.lostCycleLevels[3].gte(1)?data.particles[0].log2().log2().sqrt().times(data.lostCycleLevels[3]):D(1)
     lostTheory3Effect = data.hasLostTheory[2]?data.lostCycleLevels[1].plus(data.lostCycleLevels[0]).div(2):D(1)
+    if(ancientParticleGain.lt(0)) ancientParticleGain = D(0)
     calculateLostCycleCosts()
 }
 function calculateLostCycleCosts(){
@@ -35,12 +44,13 @@ function gainParticles(diff){
 }
 function buyLostTheory(x){
     let i=x-1
-    if (x===4 && data.particles[0].gte(lostTheoryCosts[3])){
-        data.particles[0] = data.particles[0].sub(lostTheoryCosts[3])
-        data.hasLostTheory[3] = true
-        data.derivs[4].u = true
+    if (x>3 && data.particles[0].gte(lostTheoryCosts[i])){
+        data.particles[0] = data.particles[0].sub(lostTheoryCosts[i])
+        data.hasLostTheory[i] = true
+        if(i===3){ setupBars(data.circleProg.length-1) }
+        if(i===4){ data.derivs[4].u = true }
     }
-    if (x!==4&&data.particles[1].gte(lostTheoryCosts[i])&&!data.hasLostTheory[i]){
+    else if (data.particles[1].gte(lostTheoryCosts[i])&&!data.hasLostTheory[i]){
         data.particles[1] = data.particles[1].sub(lostTheoryCosts[i])
         data.hasLostTheory[i] = true
     }
@@ -59,6 +69,7 @@ function lostControl(){
         data.particles[0] = data.particles[0].plus(ancientParticleGain)
     }
     lostReset()
+    if(data.particles[0].gte(data.particles[3])) data.particles[3] = data.particles[0]
     data.inLost = !data.inLost
 }
 function lostReset(){
@@ -78,5 +89,6 @@ function buyMaxLostCycles(){
         buyLostCycle(1)
         buyLostCycle(2)
         buyLostCycle(3)
+        buyLostCycle(4)
     }
 }

@@ -4,6 +4,7 @@ function updateHTML(){
     DOM('mysteriesNav').innerText = data.hasTab[0]?'Theories':'???'
     DOM('milestoneNav').innerText = data.hasTab[1]?'Legends':'???'
     DOM('lostNav').innerText = data.hasTab[2]?'Lost Derivatives':'???'
+    DOM('circleNav').innerText = data.hasTab[3]?'Circles':'???'
     DOM('lostInDisplay').style.display = data.inLost?'flex':'none'
     DOM('ourgwa').style.display = ourgwatriggered ? 'flex':'none'
     //endregion
@@ -36,17 +37,20 @@ function updateHTML(){
         DOM('lostTopText').innerText=`Ancient Particles: ${format(data.particles[0])} // Derivative Particles: ${format(data.particles[1])} [${format(particleGains[0])}/s] // Dream Particles: ${format(data.particles[2])} [${format(particleGains[1])}/s]`
         DOM('lostInfo').innerHTML=`<br>Activating The Lost Derivative will reset everything before Theories<br>While the Lost Derivative is active only D1 can be purchased, but you will gain Ancient Particles based on how many Oddities you gain!<br>`
         DOM('lostEffect').innerText= data.inLost?data.oddities.gt(data.highestOdditiesInLost)?`You'll gain ${format(ancientParticleGain)} Ancient Particles if you disable The Lost Derivative`:`You need more than ${format(data.highestOdditiesInLost)} Oddities to gain more Ancient Particles`:`Activate The Lost Derivative to gain more Ancient Particles`
-        DOM('derivativeParticleEffect').innerHTML=`Current Derivative Particle effects:<br>Dream Particle gain multiplier [${format(derivativeParticleEffect)}x]`
+        DOM('derivativeParticleEffect').innerHTML=derivativeParticleEffect2.gt(1)?`Current Derivative Particle effects:<br>Dream Particle gain multiplier [${format(derivativeParticleEffect)}x]<br>Upgrade 5 multiplier [${format(derivativeParticleEffect)}]`:`Current Derivative Particle effects:<br>Dream Particle gain multiplier [${format(derivativeParticleEffect)}]x`
         DOM('dreamParticleEffect').innerHTML=`Current Dream Particle effects:<br>Oddity gain multiplier [${format(dreamParticleEffects[0])}x]<br>D1 Cost divisor [/${format(dreamParticleEffects[1])}]<br>Upgrade Requirement divisor [/${format(dreamParticleEffects[2])}]`
-        DOM('lostTheory0').innerHTML= data.hasLostTheory[0]?`This Theory was Remembered`:`Lost Theory of Dreams<br>Dream Particles divide D1s cost<br>Unlock Cost: ${format(lostTheoryCosts[0])} Derivative Particles`
-        DOM('lostTheory1').innerHTML= data.hasLostTheory[1]?`This Theory was Remembered`:`Lost Theory of Dreams II <br>Dream Particles divide the cost of Upgrades 1-4<br>Unlock Cost: ${format(lostTheoryCosts[1])} Derivative Particles`
-        DOM('lostTheory2').innerHTML= data.hasLostTheory[2]?`This Theory was Remembered<br>Total Lost Cycle levels multiply Oddity gain<br>Currently: ${format(lostTheory3Effect)}x`:`Lost Theory of Cycles <br>Total Lost Cycle levels multiply Oddity gain<br>Unlock Cost: ${format(lostTheoryCosts[2])} Derivative Particles<br>Currently: ${format(lostTheory3Effect)}x`
-        DOM('lostTheory3').innerHTML= data.hasLostTheory[3]?`Check the Derivatives Tab`:`ǝ̴̨̨̦̙͍̆̀̃͐̊̽̈̔̈̋̿͒͝ͅʌ̶̡̤̕͝͠ᴉ̷̮̬̥̳̎̔̓̽̄Ⅎ̴͓̫̖̻̗̤̟̣̿͋̔̅̊͂̓̑̎͌͋͒͘͝ʌ̶̗͚͚̬̊̀̾̏́̇͋̂̍̋̽͝ᴉ̷̧̯̺̞͍̳̼̤͔̠͑̓̑̈́͂͝ɹ̶̡̮͔̗͙̰̗̘͍̘͓̩̾͘ǝ̸̛̹̙̖̈́͋͋̕p̷̯̳͔͉̗̱̒̀ʞ̴͓̝̹͈̩̮̈́͛͜͜ɔ̴̡̨̨͍̭͎̽̑̎̾̄̔̌͋͂͘͜͝͝ỡ̶̢̲͍͙̮͒̕l̷̥̠͑̏͗̉̑̌̍ũ̸̡̨̡͙͚̟̞̤̦͖̞̖͖̅̀͋͂̎̓̈̊∩̸͎̐͂̕<br><br>Unlock Cost: ${format(lostTheoryCosts[3])} Ancient Particles`
+        DOM('lostTheory0').innerHTML= `Lost Theory of Dreams<br>Dream Particles divide D1s cost<br>Unlock Cost: ${format(lostTheoryCosts[0])} Derivative Particles`
+        DOM('lostTheory1').innerHTML= `Lost Theory of Dreams II <br>Dream Particles divide the cost of Upgrades 1-4<br>Unlock Cost: ${format(lostTheoryCosts[1])} Derivative Particles`
+        DOM('lostTheory2').innerHTML= `Lost Theory of Cycles <br>Total Lost Cycle levels multiply Oddity gain<br>Unlock Cost: ${format(lostTheoryCosts[2])} Derivative Particles<br>Currently: ${format(lostTheory3Effect)}x`
+        DOM('lostTheory3').innerHTML= data.hasLostTheory[3]?`Uncertainty`:`The True Cycle<br>Outcome Uncertain.<br>Unlock Cost: ${format(lostTheoryCosts[3])} Ancient Particles`
+        DOM('lostTheory4').innerHTML= data.hasLostTheory[4]?`V`:`ǝ̴̨̨̦̙͍̆̀̃͐̊̽̈̔̈̋̿͒͝ͅʌ̶̡̤̕͝͠ᴉ̷̮̬̥̳̎̔̓̽̄Ⅎ̴͓̫̖̻̗̤̟̣̿͋̔̅̊͂̓̑̎͌͋͒͘͝ʌ̶̗͚͚̬̊̀̾̏́̇͋̂̍̋̽͝ᴉ̷̧̯̺̞͍̳̼̤͔̠͑̓̑̈́͂͝ɹ̶̡̮͔̗͙̰̗̘͍̘͓̩̾͘ǝ̸̛̹̙̖̈́͋͋̕p̷̯̳͔͉̗̱̒̀ʞ̴͓̝̹͈̩̮̈́͛͜͜ɔ̴̡̨̨͍̭͎̽̑̎̾̄̔̌͋͂͘͜͝͝ỡ̶̢̲͍͙̮͒̕l̷̥̠͑̏͗̉̑̌̍ũ̸̡̨̡͙͚̟̞̤̦͖̞̖͖̅̀͋͂̎̓̈̊∩̸͎̐͂̕<br><br>Unlock Cost: ${format(lostTheoryCosts[4])} Ancient Particles`
         for (let i=0;i<data.lostCycleLevels.length;i++){
             DOM(`lostCycle${i}`).innerHTML = `Lost Cycle ${lostCycleNumbers[i]}<br>${lostCycleEffectTexts[i]} [${format(lostCycleEffects[i])}x]<br>Cost: ${format(lostCycleCosts[i])} Derivative Particles<br>This Lost Cycle is currently level ${formatWhole(data.lostCycleLevels[i])}`
         }
         DOM('lostAutoBuymax').innerHTML = data.autoToggled[1]?'Auto Lost Cycle Buymax: ON':'Auto Lost Cycle Buymax: OFF'
     }
+    //circles
+    updateCircleHTML()
     //misc
     if (data.currentTab === 3){
         for (let i=0;i<legendsNumbers.length;i++){
@@ -78,36 +82,47 @@ let theoryDescriptions = [
     ()=>`The Theory of Reversal II<br>Bought D5s multiply D1 production<br>Currently: ${format(theoryEffects[12])}x<br>Unlock Cost: ${format(theoryCosts[12])} Oddities`,
     ()=>`The Theory of Numbers II<br>Bought D1s multiply D5 production<br>Currently: ${format(theoryEffects[13])}x<br>Unlock Cost: ${format(theoryCosts[13])} Oddities`,
     ()=>`The Theory of Peak Synergy II<br>Bought D5s boost D4, bought D4s boost D5, Upgrade ⬥ boosts D5, AND Bought D5s boost Upgrade ⬥ again<br>Currently: ${format(theoryEffects[14])}x<br>Unlock Cost: ${format(theoryCosts[14])} Oddities`,
+    ()=>`The Theory of Circular Derivatives I<br>Bought D2 and D3s boost Circle Progress Speed<br>Currently: ${format(theoryEffects[15])}x<br>Unlock Cost: ${format(theoryCosts[15])} Oddities`,
+    ()=>`The Theory of Circular Derivatives II<br>Bought D2 and D3s divide the negative effects of Cycle 5 and Cycle 6<br>Currently: /${format(theoryEffects[16])}<br>Unlock Cost: ${format(theoryCosts[16])} Oddities`,
+    ()=>`The Theory of Circular Derivatives III<br>Bought D4s boost Cycle 5 and Cycle 6<br>Currently: ${format(theoryEffects[17])}x<br>Unlock Cost: ${format(theoryCosts[17])} Oddities`,
+    ()=>`The Theory of Circles Beyond Cycles<br>Total Cycle levels boost D1 and D5 production<br>Currently: ${format(theoryEffects[18])}x<br>Unlock Cost: ${format(theoryCosts[18])} Oddities`,
+    ()=>`The Theory of Atomic Derivatives<br>Unlock a new Derivative Particle effect<br>Unlock Cost: ${format(theoryCosts[19])} Oddities`,
 ]
-function theoryTextUpdate(x){
-    let i = x-1
+function theoryTextUpdate(i){
     document.getElementById("theoriesText").innerHTML = `${theoryDescriptions[i]()}<br>Effects are only shown once you've unlocked the Theory!`
 }
 function unlockTabs(){
     data.hasTab[0] = data.derivs[3].amt.gte(1) || data.hasTab[0]
     data.hasTab[1] = data.upgrades[3].amt.gte(1) || data.hasTab[1]
     data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
-    //.hasTab[3] = data.derivs[4].amt.gte(1) || data.hasTab[3]
+    data.hasTab[3] = data.hasLostTheory[3]
 }
 function tabChangeHTML(){
     //derivs
     DOM(`bigDerivativeContainer`).style.display = data.currentTab===1 ? 'flex' : 'none'
     DOM(`buymaxContainer`).style.display = data.currentTab===1 ? 'flex' : 'none'
     DOM(`upgradeBuymax`).style.display = data.hasLegend[1]?'flex':'none'
-    DOM(`derivVButton`).style.display = data.hasLostTheory[3]?'flex':'none'
+    DOM(`derivVButton`).style.display = data.hasLostTheory[4]?'flex':'none'
     //upgrades
     DOM(`upgradeContainer`).style.display = data.oddities.gte(1e17) || data.upgrades[0].amt.gte(1)?'flex':'none'
     //theories
     DOM(`theoriesContainer`).style.display = data.currentTab===2?'flex':'none'
     DOM(`theoryRow4`).style.display = data.hasLostTheory[3]?'flex':'none'
+    DOM('theoryRow5').style.display = data.hasSecret[1]?'flex':'none'
     //legends
     DOM(`legendsContainer`).style.display = data.currentTab===3?'flex':'none'
     //lost
     DOM(`bigLostContainer`).style.display = data.currentTab===4?'flex':'none'
     DOM(`lostAutoBuymax`).style.display = data.hasLegend[2]?'flex':'none'
+    DOM('lostCycle2').style.display = data.hasSecret[0]?'block':'none'
+    DOM('lostCycle3').style.display = data.hasSecret[2]?'block':'none'
+    //circles
+    DOM('bigCirclesContainer').style.display = data.currentTab===5?'flex':'none'
     //settings
     DOM(`settingsContainer`).style.display = data.currentTab===0 ? 'flex':'none'
     //nav
     DOM(`milestoneNav`).style.display = data.hasTab[0] || data.hasTab[1]?'inline':'none'
     DOM(`lostNav`).style.display = data.hasLegend[0] || data.hasTab[2]?'inline':'none'
+    //animations
+    animationCavnas.style.display = data.currentTab===4?'flex':'none'
 }
