@@ -25,7 +25,7 @@ const CYCLES = {
         "The first Dream Particle Effect is boosted based on Circle Progress but divide the effect of Cycle 6",
         "The third Dream Particle Effect is boosted based on Circle Progress but divide the effect of Cycle 5",
         "Lost Cycle 1 is boosted based on Circle Progress",
-        "Dream Particle production is multiplied based on Circle Progress and bought D1s but this Cycles’s effect is divided by bought D4s",
+        "Dream Particle production is multiplied based on Circle Progress and bought D1s but this Cycles’s effect is subtracted by bought D4s",
         "The Derivative Particle Effect is multiplied based on Circle Progress and Dream Particles but this Cycle's effect is divided by Lost Cycle 2 levels"
     ],
     1: {
@@ -76,14 +76,14 @@ const CYCLES = {
         level: D(0)
     },
     8: {
-        nerf(){ if(data.derivs[3].b.gte(1)){ return data.derivs[3].b } else { return D(1) } },
+        nerf(){ if(data.derivs[3].b.gte(1)){ return data.cycleLevels[7].gte(1)?data.derivs[3].b:D(1) } else { return D(1) } },
         effect(){ if(data.cycleLevels[7].gte(1)){ return ((c().log2().sqrt()).plus(data.derivs[0].b)).sqrt().plus((data.cycleLevels[7])).sub(this.nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[7].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: -${format(this.nerf())}`},
         level: D(0)
     },
     9: {
-        nerf(){ if(data.derivs[1].b.gte(1)){ return data.lostCycleLevels[1] } else { return D(1) } },
+        nerf(){ if(data.derivs[1].b.gte(1)){ return data.cycleLevels[8].gte(1)?data.lostCycleLevels[1]:D(1) } else { return D(1) } },
         effect(){ if(data.cycleLevels[8].gte(1)){ return ((c().log2().sqrt()).plus(data.particles[2].sqrt())).sqrt().div(10).plus((data.cycleLevels[8])).sub(this.nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[8].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: -${format(this.nerf())}`},
