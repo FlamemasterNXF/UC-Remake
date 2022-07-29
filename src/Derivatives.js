@@ -64,7 +64,8 @@ function buyMaxDeriv(){
         let cost = D(0)
         for(let i=30-o.min(30).toNumber();i<30;i++){
             max=max.add(1)
-            cost=cost.add(ocost.div(scaling**(29-i)).floor())
+            if (!data.hasLegend[0])cost=cost.add(ocost.div(scaling**(29-i)).floor())
+          else cost = ocost.div(scaling**(29-i)).floor()
             if(cost.gt(use)){
                 max=max.minus(1)
                 cost=cost.minus(ocost.div(scaling**(29-i)))
@@ -74,6 +75,7 @@ function buyMaxDeriv(){
         cost=cost.floor()
         max=max.add(safe)
         if(max.lte(0))continue;
+        
         if(x===0){if (!data.hasLegend[0]) data.oddities=data.oddities.minus(cost)}
         else{
             if (!data.inLost){

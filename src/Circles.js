@@ -57,14 +57,14 @@ const CYCLES = {
     },
     5: {
         nerf(){ if(data.cycleLevels[4].gte(1)){ return (data.cycleLevels[4].div(10).plus(1)).div(theoryEffects[16]) } else { return D(1) } },
-        effect(){ if(data.cycleLevels[4].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[4])).div(2).times(theoryEffects[17]).div(CYCLES[6].nerf()).div(CYCLES[1].nerf()).clampMin(1) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[4].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[4])).div(2).times(theoryEffects[17]).div(CYCLES[6].nerf()).div(BREAKPOINTS[2].nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[4].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: /${format(CYCLES[6].nerf())}`},
         level: D(0)
     },
     6: {
         nerf(){ if(data.cycleLevels[5].gte(1)){ return (data.cycleLevels[5].div(10).plus(1)).div(theoryEffects[16]) } else { return D(1) } },
-        effect(){ if(data.cycleLevels[5].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[5])).div(2).times(theoryEffects[17]).div(CYCLES[5].nerf()).div(CYCLES[1].nerf()).clampMin(1) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[5].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[5])).div(2).times(theoryEffects[17]).div(CYCLES[5].nerf()).div(BREAKPOINTS[2].nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[5].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: /${format(CYCLES[5].nerf())}`},
         level: D(0)
