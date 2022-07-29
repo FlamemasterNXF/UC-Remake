@@ -18,7 +18,7 @@ const l = () => getTotalCycleLevels()
 const CYCLES = {
     names: [...Array(10).keys()].slice(1),
     effectDescriptions: [
-        "D1 is boosted while the Lost Derivative is active based on Circle progress, but this Cycles’s effect is divided based on Ancient Particles",
+        "D1 is boosted while the Lost Derivative is active based on Circle progress, but this Cycles’s effect is subtracted based on Ancient Particles",
         "The second Dream Particle Effect is boosted based on Circle Progress and bought D1s while the Lost Derivative is active",
         "The Theory of Multiplication is boosted based on Circle Progress and Dream Particles",
         "D4 is boosted based on Circle Progress and Ancient Particles",
@@ -83,7 +83,7 @@ const CYCLES = {
         level: D(0)
     },
     9: {
-        nerf(){ if(data.derivs[1].b.gte(1)){ return data.cycleLevels[8].gte(1)?data.lostCycleLevels[1]:D(1) } else { return D(1) } },
+        nerf(){ if(data.derivs[1].b.gte(1)){ return data.cycleLevels[8].gte(1)?data.lostCycleLevels[1].div(2):D(1) } else { return D(1) } },
         effect(){ if(data.cycleLevels[8].gte(1)){ return ((c().log2().sqrt()).plus(data.particles[2].sqrt())).sqrt().div(10).plus((data.cycleLevels[8])).sub(this.nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[8].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: -${format(this.nerf())}`},
