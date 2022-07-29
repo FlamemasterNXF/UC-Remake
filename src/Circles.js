@@ -26,7 +26,7 @@ const CYCLES = {
         "The third Dream Particle Effect is boosted based on Circle Progress but divide the effect of Cycle 5",
         "Lost Cycle 1 is boosted based on Circle Progress",
         "Dream Particle production is multiplied based on Circle Progress and bought D1s but this Cycles’s effect is subtracted by bought D4s",
-        "The Derivative Particle Effect is multiplied based on Circle Progress and Dream Particles but this Cycle's effect is divided by Lost Cycle 2 levels"
+        "The Derivative Particle Effect is multiplied based on Circle Progress and Dream Particles but this Cycle's effect is subtracted by Lost Cycle 2 levels"
     ],
     1: {
         active(){ return data.inLost || BREAKPOINTS[2].enabled },
