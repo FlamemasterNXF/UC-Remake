@@ -13,7 +13,7 @@ function calculateTheoryEffects(){
     theoryEffects[7] = theoryEffects[2]
     theoryEffects[8] = data.hasTheory[8] ? data.derivs[3].b.gte(1) && data.upgrades[4].amt.gte(1) ?
         BREAKPOINTS[4].enabled ? D(data.upgrades[4].amt).plus(data.derivs[3].b).plus(data.derivs[2].b) : D(data.upgrades[4].amt).plus(data.derivs[3].b) : D(1) : D(1)
-    theoryEffects[9] = data.hasTheory[9] ? data.oddities.gte(10) ? D(data.oddities.log2().plus(1)).times(BREAKPOINTS[3].effect()) : D(1) : D(1)
+    theoryEffects[9] = data.hasTheory[9] ? data.oddities.gte(10) ? D(data.oddities.log2().plus(1)).times(BREAKPOINTS[3].effect()).clampMin(1) : D(1) : D(1)
     theoryEffects[10] = data.hasTheory[10] ? data.derivs[1].b.gte(1)&&data.derivs[2].b.gte(1) ? D(data.derivs[1].b.plus(data.derivs[2].b)) : D(1) : D(1)
     theoryEffects[11] = data.hasTheory[11] ? data.derivs[4].b.gte(1) ? D(data.derivs[4].b.times(7)) : D(1) : D(1)
     theoryEffects[12] = data.hasTheory[12] ? data.derivs[4].b.gte(1) ? D(data.derivs[4].b.times(20)) : D(1) : D(1)
