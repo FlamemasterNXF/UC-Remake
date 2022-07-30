@@ -53,7 +53,7 @@ function buyMaxDeriv(){
         let scaling = D(1.3)
         let use = (x===0?data.oddities:data.derivs[x-1].b)
         let add = data.oddities.gte(data.derivs[x].c)?1:0
-        let max = use.div(derivCostBase[x]).log(scaling).minus(data.derivs[x].b).floor().div(dreamParticleEffects[1]).add(add).max(0)
+        let max = use.div(derivCostBase[x]).mul(x==0?dreamParticleEffects[1]:1).log(scaling).minus(data.derivs[x].b).floor().add(add).max(0)
         if(isNaN(max)||max.eq(0))continue;
         let safe = max.minus(30).max(0)
         let o = max
