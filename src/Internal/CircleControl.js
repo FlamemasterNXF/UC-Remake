@@ -15,21 +15,23 @@ function progress(i, x){
     createBars()
 }
 function createBars(su=false){
-    if(data.circleProg[data.circleProg.length-1].gte(100) || su){
-        let newBar = document.createElement('div')
-        let prevBar = document.getElementById(`bar${progressBars.length-1}`)
-        newBar.classList.add('circular-progress')
-        newBar.id = `bar${progressBars.length}`
-        newBar.style.height = `${180+(progressBars.length*10)}px`
-        newBar.style.width = `${180+(progressBars.length*10)}px`
-        container.appendChild(newBar)
-        newBar.appendChild(prevBar)
-        if (!su){
-            for(let i=0;i<data.circleProg.length;i++) data.circleProg[i] = D(1)
-            data.circleProg.push(new Decimal(1))
+    if(data.circleProg.length < 5){
+        if(data.circleProg[data.circleProg.length-1].gte(100) || su){
+            let newBar = document.createElement('div')
+            let prevBar = document.getElementById(`bar${progressBars.length-1}`)
+            newBar.classList.add('circular-progress')
+            newBar.id = `bar${progressBars.length}`
+            newBar.style.height = `${180+(progressBars.length*10)}px`
+            newBar.style.width = `${180+(progressBars.length*10)}px`
+            container.appendChild(newBar)
+            newBar.appendChild(prevBar)
+            if (!su){
+                for(let i=0;i<data.circleProg.length;i++) data.circleProg[i] = D(1)
+                data.circleProg.push(new Decimal(1))
+            }
+            progressValues.push(new Decimal(1))
+            progressBars.push(newBar)
         }
-        progressValues.push(new Decimal(1))
-        progressBars.push(newBar)
     }
 }
 function setupBars(x){
