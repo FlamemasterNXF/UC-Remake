@@ -53,7 +53,7 @@ function buyMaxDeriv(){
         let scaling = D(1.3)
         let use = (x===0?data.oddities:data.derivs[x-1].b)
         let add = data.oddities.gte(data.derivs[x].c)?1:0
-        let max = use.div(derivCostBase[x]).log(scaling).minus(data.derivs[x].b).floor().div(dreamParticleEffects[1]).add(add).max(0)
+        let max = use.div(derivCostBase[x]).mul(x==0?dreamParticleEffects[1]:1).log(scaling).minus(data.derivs[x].b).floor().add(add).max(0)
         if(isNaN(max)||max.eq(0))continue;
         let safe = max.minus(30).max(0)
         let o = max
@@ -64,7 +64,8 @@ function buyMaxDeriv(){
         let cost = D(0)
         for(let i=30-o.min(30).toNumber();i<30;i++){
             max=max.add(1)
-            cost=cost.add(ocost.div(scaling**(29-i)).floor())
+            if (!data.hasLegend[0])cost=cost.add(ocost.div(scaling**(29-i)).floor())
+          else cost = ocost.div(scaling**(29-i)).floor()
             if(cost.gt(use)){
                 max=max.minus(1)
                 cost=cost.minus(ocost.div(scaling**(29-i)))
@@ -74,6 +75,7 @@ function buyMaxDeriv(){
         cost=cost.floor()
         max=max.add(safe)
         if(max.lte(0))continue;
+        
         if(x===0){if (!data.hasLegend[0]) data.oddities=data.oddities.minus(cost)}
         else{
             if (!data.inLost){
