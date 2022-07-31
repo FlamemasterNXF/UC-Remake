@@ -49,13 +49,13 @@ function gainNumber(x){
     data.circleProg[0] = data.circleProg[0].plus(x)
     for(let i=0;i<data.circleProg.length;i++){
         if(data.circleProg[i].gte(100)&&data.circleProg[i+1]!==undefined){
-            data.circleProg[i+1] = data.circleProg[i+1].plus(1)
+            data.circleProg[i+1] = data.circleProg[i+1].plus(data.circleProg[i].div(100).floor())
             numberReset(i+1)
         }
     }
 }
 function numberReset(x){
-    for(let i=0;i<x;i++) data.circleProg[i] = D(1)
+    for(let i=0;i<x;i++) data.circleProg[i] = (data.circleProg[i].gte(1e4)?D(0):data.circleProg[i].div(100).sub(data.circleProg[i].div(100).floor()).mul(100))
 }
 function fixCircleProg(){
     for(let i=0; i<data.circleProg.length;i++){
