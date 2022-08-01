@@ -15,7 +15,6 @@ function progress(i, x){
     createBars()
 }
 function createBars(su=false){
-    if(data.circleProg.length <= 5){
         if(data.circleProg[data.circleProg.length-1].gte(100) || su){
             let newBar = document.createElement('div')
             let prevBar = document.getElementById(`bar${progressBars.length-1}`)
@@ -32,7 +31,6 @@ function createBars(su=false){
             progressValues.push(new Decimal(1))
             progressBars.push(newBar)
         }
-    }
 }
 function setupBars(x){
     fixCircleProg()
@@ -48,9 +46,11 @@ function setupBars(x){
 function gainNumber(x){
     data.circleProg[0] = data.circleProg[0].plus(x)
     for(let i=0;i<data.circleProg.length;i++){
-        if(data.circleProg[i].gte(100)&&data.circleProg[i+1]!==undefined){
-            data.circleProg[i+1] = data.circleProg[i+1].plus(data.circleProg[i].div(100).floor())
-            numberReset(i+1)
+        if(i<5){
+            if(data.circleProg[i].gte(100)&&data.circleProg[i+1]!==undefined){
+                data.circleProg[i+1] = data.circleProg[i+1].plus(data.circleProg[i].div(100).floor())
+                numberReset(i+1)
+            }
         }
     }
 }
