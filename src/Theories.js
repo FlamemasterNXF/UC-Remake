@@ -24,9 +24,6 @@ function calculateTheoryEffects(){
     theoryEffects[17] = data.hasTheory[17] ? l().gte(1) ? c().div(2): D(1) : D(1)
     theoryEffects[18] = data.hasTheory[18] ? l().gte(1) ? (l().sqrt()).clampMin(1): D(1) : D(1)
     theoryEffects[19] = data.hasTheory[19]
-
-    theoryCosts[2] = D(1e17)
-    theoryCosts[7] = D(1e30)
 }
 function buyTheory(i){
     if (data.oddities.gte(theoryCosts[i]) && !data.hasTheory[i]){
