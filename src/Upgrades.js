@@ -13,9 +13,9 @@ function buyUpgrade5(){
 }
 function calculateUpgradeCosts(){
     for (let i=0;i<data.upgrades.length-1;i++){
-        let costBases = [D(2e18),D(5e19),D(5e20),D(6e21)]
+        let costBases = [D(2e18),D(5e19),D(5e20),D(2e22)]
         data.upgrades[i].c = data.upgrades[i].amt.gte(1)?
-            costBases[i].times(D(1).plus(data.upgrades[i].amt.plus(1).div(1.1).pow(data.upgrades[i].amt))).div(theoryEffects[6]).div(dreamParticleEffects[2]): costBases[i]
+            costBases[i].times(D(1).plus(data.upgrades[i].amt.plus(1).div(1.1).pow(data.upgrades[i].amt))).div(theoryEffects[6]).div(dreamParticleEffects[2]).div(theoryEffects[18]): costBases[i]
     }
     data.upgrades[4].c = data.upgrades[4].amt.gte(1)?D(22).times(data.upgrades[4].amt.times(1.5)).div(theoryEffects[5]).floor():D(22)
 

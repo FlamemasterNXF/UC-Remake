@@ -16,19 +16,19 @@ function getDefaultObject() {
         inLost: false,
         particles: [D(0), D(0), D(0), D(0)], //Ancient, Derivative, Dream, Best Ancient
         highestOdditiesInLost: D(2),
-        hasLostTheory: [false,false,false,false,false],
+        hasLostTheory: [false,false,false,],
         lostCycleLevels: Array(4).fill(D(0)),
         //circles
         circleProg: [D(1)],
         cycleLevels: Array(9).fill(D(0)),
         breakpointsUnlocked: Array(4).fill(false),
         breakpointsEnabled: Array(4).fill(false),
-        hasSecret: Array(4).fill(false),
+        hasSecret: Array(3).fill(false),
         //misc
         settingsToggles: [true, true, true,], //changelog, animation, offline time
-        autoToggled: [false, false],
-        hasLegend: [false, false, false],
-        hasTab: [false, false, false, false],
+        autoToggled: Array(3).fill(false),
+        hasLegend: Array(7).fill(false),
+        hasTab: Array(4).fill(false),
         time: Date.now(),
         devSpeed: 1,
         currentTab: 1,
@@ -103,6 +103,7 @@ window.onload = function (){
     load()
     if(data.hasTab[3]) setupBars(data.circleProg.length-1)
     changeCirclesTab('cycles')
+    changeLegendsTab('legacies')
 }
 //full reset
 function beginFullReset(){

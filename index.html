@@ -140,9 +140,22 @@
         </div>
         <div class="generalTexts" id="theoriesText">Hover over a Theory to learn its effect!</div>
     </div>
-    <div class="flexBox" id="legendsContainer">
-        <button class="legend" id="legend0">Legend One<br>Discovered by purchasing an Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
-        <button class="legend" id="legend1">Legend Two<br>Discovered by obtaining an Ancient Particle<br>Unlock a Buymax for Upgrades 1-4</button>
+    <div class="flexBox" id="legendsContainer" style="flex-direction: column">
+        <div class="flexBox" id="legendSubtabContainer" style="flex-direction: row; margin-top: 7px">
+            <button class="navButton" id="legendQolNav" style="background-color: black; color: #967109" onclick="changeLegendsTab('legacies')">Legacies</button>
+            <button class="navButton" id="legendUnlockableNav" style="background-color: black; color: #967109" onclick="changeLegendsTab('treasures')">Treasures</button>
+        </div>
+        <div class="flexBox" id="legaciesContainer" style="flex-direction: column">
+            <button class="legend" id="legend0">Legacy One<br>Discovered by purchasing an Upgrade 4<br>Unlock an Auto Buymax for Derivatives</button>
+            <button class="legend" id="legend2">Legacy Two<br>Discovered by obtaining an Ancient Particle<br>Unlock a Buymax for Upgrades 1-4</button>
+            <button class="legend" id="legend3">Legacy Three<br>Discovered by unlocking Breakpoint 1<br>Unlock an Auto Buymax for Lost Cycles</button>
+            <button class="legend" id="legend4">Legacy Four<br>Discovered by unlocking Theory 20<br>Unlock a Buymax for Cycles</button>
+        </div>
+        <div class="flexBox" id="treasuresContainer" style="flex-direction: column">
+            <button class="legend" id="legend1">Treasure One<br>Discovered by purchasing an Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
+            <button class="legend" id="legend5">Treasure Two<br>Discovered by reaching 100,000 Ancient Particles<br>Unlock the Circles</button>
+            <button class="legend" id="legend6">Treasure Three<br>Discovered by reaching 1e7 Ancient Particles<br>`ǝ̴̨̨̦̙͍̆̀̃͐̊̽̈̔̈̋̿͒͝ͅʌ̶̡̤̕͝͠ᴉ̷̮̬̥̳̎̔̓̽̄Ⅎ̴͓̫̖̻̗̤̟̣̿͋̔̅̊͂̓̑̎͌͋͒͘͝ʌ̶̗͚͚̬̊̀̾̏́̇͋̂̍̋̽͝ᴉ̷̧̯̺̞͍̳̼̤͔̠͑̓̑̈́͂͝ɹ̶̡̮͔̗͙̰̗̘͍̘͓̩̾͘ǝ̸̛̹̙̖̈́͋͋̕p̷̯̳͔͉̗̱̒̀ʞ̴͓̝̹͈̩̮̈́͛͜͜ɔ̴̡̨̨͍̭͎̽̑̎̾̄̔̌͋͂͘͜͝͝ỡ̶̢̲͍͙̮͒̕l̷̥̠͑̏͗̉̑̌̍ũ̸̡̨̡͙͚̟̞̤̦͖̞̖͖̅̀͋͂̎̓̈̊∩̸͎̐͂̕</button>
+        </div>
     </div>
     <div class="flexBox" id="bigLostContainer">
         <p style="font-family: DosisSemiBold" class="generalTexts" id="lostTopText">hi</p>
@@ -161,8 +174,6 @@
             <button class="lostUpgrade" id="lostTheory0" onclick="buyLostTheory(1)">This would be a Lost Upgrade thingie</button>
             <button class="lostUpgrade" id="lostTheory1"onclick="buyLostTheory(2)">This would be a Lost Upgrade thingie</button>
             <button class="lostUpgrade" id="lostTheory2"onclick="buyLostTheory(3)">This would be a Lost Upgrade thingie</button>
-            <button class="lostUpgrade" id="lostTheory3"onclick="buyLostTheory(4)">This would be a Lost Upgrade thingie</button>
-            <button class="lostUpgrade" id="lostTheory4"onclick="buyLostTheory(5)">This would be a Lost Upgrade thingie</button>
         </div>
         <div class="flexBox lostRow" id="lostRow2">
             <button class="lostUpgrade"id="lostCycle0"onclick="buyLostCycle(1)">This would be a Lost Upgrade thingie</button>
@@ -188,6 +199,7 @@
         <div class="flexBox" id="cyclesContainer" style="flex-direction: column">
             <strong class="generalTexts" id="circleDerivPDisplay" style="margin-bottom: 2px; color: #6ab75e">0</strong>
             <strong class="generalTexts" id="cycleEffectText" style="margin-bottom: 2px; color: #7e00b4">Hover over a Cycle to reveal its effect!</strong>
+            <button class="buymax" id="cycleBuyMax" style="color: #7e00b4;margin-top: 5px; margin-bottom: 5px" onclick="autoToggle(3)">Auto Cycle Buymax: OFF</button>
             <div class="flexBox" id="cyclesRow">
                 <button class="cycle" id="cycle1" onmouseover="updateCycleText(0)" onclick="buyCycle(1)">Hello chat</button>
                 <button class="cycle" id="cycle2" onmouseover="updateCycleText(1)" onclick="buyCycle(2)">Hello chat</button>
@@ -216,7 +228,6 @@
                 <button class="secret" id="secret1">Hello chat</button>
                 <button class="secret" id="secret2">Hello chat</button>
                 <button class="secret" id="secret3">Hello chat</button>
-                <button class="secret" id="secret4">Hello chat</button>
             </div>
         </div>
     </div>
@@ -237,7 +248,7 @@
             <p>(because I love changelogs) <br>
                 Only changes I consider notable are recorded here, no bugfixes or small changes.</p>
             <h3 id="most-recent">Most Recent</h3>
-            <p><strong>v0.0.17</strong> [The Circular Update]: The Circles, 9 Cycles, 4 Breakpoints, 4 Secrets, 5 new Theories, 1 new Lost Theory, and 2 new Lost Cycles! <br></p>
+            <p><strong>v0.0.19b</strong> Rebalanced a lot of Theories, reworked row 5 of Theories, reworked Legends, and removed Lost Theories 4 and 5. <br></p>
             <h3 id="pre-alpha">Pre-Alpha</h3>
             <hr>
             <p><strong>v0.0.1</strong> Created this repo, created the base files, added Saving, Loading, Import, and Export systems, and added a favicon. <br>
@@ -264,7 +275,8 @@
                 <strong>v0.0.16</strong> [The Tutorial with Infinite Steps]: The Infinite Stairway, 8 Stair Secrets, Lost Cycle 3, and Legend 3! <br>
                 <strong>v0.0.17</strong> [The Singular Update]: The Blackhole, Stair Secret 8, 6 Ringularities, and 2 new Theories! <br>
                 <strong>v0.0.18</strong> [The SECOND Rollback]: Reverted to v0.0.15b <br>
-                <strong>v0.0.19</strong> [The Circular Update]: The Circles, 9 Cycles, 4 Breakpoints, 4 Secrets, 5 new Theories, 1 new Lost Theory, and 2 new Lost Cycles! <br> </p>
+                <strong>v0.0.19</strong> [The Circular Update]: The Circles, 9 Cycles, 4 Breakpoints, 4 Secrets, 5 new Theories, 1 new Lost Theory, and 2 new Lost Cycles! <br>
+                <strong>v0.0.19b</strong> Rebalanced a lot of Theories, reworked row 5 of Theories, reworked Legends, and removed Lost Theories 4 and 5. <br> </p>
         </div>
     </div>
 </div>

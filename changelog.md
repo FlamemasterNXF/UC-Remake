@@ -2,7 +2,7 @@
 (because I love changelogs) <br>
 Only changes I consider notable are recorded here, no bugfixes or small changes.
 ### Most Recent
-**v0.0.19** [The Circular Update]: The Circles, 9 Cycles, 4 Breakpoints, 4 Secrets, 5 new Theories, 1 new Lost Theory, and 2 new Lost Cycles! <br>
+**v0.0.19b** Rebalanced a lot of Theories, reworked row 5 of Theories, reworked Legends, and removed Lost Theories 4 and 5. <br>
 ### Pre-Alpha
 ***
 **v0.0.1** Created this repo, created the base files, added Saving, Loading, Import, and Export systems, and added a favicon. <br>
@@ -30,3 +30,4 @@ Only changes I consider notable are recorded here, no bugfixes or small changes.
 **v0.0.17** [The Singular Update]: The Blackhole, Stair Secret 8, 6 Ringularities, and 2 new Theories! <br>
 **v0.0.18** [The SECOND Rollback]: Reverted to v0.0.15b <br>
 **v0.0.19** [The Circular Update]: The Circles, 9 Cycles, 4 Breakpoints, 4 Secrets, 5 new Theories, 1 new Lost Theory, and 2 new Lost Cycles! <br>
+**v0.0.19b** Rebalanced a lot of Theories, reworked row 5 of Theories, reworked Legends, and removed Lost Theories 4 and 5. <br>
