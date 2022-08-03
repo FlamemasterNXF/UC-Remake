@@ -45,7 +45,7 @@ function setupBars(x){
 }
 
 function gainNumber(x){
-    data.circleProg[0] = data.circleProg[0].plus(x)
+    if(data.circleProg[0].lt(100)) data.circleProg[0] = data.circleProg[0].plus(x)
     for(let i=0;i<data.circleProg.length;i++){
         if(i<5){
             if(data.circleProg[i].gte(100)&&data.circleProg[i+1]!==undefined){
