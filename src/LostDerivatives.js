@@ -18,11 +18,11 @@ let lostCycleEffectTexts = [
 function calculateLostStuff(){
     data.inLost?
         ancientParticleGain = (data.oddities.sqrt().div(2).div(data.particles[0].plus(1).log10()).plus(1)).sub(data.particles[3]):D(0)
-    particleGains[0] = data.particles[0].gte(1)?(data.particles[0].sqrt().sqrt().times(lostCycleEffects[1])).div(BREAKPOINTS[4].nerf()):D(0)
-    
-      let dpGain = data.particles[0].gte(1)?((data.particles[0].sqrt().times(derivativeParticleEffect).times(CYCLES[8].effect())).div(BREAKPOINTS[1].nerf())).div(BREAKPOINTS[4].nerf()):D(0)
-      if(dpGain.gt(1e15))dpGain=dpGain.pow(1/3).mul(1e10)
-  particleGains[1] = dpGain
+    let dpGain =  data.particles[0].gte(1)?(data.particles[0].sqrt().sqrt().times(lostCycleEffects[1])).div(BREAKPOINTS[4].nerf()):D(0)
+    if(dpGain.gt(1e15))dpGain=dpGain.pow(1/3).mul(1e10)
+    particleGains[0] = dpGain
+    particleGains[1] = data.particles[0].gte(1)?((data.particles[0].sqrt().times(derivativeParticleEffect).times(CYCLES[8].effect())).div(BREAKPOINTS[1].nerf())).div(BREAKPOINTS[4].nerf()):D(0)
+      
     derivativeParticleEffect = data.particles[1].gte(1)?(data.particles[1].sqrt().plus(1)).times(CYCLES[9].effect()):D(1)
     derivativeParticleEffect2 = theoryEffects[19]?data.particles[1].gte(1)?data.particles[1].log2().sqrt().plus(1):D(1):D(1)
     dreamParticleEffects[0] = data.particles[2].gte(1)?(data.particles[2].sqrt().plus(1)).times(CYCLES[5].effect()):D(1)
