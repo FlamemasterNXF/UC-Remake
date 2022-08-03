@@ -86,11 +86,13 @@ function lostReset(){
 function buyMaxLostCycles(){
   for(let i=0;i<=3;i++){
     let dp = data.particles[1]
+    if(data.autoToggled[2])dp=dp.div(2)//splitting DP between cycles and lost cycles
     if(dp.lte(0))break
     let startLevel = data.lostCycleLevels[i]
 
       let spent = startLevel.mul(startLevel.pow(2).add(startLevel.mul(18)).add(47)).div(30).mul(lostCycleCostBase[i])
-      let thing = dp.add(spent).div(lostCycleCostBase[i]).pow(2).mul(6075).sub(dp.mul(60750)).sub(75106)
+      let thing = dp.div(4-i).add(spent).div(lostCycleCostBase[i]).pow(2).mul(6075).sub(dp.mul(60750)).sub(75106)
+      // the .div(4-i) is to split DP evenly between the 4 lost cycles
       let thing2 = thing.mul(3).sqrt().sub(dp.mul(135)).add(675).cbrt()
       let maxLevels = thing2.mul(-1).div(Decimal.pow(3,2/3))
       .sub(Decimal.div(61,thing2.mul(Decimal.pow(3,1/3)))).sub(6).clampMin(startLevel).floor()
