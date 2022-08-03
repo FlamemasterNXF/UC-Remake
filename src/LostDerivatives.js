@@ -115,6 +115,7 @@ dp=dp.div(4-i)// the .div(4-i) is to split DP evenly between the 4 lost cycles
           
       }
     }
+    if(!sumLostCycleCosts(startLevel,startLevel.add(buy).add(Decimal.pow(2,b)),i).lte(dp)){buy=buy.sub(1)}
     data.lostCycleLevels[i]=data.lostCycleLevels[i].add(buy.clampMin(0).floor())
     data.particles[1]=data.particles[1].sub(sumLostCycleCosts(startLevel, startLevel.add(buy),i))
   }
