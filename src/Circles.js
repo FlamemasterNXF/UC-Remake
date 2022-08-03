@@ -198,7 +198,7 @@ function buyMaxCycles(){
     } else {
       let a = CYCLES[1].level
       let spent = startLevel.mul(startLevel.add(1)).div(2).add(a.div(10).add(1).mul(startLevel)).mul(5e4)
-      let maxLevels = dp.div(i==2?5e4:1e5).add(spent.div(i==2?5e4:1e5)).mul(8).add(CYCLES[1].level.mul(2).add(1).pow(2)).sqrt().div(2).sub(a.add(0.5)).clampMin(startLevel)
+      let maxLevels = dp.div(i==2?5e4:1e5).add(spent.div(i==2?5e4:1e5)).mul(8).add(CYCLES[1].level.mul(2).add(1).pow(2)).sqrt().div(2).sub(a.add(0.5)).clampMin(startLevel).floor()
       CYCLES[i].level = maxLevels
       data.cycleLevels[i-1] = maxLevels
       let totalCost = maxLevels.mul(maxLevels.add(1)).div(2).add(a.div(10).add(1).mul(maxLevels)).mul(5e4).sub(spent)
