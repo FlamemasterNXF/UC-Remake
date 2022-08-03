@@ -84,7 +84,7 @@ function lostReset(){
     }
 }
 function buyMaxLostCycles(){
-  for(let i=1;i<=4;i++){
+  for(let i=0;i<=3;i++){
     let dp = data.particles[1]
     if(dp.lte(0))break
     let startLevel = data.lostCycleLevels[i]
