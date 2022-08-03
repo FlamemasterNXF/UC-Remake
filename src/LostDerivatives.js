@@ -90,8 +90,9 @@ function buyMaxLostCycles(){
     if(dp.lte(0))break
     let startLevel = data.lostCycleLevels[i]
 dp=dp.div(4-i)// the .div(4-i) is to split DP evenly between the 4 lost cycles
+    dp=dp.add(spent).div(lostCycleCostBase[i]) //setup
       let spent = startLevel.mul(startLevel.pow(2).add(startLevel.mul(18)).add(47)).div(30).mul(lostCycleCostBase[i])
-      let thing = dp.add(spent).div(lostCycleCostBase[i]).pow(2).mul(6075).sub(dp.mul(60750)).sub(75106)
+      let thing = dp.pow(2).mul(6075).sub(dp.mul(60750)).sub(75106)
       
       let thing2 = thing.mul(3).sqrt().sub(dp.mul(135)).add(675).cbrt()
       let maxLevels = thing2.mul(-1).div(Decimal.pow(3,2/3))
