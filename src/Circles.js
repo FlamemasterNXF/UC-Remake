@@ -184,11 +184,24 @@ function changeCirclesTab(i){
     if(i!=='secrets') DOM('secretsContainer').style.display = 'none'
 }
 function buyMaxCycles(){
-    let w=0
-    while(w < 11){
-        for (let i=1;i<10;i++){
-            buyCycle(i)
-        }
-        w++
+  for(let i=1;i<=9;i++){
+    let dp = data.particles[1]
+    let startLevel = CYCLES[i].level
+    if(i==1){
+      let spent = startLevel.mul(startLevel).mul(0.55).add(startLevel.mul(1.55)).mul(5e4)
+      let maxLevels = dp.add(spent).mul(880).add(961).sqrt().div(22).sub(31/22).floor().clampMin(startLevel)
+      CYCLES[i].level = maxLevels
+      data.cycleLevels[i-1] = maxLevels
+      let totalCost = maxLevels.mul(maxLevels).mul(0.55).add(maxLevels.mul(1.55)).mul(5e4).sub(spent)
+      data.particles[1]=data.particles[1].sub(totalCost)
+    } else {
+      let a = CYCLES[1].level
+      let spent = startLevel.mul(startLevel.add(1)).div(2).add(a.div(10).add(1).mul(startLevel)).mul(5e4)
+      let maxLevels = dp.mul(8).add(CYCLES[1].level.mul(2).add(1).pow(2)).sqrt().div(2).sub(a.add(0.5))
+      CYCLES[i].level = maxLevels
+      data.cycleLevels[i-1] = maxLevels
+      let totalCost = maxLevels.mul(maxLevels.add(1)).div(2).add(a.div(10).add(1).mul(maxLevels)).mul(5e4).sub(spent)
+      data.particles[1]=data.particles[1].sub(totalCost)
     }
+  }
 }
