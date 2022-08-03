@@ -50,7 +50,7 @@ function gainNumber(x){
         if(i<5){
             if(data.circleProg[i].gte(100)&&data.circleProg[i+1]!==undefined){
                 data.circleProg[i+1] = data.circleProg[i+1].plus(data.circleProg[i].div(100).floor())
-                if(data.circleProg[i+1].lt(100) numberReset(i+1)
+                if(data.circleProg[i+1].lt(100)) numberReset(i+1)
             }
         }
     }
