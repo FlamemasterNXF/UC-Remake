@@ -90,7 +90,7 @@ function buyMaxLostCycles(){
     let startLevel = data.lostCycleLevels[i]
 
       let spent = startLevel.mul(startLevel.pow(2).add(startLevel.mul(18)).add(47)).div(30).mul(lostCycleCostBase[i])
-      let thing = dp.div(lostCycleCostBase[i]).pow(2).mul(6075).sub(dp.mul(60750)).sub(75106)
+      let thing = dp.add(spent).div(lostCycleCostBase[i]).pow(2).mul(6075).sub(dp.mul(60750)).sub(75106)
       let thing2 = thing.mul(3).sqrt().sub(dp.mul(135)).add(675).cbrt()
       let maxLevels = thing2.mul(-1).div(Decimal.pow(3,2/3))
       .sub(Decimal.div(61,thing2.mul(Decimal.pow(3,1/3)))).sub(6).clampMin(startLevel)
