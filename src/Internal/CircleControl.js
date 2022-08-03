@@ -12,10 +12,9 @@ function progress(i, x){
       #000 ${progressValues[i].times(3.6)}deg
     )`
     gainNumber(D(1).times(diff).times(theoryEffects[15]).times(lostCycleEffects[2]).times(BREAKPOINTS[1].effect()))
-    createBars()
+    if(data.circleProg.length < 5) createBars()
 }
 function createBars(su=false){
-    if(data.circleProg.length < 5 || su){
         if(data.circleProg[data.circleProg.length-1].gte(100) || su){
             let newBar = document.createElement('div')
             let prevBar = document.getElementById(`bar${progressBars.length-1}`)
@@ -32,7 +31,6 @@ function createBars(su=false){
             progressValues.push(new Decimal(1))
             progressBars.push(newBar)
         }
-    }
 }
 function setupBars(x){
     fixCircleProg()
