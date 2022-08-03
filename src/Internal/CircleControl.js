@@ -15,6 +15,7 @@ function progress(i, x){
     createBars()
 }
 function createBars(su=false){
+    if(data.circleProg.length < 6){
         if(data.circleProg[data.circleProg.length-1].gte(100) || su){
             let newBar = document.createElement('div')
             let prevBar = document.getElementById(`bar${progressBars.length-1}`)
@@ -31,10 +32,12 @@ function createBars(su=false){
             progressValues.push(new Decimal(1))
             progressBars.push(newBar)
         }
+    }
 }
 function setupBars(x){
     fixCircleProg()
     let i=0
+    if (data.circleProg.length === 6) data.circleProg.pop()
     if(x>0){
         while (data.circleProg.length-1>i){
             createBars(true)
