@@ -15,7 +15,7 @@ function progress(i, x){
     createBars()
 }
 function createBars(su=false){
-    if(data.circleProg.length < 5){
+    if(data.circleProg.length < 5 || su){
         if(data.circleProg[data.circleProg.length-1].gte(100) || su){
             let newBar = document.createElement('div')
             let prevBar = document.getElementById(`bar${progressBars.length-1}`)
