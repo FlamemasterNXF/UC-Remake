@@ -186,6 +186,7 @@ function changeCirclesTab(i){
 function buyMaxCycles(){
   for(let i=1;i<=9;i++){
     let dp = data.particles[1]
+    if(dp.lte(0))break
     let startLevel = CYCLES[i].level
     if(i==1){
       let spent = startLevel.mul(startLevel).mul(0.55).add(startLevel.mul(1.55)).mul(5e4)
@@ -203,5 +204,14 @@ function buyMaxCycles(){
       let totalCost = maxLevels.mul(maxLevels.add(1)).div(2).add(a.div(10).add(1).mul(maxLevels)).mul(5e4).sub(spent)
       data.particles[1]=data.particles[1].sub(totalCost)
     }
+    
   }
+  
+    /*let w=0
+    while(w < 11){
+        for (let i=1;i<10;i++){
+            buyCycle(i)
+        }
+        w++
+    }*/
 }
