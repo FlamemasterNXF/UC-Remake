@@ -57,14 +57,14 @@ const CYCLES = {
     },
     5: {
         nerf(){ if(data.cycleLevels[4].gte(1)){ return (data.cycleLevels[4].div(10).plus(1)).div(theoryEffects[16]) } else { return D(1) } },
-        effect(){ if(data.cycleLevels[4].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[4])).div(2).times(theoryEffects[17]).div(CYCLES[6].nerf()).div(BREAKPOINTS[2].nerf()).clampMin(1) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[4].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[4])).div(2).div(CYCLES[6].nerf()).div(BREAKPOINTS[2].nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[4].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: /${format(CYCLES[6].nerf())}`},
         level: D(0)
     },
     6: {
         nerf(){ if(data.cycleLevels[5].gte(1)){ return (data.cycleLevels[5].div(10).plus(1)).div(theoryEffects[16]) } else { return D(1) } },
-        effect(){ if(data.cycleLevels[5].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[5])).div(2).times(theoryEffects[17]).div(CYCLES[5].nerf()).div(BREAKPOINTS[2].nerf()).clampMin(1) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[5].gte(1)){ return (c().sqrt()).plus((data.cycleLevels[5])).div(2).div(CYCLES[5].nerf()).div(BREAKPOINTS[2].nerf()).clampMin(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[5].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: /${format(CYCLES[5].nerf())}`},
         level: D(0)
@@ -99,29 +99,28 @@ const BREAKPOINTS = {
         "Bought D3s are factored into The Theory of Peak Synergy’s first effect, but divide the production of Dream Particles and Derivative Particles based on Circle Progress and total Cycle levels"
     ],
     1: {
-        cost: D(1e30),
+        cost: D(1e60),
         unlocked: false,
         enabled: false,
         nerf(){ if(data.breakpointsEnabled[0]){ return this.effect().pow(3) } else { return D(1) } },
         effect() { if(data.breakpointsEnabled[0]){ return data.particles[1].log10().log2() } else { return D(1) } }
     },
     2: {
-        cost: D(1e50),
+        cost: D(1e90),
         unlocked: false,
         enabled: false,
         nerf(){ if(data.breakpointsEnabled[1]){ return CYCLES[1].effect().div(3) } else { return D(1) } },
         effect() { if(data.breakpointsEnabled[1]){ return D(1)} }
     },
     3: {
-        cost: D(1e60),
+        cost: D(1e100),
         unlocked: false,
         enabled: false,
         nerf(){ if(data.breakpointsEnabled[2]){ return this.effect().log2() } else { return D(1) } },
         effect() { if(data.breakpointsEnabled[2]){ return l().sqrt().plus(c().log2()) } else { return D(1) } }
     },
     4: {
-        cost: D(1),
-        available(){ return SECRETS[4].unlocked() },
+        cost: D(1e110),
         unlocked: false,
         enabled: false,
         nerf(){ if(data.breakpointsEnabled[3]){ return l().div(2).plus(c().div(2)) } else { return D(1) } },
@@ -134,12 +133,10 @@ const SECRETS = {
         "Unlock the 3rd Lost Cycle\nRequirement: Unlock Breakpoint 1",
         "Unlock a new row of Theories\nRequirement: Unlock Breakpoint 2",
         "Unlock the 4th Lost Cycle\nRequirement: Unlock Breakpoint 3",
-        "Unlock a New Breakpoint\nRequirement: Reach 1e69 Oddities",
     ],
     1: {unlocked(){ return data.breakpointsUnlocked[0] }},
     2: {unlocked(){ return data.breakpointsUnlocked[1] }},
     3: {unlocked(){ return data.breakpointsUnlocked[2] }},
-    4: {unlocked(){ return data.oddities.gte(1e69) }},
 }
 
 function buyCycle(i){
@@ -158,6 +155,7 @@ function toggleBreakPoint(i){
 }
 function updateCircleHTML(){
     DOM('circleDerivPDisplay').innerText = `You have ${format(data.particles[1])} Derivative Particles`
+    DOM('cycleBuyMax').innerHTML = data.autoToggled[2]?'Auto Cycle Buymax: ON':'Auto Cycle Buymax: OFF'
     for(let i=1;i<10;i++){
         DOM(`cycle${i}`).innerText = `Cycle ${CYCLES.names[i-1]} [${data.cycleLevels[i-1]}]\n${CYCLES[i].desc()}\nCost: ${format(CYCLES[i].cost())} Derivative Particles`
     }
@@ -168,7 +166,7 @@ function updateCircleHTML(){
         }
         else { DOM(`breakpoint${i}`).innerText = `Breakpoint ${BREAKPOINTS.names[i-1]} [LOCKED]\nUnlock Cost: ${format(BREAKPOINTS[i].cost)}` }
     }
-    for(let i=1;i<5;i++){
+    for(let i=1;i<4;i++){
         data.hasSecret[i-1] = SECRETS[i].unlocked()
         DOM(`secret${i}`).innerText = SECRETS[i].unlocked()?`${SECRETS.descriptions[i-1]}\nUnlocked!`:`${SECRETS.descriptions[i-1]}\n LOCKED`
     }
@@ -183,6 +181,36 @@ function changeCirclesTab(i){
     DOM(`${i}Container`).style.display = 'flex'
     if(i!=='cycles') DOM('cyclesContainer').style.display = 'none'
     if(i!=='breakpoints') DOM('breakpointsContainer').style.display = 'none'
-    if(i==='breakpoints') DOM('breakpoint4').style.display = BREAKPOINTS[4].available()?'block':'none'
     if(i!=='secrets') DOM('secretsContainer').style.display = 'none'
+}
+function buyMaxCycles(){
+  for(let i=1;i<=9;i++){
+    let dp = data.particles[1]
+    let startLevel = CYCLES[i].level
+    if(i==1){
+      let spent = startLevel.mul(startLevel).mul(0.55).add(startLevel.mul(1.55)).mul(5e4)
+      let maxLevels = dp.add(spent).mul(880).add(961).sqrt().div(22).sub(31/22).floor().clampMin(startLevel)
+      CYCLES[i].level = maxLevels
+      data.cycleLevels[i-1] = maxLevels
+      let totalCost = maxLevels.mul(maxLevels).mul(0.55).add(maxLevels.mul(1.55)).mul(5e4).sub(spent)
+      data.particles[1]=data.particles[1].sub(totalCost)
+    } else {
+      let a = CYCLES[1].level
+      let spent = startLevel.mul(startLevel.add(1)).div(2).add(a.div(10).add(1).mul(startLevel)).mul(5e4)
+      let maxLevels = dp.mul(8).add(CYCLES[1].level.mul(2).add(1).pow(2)).sqrt().div(2).sub(a.add(0.5))
+      CYCLES[i].level = maxLevels
+      data.cycleLevels[i-1] = maxLevels
+      let totalCost = maxLevels.mul(maxLevels.add(1)).div(2).add(a.div(10).add(1).mul(maxLevels)).mul(5e4).sub(spent)
+      data.particles[1]=data.particles[1].sub(totalCost)
+    }
+    
+  }
+  
+    /*let w=0
+    while(w < 11){
+        for (let i=1;i<10;i++){
+            buyCycle(i)
+        }
+        w++
+    }*/
 }

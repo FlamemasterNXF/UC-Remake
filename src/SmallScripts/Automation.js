@@ -5,4 +5,5 @@ function autoToggle(x){
 function automate(){
     if (data.autoToggled[0]) buyMaxDeriv()
     if (data.autoToggled[1]) buyMaxLostCycles()
+    if(data.autoToggled[2]) buyMaxCycles()
 }

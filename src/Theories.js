@@ -1,5 +1,5 @@
-let theoryCosts =  [D(1.25e14), D(2e15), D(1e17), D(1e21), D(2e23), D(1e27), D(1e29), D(1e30), D(1e32),
-    D(1e36), D(1e42), D(1e55), D(1e62), D(1e67), D(1e75), D(1e61), D(1e64), D(1e70), D(1e72), D(1e80)]
+let theoryCosts =  [D(1.25e14), D(2e15), D(1e17), D(1e21), D(2e23), D(4e26), D(1e29), D(1e30), D(5e31),
+    D(1e36), D(1e42), D(1e55), D(1e62), D(1e67), D(1e75), D(1e96), D(1e97), D(1e107), D(1.11e111), D(2e114)]
 let theoryEffects = Array(20).fill(D(1))
 // this line was once a window into hell itself. this comment is here as a monument to all who died fighting the terrible code of this line.
 function calculateTheoryEffects(){
@@ -20,13 +20,10 @@ function calculateTheoryEffects(){
     theoryEffects[13] = data.hasTheory[13] ? data.derivs[0].b.gte(1) ? D(data.derivs[0].b.pow(data.derivs[4].b.div(2))): D(1) : D(1)
     theoryEffects[14] = data.hasTheory[14] ? data.derivs[4].b.gte(1) ? D(data.derivs[4].b.plus(data.derivs[3].b).plus(data.upgrades[4].amt)): D(1) : D(1)
     theoryEffects[15] = data.hasTheory[15] ? data.derivs[1].b.gte(1) ? (data.derivs[1].b.plus(data.derivs[2].b)).log2(): D(1) : D(1)
-    theoryEffects[16] = data.hasTheory[16] ? data.derivs[1].b.gte(1) ? (data.derivs[1].b.plus(data.derivs[2].b)).sqrt(): D(1) : D(1)
-    theoryEffects[17] = data.hasTheory[17] ? data.derivs[3].b.gte(1) ? (data.derivs[3].b): D(1) : D(1)
-    theoryEffects[18] = data.hasTheory[18] ? l().gte(1) ? l().div(2): D(1) : D(1)
+    theoryEffects[16] = data.hasTheory[16] ? l().gte(1) ? l().div(5) : D(1) : D(1)
+    theoryEffects[17] = data.hasTheory[17] ? l().gte(1) ? l().div(2): D(1) : D(1)
+    theoryEffects[18] = data.hasTheory[18] ? l().gte(1) ? (l().sqrt()).clampMin(1): D(1) : D(1)
     theoryEffects[19] = data.hasTheory[19]
-
-    theoryCosts[2] = D(1e17)
-    theoryCosts[7] = D(1e30)
 }
 function buyTheory(i){
     if (data.oddities.gte(theoryCosts[i]) && !data.hasTheory[i]){

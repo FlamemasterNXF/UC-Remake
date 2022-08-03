@@ -35,14 +35,14 @@ function buyDeriv(x){
 }
 let derivProductions = Array(4).fill(D(100))
 function calculateDerivProductions(){
-    derivProductions[0] = D(100).times(lostCycleEffects[0]).times(theoryEffects[12]).times(upgradeEffects[1])
-    derivProductions[1] = D(100).times(upgradeEffects[2])
-    derivProductions[2] = D(100).times(theoryEffects[1]).times(upgradeEffects[3]).times(theoryEffects[14]).times(CYCLES[4].effect())
-    derivProductions[3] = D(100).times(theoryEffects[13]).times(theoryEffects[14]).times(theoryEffects[18])
+    derivProductions[0] = D(100).times(data.derivs[1].amt).times(upgradeEffects[1]) //D1-D5
+    derivProductions[1] = D(100).times(data.derivs[2].amt).times(upgradeEffects[2])
+    derivProductions[2] = D(100).times(data.derivs[3].amt).times(upgradeEffects[3]).times(theoryEffects[1]).times(theoryEffects[8]).times(theoryEffects[14]).times(CYCLES[4].effect())
+    derivProductions[3] = D(100).times(data.derivs[4].amt).times(theoryEffects[13]).times(theoryEffects[14]).times(theoryEffects[17])
 }
 function produceDerivs(diff){
     for(let i=0; i<data.derivs.length-1; i++){
-        data.derivs[i].amt = data.derivs[i].amt.plus(data.derivs[i+1].amt.times(diff).times(upgradeEffects[i]))
+        data.derivs[i].amt = data.derivs[i].amt.plus(derivProductions[i].times(diff))
     }
 }
 function buyMaxDeriv(){
@@ -64,7 +64,7 @@ function buyMaxDeriv(){
         let cost = D(0)
         for(let i=30-o.min(30).toNumber();i<30;i++){
             max=max.add(1)
-            if (!data.hasLegend[0])cost=cost.add(ocost.div(scaling**(29-i)).floor())
+            if (!data.hasLegend[1])cost=cost.add(ocost.div(scaling**(29-i)).floor())
           else cost = ocost.div(scaling**(29-i)).floor()
             if(cost.gt(use)){
                 max=max.minus(1)
@@ -75,8 +75,8 @@ function buyMaxDeriv(){
         cost=cost.floor()
         max=max.add(safe)
         if(max.lte(0))continue;
-        
-        if(x===0){if (!data.hasLegend[0]) data.oddities=data.oddities.minus(cost)}
+
+        if(x===0){if (!data.hasLegend[1]) data.oddities=data.oddities.minus(cost)}
         else{
             if (!data.inLost){
                 data.derivs[x-1].b = data.derivs[x-1].b.minus(cost)

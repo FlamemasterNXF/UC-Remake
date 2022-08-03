@@ -20,7 +20,7 @@ function updateHTML(){
         DOM('upgrade4').innerHTML = `Upgrade ⬥<br>Requires: ${format(data.upgrades[4].c)} Total Upgrade levels (you have ${formatWhole(data.upgrades[0].amt.plus(data.upgrades[1].amt).plus(data.upgrades[2].amt).plus(data.upgrades[3].amt))})<br>Multiplies all upgrade effects by ${formatWhole(upgradeEffects[4])}x`
         for (let i=0;i<4;i++){
             DOM(`upgrade${i}`).innerHTML =
-                `Upgrade ${upgradeNames[i]}<br>Cost: ${format(data.upgrades[i].c)} Oddities<br>Current effect: ${formatWhole(upgradeEffects[i])}x (You have ${formatWhole(data.upgrades[i].amt)})`
+                `Upgrade ${upgradeNames[i]} [${formatWhole(data.upgrades[i].amt)}]<br>Cost: ${format(data.upgrades[i].c)} Oddities<br>Current effect: ${formatWhole(upgradeEffects[i])}x => D${i+1}`
         }
         DOM('autoBuymax').innerHTML = data.autoToggled[0]?'Auto Buymax: ON':'Auto Buymax: OFF'
         DOM('autoBuymax').style.display = data.upgrades[3].amt.gte(1) ? 'flex' : 'none'
@@ -37,20 +37,20 @@ function updateHTML(){
         DOM('lostTopText').innerText=`Ancient Particles: ${format(data.particles[0])} // Derivative Particles: ${format(data.particles[1])} [${format(particleGains[0])}/s] // Dream Particles: ${format(data.particles[2])} [${format(particleGains[1])}/s]`
         DOM('lostInfo').innerHTML=`<br>Activating The Lost Derivative will reset everything before Theories<br>While the Lost Derivative is active only D1 can be purchased, but you will gain Ancient Particles based on how many Oddities you gain!<br>`
         DOM('lostEffect').innerText= data.inLost?data.oddities.gt(data.highestOdditiesInLost)?`You'll gain ${format(ancientParticleGain)} Ancient Particles if you disable The Lost Derivative`:`You need more than ${format(data.highestOdditiesInLost)} Oddities to gain more Ancient Particles`:`Activate The Lost Derivative to gain more Ancient Particles`
-        DOM('derivativeParticleEffect').innerHTML=derivativeParticleEffect2.gt(1)?`Current Derivative Particle effects:<br>Dream Particle gain multiplier [${format(derivativeParticleEffect)}x]<br>Upgrade 5 multiplier [${format(derivativeParticleEffect)}]`:`Current Derivative Particle effects:<br>Dream Particle gain multiplier [${format(derivativeParticleEffect)}]x`
+        DOM('derivativeParticleEffect').innerHTML=derivativeParticleEffect2.gt(1)?`Current Derivative Particle effects:<br>Dream Particle gain multiplier [${format(derivativeParticleEffect)}x]<br>Upgrade 5 multiplier [${format(derivativeParticleEffect2)}x]`:`Current Derivative Particle effects:<br>Dream Particle gain multiplier [${format(derivativeParticleEffect)}]x`
         DOM('dreamParticleEffect').innerHTML=`Current Dream Particle effects:<br>Oddity gain multiplier [${format(dreamParticleEffects[0])}x]<br>D1 Cost divisor [/${format(dreamParticleEffects[1])}]<br>Upgrade Requirement divisor [/${format(dreamParticleEffects[2])}]`
-        DOM('lostTheory0').innerHTML= `Lost Theory of Dreams<br>Dream Particles divide D1s cost<br>Unlock Cost: ${format(lostTheoryCosts[0])} Derivative Particles`
-        DOM('lostTheory1').innerHTML= `Lost Theory of Dreams II <br>Dream Particles divide the cost of Upgrades 1-4<br>Unlock Cost: ${format(lostTheoryCosts[1])} Derivative Particles`
-        DOM('lostTheory2').innerHTML= `Lost Theory of Cycles <br>Total Lost Cycle levels multiply Oddity gain<br>Unlock Cost: ${format(lostTheoryCosts[2])} Derivative Particles<br>Currently: ${format(lostTheory3Effect)}x`
-        DOM('lostTheory3').innerHTML= data.hasLostTheory[3]?`Uncertainty`:`The True Cycle<br>Outcome Uncertain.<br>Unlock Cost: ${format(lostTheoryCosts[3])} Ancient Particles`
-        DOM('lostTheory4').innerHTML= data.hasLostTheory[4]?`V`:`ǝ̴̨̨̦̙͍̆̀̃͐̊̽̈̔̈̋̿͒͝ͅʌ̶̡̤̕͝͠ᴉ̷̮̬̥̳̎̔̓̽̄Ⅎ̴͓̫̖̻̗̤̟̣̿͋̔̅̊͂̓̑̎͌͋͒͘͝ʌ̶̗͚͚̬̊̀̾̏́̇͋̂̍̋̽͝ᴉ̷̧̯̺̞͍̳̼̤͔̠͑̓̑̈́͂͝ɹ̶̡̮͔̗͙̰̗̘͍̘͓̩̾͘ǝ̸̛̹̙̖̈́͋͋̕p̷̯̳͔͉̗̱̒̀ʞ̴͓̝̹͈̩̮̈́͛͜͜ɔ̴̡̨̨͍̭͎̽̑̎̾̄̔̌͋͂͘͜͝͝ỡ̶̢̲͍͙̮͒̕l̷̥̠͑̏͗̉̑̌̍ũ̸̡̨̡͙͚̟̞̤̦͖̞̖͖̅̀͋͂̎̓̈̊∩̸͎̐͂̕<br><br>Unlock Cost: ${format(lostTheoryCosts[4])} Ancient Particles`
+        DOM('lostTheory0').innerHTML= data.hasLostTheory[0]?`Lost Theory of Dreams<br>Dream Particles divide D1s cost<br>Unlocked!`:`Lost Theory of Dreams<br>Dream Particles divide D1s cost<br>Unlock Cost: ${format(lostTheoryCosts[0])} Derivative Particles`
+        DOM('lostTheory1').innerHTML= data.hasLostTheory[1]?`Lost Theory of Dreams II<br>Dream Particles divide the cost of Upgrades 1-4<br>Unlocked!`:`Lost Theory of Dreams II <br>Dream Particles divide the cost of Upgrades 1-4<br>Unlock Cost: ${format(lostTheoryCosts[1])} Derivative Particles`
+        DOM('lostTheory2').innerHTML= data.hasLostTheory[2]?`Lost Theory of Cycles<br>Total Lost Cycle levels multiply Oddity gain<br>Currently: ${format(lostTheory3Effect)}x`:`Lost Theory of Cycles <br>Total Lost Cycle levels multiply Oddity gain<br>Unlock Cost: ${format(lostTheoryCosts[2])} Derivative Particles<br>Currently: ${format(lostTheory3Effect)}x`
         for (let i=0;i<data.lostCycleLevels.length;i++){
             DOM(`lostCycle${i}`).innerHTML = `Lost Cycle ${lostCycleNumbers[i]}<br>${lostCycleEffectTexts[i]} [${format(lostCycleEffects[i])}x]<br>Cost: ${format(lostCycleCosts[i])} Derivative Particles<br>This Lost Cycle is currently level ${formatWhole(data.lostCycleLevels[i])}`
         }
         DOM('lostAutoBuymax').innerHTML = data.autoToggled[1]?'Auto Lost Cycle Buymax: ON':'Auto Lost Cycle Buymax: OFF'
     }
     //circles
-    updateCircleHTML()
+    if (data.currentTab === 5){
+        updateCircleHTML()
+    }
     //misc
     if (data.currentTab === 3){
         for (let i=0;i<legendsNumbers.length;i++){
@@ -83,9 +83,9 @@ let theoryDescriptions = [
     ()=>`The Theory of Numbers II<br>Bought D1s multiply D5 production<br>Currently: ${format(theoryEffects[13])}x<br>Unlock Cost: ${format(theoryCosts[13])} Oddities`,
     ()=>`The Theory of Peak Synergy II<br>Bought D5s boost D4, bought D4s boost D5, Upgrade ⬥ boosts D5, AND Bought D5s boost Upgrade ⬥ again<br>Currently: ${format(theoryEffects[14])}x<br>Unlock Cost: ${format(theoryCosts[14])} Oddities`,
     ()=>`The Theory of Circular Derivatives I<br>Bought D2 and D3s boost Circle Progress Speed<br>Currently: ${format(theoryEffects[15])}x<br>Unlock Cost: ${format(theoryCosts[15])} Oddities`,
-    ()=>`The Theory of Circular Derivatives II<br>Bought D2 and D3s divide the negative effects of Cycle 5 and Cycle 6<br>Currently: /${format(theoryEffects[16])}<br>Unlock Cost: ${format(theoryCosts[16])} Oddities`,
-    ()=>`The Theory of Circular Derivatives III<br>Bought D4s boost Cycle 5 and Cycle 6<br>Currently: ${format(theoryEffects[17])}x<br>Unlock Cost: ${format(theoryCosts[17])} Oddities`,
-    ()=>`The Theory of Circles Beyond Cycles<br>Total Cycle levels boost D1 and D5 production<br>Currently: ${format(theoryEffects[18])}x<br>Unlock Cost: ${format(theoryCosts[18])} Oddities`,
+    ()=>`The Theory of Circular Derivatives II<br>Total Cycle levels boost D1<br>Currently: ${format(theoryEffects[16])}x<br>Unlock Cost: ${format(theoryCosts[16])} Oddities`,
+    ()=>`The Theory of Circles Beyond Cycles<br>Total Cycle levels boost D1 and D5 production<br>Currently: ${format(theoryEffects[17])}x<br>Unlock Cost: ${format(theoryCosts[17])} Oddities`,
+    ()=>`The Theory of Circular Derivatives III<br>Total Cycle levels reduce the requirement for Upgrades 1-4<br>Currently: /${format(theoryEffects[18])}<br>Unlock Cost: ${format(theoryCosts[18])} Oddities`,
     ()=>`The Theory of Atomic Derivatives<br>Unlock a new Derivative Particle effect<br>Unlock Cost: ${format(theoryCosts[19])} Oddities`,
 ]
 function theoryTextUpdate(i){
@@ -95,34 +95,37 @@ function unlockTabs(){
     data.hasTab[0] = data.derivs[3].amt.gte(1) || data.hasTab[0]
     data.hasTab[1] = data.upgrades[3].amt.gte(1) || data.hasTab[1]
     data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
-    data.hasTab[3] = data.hasLostTheory[3]
+    data.hasTab[3] = data.hasLegend[5] || data.hasTab[3]
 }
 function tabChangeHTML(){
     //derivs
     DOM(`bigDerivativeContainer`).style.display = data.currentTab===1 ? 'flex' : 'none'
     DOM(`buymaxContainer`).style.display = data.currentTab===1 ? 'flex' : 'none'
-    DOM(`upgradeBuymax`).style.display = data.hasLegend[1]?'flex':'none'
-    DOM(`derivVButton`).style.display = data.hasLostTheory[4]?'flex':'none'
+    DOM(`autoBuymax`).style.display = data.hasLegend[0] ? 'flex' : 'none'
+    DOM(`upgradeBuymax`).style.display = data.hasLegend[2]?'flex':'none'
+    DOM(`derivVButton`).style.display = data.hasLegend[6]?'flex':'none'
     //upgrades
     DOM(`upgradeContainer`).style.display = data.oddities.gte(1e17) || data.upgrades[0].amt.gte(1)?'flex':'none'
     //theories
     DOM(`theoriesContainer`).style.display = data.currentTab===2?'flex':'none'
-    DOM(`theoryRow4`).style.display = data.hasLostTheory[3]?'flex':'none'
+    DOM(`theoryRow4`).style.display = data.hasLegend[6]?'flex':'none'
     DOM('theoryRow5').style.display = data.hasSecret[1]?'flex':'none'
     //legends
     DOM(`legendsContainer`).style.display = data.currentTab===3?'flex':'none'
     //lost
     DOM(`bigLostContainer`).style.display = data.currentTab===4?'flex':'none'
-    DOM(`lostAutoBuymax`).style.display = data.hasLegend[2]?'flex':'none'
+    DOM(`lostAutoBuymax`).style.display = data.hasLegend[3]?'flex':'none'
     DOM('lostCycle2').style.display = data.hasSecret[0]?'block':'none'
     DOM('lostCycle3').style.display = data.hasSecret[2]?'block':'none'
     //circles
     DOM('bigCirclesContainer').style.display = data.currentTab===5?'flex':'none'
+    DOM('cycleBuyMax').style.display = data.hasLegend[4]?'flex':'none'
     //settings
     DOM(`settingsContainer`).style.display = data.currentTab===0 ? 'flex':'none'
     //nav
     DOM(`milestoneNav`).style.display = data.hasTab[0] || data.hasTab[1]?'inline':'none'
     DOM(`lostNav`).style.display = data.hasLegend[0] || data.hasTab[2]?'inline':'none'
+    DOM(`circleNav`).style.display = data.particles[0].gte(1) || data.hasTab[3]?'inline':'none'
     //animations
     animationCavnas.style.display = data.currentTab===4?'flex':'none'
 }

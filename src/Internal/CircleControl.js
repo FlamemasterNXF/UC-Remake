@@ -12,29 +12,30 @@ function progress(i, x){
       #000 ${progressValues[i].times(3.6)}deg
     )`
     gainNumber(D(1).times(diff).times(theoryEffects[15]).times(lostCycleEffects[2]).times(BREAKPOINTS[1].effect()))
-    createBars()
+    if(data.circleProg.length < 5) createBars()
 }
 function createBars(su=false){
-    if(data.circleProg[data.circleProg.length-1].gte(100) || su){
-        let newBar = document.createElement('div')
-        let prevBar = document.getElementById(`bar${progressBars.length-1}`)
-        newBar.classList.add('circular-progress')
-        newBar.id = `bar${progressBars.length}`
-        newBar.style.height = `${180+(progressBars.length*10)}px`
-        newBar.style.width = `${180+(progressBars.length*10)}px`
-        container.appendChild(newBar)
-        newBar.appendChild(prevBar)
-        if (!su){
-            for(let i=0;i<data.circleProg.length;i++) data.circleProg[i] = D(1)
-            data.circleProg.push(new Decimal(1))
+        if(data.circleProg[data.circleProg.length-1].gte(100) || su){
+            let newBar = document.createElement('div')
+            let prevBar = document.getElementById(`bar${progressBars.length-1}`)
+            newBar.classList.add('circular-progress')
+            newBar.id = `bar${progressBars.length}`
+            newBar.style.height = `${180+(progressBars.length*10)}px`
+            newBar.style.width = `${180+(progressBars.length*10)}px`
+            container.appendChild(newBar)
+            newBar.appendChild(prevBar)
+            if (!su){
+                for(let i=0;i<data.circleProg.length;i++) data.circleProg[i] = D(1)
+                data.circleProg.push(new Decimal(1))
+            }
+            progressValues.push(new Decimal(1))
+            progressBars.push(newBar)
         }
-        progressValues.push(new Decimal(1))
-        progressBars.push(newBar)
-    }
 }
 function setupBars(x){
     fixCircleProg()
     let i=0
+    if (data.circleProg.length === 6) data.circleProg.pop()
     if(x>0){
         while (data.circleProg.length-1>i){
             createBars(true)
@@ -44,11 +45,16 @@ function setupBars(x){
 }
 
 function gainNumber(x){
-    data.circleProg[0] = data.circleProg[0].plus(x)
     for(let i=0;i<data.circleProg.length;i++){
-        if(data.circleProg[i].gte(100)&&data.circleProg[i+1]!==undefined){
-            data.circleProg[i+1] = data.circleProg[i+1].plus(data.circleProg[i].div(100).floor())
-            numberReset(i+1)
+        if(data.circleProg[i].gt(100)) data.circleProg[i] = D(100)
+    }
+    if(data.circleProg[0].lt(100)) data.circleProg[0] = data.circleProg[0].plus(x)
+    for(let i=0;i<data.circleProg.length;i++){
+        if(i<5){
+            if(data.circleProg[i].gte(100)&&data.circleProg[i+1]!==undefined){
+                data.circleProg[i+1] = data.circleProg[i+1].plus(data.circleProg[i].div(100).floor())
+                if(data.circleProg[i+1].lt(100)) numberReset(i+1)
+            }
         }
     }
 }
