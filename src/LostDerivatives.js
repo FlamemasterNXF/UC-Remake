@@ -83,6 +83,9 @@ function lostReset(){
         data.upgrades[i].amt = D(0)
     }
 }
+function sumLostCycleCosts(start, end,i){
+  return end.mul(end.pow(2).add(end.mul(18)).add(47)).div(30).mul(lostCycleCostBase[i]).sub(start.mul(start.pow(2).add(start.mul(18)).add(47)).div(30).mul(lostCycleCostBase[i]))
+}
 function buyMaxLostCycles(){
   for(let i=0;i<=3;i++){
     let dp = data.particles[1]
@@ -90,26 +93,26 @@ function buyMaxLostCycles(){
     if(dp.lte(0))break
     let startLevel = data.lostCycleLevels[i]
 dp=dp.div(4-i)// the .div(4-i) is to split DP evenly between the 4 lost cycles
-    
-      let spent = startLevel.mul(startLevel.pow(2).add(startLevel.mul(18)).add(47)).div(30).mul(lostCycleCostBase[i])
-      dp=dp.add(spent).div(lostCycleCostBase[i]) //setup
-      let thing = dp.pow(2).mul(6075).sub(dp.mul(60750)).sub(75106)
-      
-      let thing2 = thing.mul(3).sqrt().sub(dp.mul(135)).add(675).cbrt()
-      let maxLevels = thing2.mul(-1).div(Decimal.pow(3,2/3))
-      .sub(Decimal.div(61,thing2.mul(Decimal.pow(3,1/3)))).sub(6).clampMin(startLevel).floor()
+    let b = 0
+    let buy=new Decimal(0)
+    let decrease = false
+    while(b>=0){
+      if(sumLostCycleCosts(startLevel,startLevel.add(buy).add(Decimal.pow(2,b)),i).lte(dp)){
+        if(decrease){buy=buy.add(Decimal.pow(2,b)) }
+        else {buy=Decimal.pow(2,b)}
+        if(decrease){b--}
+        else{b++}
+      }else{
+          if(!decrease){              
+              buy=Decimal.pow(2,b)
+          b--
+          }
+        decrease=true
+        b--
           
-      data.lostCycleLevels[i].level = maxLevels
-      let totalCost = maxLevels.mul(maxLevels.pow(2).add(maxLevels.mul(18)).add(47)).div(30).mul(lostCycleCostBase[i]).sub(spent)
-      data.particles[1]=data.particles[1].sub(totalCost)
-    
+      }
+    }
+    data.lostCycleLevels[i]=data.lostCycleLevels[i].add(buy.clampMin(0).floor())
+    data.particles[1]=data.particles[1].sub(sumLostCycleCosts(startLevel, startLevel.add(buy),i))
   }
-  /*
-    for(let i=0;i<10;i++){
-        calculateLostCycleCosts()
-        buyLostCycle(1)
-        buyLostCycle(2)
-        buyLostCycle(3)
-        buyLostCycle(4)
-    }*/
 }
