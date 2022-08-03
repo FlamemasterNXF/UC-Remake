@@ -202,7 +202,7 @@ function buyMaxCycles(){
       // the 11-i is there to distribute dp evenly
       CYCLES[i].level = maxLevels
       data.cycleLevels[i-1] = maxLevels
-      let totalCost = maxLevels.mul(maxLevels.add(1)).div(2).add(a.div(10).add(1).mul(maxLevels)).mul(5e4).sub(spent)
+      let totalCost = maxLevels.mul(maxLevels.add(1)).div(2).add(a.mul(maxLevels)).mul(5e4).sub(spent)
       data.particles[1]=data.particles[1].sub(totalCost)
     }
   }
