@@ -87,6 +87,16 @@ function lostReset(){
         data.upgrades[i].amt = D(0)
     }
 }
+function buyMaxLostCycles() {
+    for (let i = 0; i < 10; i++) {
+        calculateLostCycleCosts()
+        buyLostCycle(1)
+        buyLostCycle(2)
+        buyLostCycle(3)
+        buyLostCycle(4)
+    }
+}
+/*
 function sumLostCycleCosts(start, end,i){
   return end.mul(end.pow(2).add(end.mul(18)).add(47)).div(30).mul(lostCycleCostBase[i]).sub(start.mul(start.pow(2).add(start.mul(18)).add(47)).div(30).mul(lostCycleCostBase[i]))
 }
@@ -121,3 +131,4 @@ dp=dp.div(4-i)// the .div(4-i) is to split DP evenly between the 4 lost cycles
     data.particles[1]=data.particles[1].sub(sumLostCycleCosts(startLevel, startLevel.add(buy),i))
   }
 }
+*/
