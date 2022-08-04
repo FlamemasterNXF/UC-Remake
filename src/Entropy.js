@@ -1,8 +1,8 @@
 const ENTROPY = {
     entropyGain() {
-        if(data.oddities.gt(1e150)){
-            return data.oddities.sub(1e150).log10()
-        }
+        if(data.oddities.gt(1e250)){ return data.oddities.sqrt() }
+        if(data.oddities.gt(1e200)){ return data.oddities.log2() }
+        if(data.oddities.gt(1e150)){ return data.oddities.log10() }
         else{ return D(0) }
     },
     gainEntropy(diff) {
@@ -10,6 +10,6 @@ const ENTROPY = {
     },
     updateHTML() {
         DOM('entropyDisplay').style.display = this.entropyGain().gt(0) ? 'flex' : 'none'
-        DOM('entropyDisplay').innerText = `You have accumulated ${format(data.entropy)} Entropy, dividing your Oddity gain by ${format(data.entropy)} [+${format(this.entropyGain())}/s]`
+        DOM('entropyDisplay').innerText = `There is ${format(data.entropy)} Entropy, dividing Oddity gain by ${format(data.entropy)} [+${format(this.entropyGain())}/s]`
     }
 }
