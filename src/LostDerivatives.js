@@ -22,7 +22,7 @@ function calculateLostStuff(){
     if(dpGain.gt(1e15))dpGain=dpGain.pow(1/3).mul(1e10)
     particleGains[0] = dpGain
     particleGains[1] = data.particles[0].gte(1)?((data.particles[0].sqrt().times(derivativeParticleEffect).times(CYCLES[8].effect())).div(BREAKPOINTS[1].nerf())).div(BREAKPOINTS[4].nerf()):D(0)
-      
+
     derivativeParticleEffect = data.particles[1].gte(1)?(data.particles[1].sqrt().plus(1)).times(CYCLES[9].effect()):D(1)
     derivativeParticleEffect2 = theoryEffects[19]?data.particles[1].gte(1)?data.particles[1].log2().sqrt().plus(1):D(1):D(1)
     dreamParticleEffects[0] = data.particles[2].gte(1)?(data.particles[2].sqrt().plus(1)).times(CYCLES[5].effect()):D(1)
@@ -78,6 +78,7 @@ function lostControl(){
 function lostReset(){
     data.autoToggled[0] = false
     data.oddities=D(2)
+    data.entropy=D(1)
     for (let i=0;i<data.derivs.length;i++){
         data.derivs[i].b = D(0)
         data.derivs[i].amt = D(0)
@@ -106,13 +107,13 @@ dp=dp.div(4-i)// the .div(4-i) is to split DP evenly between the 4 lost cycles
         if(decrease){b--}
         else{b++}
       }else{
-          if(!decrease){              
+          if(!decrease){
               buy=Decimal.pow(2,b)
           b--
           }
         decrease=true
         b--
-          
+
       }
     }
     if(!sumLostCycleCosts(startLevel,startLevel.add(buy).add(Decimal.pow(2,b)),i).lte(dp)){buy=buy.sub(1)}
