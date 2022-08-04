@@ -157,7 +157,7 @@ function updateCircleHTML(){
     DOM('circleDerivPDisplay').innerText = `You have ${format(data.particles[1])} Derivative Particles`
     DOM('cycleBuyMax').innerHTML = data.autoToggled[2]?'Auto Cycle Buymax: ON':'Auto Cycle Buymax: OFF'
     for(let i=1;i<10;i++){
-        DOM(`cycle${i}`).innerText = `Cycle ${CYCLES.names[i-1]} [${data.cycleLevels[i-1]}]\n${CYCLES[i].desc()}\nCost: ${format(CYCLES[i].cost())} Derivative Particles`
+        DOM(`cycle${i}`).innerText = `Cycle ${CYCLES.names[i-1]} [${format(data.cycleLevels[i-1])}]\n${CYCLES[i].desc()}\nCost: ${format(CYCLES[i].cost())} Derivative Particles`
     }
     for(let i=1;i<5;i++){
         BREAKPOINTS[i].enabled = data.breakpointsEnabled[i-1]

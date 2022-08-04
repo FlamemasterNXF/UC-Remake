@@ -6,6 +6,7 @@ function getDefaultObject() {
         //oddities
         oddities: D(2),
         oddityGain: D(0),
+        entropy: D(1),
         //derivatives
         derivs: [{b:D(0),amt:D(0),c:D(2),u:true}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}, {b:D(0),amt:D(0),c:D(2),u:false}],
         //upgrades

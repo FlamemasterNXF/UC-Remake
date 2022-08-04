@@ -1,6 +1,7 @@
 function updateHTML(){
     // region constant
     DOM('oddityDisplay').innerText = `There are ${format(data.oddities)} Oddities [${format(data.oddityGain)}/s]`
+    ENTROPY.updateHTML()
     DOM('mysteriesNav').innerText = data.hasTab[0]?'Theories':'???'
     DOM('milestoneNav').innerText = data.hasTab[1]?'Legends':'???'
     DOM('lostNav').innerText = data.hasTab[2]?'Lost Derivatives':'???'
