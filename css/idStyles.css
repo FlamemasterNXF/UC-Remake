@@ -190,6 +190,25 @@
     color: #d28500;
     text-align: center;
 }
+#ticker {
+    border: 2px solid whitesmoke;
+    border-radius: 4px;
+    padding: 2px;
+    width: 45%;
+    overflow:hidden;
+    margin:auto;
+    margin-top: 0.5vh;
+    text-align: left;
+}
+
+#news {
+    color:inherit;
+    position: relative;
+    display:inline-block;
+    font-size:15px;
+    font-family:DosisLight;
+    white-space: nowrap;
+}
 #ourgwa{
     width: 99%;
     height: 99%;

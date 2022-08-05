@@ -47,3 +47,12 @@ window.setInterval(function(){
 window.setInterval(function(){
     if (data.settingsToggles[1]) animationsLoop()
 }, 20);
+
+window.onload = function (){
+    load()
+    if(data.hasTab[3]) setupBars(data.circleProg.length-1)
+    changeCirclesTab('cycles')
+    changeLegendsTab('legacies')
+    DOM('ticker').style.display = data.ticker?'flex':'none'
+    scrollNextMessage()
+}

@@ -30,6 +30,7 @@ function getDefaultObject() {
         autoToggled: Array(3).fill(false),
         hasLegend: Array(7).fill(false),
         hasTab: Array(4).fill(false),
+        ticker: false,
         time: Date.now(),
         devSpeed: 1,
         currentTab: 1,
@@ -92,7 +93,12 @@ function importSave() {
         createAlert('Failure', 'No data found.', `Oops.`)
         return
     }
-    if (importedData === "ourgwa") {ourgwatrigger(); DOM('promptContainer').style.display = 'none'}
+    if (importedData.toLowerCase() === "ourgwa" || importedData.toLowerCase() === "china") {ourgwatrigger(); DOM('promptContainer').style.display = 'none'}
+    if (importedData.toLowerCase() === "5 hours") {
+        data.ticker = true
+        DOM('promptContainer').style.display = 'none'
+        DOM('ticker').style.display = 'flex'
+    }
     data = Object.assign(getDefaultObject(), JSON.parse(atob(importedData)))
     save()
     location.reload()
@@ -100,12 +106,6 @@ function importSave() {
 window.setInterval(function(){
     save()
 }, 10000);
-window.onload = function (){
-    load()
-    if(data.hasTab[3]) setupBars(data.circleProg.length-1)
-    changeCirclesTab('cycles')
-    changeLegendsTab('legacies')
-}
 //full reset
 function beginFullReset(){
     createConfirmation(0, 'Are you sure?', 'Are you absolutely sure you want to do this?\nThis will export your save (just in case) but delete your save from LocalStorage.', 'No Way!', 'Yes, I understand the consequences.')
