@@ -94,7 +94,7 @@ function importSave() {
     }
     if (importedData.toLowerCase() === "ourgwa" || importedData.toLowerCase() === "china") {ourgwatrigger(); DOM('promptContainer').style.display = 'none'}
     if (importedData.toLowerCase() === "5 hours") {
-        data.ticker = true
+        data.ticker = !data.ticker
         DOM('promptContainer').style.display = 'none'
         DOM('ticker').style.display = 'flex'
         scrollNextMessage()
