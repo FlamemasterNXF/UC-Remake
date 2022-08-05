@@ -50,9 +50,9 @@ window.setInterval(function(){
 
 window.onload = function (){
     load()
+    DOM('ticker').style.display = data.ticker?'flex':'none'
     if(data.hasTab[3]) setupBars(data.circleProg.length-1)
     changeCirclesTab('cycles')
     changeLegendsTab('legacies')
-    DOM('ticker').style.display = data.ticker?'flex':'none'
     scrollNextMessage()
 }
