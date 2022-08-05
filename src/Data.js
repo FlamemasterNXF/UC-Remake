@@ -97,6 +97,7 @@ function importSave() {
         data.ticker = true
         DOM('promptContainer').style.display = 'none'
         DOM('ticker').style.display = 'flex'
+        scrollNextMessage()
     }
     data = Object.assign(getDefaultObject(), JSON.parse(atob(importedData)))
     save()
