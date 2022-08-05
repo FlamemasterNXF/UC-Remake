@@ -14,7 +14,7 @@ function updateNewsArray() {
         "So, lets sit down and actually think about this. What's the purpose here? From Derivatives to Theories to another Derivative to Circles??? Where is this going? What's the point? Is it ever going to end?",
         "New Stairs coming next update!", "(softcapped)... I mean ENTROPY!! Entropy, am I right guys???", "This news ticker seems like it's biased towards certain messages -A Liar",
         "Try importing 'ourgwa' into the import save area... ;)", 'The Theory of Lost Theories of Circle Derivative Legends',
-        'Are Oddities just Derivative Zeros?', 'Dream and Derivative Particles get all the attention :( #AncientParticleLove', 
+        'Are Oddities just Derivative Zeros?', 'Dream and Derivative Particles get all the attention :( #AncientParticleLove',
     ]
 }
 
