@@ -68,7 +68,6 @@ function fixOldSaves(){
     if(data.version !== VERSION){
         createAlert('Welcome Back!', `You've loaded into UC v${VERSION}\nNew things have been added since last time you played!\nEnjoy!`, 'Awesome!')
     }
-    if(data.lostCycleLevels.length === 3) data.lostCycleLevels.splice(2)
     data.version = VERSION
 }
 function exportSave(){
