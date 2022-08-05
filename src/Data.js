@@ -96,8 +96,8 @@ function importSave() {
     if (importedData.toLowerCase() === "5 hours") {
         data.ticker = !data.ticker
         DOM('promptContainer').style.display = 'none'
-        DOM('ticker').style.display = 'flex'
-        scrollNextMessage()
+        DOM('ticker').style.display = data.ticker?'flex':'none'
+        if(data.ticker) scrollNextMessage()
     }
     data = Object.assign(getDefaultObject(), JSON.parse(atob(importedData)))
     save()
