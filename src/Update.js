@@ -141,5 +141,5 @@ function tabChangeHTML(){
     DOM(`inversionsNav`).style.display = data.breakpointsUnlocked[1] || data.hasTab[4]?'inline':'none'
     DOM(`complexityNav`).style.display = false || data.hasTab[5]?'inline':'none'
     //animations
-    animationCavnas.style.display = data.currentTab===4?'flex':'none'
+    animationCavnas.style.display = [4,6,7].includes(data.currentTab)?'flex':'none'
 }
