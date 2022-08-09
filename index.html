@@ -240,14 +240,19 @@
         </div>
     </div>
     <div class="flexBox" id="bigInversionsContainer" style="flex-direction: column">
+        <p class="generalTexts" id="inversionsDisplay" style="margin-top: 10px; margin-bottom: 2px; color: #6ab75e; text-align: center; font-family: DosisBold">There are 0 Inversions</p>
+        <button class="navButton" id="toggleInversions" style="margin-bottom: 2px; background-color: black; color: #6ab75e; text-align: center; font-family: DosisSemiBold" onclick="data.inversionEnabled = !data.inversionEnabled">amongus</button>
         <div class="flexBox" id="inversionSubtabContainer" style="flex-direction: row; margin-top: 7px">
             <button class="navButton" id="invertedTheoriesNav" style="background-color: black; color: #02a046" onclick="changeInversionsTab('invertedTheories')">Inverted Theories</button>
             <button class="navButton" id="deepInversionsNav" style="background-color: black; color: #02a046" onclick="changeInversionsTab('deepInversions')">Deep Inversions</button>
             <button class="navButton" id="inversionInversionNav" style="background-color: black; color: #02a046" onclick="changeInversionsTab('inversionInversion')">Inversion Inversion</button>
         </div>
-        <strong class="generalTexts" id="inversionsDisplay" style="margin-top: 10px; color: #6ab75e">There are 0 Inversions</strong>
         <div class="flexBox" id="invertedTheoriesContainer" style="flex-direction: column">
-            <p class="generalTexts">Inverted Theories</p>
+            <div class="flexBox theoryRow" id="invertedTheoryRow1" style="margin-top: 10px">
+                <button class="iTheory" id="iTheory0" onclick="buyTheory(0)">Inverted Theory I</button>
+                <button class="iTheory" id="iTheory1" onclick="buyTheory(1)">Inverted II</button>
+                <button class="iTheory" id="iTheory2" onclick="buyTheory(2)">Inverted III</button>
+            </div>
         </div>
         <div class="flexBox" id="deepInversionsContainer" style="flex-direction: column">
             <p class="generalTexts">Deep Inversions</p>

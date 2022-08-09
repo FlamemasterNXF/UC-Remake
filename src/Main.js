@@ -3,9 +3,9 @@ function increaseOddities(i){
 }
 function calculateOddityGain(){
     data.oddityGain =
-        ((data.derivs[0].amt.times(CYCLES[1].effect())).times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7])
+        (((data.derivs[0].amt.times(CYCLES[1].effect())).times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7])
             .times(lostCycleEffects[0]).times(theoryEffects[9]).times(dreamParticleEffects[0]).times(theoryEffects[10]).times(dreamParticleEffects[2])
-            .times(theoryEffects[17])).div(data.entropy)
+            .times(theoryEffects[17])).div(INVERSIONS.inversionEffect())).div(data.entropy)
 }
 let diff
 function mainLoop(){
@@ -16,6 +16,7 @@ function mainLoop(){
     produceDerivs(diff)
     increaseOddities(data.oddityGain.times(diff))
     ENTROPY.gainEntropy(diff)
+    INVERSIONS.gain(diff)
     automate()
     if(data.hasLegend[5]) for(let i=0;i<data.circleProg.length;i++) progress(i, data.circleProg[i])
     updateHTML()

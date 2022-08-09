@@ -54,6 +54,10 @@ function updateHTML(){
     if (data.currentTab === 5){
         updateCircleHTML()
     }
+    //circles
+    if (data.currentTab === 6){
+        INVERSIONS.updateHTML()
+    }
     //misc
     if (data.currentTab === 3){
         for (let i=0;i<legendsNumbers.length;i++){
