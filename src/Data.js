@@ -25,11 +25,14 @@ function getDefaultObject() {
         breakpointsUnlocked: Array(4).fill(false),
         breakpointsEnabled: Array(4).fill(false),
         hasSecret: Array(3).fill(false),
+        //inversions
+        inversions: D(1),
+        inversionEnabled: false,
         //misc
         settingsToggles: [true, true, true,], //changelog, animation, offline time
         autoToggled: Array(3).fill(false),
-        hasLegend: Array(7).fill(false),
-        hasTab: Array(4).fill(false),
+        hasLegend: Array(8).fill(false),
+        hasTab: Array(6).fill(false),
         ticker: false,
         time: Date.now(),
         devSpeed: 1,

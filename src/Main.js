@@ -54,5 +54,6 @@ window.onload = function (){
     if(data.hasTab[3]) setupBars(data.circleProg.length-1)
     changeCirclesTab('cycles')
     changeLegendsTab('legacies')
+    changeInversionsTab('invertedTheories')
     scrollNextMessage()
 }

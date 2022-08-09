@@ -29,7 +29,7 @@ function calculateUpgradeEffects(){
     upgradeEffects[4] = D(data.upgrades[4].amt.plus(1)).times(theoryEffects[8]).times(theoryEffects[11]).times(theoryEffects[14]).times(derivativeParticleEffect2)
 }
 function buyMaxUpgrades(){
-    for(let i=0;i<100;i++){
+    for(let i=0;i<30;i++){
         calculateUpgradeCosts()
         buyUpgrade(1)
         buyUpgrade(2)

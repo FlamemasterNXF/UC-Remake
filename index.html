@@ -12,6 +12,7 @@
     <script defer src="src/Data.js"></script>
     <script defer src="src/Internal/CircleControl.js"></script>
     <script defer src="src/SmallScripts/Settings.js"></script>
+    <script defer src="src/Inversions.js"></script>
     <script defer src="src/Circles.js"></script>
     <script defer src="src/LostDerivatives.js"></script>
     <script defer src="src/Theories.js"></script>
@@ -73,6 +74,8 @@
         <button class="navButton" id="milestoneNav" onclick="switchTab(3)">Legends</button>
         <button class="navButton" id="lostNav" onclick="switchTab(4)">Lost Derivative</button>
         <button class="navButton" id="circleNav" style="background-color: #d7c200" onclick="switchTab(5)">The Circles</button>
+        <button class="navButton" id="inversionsNav" style="background-color: #02a046" onclick="switchTab(6)">Inversions</button>
+        <button class="navButton" id="complexityNav" onclick="switchTab(7)">Complexity</button>
         <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
     </div>
     <div class="flexBox" id="buymaxContainer">
@@ -159,6 +162,7 @@
             <button class="legend" id="legend1">Treasure One<br>Discovered by purchasing an Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
             <button class="legend" id="legend5">Treasure Two<br>Discovered by reaching 100,000 Ancient Particles<br>Unlock the Circles</button>
             <button class="legend" id="legend6">Treasure Three<br>Discovered by reaching 1e7 Ancient Particles<br>`ǝ̴̨̨̦̙͍̆̀̃͐̊̽̈̔̈̋̿͒͝ͅʌ̶̡̤̕͝͠ᴉ̷̮̬̥̳̎̔̓̽̄Ⅎ̴͓̫̖̻̗̤̟̣̿͋̔̅̊͂̓̑̎͌͋͒͘͝ʌ̶̗͚͚̬̊̀̾̏́̇͋̂̍̋̽͝ᴉ̷̧̯̺̞͍̳̼̤͔̠͑̓̑̈́͂͝ɹ̶̡̮͔̗͙̰̗̘͍̘͓̩̾͘ǝ̸̛̹̙̖̈́͋͋̕p̷̯̳͔͉̗̱̒̀ʞ̴͓̝̹͈̩̮̈́͛͜͜ɔ̴̡̨̨͍̭͎̽̑̎̾̄̔̌͋͂͘͜͝͝ỡ̶̢̲͍͙̮͒̕l̷̥̠͑̏͗̉̑̌̍ũ̸̡̨̡͙͚̟̞̤̦͖̞̖͖̅̀͋͂̎̓̈̊∩̸͎̐͂̕</button>
+            <button class="legend" id="legend7">Treasure Four<br>Discovered by reaching 1e150 Oddities<br>Unlock Inversions</button>
         </div>
     </div>
     <div class="flexBox" id="bigLostContainer">
@@ -233,6 +237,23 @@
                 <button class="secret" id="secret2">Hello chat</button>
                 <button class="secret" id="secret3">Hello chat</button>
             </div>
+        </div>
+    </div>
+    <div class="flexBox" id="bigInversionsContainer" style="flex-direction: column">
+        <div class="flexBox" id="inversionSubtabContainer" style="flex-direction: row; margin-top: 7px">
+            <button class="navButton" id="invertedTheoriesNav" style="background-color: black; color: #02a046" onclick="changeInversionsTab('invertedTheories')">Inverted Theories</button>
+            <button class="navButton" id="deepInversionsNav" style="background-color: black; color: #02a046" onclick="changeInversionsTab('deepInversions')">Deep Inversions</button>
+            <button class="navButton" id="inversionInversionNav" style="background-color: black; color: #02a046" onclick="changeInversionsTab('inversionInversion')">Inversion Inversion</button>
+        </div>
+        <strong class="generalTexts" id="inversionsDisplay" style="margin-top: 10px; color: #6ab75e">There are 0 Inversions</strong>
+        <div class="flexBox" id="invertedTheoriesContainer" style="flex-direction: column">
+            <p class="generalTexts">Inverted Theories</p>
+        </div>
+        <div class="flexBox" id="deepInversionsContainer" style="flex-direction: column">
+            <p class="generalTexts">Deep Inversions</p>
+        </div>
+        <div class="flexBox" id="inversionInversionContainer" style="flex-direction: column">
+            <p class="generalTexts">Inversion Inversion</p>
         </div>
     </div>
     <div class="flexBox" id="settingsContainer">

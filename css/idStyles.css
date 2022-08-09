@@ -209,6 +209,12 @@
     font-family:DosisLight;
     white-space: nowrap;
 }
+#complexityNav{
+    border-image: linear-gradient(45deg, rgb(143, 0, 98), rgb(250, 66, 170)) 1;
+    background-color: rgba(5, 86, 18, 0.15);
+    color: #fb3c91;
+    text-shadow: 1px 1px 10px #fb3c91, 1px 1px 10px #fb3c91;
+}
 #ourgwa{
     width: 99%;
     height: 99%;

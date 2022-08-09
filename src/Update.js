@@ -6,6 +6,8 @@ function updateHTML(){
     DOM('milestoneNav').innerText = data.hasTab[1]?'Legends':'???'
     DOM('lostNav').innerText = data.hasTab[2]?'Lost Derivatives':'???'
     DOM('circleNav').innerText = data.hasTab[3]?'Circles':'???'
+    DOM('inversionsNav').innerText = data.hasTab[4]?'Inversions':'???'
+    DOM('complexityNav').innerText = data.hasTab[5]?'Complexity':'???'
     DOM('lostInDisplay').style.display = data.inLost?'flex':'none'
     DOM('ourgwa').style.display = ourgwatriggered ? 'flex':'none'
     //endregion
@@ -97,6 +99,8 @@ function unlockTabs(){
     data.hasTab[1] = data.upgrades[3].amt.gte(1) || data.hasTab[1]
     data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
     data.hasTab[3] = data.hasLegend[5] || data.hasTab[3]
+    data.hasTab[4] = data.hasLegend[7] || data.hasTab[4]
+    data.hasTab[5] = false || data.hasTab[5]
 }
 function tabChangeHTML(){
     //derivs
@@ -121,12 +125,17 @@ function tabChangeHTML(){
     //circles
     DOM('bigCirclesContainer').style.display = data.currentTab===5?'flex':'none'
     DOM('cycleBuyMax').style.display = data.hasLegend[4]?'flex':'none'
+    //inversions
+    DOM('bigInversionsContainer').style.display = data.currentTab===6?'flex':'none'
+    DOM('inversionInversionNav').style.display = false?'flex':'none'
     //settings
     DOM(`settingsContainer`).style.display = data.currentTab===0 ? 'flex':'none'
     //nav
     DOM(`milestoneNav`).style.display = data.hasTab[0] || data.hasTab[1]?'inline':'none'
     DOM(`lostNav`).style.display = data.hasLegend[0] || data.hasTab[2]?'inline':'none'
     DOM(`circleNav`).style.display = data.particles[0].gte(1) || data.hasTab[3]?'inline':'none'
+    DOM(`inversionsNav`).style.display = data.breakpointsUnlocked[1] || data.hasTab[4]?'inline':'none'
+    DOM(`complexityNav`).style.display = false || data.hasTab[5]?'inline':'none'
     //animations
     animationCavnas.style.display = data.currentTab===4?'flex':'none'
 }
