@@ -32,9 +32,8 @@ function calculationsLoop(){
 }
 function switchTab(i){
     data.currentTab = i
-    let x=i-2
-    if (x >= 0) data.hasTab[x] ? data.currentTab=i : data.currentTab=1
-    i < 4 || !data.settingsToggles[1] ? animationCavnas.style.display = 'none' : animationCavnas.style.display = 'flex'
+    if (data.hasTab[i]){ data.currentTab=i }
+    else { data.currentTab=1; createAlert('Tab Locked','You must progress further to unlock this tab!', 'Aw...')  }
     tabChangeHTML()
 }
 document.addEventListener('keydown', (event) => {

@@ -33,7 +33,7 @@ function getDefaultObject() {
         settingsToggles: [true, true, true,], //changelog, animation, offline time
         autoToggled: Array(3).fill(false),
         hasLegend: Array(8).fill(false),
-        hasTab: Array(6).fill(false),
+        hasTab: Array(8).fill(false),
         ticker: false,
         time: Date.now(),
         devSpeed: 1,

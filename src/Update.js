@@ -2,12 +2,12 @@ function updateHTML(){
     // region constant
     DOM('oddityDisplay').innerText = `There are ${format(data.oddities)} Oddities [${format(data.oddityGain)}/s]`
     ENTROPY.updateHTML()
-    DOM('mysteriesNav').innerText = data.hasTab[0]?'Theories':'???'
-    DOM('milestoneNav').innerText = data.hasTab[1]?'Legends':'???'
-    DOM('lostNav').innerText = data.hasTab[2]?'Lost Derivatives':'???'
-    DOM('circleNav').innerText = data.hasTab[3]?'Circles':'???'
-    DOM('inversionsNav').innerText = data.hasTab[4]?'Inversions':'???'
-    DOM('complexityNav').innerText = data.hasTab[5]?'Complexity':'???'
+    DOM('mysteriesNav').innerText = data.hasTab[2]?'Theories':'???'
+    DOM('milestoneNav').innerText = data.hasTab[3]?'Legends':'???'
+    DOM('lostNav').innerText = data.hasTab[4]?'Lost Derivatives':'???'
+    DOM('circleNav').innerText = data.hasTab[5]?'Circles':'???'
+    DOM('inversionsNav').innerText = data.hasTab[6]?'Inversions':'???'
+    DOM('complexityNav').innerText = data.hasTab[7]?'Complexity':'???'
     DOM('lostInDisplay').style.display = data.inLost?'flex':'none'
     DOM('ourgwa').style.display = ourgwatriggered ? 'flex':'none'
     //endregion
@@ -99,12 +99,14 @@ function theoryTextUpdate(i){
     document.getElementById("theoriesText").innerHTML = `${theoryDescriptions[i]()}<br>Effects are only shown once you've unlocked the Theory!`
 }
 function unlockTabs(){
-    data.hasTab[0] = data.derivs[3].amt.gte(1) || data.hasTab[0]
-    data.hasTab[1] = data.upgrades[3].amt.gte(1) || data.hasTab[1]
-    data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
-    data.hasTab[3] = data.hasLegend[5] || data.hasTab[3]
-    data.hasTab[4] = data.hasLegend[7] || data.hasTab[4]
-    data.hasTab[5] = false || data.hasTab[5]
+    data.hasTab[0] = true
+    data.hasTab[1] = true
+    data.hasTab[2] = data.derivs[3].amt.gte(1) || data.hasTab[2]
+    data.hasTab[3] = data.upgrades[3].amt.gte(1) || data.hasTab[3]
+    data.hasTab[4] = data.hasTheory[9] || data.hasTab[4]
+    data.hasTab[5] = data.hasLegend[5] || data.hasTab[5]
+    data.hasTab[6] = data.hasLegend[7] || data.hasTab[6]
+    data.hasTab[7] = false || data.hasTab[7]
 }
 function tabChangeHTML(){
     //derivs
@@ -135,11 +137,11 @@ function tabChangeHTML(){
     //settings
     DOM(`settingsContainer`).style.display = data.currentTab===0 ? 'flex':'none'
     //nav
-    DOM(`milestoneNav`).style.display = data.hasTab[0] || data.hasTab[1]?'inline':'none'
-    DOM(`lostNav`).style.display = data.hasLegend[0] || data.hasTab[2]?'inline':'none'
-    DOM(`circleNav`).style.display = data.particles[0].gte(1) || data.hasTab[3]?'inline':'none'
-    DOM(`inversionsNav`).style.display = data.breakpointsUnlocked[1] || data.hasTab[4]?'inline':'none'
-    DOM(`complexityNav`).style.display = false || data.hasTab[5]?'inline':'none'
+    DOM(`milestoneNav`).style.display = data.hasTab[2] || data.hasTab[3]?'inline':'none'
+    DOM(`lostNav`).style.display = data.hasLegend[0] || data.hasTab[4]?'inline':'none'
+    DOM(`circleNav`).style.display = data.particles[0].gte(1) || data.hasTab[5]?'inline':'none'
+    DOM(`inversionsNav`).style.display = data.breakpointsUnlocked[1] || data.hasTab[6]?'inline':'none'
+    DOM(`complexityNav`).style.display = false || data.hasTab[7]?'inline':'none'
     //animations
     animationCavnas.style.display = [4,6,7].includes(data.currentTab)?'flex':'none'
 }
