@@ -98,8 +98,16 @@
     background-color: #02a046;
     border: 3px #191717 solid;
     font-family: DosisSemiBold;
-    min-height: 60px;
-    min-width: 80px;
+    min-height: 80px;
+    width: 200px;
+    transition: all 0.5s ease-in-out;
+    transform: scale(1);
+}
+.iTheory:hover {
+    transform: scale(1.25);
+    box-shadow: 0 5px 15px rgba(98, 182, 92, 0.4);
+    position: relative;
+    z-index: 2;
 }
 .circleContainer {
     height: 250px;

@@ -54,7 +54,7 @@ function updateHTML(){
     if (data.currentTab === 5){
         updateCircleHTML()
     }
-    //circles
+    //inversions
     if (data.currentTab === 6){
         INVERSIONS.updateHTML()
     }

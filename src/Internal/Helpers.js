@@ -32,3 +32,9 @@ function numToRoman(num) {
         roman_num = (key[+digits.pop() + (i * 10)] || "") + roman_num
     return Array(+digits.join("") + 1).join("M") + roman_num
 }
+
+function checkAllIndexes(array, value) {
+    let indexes = 0
+    for(let i = 0; i < array.length; i++){ if (array[i] === value) indexes++ }
+    return D(indexes)
+}

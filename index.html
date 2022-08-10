@@ -7,7 +7,7 @@
     <script defer src="src/Internal/Formatting.js"></script>
     <script defer src="src/Internal/BreakEternity.js"></script>
     <script defer src="src/SmallScripts/ourgwa.js"></script>
-    <script defer src="src/Internal/Minor.js"></script>
+    <script defer src="src/Internal/Helpers.js"></script>
     <script defer src="src/Internal/Modal.js"></script>
     <script defer src="src/Data.js"></script>
     <script defer src="src/Internal/CircleControl.js"></script>
@@ -249,9 +249,9 @@
         </div>
         <div class="flexBox" id="invertedTheoriesContainer" style="flex-direction: column">
             <div class="flexBox theoryRow" id="invertedTheoryRow1" style="margin-top: 10px">
-                <button class="iTheory" id="iTheory0" onclick="buyTheory(0)">Inverted Theory I</button>
-                <button class="iTheory" id="iTheory1" onclick="buyTheory(1)">Inverted II</button>
-                <button class="iTheory" id="iTheory2" onclick="buyTheory(2)">Inverted III</button>
+                <button class="iTheory" id="iTheory0" onclick="INVERSIONS.buyITheory(0)" >Inverted Theory I</button>
+                <button class="iTheory" id="iTheory1" onclick="INVERSIONS.buyITheory(1)">Inverted II</button>
+                <button class="iTheory" id="iTheory2" onclick="INVERSIONS.buyITheory(2)">Inverted III</button>
             </div>
         </div>
         <div class="flexBox" id="deepInversionsContainer" style="flex-direction: column">
