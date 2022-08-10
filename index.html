@@ -41,6 +41,7 @@
             <h3 id="promptTitle"></h3>
             <input id="promptInput" type="text" placeholder="Enter text">
             <button id="promptButton">Submit</button>
+            <button id="promptCancelButton" onclick="closeModal(1)">Cancel</button>
         </div>
     </div>
     <div class="flexbox modalContainer" id="alertContainer">
@@ -263,8 +264,9 @@
     </div>
     <div class="flexBox" id="settingsContainer">
         <div class="flexBox" id="saveControl">
-            <button class="settingsButtons" onclick="exportSave(); createAlert('Saved', 'Game successfully saved manually!', 'Sweet.')">Save your game</button>
+            <button class="settingsButtons" onclick="save(); createAlert('Saved', 'Game successfully saved manually!', 'Sweet.')">Save your game</button>
             <button class="settingsButtons" onclick="exportSave()">Export your Savefile</button>
+            <button class="settingsButtons" onclick="downloadSave()">Download your Savefile</button>
             <button class="settingsButtons" onclick="beginImport()">Import your Savefile</button>
             <button class="settingsButtons" style="color: darkred" onclick="beginFullReset()">Export and Delete your Savefile</button>
         </div>
