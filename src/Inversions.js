@@ -23,16 +23,19 @@ const INVERSIONS = {
         }
     },
     effectDescriptions: [
-        `Inversions divide Entropy gain`, `Bought Inverted Theories boost Inverted Theories`, `Circle Progress boosts The Theory of Multiplication`
+        `Inversions divide Entropy gain`, `Bought Inverted Theories boost Inverted Theories`, `Circle Progress boosts The Theory of Multiplication`,
+        'Ancient Particles boost Inversion gain', 'Entropy boosts Inversion gain'
     ],
     costs: [
-        D(2e3), D(2e3), D(1e96)
+        D(2e3), D(2e3), D(1e96), D(1e96), D(1e96)
     ],
     iTheoryEffects() {
         return [
             data.hasInvertedTheory[0]&&data.inversions.gte(10)?data.inversions.log10():D(0),
             data.hasInvertedTheory[1]?checkAllIndexes(data.hasInvertedTheory, true):D(0),
             data.hasInvertedTheory[2]&&c().gte(10)?c().sqrt().log10():D(0),
+            data.hasInvertedTheory[3]&&data.particles[0].exponent >= 1?data.particles[0].exponent:D(0),
+            data.hasInvertedTheory[4]&&data.entropy.gte(10)?data.entropy.sqrt():D(0),
         ]
     }
 
