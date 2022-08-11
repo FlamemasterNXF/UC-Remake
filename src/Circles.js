@@ -175,10 +175,10 @@ function changeCirclesTab(i){
     if(i!=='secrets') DOM('secretsContainer').style.display = 'none'
 }
 function buyMaxCycles(){
-  for(let i=1;i<=9;i++){
+  for(let i=1;i<=10;i++){
     let dp = data.particles[1]
     if(dp.lte(0))break
-    let startLevel = data.cycleLevels[i===9?1:i] // buy cycle 1 last
+    let startLevel = data.cycleLevels[i===9?0:i-1] // buy cycle 1 last
     if(i===10){
       let spent = startLevel.mul(startLevel).mul(0.55).add(startLevel.mul(1.55)).mul(5e4)
       let maxLevels = dp.div(5e4).add(spent.div(5e4)).mul(880).add(961).sqrt().div(22).sub(31/22).floor().clampMin(startLevel)
