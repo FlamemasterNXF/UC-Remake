@@ -1,4 +1,11 @@
 const INVERSIONS = {
+    totalITheoryLevels(){
+        let total = D(0)
+        for(let i=0; i<data.invertedTheoryLevels.length;i++){
+            total = total.plus(data.invertedTheoryLevels[i])
+        }
+        return total
+    },
     calcGain(){
         return data.oddities.gte(1e150) ? D(data.oddities.exponent-150).plus((data.entropy.sqrt().div(100)).clampMin(1)) : D(0)
     },
@@ -8,36 +15,34 @@ const INVERSIONS = {
     inversionEffect(){
         return data.inversions.sqrt().clampMin(1)
     },
+    effectDescriptions: [
+        `Inversions divide Entropy gain`, 'Inversions boost Oddity gain while the Lost Derivative is active', 'Inversions Boost the Lost Theory of Cycles',
+        `Circle Progress boosts The Theory of Multiplication`, 'Ancient Particles boost Inversion gain', 'Total Upgrade Levels boost Inversion gain'
+    ],
     updateHTML(){
         DOM('inversionsDisplay').innerText = `There are ${format(data.inversions)} Inversions, dividing Oddity gain by ${format(this.inversionEffect())}\n +${format(this.calcGain())}/s [Gain ${boolToReadable(data.inversionEnabled,'ED')}]`
         DOM('toggleInversions').innerText = `${boolToReadable(!data.inversionEnabled, 'EDT')} Inversion Production`
-        for(let i=0;i<data.hasInvertedTheory.length;i++){
-            DOM(`iTheory${i}`).innerText = data.hasInvertedTheory[i]?`Inverted Theory ${numToRoman(i+1)}\n${this.effectDescriptions[i]}\nCurrently: ${format(this.iTheoryEffects()[i])}`:`Inverted Theory ${numToRoman(i+1)}\n${this.effectDescriptions[i]}\nCost: ${format(this.costs[i])}`
-            DOM(`iTheory${i}`).style.backgroundColor = data.hasInvertedTheory[i] ? '#8f0062' : '#02a046'
+        for(let i=0;i<data.invertedTheoryLevels.length;i++){
+            DOM(`iTheory${i}`).innerText = `Inverted Theory ${numToRoman(i+1)} [${format(data.invertedTheoryLevels[i])}]\n${this.effectDescriptions[i]}\nCurrently ${format(this.iTheoryEffects()[i])}x\nCost: ${format(this.iTCost())}`
         }
+    },
+    iTCost(){
+       return D(500).times(this.totalITheoryLevels().plus(1))
+    },
+    iTheoryEffects() {
+        let iTheoryEffects = []
+        for(let i=0;i<data.invertedTheoryLevels.length;i++){
+            iTheoryEffects[i] = data.invertedTheoryLevels[i].gte(1)?
+                (data.invertedTheoryLevels[i].sub(data.invertedTheoryLevels[i].div(10))).plus(data.inversions.sqrt().sub(data.invertedTheoryLevels[i].times(2))).clampMin(1):D(1)
+        }
+        return iTheoryEffects
     },
     buyITheory(i){
-        if(data.inversions.gte(this.costs[i]) && !data.hasInvertedTheory[i]){
-            data.hasInvertedTheory[i] = true
-            data.inversions = data.inversions.sub(this.costs[i])
+        if(data.inversions.gte(this.iTCost())){
+            data.inversions = data.inversions.sub(this.iTCost())
+            data.invertedTheoryLevels[i] = data.invertedTheoryLevels[i].plus(1)
         }
     },
-    effectDescriptions: [
-        `Inversions divide Entropy gain`, `Bought Inverted Theories boost Inverted Theories`, `Circle Progress boosts The Theory of Multiplication`,
-        'Ancient Particles boost Inversion gain', 'Entropy boosts Inversion gain'
-    ],
-    costs: [
-        D(2e3), D(2e3), D(1e96), D(1e96), D(1e96)
-    ],
-    iTheoryEffects() {
-        return [
-            data.hasInvertedTheory[0]&&data.inversions.gte(10)?data.inversions.log10():D(0),
-            data.hasInvertedTheory[1]?checkAllIndexes(data.hasInvertedTheory, true):D(0),
-            data.hasInvertedTheory[2]&&c().gte(10)?c().sqrt().log10():D(0),
-            data.hasInvertedTheory[3]&&data.particles[0].exponent >= 1?data.particles[0].exponent:D(0),
-            data.hasInvertedTheory[4]&&data.entropy.gte(10)?data.entropy.sqrt():D(0),
-        ]
-    }
 
 }
 function changeInversionsTab(i){

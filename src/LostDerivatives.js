@@ -38,7 +38,12 @@ function calculateLostStuff(){
 }
 function calculateLostCycleCosts(){
     for (let i=0;i<data.lostCycleLevels.length;i++){
-        lostCycleCosts[i] = lostCycleCostBase[i].times(data.lostCycleLevels[i].plus(1)).times(data.lostCycleLevels[i].div(10).plus(1))
+        if(data.lostCycleLevels[i].gte(1e4)){
+            lostCycleCosts[i] = lostCycleCostBase[i].times((data.lostCycleLevels[i].plus(1)).times(data.lostCycleLevels[i].times(2).plus(1)).times(data.lostCycleLevels[i].sqrt()))
+        }
+        else{
+            lostCycleCosts[i] = lostCycleCostBase[i].times(data.lostCycleLevels[i].plus(1)).times(data.lostCycleLevels[i].div(10).plus(1))
+        }
     }
 }
 function gainParticles(diff){
@@ -61,8 +66,9 @@ function buyLostTheory(x){
 function buyLostCycle(x){
     let i=x-1
     if (data.particles[1].gte(lostCycleCosts[i])){
-        data.particles[1] = data.particles[1].sub(lostCycleCosts[i])
         data.lostCycleLevels[i] = data.lostCycleLevels[i].plus(1)
+        data.particles[1] = data.particles[1].sub(lostCycleCosts[i])
+        calculateLostCycleCosts()
     }
 }
 function lostControl(){
@@ -89,7 +95,6 @@ function lostReset(){
 }
 function buyMaxLostCycles() {
     for (let i = 0; i < 10; i++) {
-        calculateLostCycleCosts()
         buyLostCycle(1)
         buyLostCycle(2)
         buyLostCycle(3)
