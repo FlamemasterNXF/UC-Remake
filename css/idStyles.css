@@ -256,6 +256,20 @@
     transition: all 2s ease-in-out;
     transform: scale(1);
 }
+#complexityPlaceholder{
+    margin-top: 20px;
+    color: transparent;
+    font-family: Dosis;
+    font-size: 1em;
+    text-align: center;
+    background-image: linear-gradient(to left, #cc2e9f, #db3466, #b65988, #f33412);
+    background-size: 500%;
+    -webkit-background-clip: text;
+    -webkit-background-size: 500%;
+    animation: bgSwitch 10s linear infinite;
+    transition: all 2s ease-in-out;
+    transform: scale(1);
+}
 #complexityNav{
     border-image: linear-gradient(45deg, rgb(143, 0, 98), rgb(250, 66, 170)) 1;
     background-color: rgba(5, 86, 18, 0.15);

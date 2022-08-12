@@ -106,7 +106,7 @@ function unlockTabs(){
     data.hasTab[4] = data.hasTheory[9] || data.hasTab[4]
     data.hasTab[5] = data.hasLegend[5] || data.hasTab[5]
     data.hasTab[6] = data.hasLegend[7] || data.hasTab[6]
-    data.hasTab[7] = false || data.hasTab[7]
+    data.hasTab[7] = data.inversionInversionControl[1] || data.hasTab[7]
 }
 function tabChangeHTML(){
     //derivs
@@ -142,7 +142,7 @@ function tabChangeHTML(){
     DOM(`lostNav`).style.display = data.hasLegend[0] || data.hasTab[4]?'inline':'none'
     DOM(`circleNav`).style.display = data.particles[0].gte(1) || data.hasTab[5]?'inline':'none'
     DOM(`inversionsNav`).style.display = data.breakpointsUnlocked[1] || data.hasTab[6]?'inline':'none'
-    DOM(`complexityNav`).style.display = false || data.hasTab[7]?'inline':'none'
+    DOM(`complexityNav`).style.display = data.hasTab[7]?'inline':'none'
     //animations
     animationCavnas.style.display = [4,6,7].includes(data.currentTab)?'flex':'none'
 }

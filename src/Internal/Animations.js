@@ -113,7 +113,7 @@ function animationsLoop() {
             else {
                 ctx.fillStyle = rgbToHex(30, 20, 0);
             }
-            drawArc(Math.sin(timer/20*i)*i,Math.cos(timer/50*i)*j,2);
+            drawArc(Math.cos(timer/20*i)*j,Math.cos(timer/50*i)*j,2);
         }
     }
 
