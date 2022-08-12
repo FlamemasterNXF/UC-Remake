@@ -12,14 +12,14 @@ const INVERSIONS = {
     },
     gain(diff){
         if(data.inversionEnabled){ data.inversions = data.inversions.plus(this.calcGain().times(diff)) }
-        else if(data.inversionInversionControl[1] && data.inversions.gte(1)) data.inversions = data.inversions.sub(this.inversionDecay().times(diff))
+        else if(data.inversionInversionControl[1] && data.inversions.gte(1)) data.inversions = data.inversions.sub(this.inversionDecay().times(diff)).clampMin(1)
     },
     inversionEffect(){
         return data.inversions.sqrt().clampMin(1)
     },
     inversionDecay(){
-        if(!data.inversionInversionControl[1]) return D(0)
-        return data.oddities.div(1e150).sqrt()
+        if(!data.inversionInversionControl[1] || !data.oddities.gte(1.1e150)) return D(0)
+        return data.oddities.div(1e150).sqrt().log2()
     },
     deepInversionRequirement(){
         return D(5).times(data.deepInversionCap.plus(1))
@@ -37,7 +37,7 @@ const INVERSIONS = {
         Oddity gain: ^${format(this.deepInversionEffects()[0])}\nInversion gain: ^${format(this.deepInversionEffects()[1])}\nEntropy gain: ^${format(this.deepInversionEffects()[2])}\nDream and Derivative Particle gains: ^${format(this.deepInversionEffects()[3])}\nInverted Theory effects: ^${format(this.deepInversionEffects()[4])}`
         DOM('deepInversionEffectText2').innerText = `Your best Oddity amount with max Supercharge is ${format(data.bestOdditiesMaxDeep)}, providing a ${format(data.maxSuperChargeEffect)}x multiplier to Oddity gain`
         DOM('inversionInversion').innerHTML = data.inversionInversionControl[1]?`<i>Your Inversions are Inverted</i><br>Undo the Unthinkable things you've done`:data.inversionInversionControl[0]?`<i>Are you prepared to venture into the far unknown?</i><br>Invert your Inversions`:`Unknown<br>Cost: 1e100 Inversions`
-        DOM('inversionInversionEffectText').innerText = `Your Inverted Inversions have these effects:\nOddity gain: ${format(this.inversionEffect())}x\nEntropy Gain: ${format(this.inversionEffect().sqrt())}x\nThey change the effects of Supercharged Deep Inversions\nSelf Decay when not being gained: -${format(this.inversionDecay())}/s`
+        DOM('inversionInversionEffectText').innerText = `Your Inverted Inversions have these effects:\nOddity gain: ${format(this.inversionEffect())}x\nEntropy Gain: ${format((this.inversionEffect().log2()).clampMin(1))}x\nThey change the effects of Supercharged Deep Inversions\nSelf Decay when not being gained: -${format(this.inversionDecay())}/s`
         for(let i=0;i<data.invertedTheoryLevels.length;i++){
             DOM(`iTheory${i}`).innerText = `Inverted Theory ${numToRoman(i+1)} [${format(data.invertedTheoryLevels[i])}]\n${this.effectDescriptions[i]}\nCurrently ${format(this.iTheoryEffects()[i])}x\nCost: ${format(this.iTCost())}`
         }
@@ -47,8 +47,8 @@ const INVERSIONS = {
     },
     deepInversionEffects(x=data.deepInversion){
         return [
-            D(1).sub(x.div(10)), //Oddity gain
-            D(1).plus(x.div(20)), //Inversion Gain
+            data.inversionInversionControl[1]?D(1).plus(x.div(10)):D(1).sub(x.div(10)), //Oddity gain
+            data.inversionInversionControl[1]?D(1).sub(x.div(10)):D(1).plus(x.div(20)), //Inversion Gain
             D(1).plus(x.div(50)), //Entropy Gain
             D(1).sub(x.div(5)), //Dream/Derivative Gain
             D(1).plus(x.div(100)) //Inverted Theory Effects
