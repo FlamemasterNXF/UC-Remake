@@ -7,7 +7,7 @@ const INVERSIONS = {
         return total
     },
     calcGain(){
-        return data.oddities.gte(1e150) ? (D(data.oddities.exponent-150).plus((data.entropy.sqrt().div(100)).clampMin(1))).times(this.iTheoryEffects()[4]) : D(0)
+        return data.oddities.gte(1e150) ? ((D(data.oddities.exponent-150).plus((data.entropy.sqrt().div(100)).clampMin(1))).times(this.iTheoryEffects()[4])).pow(this.deepInversionEffects()[1]) : D(0)
     },
     gain(diff){
         if(data.inversionEnabled){ data.inversions = data.inversions.plus(this.calcGain().times(diff)) }
@@ -35,19 +35,6 @@ const INVERSIONS = {
     iTCost(){
        return D(500).times(this.totalITheoryLevels().plus(1))
     },
-    iTheoryEffects() {
-        let iTheoryEffects = []
-        data.invertedTheoryLevels[0].sub(data.invertedTheoryLevels[0].div(2)).plus((data.inversions.sqrt().sub(data.invertedTheoryLevels[0].times(2))).div(10)).clampMin(1)
-        data.invertedTheoryLevels[1].sub(data.invertedTheoryLevels[1].div(2)).plus((data.inversions.sqrt().sub(data.invertedTheoryLevels[1].times(2))).div(10)).clampMin(1)
-        data.invertedTheoryLevels[2].sub(data.invertedTheoryLevels[2].div(2)).plus((data.inversions.sqrt().sub(data.invertedTheoryLevels[2].times(2))).div(10)).clampMin(1)
-        data.invertedTheoryLevels[3].sub(data.invertedTheoryLevels[3].div(2)).plus((c().sqrt().sub(data.invertedTheoryLevels[3].times(2))).div(10)).clampMin(1)
-        data.invertedTheoryLevels[4].sub(data.invertedTheoryLevels[4].div(2)).plus((data.particles[0].sqrt().sub(data.invertedTheoryLevels[4].times(2))).div(10)).clampMin(1)
-        data.invertedTheoryLevels[5].sub(data.invertedTheoryLevels[5].div(2)).plus((totalUpgradeLevels().sqrt().sub(data.invertedTheoryLevels[5].times(2))).div(10)).clampMin(1)
-        for(let i=0;i<data.invertedTheoryLevels.length;i++){
-            if(data.invertedTheoryLevels[i].lt(1)) iTheoryEffects[i] = D(1)
-        }
-        return iTheoryEffects
-    },
     deepInversionEffects(x=data.deepInversion){
         return [
             D(1).sub(x.div(10)), //Oddity gain
@@ -57,6 +44,20 @@ const INVERSIONS = {
             D(1).plus(x.div(100)) //Inverted Theory Effects
         ]
     },
+    iTheoryEffects() {
+        let iTheoryEffects = Array(6).fill(D(1))
+        data.invertedTheoryLevels[0].sub(data.invertedTheoryLevels[0].div(2)).plus((data.inversions.sqrt().sub(data.invertedTheoryLevels[0].times(2))).div(10)).clampMin(1)
+        data.invertedTheoryLevels[1].sub(data.invertedTheoryLevels[1].div(2)).plus((data.inversions.sqrt().sub(data.invertedTheoryLevels[1].times(2))).div(10)).clampMin(1)
+        data.invertedTheoryLevels[2].sub(data.invertedTheoryLevels[2].div(2)).plus((data.inversions.sqrt().sub(data.invertedTheoryLevels[2].times(2))).div(10)).clampMin(1)
+        data.invertedTheoryLevels[3].sub(data.invertedTheoryLevels[3].div(2)).plus((c().sqrt().sub(data.invertedTheoryLevels[3].times(2))).div(10)).clampMin(1)
+        data.invertedTheoryLevels[4].sub(data.invertedTheoryLevels[4].div(2)).plus((data.particles[0].sqrt().sub(data.invertedTheoryLevels[4].times(2))).div(10)).clampMin(1)
+        data.invertedTheoryLevels[5].sub(data.invertedTheoryLevels[5].div(2)).plus((totalUpgradeLevels().sqrt().sub(data.invertedTheoryLevels[5].times(2))).div(10)).clampMin(1)
+        for(let i=0;i<data.invertedTheoryLevels.length;i++){
+            iTheoryEffects[i] = iTheoryEffects[i].pow(this.deepInversionEffects()[4])
+            if(data.invertedTheoryLevels[i].lt(1)) iTheoryEffects[i] = D(1)
+        }
+        return iTheoryEffects
+    },
     buyITheory(i){
         if(data.inversions.gte(this.iTCost())){
             data.inversions = data.inversions.sub(this.iTCost())
@@ -64,15 +65,19 @@ const INVERSIONS = {
         }
     },
     activateDeepInversion(){
-        createPrompt('Deep Supercharge', 1, 'How many would you like to Supercharge?\nNote that this will reset your Oddities!')
+        createPrompt('Deep Supercharge', 1, 'How many would you like to Supercharge?\nNote that this will reset the Derivatives Tab and Dream and Derivative Particles!')
     },
     setDeepInversion(x){
         DOM('promptContainer').style.display = 'none'
         try{
             let safe = parseInt(x)
             if(isNaN(safe)) throw `NaN at INVERSIONS.setDeepInversion('${x}')`
-            if(D(safe).lte(data.deepInversionCap))
+            if(D(safe).lte(data.deepInversionCap)) {
                 data.deepInversion = D(safe)
+                lostReset()
+                data.particles[1] = D(100)
+                data.particles[2] = D(100)
+            }
             else
                 createAlert('Failure', 'You don\'t have enough Deep Inversions for that!', 'Aw...')
         }

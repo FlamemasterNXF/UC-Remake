@@ -1,8 +1,8 @@
 const ENTROPY = {
     entropyGain() {
-        if(data.oddities.gt(1e250)){ return data.oddities.sqrt() }
-        if(data.oddities.gt(1e200)){ return data.oddities.log2() }
-        if(data.oddities.gt(1e150)){ return data.oddities.log10() }
+        if(data.oddities.gt(1e250)){ return (data.oddities.sqrt()).pow(INVERSIONS.deepInversionEffects()[2]) }
+        if(data.oddities.gt(1e200)){ return (data.oddities.log2()).pow(INVERSIONS.deepInversionEffects()[2]) }
+        if(data.oddities.gt(1e150)){ return (data.oddities.log10()).pow(INVERSIONS.deepInversionEffects()[2]) }
         else{ return D(0) }
     },
     gainEntropy(diff) {

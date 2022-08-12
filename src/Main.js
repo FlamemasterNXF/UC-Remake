@@ -7,7 +7,7 @@ function calculateOddityGain(){
             .times(lostCycleEffects[0]).times(theoryEffects[9]).times(dreamParticleEffects[0]).times(theoryEffects[10]).times(dreamParticleEffects[2])
             .times(theoryEffects[17])
     if(data.inLost){ data.oddityGain = data.oddityGain.times(INVERSIONS.iTheoryEffects()[1]) }
-    data.oddityGain = (data.oddityGain.div(INVERSIONS.inversionEffect())).div(data.entropy)
+    data.oddityGain = (data.oddityGain.div(INVERSIONS.inversionEffect())).div(data.entropy).pow(INVERSIONS.deepInversionEffects()[0])
 }
 let diff
 function mainLoop(){

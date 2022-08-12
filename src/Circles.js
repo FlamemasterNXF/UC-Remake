@@ -76,7 +76,7 @@ const CYCLES = {
     },
     9: {
         nerf(){ if(data.derivs[1].b.gte(1)){ return data.cycleLevels[8].gte(1)?data.lostCycleLevels[1].div(2):D(1) } else { return D(1) } },
-        effect(){ if(data.cycleLevels[8].gte(1)){ return ((c().log2().sqrt()).plus(data.particles[2].sqrt())).sqrt().div(10).plus((data.cycleLevels[8])).sub(this.nerf()).clampMin(1) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[8].gte(1)){ return D(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[8].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: -${format(this.nerf())}`},
     },
