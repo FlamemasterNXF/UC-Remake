@@ -83,7 +83,7 @@
     <div class="flexBox" id="buymaxContainer">
         <button class="flexBox" id="buymax" onclick="buyMaxDeriv()">Buy the max possible of all Derivatives [M]</button>
         <button class="flexBox" id="autoBuymax" onclick="autoToggle(1)">Auto Buymax: OFF</button>
-        <button class="flexBox" id="upgradeBuymax" onclick="buyMaxUpgrades()">Buy the max possible of Upgrades 1-4 [U]</button>
+        <button class="flexBox" id="upgradeBuymax" onclick="buyMaxUpgrades()">Buy the max possible of all Upgrades [U]</button>
     </div>
     <div class="flexBox" id="bigDerivativeContainer">
         <div class="flexBox" id="derivativeContainer">
@@ -156,7 +156,7 @@
         </div>
         <div class="flexBox" id="legaciesContainer" style="flex-direction: column">
             <button class="legend" id="legend0">Legacy One<br>Discovered by purchasing an Upgrade 4<br>Unlock an Auto Buymax for Derivatives</button>
-            <button class="legend" id="legend2">Legacy Two<br>Discovered by obtaining an Ancient Particle<br>Unlock a Buymax for Upgrades 1-4</button>
+            <button class="legend" id="legend2">Legacy Two<br>Discovered by obtaining an Ancient Particle<br>Unlock a Buymax for Upgrades</button>
             <button class="legend" id="legend3">Legacy Three<br>Discovered by unlocking Breakpoint 1<br>Unlock an Auto Buymax for Lost Cycles</button>
             <button class="legend" id="legend4">Legacy Four<br>Discovered by unlocking Theory 20<br>Unlock a Buymax for Cycles</button>
         </div>
@@ -265,7 +265,8 @@
             <p class="generalTexts deepInversionEffectText" id="deepInversionEffectText">Deep Thoughts with The Deep</p>
         </div>
         <div class="flexBox" id="inversionInversionContainer" style="flex-direction: column">
-            <button id="inversionInversion"><i>Are you prepared to venture into the far unknown?</i><br>Invert your Inversions</button>
+            <button id="inversionInversion" onclick="INVERSIONS.controlInversionInversion()"><i>Are you prepared to venture into the far unknown?</i><br>Invert your Inversions</button>
+            <p class="generalTexts" id="inversionInversionEffectText">Deep Thoughts with The Deep</p>
         </div>
     </div>
     <div class="flexBox" id="settingsContainer">

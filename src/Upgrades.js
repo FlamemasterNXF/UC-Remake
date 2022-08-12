@@ -42,5 +42,6 @@ function buyMaxUpgrades(){
         buyUpgrade(2)
         buyUpgrade(3)
         buyUpgrade(4)
+        buyUpgrade5()
     }
 }

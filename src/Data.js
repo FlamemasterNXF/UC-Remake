@@ -33,6 +33,7 @@ function getDefaultObject() {
         deepInversionCap: D(0),
         bestOdditiesMaxDeep: D(0),
         maxSuperChargeEffect: D(1),
+        inversionInversionControl: [false, false],
         //misc
         settingsToggles: [true, true, true,], //changelog, animation, offline time
         autoToggled: Array(3).fill(false),

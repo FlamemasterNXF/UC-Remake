@@ -134,6 +134,7 @@ function tabChangeHTML(){
     //inversions
     DOM('bigInversionsContainer').style.display = data.currentTab===6?'flex':'none'
     DOM('inversionInversionNav').style.display = data.deepInversionCap.gte(1)?'block':'none'
+    DOM('inversionInversionEffectText').style.display = data.inversionInversionControl[1]?'block':'none'
     //settings
     DOM(`settingsContainer`).style.display = data.currentTab===0 ? 'flex':'none'
     //nav
