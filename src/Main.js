@@ -5,7 +5,7 @@ function calculateOddityGain(){
     data.oddityGain =
         (data.derivs[0].amt.times(CYCLES[1].effect())).times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7])
             .times(lostCycleEffects[0]).times(theoryEffects[9]).times(dreamParticleEffects[0]).times(theoryEffects[10]).times(dreamParticleEffects[2])
-            .times(theoryEffects[17])
+            .times(theoryEffects[17]).times(data.maxSuperChargeEffect)
     if(data.inLost){ data.oddityGain = data.oddityGain.times(INVERSIONS.iTheoryEffects()[1]) }
     data.oddityGain = (data.oddityGain.div(INVERSIONS.inversionEffect())).div(data.entropy).pow(INVERSIONS.deepInversionEffects()[0])
 }

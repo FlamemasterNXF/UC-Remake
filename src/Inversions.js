@@ -1,4 +1,5 @@
 const INVERSIONS = {
+    prevDeep: D(0),
     totalITheoryLevels(){
         let total = D(0)
         for(let i=0; i<data.invertedTheoryLevels.length;i++){
@@ -16,7 +17,7 @@ const INVERSIONS = {
         return data.inversions.sqrt().clampMin(1)
     },
     deepInversionRequirement(){
-        return this.totalITheoryLevels().plus(5).times(data.deepInversionCap.plus(1))
+        return D(5).times(data.deepInversionCap.plus(1))
     },
     effectDescriptions: [
         'Inversions boost Breakpoint 4', 'Inversions boost Oddity gain while the Lost Derivative is active', 'Inversions Boost the Lost Theory of Cycles',
@@ -28,6 +29,7 @@ const INVERSIONS = {
         DOM('deepInversionActivate').innerText = `There are ${formatWhole(data.deepInversion)} Supercharged Deep Inversions.\nThere are ${formatWhole(data.deepInversionCap)} total Deep Inversions\n You need ${formatWhole(this.deepInversionRequirement())} Inverted Theories to gain another.`
         DOM('deepInversionEffectText').innerText = `The Supercharged Deep Inversions cause these effects:\n
         Oddity gain: ^${format(this.deepInversionEffects()[0])}\nInversion gain: ^${format(this.deepInversionEffects()[1])}\nEntropy gain: ^${format(this.deepInversionEffects()[2])}\nDream and Derivative Particle gains: ^${format(this.deepInversionEffects()[3])}\nInverted Theory effects: ^${format(this.deepInversionEffects()[4])}`
+        DOM('deepInversionEffectText2').innerText = `Your best Oddity amount with max Supercharge is ${format(data.bestOdditiesMaxDeep)}, providing a ${format(data.maxSuperChargeEffect)}x multiplier to Oddity gain`
         for(let i=0;i<data.invertedTheoryLevels.length;i++){
             DOM(`iTheory${i}`).innerText = `Inverted Theory ${numToRoman(i+1)} [${format(data.invertedTheoryLevels[i])}]\n${this.effectDescriptions[i]}\nCurrently ${format(this.iTheoryEffects()[i])}x\nCost: ${format(this.iTCost())}`
         }
@@ -43,6 +45,9 @@ const INVERSIONS = {
             D(1).sub(x.div(5)), //Dream/Derivative Gain
             D(1).plus(x.div(100)) //Inverted Theory Effects
         ]
+    },
+    calcMaxSuperchargeEffect(r=false){
+        data.maxSuperChargeEffect = !r?(data.bestOdditiesMaxDeep.log10().times(data.deepInversionCap)).clampMin(1):D(1)
     },
     iTheoryEffects() {
         let iTheoryEffects = Array(6).fill(D(1))
@@ -72,11 +77,16 @@ const INVERSIONS = {
         try{
             let safe = parseInt(x)
             if(isNaN(safe)) throw `NaN at INVERSIONS.setDeepInversion('${x}')`
+            if(D(safe).eq(0) && this.prevDeep.eq(data.deepInversionCap) && data.oddities.gt(data.bestOdditiesMaxDeep)) {
+                data.bestOdditiesMaxDeep = data.oddities
+                this.calcMaxSuperchargeEffect()
+            }
             if(D(safe).lte(data.deepInversionCap)) {
                 data.deepInversion = D(safe)
                 lostReset()
                 data.particles[1] = D(100)
                 data.particles[2] = D(100)
+                this.prevDeep = D(safe)
             }
             else
                 createAlert('Failure', 'You don\'t have enough Deep Inversions for that!', 'Aw...')
@@ -87,7 +97,12 @@ const INVERSIONS = {
         }
     },
     gainDeepInversion(){
-        if(this.totalITheoryLevels().gte(this.deepInversionRequirement())) data.deepInversionCap = data.deepInversionCap.plus(1)
+        if(this.totalITheoryLevels().gte(this.deepInversionRequirement())){
+            data.deepInversionCap = data.deepInversionCap.plus(1)
+            data.bestOdditiesMaxDeep = D(0)
+            this.calcMaxSuperchargeEffect(true)
+            createAlert('Deep Inversion Gained!', 'You have gained 1 Deep Inversion!\nBest Oddities with max Supercharge has been reset.', 'Awesome.')
+        }
     }
 
 }

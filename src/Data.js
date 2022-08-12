@@ -31,6 +31,8 @@ function getDefaultObject() {
         invertedTheoryLevels: Array(6).fill(D(0)),
         deepInversion: D(0),
         deepInversionCap: D(0),
+        bestOdditiesMaxDeep: D(0),
+        maxSuperChargeEffect: D(1),
         //misc
         settingsToggles: [true, true, true,], //changelog, animation, offline time
         autoToggled: Array(3).fill(false),

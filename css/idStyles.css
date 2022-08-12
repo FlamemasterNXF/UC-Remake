@@ -220,12 +220,6 @@
     font-family: Dosis;
     font-size: 15px;
 }
-#deepInversionEffectText{
-    color: #00d017;
-    text-shadow: 1px 1px 10px rgba(108, 251, 60, 0.53);
-    text-align: center;
-    font-family: DosisMedium;
-}
 #inversionInversion{
     margin-top: 50px;
     height: 85px;
