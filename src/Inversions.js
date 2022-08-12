@@ -7,7 +7,7 @@ const INVERSIONS = {
         return total
     },
     calcGain(){
-        return data.oddities.gte(1e150) ? D(data.oddities.exponent-150).plus((data.entropy.sqrt().div(100)).clampMin(1)) : D(0)
+        return data.oddities.gte(1e150) ? (D(data.oddities.exponent-150).plus((data.entropy.sqrt().div(100)).clampMin(1))).times(this.iTheoryEffects()[4]) : D(0)
     },
     gain(diff){
         if(data.inversionEnabled){ data.inversions = data.inversions.plus(this.calcGain().times(diff)) }
@@ -16,8 +16,8 @@ const INVERSIONS = {
         return data.inversions.sqrt().clampMin(1)
     },
     effectDescriptions: [
-        `Inversions divide Entropy gain`, 'Inversions boost Oddity gain while the Lost Derivative is active', 'Inversions Boost the Lost Theory of Cycles',
-        `Circle Progress boosts The Theory of Multiplication`, 'Ancient Particles boost Inversion gain', 'Total Upgrade Levels boost Inversion gain'
+        `Inversions boost Breakpoint 4`, 'Inversions boost Oddity gain while the Lost Derivative is active', 'Inversions Boost the Lost Theory of Cycles',
+        `Circle Progress boosts The Theory of Upgrade Derivatives`, 'Ancient Particles boost Inversion gain', 'Total Upgrade Levels boost the Theory of Division'
     ],
     updateHTML(){
         DOM('inversionsDisplay').innerText = `There are ${format(data.inversions)} Inversions, dividing Oddity gain by ${format(this.inversionEffect())}\n +${format(this.calcGain())}/s [Gain ${boolToReadable(data.inversionEnabled,'ED')}]`
@@ -31,9 +31,14 @@ const INVERSIONS = {
     },
     iTheoryEffects() {
         let iTheoryEffects = []
+        data.invertedTheoryLevels[0].sub(data.invertedTheoryLevels[0].div(2)).plus((data.inversions.sqrt().sub(data.invertedTheoryLevels[0].times(2))).div(10)).clampMin(1)
+        data.invertedTheoryLevels[1].sub(data.invertedTheoryLevels[1].div(2)).plus((data.inversions.sqrt().sub(data.invertedTheoryLevels[1].times(2))).div(10)).clampMin(1)
+        data.invertedTheoryLevels[2].sub(data.invertedTheoryLevels[2].div(2)).plus((data.inversions.sqrt().sub(data.invertedTheoryLevels[2].times(2))).div(10)).clampMin(1)
+        data.invertedTheoryLevels[3].sub(data.invertedTheoryLevels[3].div(2)).plus((c().sqrt().sub(data.invertedTheoryLevels[3].times(2))).div(10)).clampMin(1)
+        data.invertedTheoryLevels[4].sub(data.invertedTheoryLevels[4].div(2)).plus((data.particles[0].sqrt().sub(data.invertedTheoryLevels[4].times(2))).div(10)).clampMin(1)
+        data.invertedTheoryLevels[5].sub(data.invertedTheoryLevels[5].div(2)).plus((totalUpgradeLevels().sqrt().sub(data.invertedTheoryLevels[5].times(2))).div(10)).clampMin(1)
         for(let i=0;i<data.invertedTheoryLevels.length;i++){
-            iTheoryEffects[i] = data.invertedTheoryLevels[i].gte(1)?
-                (data.invertedTheoryLevels[i].sub(data.invertedTheoryLevels[i].div(10))).plus(data.inversions.sqrt().sub(data.invertedTheoryLevels[i].times(2))).clampMin(1):D(1)
+            if(data.invertedTheoryLevels[i].lt(1)) iTheoryEffects[i] = D(1)
         }
         return iTheoryEffects
     },

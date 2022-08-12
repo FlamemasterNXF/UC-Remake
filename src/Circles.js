@@ -108,7 +108,7 @@ const BREAKPOINTS = {
         unlocked: false,
         enabled: false,
         nerf(){ if(data.breakpointsEnabled[2]){ return this.effect().log2() } else { return D(1) } },
-        effect() { if(data.breakpointsEnabled[2]){ return l().sqrt().plus(c().log2()) } else { return D(1) } }
+        effect() { if(data.breakpointsEnabled[2]){ return (l().sqrt().plus(c().log2())).times(INVERSIONS.iTheoryEffects()[0]) } else { return D(1) } }
     },
     4: {
         cost: D(1e110),

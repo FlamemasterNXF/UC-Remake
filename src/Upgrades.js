@@ -1,4 +1,11 @@
 let upgradeNames = [...Array(5).keys()].slice(1)
+function totalUpgradeLevels(){
+    let total = D(0)
+    for(let i=0;i<data.upgrades.length-1;i++){
+        total = total.plus(data.upgrades[i].amt)
+    }
+    return total
+}
 function buyUpgrade(x){
     let i = x-1
     if (data.oddities.gte(data.upgrades[i].c)){
@@ -7,7 +14,7 @@ function buyUpgrade(x){
     }
 }
 function buyUpgrade5(){
-    if (data.upgrades[0].amt.plus(data.upgrades[1].amt).plus(data.upgrades[2].amt).plus(data.upgrades[3].amt).gte(data.upgrades[4].c)){
+    if (totalUpgradeLevels().gte(data.upgrades[4].c)){
         data.upgrades[4].amt = data.upgrades[4].amt.plus(1)
     }
 }

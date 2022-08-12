@@ -15,6 +15,13 @@ let lostCycleEffectTexts = [
     `Ancient Particles multiply Circle Progress speed`,
     `Ancient Particles multiply Upgrade 1 effect`,
 ]
+function totalLostCycles(){
+    let total = D(0)
+    for(let i=0;i<data.lostCycleLevels.length;i++){
+        total = total.plus(data.lostCycleLevels[i])
+    }
+    return total
+}
 function calculateLostStuff(){
     data.inLost?
         ancientParticleGain = (data.oddities.sqrt().div(2).div(data.particles[0].plus(1).log10()).plus(1)).sub(data.particles[3]):D(0)
@@ -32,7 +39,7 @@ function calculateLostStuff(){
     lostCycleEffects[1] = data.lostCycleLevels[1].gte(1)?data.particles[0].log2().sqrt().sqrt().times(data.lostCycleLevels[1].times(data.particles[0].ln().sqrt())):D(1)
     lostCycleEffects[2] = data.lostCycleLevels[2].gte(1)?data.particles[0].log2().log10().sqrt().div(3).times(data.lostCycleLevels[2]).clampMin(1):D(1)
     lostCycleEffects[3] = data.lostCycleLevels[3].gte(1)?data.particles[0].log2().log2().sqrt().times(data.lostCycleLevels[3]).clampMin(1):D(1)
-    lostTheory3Effect = data.hasLostTheory[2]?data.lostCycleLevels[1].plus(data.lostCycleLevels[0]).div(2):D(1)
+    lostTheory3Effect = data.hasLostTheory[2]?(totalLostCycles().div(2)).times(INVERSIONS.iTheoryEffects()[2]):D(1)
     if(ancientParticleGain.lt(0)) ancientParticleGain = D(0)
     calculateLostCycleCosts()
 }

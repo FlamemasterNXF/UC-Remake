@@ -6,9 +6,9 @@ function calculateTheoryEffects(){
     theoryEffects[0] = data.hasTheory[0] ? data.derivs[3].b.gte(1) ? D(data.derivs[3].b.plus(1)) : D(1) : D(1)
     theoryEffects[1] = data.hasTheory[1] ? data.derivs[0].b.gte(1) ? D(data.derivs[0].b.div(2).plus(1)) : D(1) : D(1)
     theoryEffects[2] = data.hasTheory[2] ? data.derivs[0].b.gte(1) ? D(data.derivs[0].b.sqrt().plus(1).plus(CYCLES[3].effect())).div(BREAKPOINTS[3].nerf()): D(1) : D(1)
-    theoryEffects[3] = data.hasTheory[3] ? data.derivs[0].b.gte(1) ? D(data.derivs[0].b.sqrt().sqrt().plus(1)) : D(1) : D(1)
+    theoryEffects[3] = data.hasTheory[3] ? data.derivs[0].b.gte(1) ? (D(data.derivs[0].b.sqrt().sqrt().plus(1))).times(INVERSIONS.iTheoryEffects()[3]) : D(1) : D(1)
     theoryEffects[4] = data.hasTheory[4] ? data.derivs[3].b.gte(1) ? D(data.derivs[3].b.plus(10)) : D(1) : D(1)
-    theoryEffects[5] = data.hasTheory[5] ? data.derivs[3].b.gte(1) ? D(data.upgrades[0].amt.plus(data.upgrades[1].amt).plus(data.upgrades[2].amt).plus(data.upgrades[3].amt)).sqrt() : D(1) : D(1)
+    theoryEffects[5] = data.hasTheory[5] ? data.derivs[3].b.gte(1) ? (totalUpgradeLevels().sqrt()).times(INVERSIONS.iTheoryEffects()[5]) : D(1) : D(1)
     theoryEffects[6] = data.hasTheory[6] ? data.derivs[0].b.gte(1) ? D(data.derivs[0].b.sqrt().plus(1)) : D(1) : D(1)
     theoryEffects[7] = theoryEffects[2]
     theoryEffects[8] = data.hasTheory[8] ? data.derivs[3].b.gte(1) && data.upgrades[4].amt.gte(1) ?
