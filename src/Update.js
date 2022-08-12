@@ -8,7 +8,7 @@ function updateHTML(){
     DOM('circleNav').innerText = data.hasTab[5]?'Circles':'???'
     DOM('inversionsNav').innerText = data.hasTab[6]?'Inversions':'???'
     DOM('complexityNav').innerText = data.hasTab[7]?'Complexity':'???'
-    DOM('lostInDisplay').style.display = data.inLost?'flex':'none'
+	DOM('lostInDisplay').style.display = data.inLost?'flex':'none'
     DOM('ourgwa').style.display = ourgwatriggered ? 'flex':'none'
     //endregion
     //derivs
@@ -133,7 +133,7 @@ function tabChangeHTML(){
     DOM('cycleBuyMax').style.display = data.hasLegend[4]?'flex':'none'
     //inversions
     DOM('bigInversionsContainer').style.display = data.currentTab===6?'flex':'none'
-    DOM('inversionInversionNav').style.display = false?'flex':'none'
+    DOM('inversionInversionNav').style.display = data.deepInversionCap.gte(1)?'block':'none'
     //settings
     DOM(`settingsContainer`).style.display = data.currentTab===0 ? 'flex':'none'
     //nav

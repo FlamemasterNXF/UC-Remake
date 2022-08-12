@@ -19,13 +19,13 @@ const INVERSIONS = {
         return this.totalITheoryLevels().plus(5).times(data.deepInversionCap.plus(1))
     },
     effectDescriptions: [
-        `Inversions boost Breakpoint 4`, 'Inversions boost Oddity gain while the Lost Derivative is active', 'Inversions Boost the Lost Theory of Cycles',
-        `Circle Progress boosts The Theory of Upgrade Derivatives`, 'Ancient Particles boost Inversion gain', 'Total Upgrade Levels boost the Theory of Division'
+        'Inversions boost Breakpoint 4', 'Inversions boost Oddity gain while the Lost Derivative is active', 'Inversions Boost the Lost Theory of Cycles',
+        'Circle Progress boosts The Theory of Upgrade Derivatives', 'Ancient Particles boost Inversion gain', 'Total Upgrade Levels boost the Theory of Division'
     ],
     updateHTML(){
         DOM('inversionsDisplay').innerText = `There are ${format(data.inversions)} Inversions, dividing Oddity gain by ${format(this.inversionEffect())}\n +${format(this.calcGain())}/s [Gain ${boolToReadable(data.inversionEnabled,'ED')}]`
         DOM('toggleInversions').innerText = `${boolToReadable(!data.inversionEnabled, 'EDT')} Inversion Production`
-        DOM('deepInversionActivate').innerText = `There are ${formatWhole(data.deepInversion)} Deep Inversions Supercharged.\nThere are ${formatWhole(data.deepInversionCap)} total Deep Inversions\n You need ${formatWhole(this.deepInversionRequirement())} Inversion Theories to gain another.`
+        DOM('deepInversionActivate').innerText = `There are ${formatWhole(data.deepInversion)} Supercharged Deep Inversions.\nThere are ${formatWhole(data.deepInversionCap)} total Deep Inversions\n You need ${formatWhole(this.deepInversionRequirement())} Inverted Theories to gain another.`
         DOM('deepInversionEffectText').innerText = `The Supercharged Deep Inversions cause these effects:\n
         Oddity gain: ^${format(this.deepInversionEffects()[0])}\nInversion gain: ^${format(this.deepInversionEffects()[1])}\nEntropy gain: ^${format(this.deepInversionEffects()[2])}\nDream and Derivative Particle gains: ^${format(this.deepInversionEffects()[3])}\nInverted Theory effects: ^${format(this.deepInversionEffects()[4])}`
         for(let i=0;i<data.invertedTheoryLevels.length;i++){
@@ -33,7 +33,7 @@ const INVERSIONS = {
         }
     },
     iTCost(){
-       return D(500).times(this.totalITheoryLevels().plus(1))
+        return D(500).times(this.totalITheoryLevels().plus(1))
     },
     deepInversionEffects(x=data.deepInversion){
         return [
