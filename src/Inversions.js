@@ -15,13 +15,20 @@ const INVERSIONS = {
     inversionEffect(){
         return data.inversions.sqrt().clampMin(1)
     },
+    deepInversionRequirement(){
+        return this.totalITheoryLevels().plus(5).times(data.deepInversionCap.plus(1))
+    },
     effectDescriptions: [
         `Inversions boost Breakpoint 4`, 'Inversions boost Oddity gain while the Lost Derivative is active', 'Inversions Boost the Lost Theory of Cycles',
         `Circle Progress boosts The Theory of Upgrade Derivatives`, 'Ancient Particles boost Inversion gain', 'Total Upgrade Levels boost the Theory of Division'
     ],
     updateHTML(){
+        let effUse = data.deepInversion.plus(1)
         DOM('inversionsDisplay').innerText = `There are ${format(data.inversions)} Inversions, dividing Oddity gain by ${format(this.inversionEffect())}\n +${format(this.calcGain())}/s [Gain ${boolToReadable(data.inversionEnabled,'ED')}]`
         DOM('toggleInversions').innerText = `${boolToReadable(!data.inversionEnabled, 'EDT')} Inversion Production`
+        DOM('deepInversionActivate').innerText = `There are ${formatWhole(data.deepInversion)} Deep Inversions Supercharged.\nThere are ${formatWhole(data.deepInversionCap)} idle Deep Inversions\n You need ${formatWhole(this.deepInversionRequirement())} Inversion Theories to gain another.`
+        DOM('deepInversionEffectText').innerText = `If you Supercharged a Deep Inversion these effects would be applied:\n
+        Oddity gain: ^${format(this.deepInversionEffects(effUse)[0])}\nInversion gain: ^${format(this.deepInversionEffects(effUse)[1])}\nEntropy gain: ^${format(this.deepInversionEffects(effUse)[2])}\nDream and Derivative Particle gains: ^${format(this.deepInversionEffects(effUse)[3])}\nInverted Theory effects: ^${format(this.deepInversionEffects(effUse)[4])}`
         for(let i=0;i<data.invertedTheoryLevels.length;i++){
             DOM(`iTheory${i}`).innerText = `Inverted Theory ${numToRoman(i+1)} [${format(data.invertedTheoryLevels[i])}]\n${this.effectDescriptions[i]}\nCurrently ${format(this.iTheoryEffects()[i])}x\nCost: ${format(this.iTCost())}`
         }
@@ -42,12 +49,24 @@ const INVERSIONS = {
         }
         return iTheoryEffects
     },
+    deepInversionEffects(x=data.deepInversion){
+        return [
+            D(1).sub(x.div(10)), //Oddity gain
+            D(1).plus(x.div(20)), //Inversion Gain
+            D(1).plus(x.div(50)), //Entropy Gain
+            D(1).sub(x.div(5)), //Dream/Derivative Gain
+            D(1).plus(x.div(100)) //Inverted Theory Effects
+        ]
+    },
     buyITheory(i){
         if(data.inversions.gte(this.iTCost())){
             data.inversions = data.inversions.sub(this.iTCost())
             data.invertedTheoryLevels[i] = data.invertedTheoryLevels[i].plus(1)
         }
     },
+    gainDeepInversion(){
+        if(this.totalITheoryLevels().gte(this.deepInversionRequirement())) data.deepInversionCap = data.deepInversionCap.plus(1)
+    }
 
 }
 function changeInversionsTab(i){

@@ -19,6 +19,7 @@ function mainLoop(){
     increaseOddities(data.oddityGain.times(diff))
     ENTROPY.gainEntropy(diff)
     INVERSIONS.gain(diff)
+    INVERSIONS.gainDeepInversion()
     automate()
     if(data.hasLegend[5]) for(let i=0;i<data.circleProg.length;i++) progress(i, data.circleProg[i])
     updateHTML()

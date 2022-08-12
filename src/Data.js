@@ -29,6 +29,8 @@ function getDefaultObject() {
         inversions: D(1),
         inversionEnabled: false,
         invertedTheoryLevels: Array(6).fill(D(0)),
+        deepInversion: D(0),
+        deepInversionCap: D(0),
         //misc
         settingsToggles: [true, true, true,], //changelog, animation, offline time
         autoToggled: Array(3).fill(false),

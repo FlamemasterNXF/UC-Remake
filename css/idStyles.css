@@ -209,6 +209,23 @@
     font-family:DosisLight;
     white-space: nowrap;
 }
+#deepInversionActivate{
+    margin-top: 10px;
+    height: 85px;
+    width: 330px;
+    border-image: linear-gradient(45deg, rgba(14, 143, 0, 0.79), rgb(100, 250, 66)) 1;
+    background-color: rgba(5, 86, 18, 0.15);
+    color: #00b919;
+    text-shadow: 1px 1px 10px rgba(108, 251, 60, 0.53);
+    font-family: Dosis;
+    font-size: 15px;
+}
+#deepInversionEffectText{
+    color: #00d017;
+    text-shadow: 1px 1px 10px rgba(108, 251, 60, 0.53);
+    text-align: center;
+    font-family: DosisMedium;
+}
 #complexityNav{
     border-image: linear-gradient(45deg, rgb(143, 0, 98), rgb(250, 66, 170)) 1;
     background-color: rgba(5, 86, 18, 0.15);
