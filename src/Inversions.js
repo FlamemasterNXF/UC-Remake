@@ -23,12 +23,11 @@ const INVERSIONS = {
         `Circle Progress boosts The Theory of Upgrade Derivatives`, 'Ancient Particles boost Inversion gain', 'Total Upgrade Levels boost the Theory of Division'
     ],
     updateHTML(){
-        let effUse = data.deepInversion.plus(1)
         DOM('inversionsDisplay').innerText = `There are ${format(data.inversions)} Inversions, dividing Oddity gain by ${format(this.inversionEffect())}\n +${format(this.calcGain())}/s [Gain ${boolToReadable(data.inversionEnabled,'ED')}]`
         DOM('toggleInversions').innerText = `${boolToReadable(!data.inversionEnabled, 'EDT')} Inversion Production`
-        DOM('deepInversionActivate').innerText = `There are ${formatWhole(data.deepInversion)} Deep Inversions Supercharged.\nThere are ${formatWhole(data.deepInversionCap)} idle Deep Inversions\n You need ${formatWhole(this.deepInversionRequirement())} Inversion Theories to gain another.`
-        DOM('deepInversionEffectText').innerText = `If you Supercharged a Deep Inversion these effects would be applied:\n
-        Oddity gain: ^${format(this.deepInversionEffects(effUse)[0])}\nInversion gain: ^${format(this.deepInversionEffects(effUse)[1])}\nEntropy gain: ^${format(this.deepInversionEffects(effUse)[2])}\nDream and Derivative Particle gains: ^${format(this.deepInversionEffects(effUse)[3])}\nInverted Theory effects: ^${format(this.deepInversionEffects(effUse)[4])}`
+        DOM('deepInversionActivate').innerText = `There are ${formatWhole(data.deepInversion)} Deep Inversions Supercharged.\nThere are ${formatWhole(data.deepInversionCap)} total Deep Inversions\n You need ${formatWhole(this.deepInversionRequirement())} Inversion Theories to gain another.`
+        DOM('deepInversionEffectText').innerText = `The Supercharged Deep Inversions cause these effects:\n
+        Oddity gain: ^${format(this.deepInversionEffects()[0])}\nInversion gain: ^${format(this.deepInversionEffects()[1])}\nEntropy gain: ^${format(this.deepInversionEffects()[2])}\nDream and Derivative Particle gains: ^${format(this.deepInversionEffects()[3])}\nInverted Theory effects: ^${format(this.deepInversionEffects()[4])}`
         for(let i=0;i<data.invertedTheoryLevels.length;i++){
             DOM(`iTheory${i}`).innerText = `Inverted Theory ${numToRoman(i+1)} [${format(data.invertedTheoryLevels[i])}]\n${this.effectDescriptions[i]}\nCurrently ${format(this.iTheoryEffects()[i])}x\nCost: ${format(this.iTCost())}`
         }
@@ -62,6 +61,24 @@ const INVERSIONS = {
         if(data.inversions.gte(this.iTCost())){
             data.inversions = data.inversions.sub(this.iTCost())
             data.invertedTheoryLevels[i] = data.invertedTheoryLevels[i].plus(1)
+        }
+    },
+    activateDeepInversion(){
+        createPrompt('Deep Supercharge', 1, 'How many would you like to Supercharge?\nNote that this will reset your Oddities!')
+    },
+    setDeepInversion(x){
+        DOM('promptContainer').style.display = 'none'
+        try{
+            let safe = parseInt(x)
+            if(isNaN(safe)) throw `NaN at INVERSIONS.setDeepInversion('${x}')`
+            if(D(safe).lte(data.deepInversionCap))
+                data.deepInversion = D(safe)
+            else
+                createAlert('Failure', 'You don\'t have enough Deep Inversions for that!', 'Aw...')
+        }
+        catch (e) {
+            createAlert('Error', 'That\'s not a valid number!', 'Oops')
+            console.error(e)
         }
     },
     gainDeepInversion(){

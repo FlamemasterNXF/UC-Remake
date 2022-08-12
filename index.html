@@ -39,7 +39,8 @@
     <div id="promptContainer" class="flexbox modalContainer">
         <div id="prompt">
             <h3 id="promptTitle"></h3>
-            <input id="promptInput" type="text" placeholder="Enter text">
+            <p id="promptDesc"></p>
+            <input id="promptInput" type="text" placeholder="">
             <button id="promptButton">Submit</button>
             <button id="promptCancelButton" onclick="closeModal(1)">Cancel</button>
         </div>
@@ -259,7 +260,7 @@
             </div>
         </div>
         <div class="flexBox" id="deepInversionsContainer" style="flex-direction: column">
-            <button id="deepInversionActivate">Deep Thoughts with The Deep</button>
+            <button id="deepInversionActivate" onclick="INVERSIONS.activateDeepInversion()">Deep Thoughts with The Deep</button>
             <p class="generalTexts" id="deepInversionEffectText">Deep Thoughts with The Deep</p>
         </div>
         <div class="flexBox" id="inversionInversionContainer" style="flex-direction: column">
