@@ -142,7 +142,7 @@ function toggleBreakPoint(i){
         data.breakpointsUnlocked[i-1] = true
         data.oddities = data.oddities.sub(BREAKPOINTS[i].cost)
     }
-    else{ BREAKPOINTS[i].enabled = !BREAKPOINTS[i].enabled; data.breakpointsEnabled[i-1] = !data.breakpointsEnabled[i-1] }
+    else if(BREAKPOINTS[i].unlocked == true){ BREAKPOINTS[i].enabled = !BREAKPOINTS[i].enabled; data.breakpointsEnabled[i-1] = !data.breakpointsEnabled[i-1] }
 }
 function updateCircleHTML(){
     DOM('circleDerivPDisplay').innerText = `You have ${format(data.particles[1])} Derivative Particles`
