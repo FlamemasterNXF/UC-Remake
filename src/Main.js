@@ -13,7 +13,7 @@ function calculateOddityGain(){
 let diff
 function mainLoop(){
     diff = data.settingsToggles[2]?(Date.now()-data.time)/1000:getRandom(0.048, 0.053)
-    data.offline.time = Math.max(data.offline.time-OFFLINE.boost*diff,0)
+    data.offline.time = Math.max(data.offline.time-OFFLINE.boost()*diff,0)
     data.time += diff*OFFLINE.boost
     calculationsLoop()
     gainParticles(diff)

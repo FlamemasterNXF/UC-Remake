@@ -1,5 +1,6 @@
 function updateHTML(){
     // region constant
+    OFFLINE.updateHTML()
     DOM('oddityDisplay').innerText = `There are ${format(data.oddities)} Oddities [${format(data.oddityGain)}/s]`
     ENTROPY.updateHTML()
     DOM('mysteriesNav').innerText = data.hasTab[2]?'Theories':'???'
@@ -146,5 +147,5 @@ function tabChangeHTML(){
     DOM(`inversionsNav`).style.display = data.breakpointsUnlocked[1] || data.hasTab[6]?'inline':'none'
     DOM(`complexityNav`).style.display = data.hasTab[7]?'inline':'none'
     //animations
-    animationCavnas.style.display = [4,6,7].includes(data.currentTab)?'flex':'none'
+    animationCavnas.style.display = (!OFFLINE.needed() && [4,6,7].includes(data.currentTab))?'flex':'none'
 }

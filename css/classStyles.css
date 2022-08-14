@@ -12,6 +12,11 @@
     font-family: DosisLight;
     text-align: center;
 }
+.loadingTexts{
+    color: white;
+    font-family: DosisBold;
+    font-size: 2em;
+}
 .theoryRow{
     flex-direction: row;
     margin-top: 5px;
