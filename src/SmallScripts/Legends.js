@@ -7,6 +7,7 @@ function unlockLegends(){
     if (data.hasTheory[19]) data.hasLegend[4] = true
     if (data.particles[0].gte(1e5)) data.hasLegend[5] = true
     if (data.particles[0].gte(1e7)) data.hasLegend[6] = true
+    if (data.oddities.gte(1e150)) data.hasLegend[7] = true
 }
 function changeLegendsTab(i){
     DOM(`${i}Container`).style.display = 'flex'

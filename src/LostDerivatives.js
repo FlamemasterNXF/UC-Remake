@@ -15,30 +15,42 @@ let lostCycleEffectTexts = [
     `Ancient Particles multiply Circle Progress speed`,
     `Ancient Particles multiply Upgrade 1 effect`,
 ]
+function totalLostCycles(){
+    let total = D(0)
+    for(let i=0;i<data.lostCycleLevels.length;i++){
+        total = total.plus(data.lostCycleLevels[i])
+    }
+    return total
+}
 function calculateLostStuff(){
     data.inLost?
         ancientParticleGain = (data.oddities.sqrt().div(2).div(data.particles[0].plus(1).log10()).plus(1)).sub(data.particles[3]):D(0)
     let dpGain =  data.particles[0].gte(1)?(data.particles[0].sqrt().sqrt().times(lostCycleEffects[1])).div(BREAKPOINTS[4].nerf()):D(0)
     if(dpGain.gt(1e15))dpGain=dpGain.pow(1/3).mul(1e10)
-    particleGains[0] = dpGain
-    particleGains[1] = data.particles[0].gte(1)?((data.particles[0].sqrt().times(derivativeParticleEffect).times(CYCLES[8].effect())).div(BREAKPOINTS[1].nerf())).div(BREAKPOINTS[4].nerf()):D(0)
+    particleGains[0] = dpGain.pow(INVERSIONS.deepInversionEffects()[3])
+    particleGains[1] = data.particles[0].gte(1)?(((data.particles[0].sqrt().times(derivativeParticleEffect).times(CYCLES[8].effect())).div(BREAKPOINTS[1].nerf())).div(BREAKPOINTS[4].nerf())).pow(INVERSIONS.deepInversionEffects()[3]):D(0)
 
-    derivativeParticleEffect = data.particles[1].gte(1)?(data.particles[1].sqrt().plus(1)).times(CYCLES[9].effect()):D(1)
-    derivativeParticleEffect2 = theoryEffects[19]?data.particles[1].gte(1)?data.particles[1].log2().sqrt().plus(1):D(1):D(1)
-    dreamParticleEffects[0] = data.particles[2].gte(1)?(data.particles[2].sqrt().plus(1)).times(CYCLES[5].effect()):D(1)
-    dreamParticleEffects[1] = data.hasLostTheory[0]?data.particles[2].gte(1)?(data.particles[2].log10()).times(CYCLES[2].effect()):D(1):D(1)
-    dreamParticleEffects[2] = data.hasLostTheory[1]?data.particles[2].gte(1)?(data.particles[2].log2()).times(CYCLES[6].effect()):D(1):D(1)
+    derivativeParticleEffect = data.particles[1].gte(1)?(data.particles[1].sqrt().plus(1)).times(CYCLES[9].effect()).clampMin(1):D(1)
+    derivativeParticleEffect2 = theoryEffects[19]?data.particles[1].gte(1)?data.particles[1].log2().sqrt().plus(1).clampMin(1):D(1):D(1)
+    dreamParticleEffects[0] = data.particles[2].gte(1)?(data.particles[2].sqrt().plus(1)).times(CYCLES[5].effect()).clampMin(1):D(1)
+    dreamParticleEffects[1] = data.hasLostTheory[0]?data.particles[2].gte(1)?(data.particles[2].log10()).times(CYCLES[2].effect()).clampMin(1):D(1):D(1)
+    dreamParticleEffects[2] = data.hasLostTheory[1]?data.particles[2].gte(1)?(data.particles[2].log2()).times(CYCLES[6].effect()).clampMin(1):D(1):D(1)
     lostCycleEffects[0] = data.lostCycleLevels[0].gte(1)?(data.particles[0].log2().times(data.lostCycleLevels[0])).times(CYCLES[7].effect()):D(1)
     lostCycleEffects[1] = data.lostCycleLevels[1].gte(1)?data.particles[0].log2().sqrt().sqrt().times(data.lostCycleLevels[1].times(data.particles[0].ln().sqrt())):D(1)
     lostCycleEffects[2] = data.lostCycleLevels[2].gte(1)?data.particles[0].log2().log10().sqrt().div(3).times(data.lostCycleLevels[2]).clampMin(1):D(1)
     lostCycleEffects[3] = data.lostCycleLevels[3].gte(1)?data.particles[0].log2().log2().sqrt().times(data.lostCycleLevels[3]).clampMin(1):D(1)
-    lostTheory3Effect = data.hasLostTheory[2]?data.lostCycleLevels[1].plus(data.lostCycleLevels[0]).div(2):D(1)
+    lostTheory3Effect = data.hasLostTheory[2]?(totalLostCycles().div(2)).times(INVERSIONS.iTheoryEffects()[2]):D(1)
     if(ancientParticleGain.lt(0)) ancientParticleGain = D(0)
     calculateLostCycleCosts()
 }
 function calculateLostCycleCosts(){
     for (let i=0;i<data.lostCycleLevels.length;i++){
-        lostCycleCosts[i] = lostCycleCostBase[i].times(data.lostCycleLevels[i].plus(1)).times(data.lostCycleLevels[i].div(10).plus(1))
+        if(data.lostCycleLevels[i].gte(1e4)){
+            lostCycleCosts[i] = lostCycleCostBase[i].times((data.lostCycleLevels[i].plus(1)).times(data.lostCycleLevels[i].times(2).plus(1)).times(data.lostCycleLevels[i].sqrt()))
+        }
+        else{
+            lostCycleCosts[i] = lostCycleCostBase[i].times(data.lostCycleLevels[i].plus(1)).times(data.lostCycleLevels[i].div(10).plus(1))
+        }
     }
 }
 function gainParticles(diff){
@@ -61,8 +73,9 @@ function buyLostTheory(x){
 function buyLostCycle(x){
     let i=x-1
     if (data.particles[1].gte(lostCycleCosts[i])){
-        data.particles[1] = data.particles[1].sub(lostCycleCosts[i])
         data.lostCycleLevels[i] = data.lostCycleLevels[i].plus(1)
+        data.particles[1] = data.particles[1].sub(lostCycleCosts[i])
+        calculateLostCycleCosts()
     }
 }
 function lostControl(){
@@ -89,7 +102,6 @@ function lostReset(){
 }
 function buyMaxLostCycles() {
     for (let i = 0; i < 10; i++) {
-        calculateLostCycleCosts()
         buyLostCycle(1)
         buyLostCycle(2)
         buyLostCycle(3)

@@ -1,5 +1,5 @@
 const D = x => new Decimal(x)
-const VERSION = '0.0.19'
+const VERSION = '0.0.20'
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
@@ -25,11 +25,20 @@ function getDefaultObject() {
         breakpointsUnlocked: Array(4).fill(false),
         breakpointsEnabled: Array(4).fill(false),
         hasSecret: Array(3).fill(false),
+        //inversions
+        inversions: D(1),
+        inversionEnabled: false,
+        invertedTheoryLevels: Array(6).fill(D(0)),
+        deepInversion: D(0),
+        deepInversionCap: D(0),
+        bestOdditiesMaxDeep: D(0),
+        maxSuperChargeEffect: D(1),
+        inversionInversionControl: [false, false],
         //misc
         settingsToggles: [true, true, true,], //changelog, animation, offline time
         autoToggled: Array(3).fill(false),
-        hasLegend: Array(7).fill(false),
-        hasTab: Array(4).fill(false),
+        hasLegend: Array(8).fill(false),
+        hasTab: Array(8).fill(false),
         ticker: false,
         time: Date.now(),
         devSpeed: 1,
@@ -40,7 +49,13 @@ function getDefaultObject() {
 let data = getDefaultObject()
 //saving and loading
 function save(){
-    window.localStorage.setItem('ucRemakeSave', JSON.stringify(data))
+    try{
+        window.localStorage.setItem('ucRemakeSave', JSON.stringify(data))
+    }
+    catch (e) {
+        createAlert('Error', `Save failed.\n${e}`, 'Dang.');
+        console.error(e);
+    }
 }
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem('ucRemakeSave'))
@@ -71,37 +86,66 @@ function fixOldSaves(){
     data.version = VERSION
 }
 function exportSave(){
-    save()
-    let exportedData = btoa(JSON.stringify(data));
-    const exportedDataText = document.createElement("textarea");
-    exportedDataText.value = exportedData;
-    document.body.appendChild(exportedDataText);
-    exportedDataText.select();
-    exportedDataText.setSelectionRange(0, 99999);
-    document.execCommand("copy");
-    document.body.removeChild(exportedDataText);
-    createAlert('Export Successful', 'Your Data has been copied to the clipboard!', 'Thanks!')
+    try {
+        save()
+        let exportedData = btoa(JSON.stringify(data))
+        const exportedDataText = document.createElement("textarea");
+        exportedDataText.value = exportedData;
+        document.body.appendChild(exportedDataText);
+        exportedDataText.select();
+        exportedDataText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        document.body.removeChild(exportedDataText);
+        createAlert('Export Successful', 'Your Data has been copied to the clipboard!', 'Thanks!')
+    }
+    catch (e){
+        createAlert('Error', `Save export failed.\n${e}`, 'Dang.');
+        console.error(e);
+    }
+}
+async function downloadSave() {
+    try {
+        const file = new Blob([btoa(JSON.stringify(data))], {type: "text/plain"});
+        window.URL = window.URL || window.webkitURL;
+        const a = document.createElement("a")
+        let date = new Date()
+        date = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear()
+        a.href = window.URL.createObjectURL(file)
+        a.download = `UC-Remake-save-${VERSION}-${date}.txt`
+        a.click()
+        createAlert("Success!", 'Your save has been successfully downloaded!', 'Thanks!');
+    } catch (e) {
+        createAlert('Error', `Save download failed.\n${e}`, 'Dang.');
+        console.error(e);
+        closeModal(1)
+    }
 }
 function beginImport(){
     createPrompt('Import Savedata', 0)
 }
 function importSave() {
-    let importedData = DOM('promptInput').value
-    if(importedData.length <= 0) {
-        DOM('promptContainer').style.display = 'none'
-        createAlert('Failure', 'No data found.', `Oops.`)
-        return
+    try {
+        let importedData = DOM('promptInput').value
+        if(importedData.length <= 0) {
+            DOM('promptContainer').style.display = 'none'
+            createAlert('Failure', 'No data found.', `Oops.`)
+            return
+        }
+        if (importedData.toLowerCase() === "ourgwa" || importedData.toLowerCase() === "china") {ourgwatrigger(); DOM('promptContainer').style.display = 'none'}
+        if (importedData.toLowerCase() === "5 hours") {
+            data.ticker = !data.ticker
+            DOM('promptContainer').style.display = 'none'
+            DOM('ticker').style.display = data.ticker?'flex':'none'
+            if(data.ticker) scrollNextMessage()
+        }
+        data = Object.assign(getDefaultObject(), JSON.parse(atob(importedData)))
+        save()
+        location.reload()
     }
-    if (importedData.toLowerCase() === "ourgwa" || importedData.toLowerCase() === "china") {ourgwatrigger(); DOM('promptContainer').style.display = 'none'}
-    if (importedData.toLowerCase() === "5 hours") {
-        data.ticker = !data.ticker
-        DOM('promptContainer').style.display = 'none'
-        DOM('ticker').style.display = data.ticker?'flex':'none'
-        if(data.ticker) scrollNextMessage()
+    catch (e){
+        createAlert('Error', `Save import failed.\n${e}`, 'Dang.');
+        console.error(e);
     }
-    data = Object.assign(getDefaultObject(), JSON.parse(atob(importedData)))
-    save()
-    location.reload()
 }
 window.setInterval(function(){
     save()

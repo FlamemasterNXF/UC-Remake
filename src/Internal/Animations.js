@@ -78,6 +78,44 @@ function animationsLoop() {
             drawArc(Math.sin(timer/50*i)*i,Math.cos(timer/50*i)*j,2);
         }
     }
+    if (data.currentTab === 6) {
+        timer += 1/250;
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = 'black';
+        drawRect(0-canX*4,0-canY*4,canX*4,canY*4);
+
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = 'red';
+        for (let i = 1; i < 601; i += 1) {
+            let j = 300 - i;
+            if (i % 10 === 0) {
+                ctx.fillStyle = rgbToHex(69, 47, 117);
+            }
+            else {
+                ctx.fillStyle = rgbToHex(10, 20, 0);
+            }
+            drawArc(Math.cos(timer/10^i)*i,Math.cos(timer/50*i)*j,2);
+        }
+    }
+    if (data.currentTab === 7) {
+        timer += 1/250;
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = 'black';
+        drawRect(0-canX*4,0-canY*4,canX*4,canY*4);
+
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = 'red';
+        for (let i = 1; i < 601; i += 1) {
+            let j = 300 - i;
+            if (i % 10 === 0) {
+                ctx.fillStyle = rgbToHex(50,10,0);
+            }
+            else {
+                ctx.fillStyle = rgbToHex(30, 20, 0);
+            }
+            drawArc(Math.cos(timer/20*i)*j,Math.cos(timer/50*i)*j,2);
+        }
+    }
 
     ctx.fillStyle = "black";
     drawRect(-1,-1,1,1);

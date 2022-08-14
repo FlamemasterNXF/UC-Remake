@@ -31,3 +31,14 @@ body{
     font-family: 'DosisSemiBold';
     src: url(Dosis/static/Dosis-SemiBold.ttf);
 }
+@keyframes bgSwitch {
+    0% {
+        background-position: 0 100%;
+    }
+    50% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}

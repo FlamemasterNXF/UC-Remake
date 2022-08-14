@@ -93,6 +93,28 @@
     height: 70px;
     margin-top: 4px;
 }
+.iTheory{
+    margin-left: 5px;
+    background-color: #02a046;
+    border: 3px #191717 solid;
+    font-family: DosisSemiBold;
+    min-height: 90px;
+    width: 200px;
+    transition: all 0.5s ease-in-out;
+    transform: scale(1);
+}
+.iTheory:hover {
+    transform: scale(1.25);
+    box-shadow: 0 5px 15px rgba(98, 182, 92, 0.4);
+    position: relative;
+    z-index: 2;
+}
+.deepInversionEffectText{
+    color: #00d017;
+    text-shadow: 1px 1px 10px rgba(108, 251, 60, 0.53);
+    text-align: center;
+    font-family: DosisMedium;
+}
 .circleContainer {
     height: 250px;
     width: 400px;
@@ -134,7 +156,7 @@
 }
 .navButton{
     margin-left: 5px;
-    width: 100px;
+    min-width: 100px;
     height: 30px;
     text-align: center;
     border: 3px solid #2b2b2b;

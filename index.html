@@ -12,6 +12,7 @@
     <script defer src="src/Data.js"></script>
     <script defer src="src/Internal/CircleControl.js"></script>
     <script defer src="src/SmallScripts/Settings.js"></script>
+    <script defer src="src/Inversions.js"></script>
     <script defer src="src/Circles.js"></script>
     <script defer src="src/LostDerivatives.js"></script>
     <script defer src="src/Theories.js"></script>
@@ -38,8 +39,10 @@
     <div id="promptContainer" class="flexbox modalContainer">
         <div id="prompt">
             <h3 id="promptTitle"></h3>
-            <input id="promptInput" type="text" placeholder="Enter text">
+            <p id="promptDesc"></p>
+            <input id="promptInput" type="text" placeholder="">
             <button id="promptButton">Submit</button>
+            <button id="promptCancelButton" onclick="closeModal(1)">Cancel</button>
         </div>
     </div>
     <div class="flexbox modalContainer" id="alertContainer">
@@ -73,12 +76,14 @@
         <button class="navButton" id="milestoneNav" onclick="switchTab(3)">Legends</button>
         <button class="navButton" id="lostNav" onclick="switchTab(4)">Lost Derivative</button>
         <button class="navButton" id="circleNav" style="background-color: #d7c200" onclick="switchTab(5)">The Circles</button>
+        <button class="navButton" id="inversionsNav" style="background-color: #02a046" onclick="switchTab(6)">Inversions</button>
+        <button class="navButton" id="complexityNav" onclick="switchTab(7)">Complexity</button>
         <button class="navButton" id="settingsNav" onclick="switchTab(0)">Settings</button>
     </div>
     <div class="flexBox" id="buymaxContainer">
         <button class="flexBox" id="buymax" onclick="buyMaxDeriv()">Buy the max possible of all Derivatives [M]</button>
         <button class="flexBox" id="autoBuymax" onclick="autoToggle(1)">Auto Buymax: OFF</button>
-        <button class="flexBox" id="upgradeBuymax" onclick="buyMaxUpgrades()">Buy the max possible of Upgrades 1-4 [U]</button>
+        <button class="flexBox" id="upgradeBuymax" onclick="buyMaxUpgrades()">Buy the max possible of all Upgrades [U]</button>
     </div>
     <div class="flexBox" id="bigDerivativeContainer">
         <div class="flexBox" id="derivativeContainer">
@@ -151,7 +156,7 @@
         </div>
         <div class="flexBox" id="legaciesContainer" style="flex-direction: column">
             <button class="legend" id="legend0">Legacy One<br>Discovered by purchasing an Upgrade 4<br>Unlock an Auto Buymax for Derivatives</button>
-            <button class="legend" id="legend2">Legacy Two<br>Discovered by obtaining an Ancient Particle<br>Unlock a Buymax for Upgrades 1-4</button>
+            <button class="legend" id="legend2">Legacy Two<br>Discovered by obtaining an Ancient Particle<br>Unlock a Buymax for Upgrades</button>
             <button class="legend" id="legend3">Legacy Three<br>Discovered by unlocking Breakpoint 1<br>Unlock an Auto Buymax for Lost Cycles</button>
             <button class="legend" id="legend4">Legacy Four<br>Discovered by unlocking Theory 20<br>Unlock a Buymax for Cycles</button>
         </div>
@@ -159,6 +164,7 @@
             <button class="legend" id="legend1">Treasure One<br>Discovered by purchasing an Upgrade ⬥<br>Derivative 1 no longer consumes Oddities on purchase</button>
             <button class="legend" id="legend5">Treasure Two<br>Discovered by reaching 100,000 Ancient Particles<br>Unlock the Circles</button>
             <button class="legend" id="legend6">Treasure Three<br>Discovered by reaching 1e7 Ancient Particles<br>`ǝ̴̨̨̦̙͍̆̀̃͐̊̽̈̔̈̋̿͒͝ͅʌ̶̡̤̕͝͠ᴉ̷̮̬̥̳̎̔̓̽̄Ⅎ̴͓̫̖̻̗̤̟̣̿͋̔̅̊͂̓̑̎͌͋͒͘͝ʌ̶̗͚͚̬̊̀̾̏́̇͋̂̍̋̽͝ᴉ̷̧̯̺̞͍̳̼̤͔̠͑̓̑̈́͂͝ɹ̶̡̮͔̗͙̰̗̘͍̘͓̩̾͘ǝ̸̛̹̙̖̈́͋͋̕p̷̯̳͔͉̗̱̒̀ʞ̴͓̝̹͈̩̮̈́͛͜͜ɔ̴̡̨̨͍̭͎̽̑̎̾̄̔̌͋͂͘͜͝͝ỡ̶̢̲͍͙̮͒̕l̷̥̠͑̏͗̉̑̌̍ũ̸̡̨̡͙͚̟̞̤̦͖̞̖͖̅̀͋͂̎̓̈̊∩̸͎̐͂̕</button>
+            <button class="legend" id="legend7">Treasure Four<br>Discovered by reaching 1e150 Oddities<br>Unlock Inversions</button>
         </div>
     </div>
     <div class="flexBox" id="bigLostContainer">
@@ -235,10 +241,42 @@
             </div>
         </div>
     </div>
+    <div class="flexBox" id="bigInversionsContainer" style="flex-direction: column">
+        <p class="generalTexts" id="inversionsDisplay" style="margin-top: 10px; margin-bottom: 2px; color: #6ab75e; text-align: center; font-family: DosisBold">There are 0 Inversions</p>
+        <button class="navButton" id="toggleInversions" style="margin-bottom: 2px; background-color: black; color: #6ab75e; text-align: center; font-family: DosisSemiBold" onclick="data.inversionEnabled = !data.inversionEnabled">amongus</button>
+        <div class="flexBox" id="inversionSubtabContainer" style="flex-direction: row; margin-top: 7px">
+            <button class="navButton" id="invertedTheoriesNav" style="background-color: black; color: #02a046" onclick="changeInversionsTab('invertedTheories')">Inverted Theories</button>
+            <button class="navButton" id="deepInversionsNav" style="background-color: black; color: #02a046" onclick="changeInversionsTab('deepInversions')">Deep Inversions</button>
+            <button class="navButton" id="inversionInversionNav" style="background-color: black; color: #02a046" onclick="changeInversionsTab('inversionInversion')">Inversion Inversion</button>
+        </div>
+        <div class="flexBox" id="invertedTheoriesContainer" style="flex-direction: column">
+            <div class="flexBox theoryRow" id="invertedTheoryRow1" style="margin-top: 10px">
+                <button class="iTheory" id="iTheory0" onclick="INVERSIONS.buyITheory(0)" >Inverted Theory I</button>
+                <button class="iTheory" id="iTheory1" onclick="INVERSIONS.buyITheory(1)">Inverted II</button>
+                <button class="iTheory" id="iTheory2" onclick="INVERSIONS.buyITheory(2)">Inverted III</button>
+                <button class="iTheory" id="iTheory3" onclick="INVERSIONS.buyITheory(3)">Inverted III</button>
+                <button class="iTheory" id="iTheory4" onclick="INVERSIONS.buyITheory(4)">Inverted III</button>
+                <button class="iTheory" id="iTheory5" onclick="INVERSIONS.buyITheory(5)">Inverted III</button>
+            </div>
+        </div>
+        <div class="flexBox" id="deepInversionsContainer" style="flex-direction: column">
+            <p class="generalTexts deepInversionEffectText" id="deepInversionEffectText2">Deep Thoughts with The Deep</p>
+            <button id="deepInversionActivate" onclick="INVERSIONS.activateDeepInversion()">Deep Thoughts with The Deep</button>
+            <p class="generalTexts deepInversionEffectText" id="deepInversionEffectText">Deep Thoughts with The Deep</p>
+        </div>
+        <div class="flexBox" id="inversionInversionContainer" style="flex-direction: column">
+            <button id="inversionInversion" onclick="INVERSIONS.controlInversionInversion()"><i>Are you prepared to venture into the far unknown?</i><br>Invert your Inversions</button>
+            <p class="generalTexts" id="inversionInversionEffectText">Deep Thoughts with The Deep</p>
+        </div>
+    </div>
+    <div class="flexBox" id="bigComplexityContainer">
+        <p class="generalTexts" id="complexityPlaceholder">Darkness there and nothing more<br>Quoth the Raven "Nevermore."</p>
+    </div>
     <div class="flexBox" id="settingsContainer">
         <div class="flexBox" id="saveControl">
-            <button class="settingsButtons" onclick="exportSave(); createAlert('Saved', 'Game successfully saved manually!', 'Sweet.')">Save your game</button>
+            <button class="settingsButtons" onclick="save(); createAlert('Saved', 'Game successfully saved manually!', 'Sweet.')">Save your game</button>
             <button class="settingsButtons" onclick="exportSave()">Export your Savefile</button>
+            <button class="settingsButtons" onclick="downloadSave()">Download your Savefile</button>
             <button class="settingsButtons" onclick="beginImport()">Import your Savefile</button>
             <button class="settingsButtons" style="color: darkred" onclick="beginFullReset()">Export and Delete your Savefile</button>
         </div>

@@ -209,6 +209,73 @@
     font-family:DosisLight;
     white-space: nowrap;
 }
+#deepInversionActivate{
+    margin-top: 10px;
+    height: 85px;
+    width: 330px;
+    border-image: linear-gradient(45deg, rgba(14, 143, 0, 0.79), rgb(100, 250, 66)) 1;
+    background-color: rgba(5, 86, 18, 0.15);
+    color: #00b919;
+    text-shadow: 1px 1px 10px rgba(108, 251, 60, 0.53);
+    font-family: Dosis;
+    font-size: 15px;
+}
+#inversionInversion{
+    margin-top: 50px;
+    height: 85px;
+    min-width: 330px;
+    background-color: rgba(5, 86, 18, 0.15);
+    color: transparent;
+    font-family: Dosis;
+    font-size: 1em;
+    background-image: linear-gradient(to left, #2ecc71, #3498db, #9b59b6, #f39c12);
+    background-size: 500%;
+    -webkit-background-clip: text;
+    -webkit-background-size: 500%;
+    animation: bgSwitch 5s linear infinite;
+    transition: all 2s ease-in-out;
+    transform: scale(1);
+}
+#inversionInversion:hover {
+    transform: scale(2);
+    box-shadow: 0 5px 15px rgba(92, 182, 128, 0.4);
+    position: relative;
+    z-index: 2;
+}
+#inversionInversionEffectText{
+    margin-top: 20px;
+    color: transparent;
+    font-family: Dosis;
+    font-size: 1em;
+    text-align: center;
+    background-image: linear-gradient(to left, #9fcc2e, #34dbdb, #b65988, #f33412);
+    background-size: 500%;
+    -webkit-background-clip: text;
+    -webkit-background-size: 500%;
+    animation: bgSwitch 10s linear infinite;
+    transition: all 2s ease-in-out;
+    transform: scale(1);
+}
+#complexityPlaceholder{
+    margin-top: 20px;
+    color: transparent;
+    font-family: Dosis;
+    font-size: 1em;
+    text-align: center;
+    background-image: linear-gradient(to left, #cc2e9f, #db3466, #b65988, #f33412);
+    background-size: 500%;
+    -webkit-background-clip: text;
+    -webkit-background-size: 500%;
+    animation: bgSwitch 10s linear infinite;
+    transition: all 2s ease-in-out;
+    transform: scale(1);
+}
+#complexityNav{
+    border-image: linear-gradient(45deg, rgb(143, 0, 98), rgb(250, 66, 170)) 1;
+    background-color: rgba(5, 86, 18, 0.15);
+    color: #fb3c91;
+    text-shadow: 1px 1px 10px #331826, 1px 1px 10px #fd0000;
+}
 #ourgwa{
     width: 99%;
     height: 99%;
@@ -229,8 +296,7 @@
     height: 99%;
     left: 0;
     right: 0;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     z-index: 1;
 }
 #animationCanvas{

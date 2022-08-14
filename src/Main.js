@@ -3,9 +3,12 @@ function increaseOddities(i){
 }
 function calculateOddityGain(){
     data.oddityGain =
-        ((data.derivs[0].amt.times(CYCLES[1].effect())).times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7])
+        (data.derivs[0].amt.times(CYCLES[1].effect())).times(theoryEffects[0]).times(upgradeEffects[0]).times(theoryEffects[2]).times(theoryEffects[7])
             .times(lostCycleEffects[0]).times(theoryEffects[9]).times(dreamParticleEffects[0]).times(theoryEffects[10]).times(dreamParticleEffects[2])
-            .times(theoryEffects[17])).div(data.entropy)
+            .times(theoryEffects[17]).times(data.maxSuperChargeEffect)
+    if(data.inLost){ data.oddityGain = data.oddityGain.times(INVERSIONS.iTheoryEffects()[1]) }
+    data.oddityGain = data.inversionInversionControl[1]?data.oddityGain.times(INVERSIONS.inversionEffect()):data.oddityGain.div(INVERSIONS.inversionEffect())
+    data.oddityGain = data.oddityGain.div(data.entropy).pow(INVERSIONS.deepInversionEffects()[0])
 }
 let diff
 function mainLoop(){
@@ -16,6 +19,8 @@ function mainLoop(){
     produceDerivs(diff)
     increaseOddities(data.oddityGain.times(diff))
     ENTROPY.gainEntropy(diff)
+    INVERSIONS.gain(diff)
+    INVERSIONS.gainDeepInversion()
     automate()
     if(data.hasLegend[5]) for(let i=0;i<data.circleProg.length;i++) progress(i, data.circleProg[i])
     updateHTML()
@@ -31,9 +36,8 @@ function calculationsLoop(){
 }
 function switchTab(i){
     data.currentTab = i
-    let x=i-2
-    if (x >= 0) data.hasTab[x] ? data.currentTab=i : data.currentTab=1
-    i < 4 || !data.settingsToggles[1] ? animationCavnas.style.display = 'none' : animationCavnas.style.display = 'flex'
+    if (data.hasTab[i]){ data.currentTab=i }
+    else { data.currentTab=1; createAlert('Tab Locked','You must progress further to unlock this tab!', 'Aw...')  }
     tabChangeHTML()
 }
 document.addEventListener('keydown', (event) => {
@@ -54,5 +58,6 @@ window.onload = function (){
     if(data.hasTab[3]) setupBars(data.circleProg.length-1)
     changeCirclesTab('cycles')
     changeLegendsTab('legacies')
+    changeInversionsTab('invertedTheories')
     scrollNextMessage()
 }

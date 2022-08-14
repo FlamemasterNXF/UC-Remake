@@ -76,7 +76,7 @@ const CYCLES = {
     },
     9: {
         nerf(){ if(data.derivs[1].b.gte(1)){ return data.cycleLevels[8].gte(1)?data.lostCycleLevels[1].div(2):D(1) } else { return D(1) } },
-        effect(){ if(data.cycleLevels[8].gte(1)){ return ((c().log2().sqrt()).plus(data.particles[2].sqrt())).sqrt().div(10).plus((data.cycleLevels[8])).sub(this.nerf()).clampMin(1) } else { return D(1) } },
+        effect(){ if(data.cycleLevels[8].gte(1)){ return D(1) } else { return D(1) } },
         cost(){return D(1e5).times(data.cycleLevels[8].plus(data.cycleLevels[0].div(10).plus(1))) },
         desc(){return `Current Multiplier: ${format(this.effect())}x\nCurrent Nerf: -${format(this.nerf())}`},
     },
@@ -108,7 +108,7 @@ const BREAKPOINTS = {
         unlocked: false,
         enabled: false,
         nerf(){ if(data.breakpointsEnabled[2]){ return this.effect().log2() } else { return D(1) } },
-        effect() { if(data.breakpointsEnabled[2]){ return l().sqrt().plus(c().log2()) } else { return D(1) } }
+        effect() { if(data.breakpointsEnabled[2]){ return (l().sqrt().plus(c().log2())).times(INVERSIONS.iTheoryEffects()[0]) } else { return D(1) } }
     },
     4: {
         cost: D(1e110),
@@ -175,10 +175,10 @@ function changeCirclesTab(i){
     if(i!=='secrets') DOM('secretsContainer').style.display = 'none'
 }
 function buyMaxCycles(){
-  for(let i=1;i<=9;i++){
+  for(let i=1;i<=10;i++){
     let dp = data.particles[1]
     if(dp.lte(0))break
-    let startLevel = data.cycleLevels[i===9?1:i] // buy cycle 1 last
+    let startLevel = data.cycleLevels[i===9?0:i-1] // buy cycle 1 last
     if(i===10){
       let spent = startLevel.mul(startLevel).mul(0.55).add(startLevel.mul(1.55)).mul(5e4)
       let maxLevels = dp.div(5e4).add(spent.div(5e4)).mul(880).add(961).sqrt().div(22).sub(31/22).floor().clampMin(startLevel)

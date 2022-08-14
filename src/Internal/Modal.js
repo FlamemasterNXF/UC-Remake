@@ -7,20 +7,22 @@ function createAlert(a,b,c) {
     DOM('alertContainer').style.display = 'block'
 }
 
-function createPrompt(a,b) {
-    let old_element = document.getElementById("promptButton");
-    let new_element = old_element.cloneNode(true);
-    old_element.parentNode.replaceChild(new_element, old_element);
+function createPrompt(a,b,c='') {
     DOM('promptInput').value = ''
     DOM('promptContainer').style.border = "4px solid whitesmoke"
     DOM('promptTitle').innerText = a
+    DOM('promptDesc').innerText = c
     DOM('prompt').style.display = 'block'
     DOM('promptContainer').style.display = 'block'
     switch(b) {
         case 0:
             document.getElementById('promptButton').addEventListener('click', () => { importSave() })
             break
+        case 1:
+            DOM('promptButton').addEventListener('click', () => { INVERSIONS.setDeepInversion(DOM('promptInput').value) })
+            break
     }
+    DOM('promptButton').onclick = () => b===0?importSave():INVERSIONS.setDeepInversion(DOM('promptInput').value)
 }
 function createConfirmation(a,b,c,d,e) {
     let old_element = document.getElementById("yesConfirm");
