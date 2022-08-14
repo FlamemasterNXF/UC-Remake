@@ -50,10 +50,10 @@ const INVERSIONS = {
     },
     deepInversionEffects(x=data.deepInversion){
         return [
-            data.inversionInversionControl[1]?D(1).plus(x.div(10)):D(1).sub(x.div(10)), //Oddity gain
-            data.inversionInversionControl[1]?D(1).sub(x.div(10)):D(1).plus(x.div(20)), //Inversion Gain
-            D(1).sub(x.div(30)), //Inversion Requirement
-            D(1).sub(x.div(5)), //Dream/Derivative Gain
+            data.inversionInversionControl[1]?D(1).plus(x.div(10)):(D(1).sub(x.div(10))).clampMin(0), //Oddity gain
+            data.inversionInversionControl[1]?(D(1).sub(x.div(10))).clampMin(0):D(1).plus(x.div(20)), //Inversion Gain
+            (D(1).sub(x.div(30))).clampMin(0), //Inversion Requirement
+            (D(1).sub(x.div(5))).clampMin(0), //Dream/Derivative Gain
             D(1).plus(x.div(100)) //Inverted Theory Effects
         ]
     },
