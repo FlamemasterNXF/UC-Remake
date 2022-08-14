@@ -22,6 +22,7 @@ function createPrompt(a,b,c='') {
             DOM('promptButton').addEventListener('click', () => { INVERSIONS.setDeepInversion(DOM('promptInput').value) })
             break
     }
+    DOM('promptButton').onclick = () => b===0?importSave():INVERSIONS.setDeepInversion(DOM('promptInput').value)
 }
 function createConfirmation(a,b,c,d,e) {
     let old_element = document.getElementById("yesConfirm");
