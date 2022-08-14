@@ -93,6 +93,7 @@ const INVERSIONS = {
             let safe = parseInt(x)
             if(isNaN(safe)) throw `NaN at INVERSIONS.setDeepInversion('${x}')`
             this.prevDeep = data.deepInversion
+            if(D(safe).lt(0)){ return createAlert('Failure', 'You can\'t Supercharge a negative amount of Deep Inversions!', 'Oops..') }
             if(D(safe).eq(0) && this.prevDeep.eq(data.deepInversionCap) && data.oddities.gt(data.bestOdditiesMaxDeep)) {
                 data.bestOdditiesMaxDeep = data.oddities
                 this.calcMaxSuperchargeEffect()
