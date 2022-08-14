@@ -34,6 +34,8 @@ function getDefaultObject() {
         bestOdditiesMaxDeep: D(0),
         maxSuperChargeEffect: D(1),
         inversionInversionControl: [false, false],
+        //offline
+        offline: { timeActivated: Date.now(), time: 0 },
         //misc
         settingsToggles: [true, true, true,], //changelog, animation, offline time
         autoToggled: Array(3).fill(false),
@@ -41,7 +43,6 @@ function getDefaultObject() {
         hasTab: Array(8).fill(false),
         ticker: false,
         time: Date.now(),
-        devSpeed: 1,
         currentTab: 1,
         version: VERSION,
     }
@@ -61,6 +62,8 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem('ucRemakeSave'))
     if (savedata !== undefined) fixSave(data, savedata)
     fixOldSaves()
+    let off_time = (Date.now() - data.offline.timeActivated)/1000
+    if (data.settingsToggles[2]) data.offline.time += off_time
     createAlert('Welcome Back!', `You've loaded into UC v${VERSION}\nEnjoy!`, 'Thanks!')
 }
 //fix saves

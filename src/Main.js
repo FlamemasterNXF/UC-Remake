@@ -12,8 +12,9 @@ function calculateOddityGain(){
 }
 let diff
 function mainLoop(){
-    diff = data.settingsToggles[3]?(Date.now()-data.time)*data.devSpeed/1000:getRandom(0.048, 0.053)*data.devSpeed
-    data.time = Date.now()
+    diff = data.settingsToggles[2]?(Date.now()-data.time)/1000:getRandom(0.048, 0.053)
+    data.offline.time = Math.max(data.offline.time-OFFLINE.boost*diff,0)
+    data.time += diff*OFFLINE.boost
     calculationsLoop()
     gainParticles(diff)
     produceDerivs(diff)
@@ -24,6 +25,7 @@ function mainLoop(){
     automate()
     if(data.hasLegend[5]) for(let i=0;i<data.circleProg.length;i++) progress(i, data.circleProg[i])
     updateHTML()
+    data.time = Date.now()
 }
 function calculationsLoop(){
     calculateTheoryEffects()
